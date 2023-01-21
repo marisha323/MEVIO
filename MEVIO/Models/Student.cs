@@ -14,5 +14,6 @@
         public string? TIN { get; set; }
         public bool IsDiscount { get; set; }
         public string? Discount_Description { get; set; }
+        public double? DiscountSum { get; set; }
     }
 }
