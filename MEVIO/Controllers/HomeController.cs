@@ -12,7 +12,6 @@ using System.Text.Json;
 using static System.Net.Mime.MediaTypeNames;
 using Microsoft.Extensions.Options;
 
-
 namespace MEVIO.Controllers
 {
     public class HomeController : Controller
@@ -43,7 +42,6 @@ namespace MEVIO.Controllers
         {
             return View();
         }
-        int f;
         string token = "5898521490:AAExzqnbIo-xFBea-Ad26XSvlX8xlxzb96U";
         static TelegramBotClient client;
         public async Task<IActionResult> TestingBot()
