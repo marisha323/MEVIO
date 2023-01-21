@@ -43,6 +43,7 @@ namespace MEVIO.Controllers
         {
             return View();
         }
+        int f;
         string token = "5898521490:AAExzqnbIo-xFBea-Ad26XSvlX8xlxzb96U";
         static TelegramBotClient client;
         public async Task<IActionResult> TestingBot()
