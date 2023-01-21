@@ -28,6 +28,17 @@ namespace MEVIO.Controllers
         {
             return View();
         }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
         public IActionResult Calendar()
         {
             return View();
@@ -47,7 +58,7 @@ namespace MEVIO.Controllers
 
             return View("Calendar");
         }
-        public async Task<IActionResult> SendMessage(string text,string js)
+        public async Task<IActionResult> SendMessage(string text, string js)
         {
             //string userCookie = Request.Cookies["UserLoggedIn"];
             string userCookie = "{\"MessageId\":32,\"From\":{\"Id\":707556393,\"IsBot\":false,\"FirstName\":\"Egor\",\"LastName\":\"Belen\",\"Username\":\"RegorBelenkov\",\"LanguageCode\":\"en\",\"CanJoinGroups\":null,\"CanReadAllGroupMessages\":null,\"SupportsInlineQueries\":null},\"SenderChat\":null,\"Date\":\"2023-01-17T03:51:32Z\",\"Chat\":{\"Id\":707556393,\"Type\":0,\"Title\":null,\"Username\":\"RegorBelenkov\",\"FirstName\":\"Egor\",\"LastName\":\"Belen\",\"Photo\":null,\"Bio\":null,\"Description\":null,\"InviteLink\":null,\"PinnedMessage\":null,\"Permissions\":null,\"SlowModeDelay\":null,\"StickerSetName\":null,\"CanSetStickerSet\":null,\"LinkedChatId\":0,\"Location\":null},\"ForwardFrom\":null,\"ForwardFromChat\":null,\"ForwardFromMessageId\":0,\"ForwardSignature\":null,\"ForwardSenderName\":null,\"ForwardDate\":null,\"ReplyToMessage\":null,\"ViaBot\":null,\"EditDate\":null,\"MediaGroupId\":null,\"AuthorSignature\":null,\"Text\":\"/saveme\",\"Entities\":[{\"Type\":2,\"Offset\":0,\"Length\":7,\"Url\":null,\"User\":null,\"Language\":null}],\"EntityValues\":[\"/saveme\"],\"Animation\":null,\"Audio\":null,\"Document\":null,\"Photo\":null,\"Sticker\":null,\"Video\":null,\"VideoNote\":null,\"Voice\":null,\"Caption\":null,\"CaptionEntities\":null,\"CaptionEntityValues\":null,\"Contact\":null,\"Dice\":null,\"Game\":null,\"Poll\":null,\"Venue\":null,\"Location\":null,\"NewChatMembers\":null,\"LeftChatMember\":null,\"NewChatTitle\":null,\"NewChatPhoto\":null,\"DeleteChatPhoto\":false,\"GroupChatCreated\":false,\"SupergroupChatCreated\":false,\"ChannelChatCreated\":false,\"MessageAutoDeleteTimerChanged\":null,\"MigrateToChatId\":0,\"MigrateFromChatId\":0,\"PinnedMessage\":null,\"Invoice\":null,\"SuccessfulPayment\":null,\"ConnectedWebsite\":null,\"PassportData\":null,\"ProximityAlertTriggered\":null,\"VoiceChatScheduled\":null,\"VoiceChatStarted\":null,\"VoiceChatEnded\":null,\"VoiceChatParticipantsInvited\":null,\"ReplyMarkup\":null,\"Type\":1}";
@@ -62,7 +73,7 @@ namespace MEVIO.Controllers
             return View("Calendar");
         }
         [HttpPost]
-        public async Task<IActionResult> SendMessageCalendar(string Email, DateTime SetDate,string Subject) 
+        public async Task<IActionResult> SendMessageCalendar(string Email, DateTime SetDate, string Subject)
         {
             string key = "";
             Random rand = new Random();
@@ -99,7 +110,7 @@ namespace MEVIO.Controllers
         private static async void Client_OnCallBackQuery(object sender, Telegram.Bot.Args.CallbackQueryEventArgs e)
         {
             CallbackQuery callback = e.CallbackQuery;
-            if(callback.Data == "Choice 2")
+            if (callback.Data == "Choice 2")
             {
                 await client.SendTextMessageAsync(callback.Message.Chat.Id, "Correct choice");
             }
@@ -126,7 +137,7 @@ namespace MEVIO.Controllers
                         await SendReplyButtons(message);
                         break;
                     case "/addme":
-                         AddMe(message);
+                        AddMe(message);
                         break;
                     default:
                         await client.SendTextMessageAsync(message.Chat.Id, $"{message.Text} was received {DateTime.Now}");
@@ -198,18 +209,6 @@ namespace MEVIO.Controllers
                 });
             await client.SendTextMessageAsync(message.Chat.Id, "Make your choice: ",
               replyMarkup: inlineKeyboard);
-
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
