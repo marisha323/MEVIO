@@ -12,7 +12,6 @@ using System.Text.Json;
 using static System.Net.Mime.MediaTypeNames;
 using Microsoft.Extensions.Options;
 
-
 namespace MEVIO.Controllers
 {
     public class HomeController : Controller
