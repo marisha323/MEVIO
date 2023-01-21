@@ -12,7 +12,7 @@
         public string? PassportNumber { get; set; }
         public string? DateOfIssuePassport { get; set; }
         public string? TIN { get; set; }
-        public bool Discount { get; set; }
+        public bool IsDiscount { get; set; }
         public string? Discount_Description { get; set; }
     }
 }
