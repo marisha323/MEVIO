@@ -4,14 +4,13 @@
     {
         public int Id { get; set; }
         public string ClientName { get; set; }
-        public Enum ClientStatus { get; set; }
+
+        //ClientStatus
+        public int ClientStatusId { get; set; }
+        public ClientStatus? ClientStatus { get; set; }
+
         public string? PassportNumber { get; set; }
     }
-    public class ClientStatus.Enum
-    {
-        "Potencial"
-        "Explicit"
-        "Interested"
-    }
+    
 
 }

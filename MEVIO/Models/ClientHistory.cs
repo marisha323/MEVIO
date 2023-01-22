@@ -8,5 +8,13 @@
         public ICollection<Measure>? Measures { get; set; }
         public bool IsAgreement{ get; set; }
         public int ClientId { get; set; }
+        public virtual Client Client { get; set; }
+
+        public ClientHistory()
+        {
+            Events = new List<Event>();
+            Tasks = new List<Task>();
+            Measures = new List<Measure>();
+        }
     }
 }

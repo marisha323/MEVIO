@@ -6,5 +6,10 @@
         public string PlaceForMeasureName { get; set; }
         public bool IsFree { get; set; }
         public ICollection<MeasureBusyTable> MeasureBusyTables { get; set; }
+
+        public PlaceForMeasure() { 
+        
+            MeasureBusyTables= new List<MeasureBusyTable>();
+        }
     }
 }

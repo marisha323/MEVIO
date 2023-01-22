@@ -3,7 +3,7 @@
     public class UserRole
     {
         public int Id { get; set; }
-        public Name:Roles.Enum
+        public  string UserRoleName { get; set; }
         //"Client","Admin","Manager","Director"
     }
 }

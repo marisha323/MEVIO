@@ -3,6 +3,9 @@
     public class MeasuresClients
     {
         public int MeasureId{ get; set; }
+        public virtual Measure Measure { get; set; }
+
         public int ClientId { get; set; }
+        public virtual Client Client { get; set; }
     }
 }
