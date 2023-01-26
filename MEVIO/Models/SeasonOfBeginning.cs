@@ -3,7 +3,8 @@
     public class SeasonOfBeginning
     {
         public int Id { get; set; }
-        public Enum SeasonOfBeginning.Enum
-        Enum - "Winter" "Autumn"
+        public string SeasonName { get; set; }
+        //public Enum SeasonOfBeginning.Enum
+        //Enum - "Winter" "Autumn"
     }
 }

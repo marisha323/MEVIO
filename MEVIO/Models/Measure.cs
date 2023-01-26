@@ -1,4 +1,6 @@
-﻿namespace MEVIO.Models
+﻿using Microsoft.EntityFrameworkCore.Storage;
+
+namespace MEVIO.Models
 {
     public class Measure
     {
@@ -6,7 +8,6 @@
         public string MeasureName { get; set; }
         public DateTime Begin { get; set; }
         public DateTime End { get; set; }
-
         public int UserId { get; set; }//CreaterId
         public virtual User User { get; set; }
 

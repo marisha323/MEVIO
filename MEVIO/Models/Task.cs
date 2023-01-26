@@ -13,7 +13,7 @@
 
         public ICollection<User> ResponsiblePersons { get; set; }
         public ICollection<User>? WatchingPersons { get; set; }
-        public ICollection<UnderTask>? UnderTasks { get; set; }
+        public ICollection<UnderTask>? UnderTasks { get; set; }//подзадача
         public bool IsImportant { get; set; }
         public DateTime Begin { get; set; }
         public DateTime End { get; set; }

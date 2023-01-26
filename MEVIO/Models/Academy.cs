@@ -11,5 +11,6 @@
 
         public string AcademyName { get; set; }
         public int RequisitesId { get; set; }
+        public virtual Requisites Requisites { get; set; }
     }
 }
