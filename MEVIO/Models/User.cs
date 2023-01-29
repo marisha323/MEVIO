@@ -15,15 +15,17 @@
 
         public ICollection<int>? TasksId { get; set;}
         public ICollection<int>? MeasuresId { get; set; }
+        public ICollection<int>? UserChats { get; set; }
         //and same here
         public bool IsActive { get; set; }
         public User()
         {
-            CoWorkers= new List<User>();
-            EventsId= new List<int>();
-            TasksId= new List<int>();
-            MeasuresId= new List<int>();
-            IsActive=false;
+            CoWorkers = new List<User>();
+            EventsId = new List<int>();
+            TasksId = new List<int>();
+            MeasuresId = new List<int>();
+            UserChats = new List<int>();
+            IsActive = false;
         }
     }
 }
