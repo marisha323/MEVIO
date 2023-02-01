@@ -19,14 +19,24 @@ namespace MEVIO.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        MEVIOContext context;
+        public HomeController(MEVIOContext db)
         {
-            _logger = logger;
+            this.context = db;
         }
 
         public IActionResult Index()
         {
+
+            UserRole roleadmin = new UserRole() { UserRoleName = "admin" };
+            UserRole roledirector = new UserRole() { UserRoleName = "director" };
+            UserRole rolemanager = new UserRole() { UserRoleName = "manager" };
+            UserRole roleuser = new UserRole() { UserRoleName = "user" };
+            context.Roles.Add(roleadmin);
+            context.Roles.Add(roledirector);
+            context.Roles.Add(rolemanager);
+            context.Roles.Add(roleuser);
+            context.SaveChanges();
             return View();
         }
 
@@ -46,19 +56,19 @@ namespace MEVIO.Controllers
         }
         string token = "5898521490:AAExzqnbIo-xFBea-Ad26XSvlX8xlxzb96U";
         static TelegramBotClient client;
-        public async Task<IActionResult> TestingBot()
-        {
-            client = new TelegramBotClient(token);
-            User user = client.GetMeAsync().Result;
-            ViewBag.User = user;
+        //public async Task<IActionResult> TestingBot()
+        //{
+        //    //client = new TelegramBotClient(token);
+        //    //User user = client.GetMeAsync().Result;
+        //    //ViewBag.User = user;
 
-            client.OnMessage += Client_OnMessage;
-            client.OnMessageEdited += Client_OnMessage;
-            client.OnCallbackQuery += Client_OnCallBackQuery;
-            client.StartReceiving();
+        //    //client.OnMessage += Client_OnMessage;
+        //    //client.OnMessageEdited += Client_OnMessage;
+        //    //client.OnCallbackQuery += Client_OnCallBackQuery;
+        //    //client.StartReceiving();
 
-            return View("Calendar");
-        }
+        //    //return View("Calendar");
+        //}
         public async Task<IActionResult> SendMessage(string text, string js)
         {
             //string userCookie = Request.Cookies["UserLoggedIn"];

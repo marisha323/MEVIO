@@ -1,11 +1,13 @@
-﻿namespace MEVIO.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MEVIO.Models
 {
     public class Event
     {
         public int Id { get; set; }
         public string EventName{ get; set; }
         public string? Description { get; set; }
-
+        [ForeignKey("User")]
         public int UserId { get; set; }//CreaterId
         public virtual User User { get; set; }
 

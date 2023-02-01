@@ -44,7 +44,33 @@ namespace MEVIO.Models
         public DbSet<UserMeasureAcceptStatus> UserMeasureAcceptStatuses { get; set; } = null;
         public DbSet<UserRole> Roles { get; set; } = null!;
         public DbSet<UserTaskAcceptStatus> UserTaskAcceptStatuses { get; set; } = null!;
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //base.modelBuilder.Entity<User>().HasOne(u => u.Team).WithMany(u => u.TeamMembers);
+            //base.OnModelCreating(modelBuilder);
+            //modelBuilder.Entity<Event>()
+            //    .HasOne(c => c.User)
+            //    .WithMany(c => c.Events)
+            //    .OnDelete(DeleteBehavior.NoAction);
+            //base.OnModelCreating(modelBuilder);
+            //modelBuilder.Entity<Measure>()
+            //    .HasOne(c => c.User)
+            //    .WithMany(c => c.Measures)
+            //    .OnDelete(DeleteBehavior.NoAction);
+            //base.OnModelCreating(modelBuilder);
+            //modelBuilder.Entity<Task>()
+            //    .HasMany(c => c.ResponsiblePersons)
+            //    .WithMany(c => c.Tasks);
+            //base.OnModelCreating(modelBuilder);
+            //modelBuilder.Entity<Task>()
+            //    .HasMany(c => c.WatchingPersons)
+            //    .WithMany(c => c.Tasks);
+            //base.OnModelCreating(modelBuilder);
+            //modelBuilder.Entity<Task>()
+            //    .HasMany(c => c.UnderTasks)
+            //    .WithOne(c => c.Task);
+            base.OnModelCreating(modelBuilder);
+        }
         public MEVIOContext(DbContextOptions<MEVIOContext> options) : base(options)
         {
             Database.EnsureCreated();
