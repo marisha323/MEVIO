@@ -11,12 +11,17 @@
         public string? Phone { get; set; }
         public ICollection<User>? CoWorkers { get; set; }
         public string? TelegramJsonId { get; set; }
-        public ICollection<int>? EventsId {get; set;} //I did not understand if this should be Icollection or not
+        public ICollection<int>? EventsId { get; set; } //I did not understand if this should be Icollection or not
 
-        public ICollection<int>? TasksId { get; set;}
+        public ICollection<int>? TasksId { get; set; }
         public ICollection<int>? MeasuresId { get; set; }
         public ICollection<int>? UserChats { get; set; }
         //and same here
+        public DateTime? LastSignIn { get; set; }
+        public DateTime Birthdate { get; set; }
+        public string PassportNumber { get; set; }
+        public DateTime DateOfPassportIssue { get; set; }
+        public string TIN { get; set; }
         public bool IsActive { get; set; }
         public User()
         {
