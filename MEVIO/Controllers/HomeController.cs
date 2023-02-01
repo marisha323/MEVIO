@@ -11,6 +11,8 @@ using System.Text;
 using System.Text.Json;
 using static System.Net.Mime.MediaTypeNames;
 using Microsoft.Extensions.Options;
+using User = MEVIO.Models.User;
+using Task = System.Threading.Tasks.Task;
 
 namespace MEVIO.Controllers
 {

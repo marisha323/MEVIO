@@ -9,7 +9,7 @@
         public string Email { get; set; }
         public string Password { get; set; }
         public string? Phone { get; set; }
-        public ICollection<User>? CoWorkers { get; set; }
+        public ICollection<int>? CoWorkers { get; set; }
         public string? TelegramJsonId { get; set; }
         public ICollection<int>? EventsId { get; set; } //I did not understand if this should be Icollection or not
 
@@ -17,7 +17,7 @@
         public ICollection<int>? MeasuresId { get; set; }
         public ICollection<int>? UserChats { get; set; }
         //and same here
-        public DateTime? LastSignIn { get; set; }
+        public DateTime? LastTimeSignIn { get; set; }
         public DateTime Birthdate { get; set; }
         public string PassportNumber { get; set; }
         public DateTime DateOfPassportIssue { get; set; }
@@ -25,7 +25,7 @@
         public bool IsActive { get; set; }
         public User()
         {
-            CoWorkers = new List<User>();
+            CoWorkers = new List<int>();
             EventsId = new List<int>();
             TasksId = new List<int>();
             MeasuresId = new List<int>();
