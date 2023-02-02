@@ -13,13 +13,17 @@ using static System.Net.Mime.MediaTypeNames;
 using Microsoft.Extensions.Options;
 using User = MEVIO.Models.User;
 using Task = System.Threading.Tasks.Task;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MEVIO.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        MEVIOContext context;
+        public MEVIOContext context;
         public HomeController(MEVIOContext db)
         {
             this.context = db;
@@ -33,14 +37,54 @@ namespace MEVIO.Controllers
             //context.Roles.Add(roleuser);
             //context.SaveChanges();
         }
-
+        
         public IActionResult Index()
         {
 
 
             return View();
         }
+        [Authorize(Roles = "Admin")]
+        public IActionResult TestingAuthorize()
+        {
+            return View();
+        }
+        public IActionResult LoginRegister()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Login(string Email, string Password)
+        {
+            var a = context.Users.AsNoTracking().ToList();
+            User user = context.Users.Where(o => o.Email == Email && o.Password == Password).AsNoTracking().FirstOrDefault();
+            if (user != null)
+            {
+                CookieOptions options = new CookieOptions();
+                options.Expires = DateTime.Now.AddMinutes(45);
+                options.IsEssential = true;
+                options.Path = "/";
 
+                string str = JsonSerializer.Serialize(user);
+
+                HttpContext.Response.Cookies.Append("UserLoggedIn", str, options);
+
+                var role = await context.Roles.FindAsync(user.UserRoleId);
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimsIdentity.DefaultNameClaimType, user.UserName),
+                    new Claim(ClaimsIdentity.DefaultRoleClaimType,role!.UserRoleName)
+                };
+                var claimsIdentity = new ClaimsIdentity(claims, "Cookies");
+                var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                await HttpContext.SignInAsync(claimsPrincipal);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View("LoginRegister");
+            }
+        }
         public IActionResult Privacy()
         {
             return View();
