@@ -49,6 +49,8 @@ namespace MEVIO.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //base.modelBuilder.Entity<User>().HasOne(u => u.Team).WithMany(u => u.TeamMembers);
+
+
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Event>()
                 .HasOne(c => c.User)
@@ -63,6 +65,10 @@ namespace MEVIO.Models
             .HasOne(a => a.EventChat)
             .WithOne(a => a.Event)
             .HasForeignKey<EventChat>(c => c.EventId);
+
+
+
+
             //base.OnModelCreating(modelBuilder);
             //modelBuilder.Entity<Task>()
             //    .HasMany(c => c.ResponsiblePersons)
