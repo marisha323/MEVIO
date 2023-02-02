@@ -10,6 +10,11 @@
         public ClientStatus? ClientStatus { get; set; }
 
         public string? PassportNumber { get; set; }
+        public ICollection<TasksClients> TaskClients { get; set; }
+        public Client()
+        {
+            TaskClients = new List<TasksClients>();
+        }
     }
     
 

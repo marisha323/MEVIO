@@ -13,7 +13,7 @@
         public string? TelegramJsonId { get; set; }
         public ICollection<Event>? Events { get; set; } //I did not understand if this should be Icollection or not
 
-        public ICollection<Task>? Tasks { get; set; }
+        public ICollection<Task> Tasks { get; set; }
         public ICollection<Measure>? Measures { get; set; }
         public ICollection<UserChat>? UserChats { get; set; }
         //and same here
