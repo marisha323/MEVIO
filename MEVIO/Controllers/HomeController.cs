@@ -23,11 +23,6 @@ namespace MEVIO.Controllers
         public HomeController(MEVIOContext db)
         {
             this.context = db;
-        }
-
-        public IActionResult Index()
-        {
-
             UserRole roleadmin = new UserRole() { UserRoleName = "admin" };
             UserRole roledirector = new UserRole() { UserRoleName = "director" };
             UserRole rolemanager = new UserRole() { UserRoleName = "manager" };
@@ -37,6 +32,12 @@ namespace MEVIO.Controllers
             context.Roles.Add(rolemanager);
             context.Roles.Add(roleuser);
             context.SaveChanges();
+        }
+
+        public IActionResult Index()
+        {
+
+
             return View();
         }
 

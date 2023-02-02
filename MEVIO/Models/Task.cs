@@ -7,9 +7,12 @@ namespace MEVIO.Models
         public int Id { get; set; }
         public string TaskName { get; set; }
         public string? Description { get; set; }
-        [ForeignKey("User")]
-        public int UserId { get; set; }//CreatorId
-        public virtual User User{ get; set; }
+
+        public ICollection<User> Users { get; set; }
+
+        //[ForeignKey("User")]
+        //public int UserId { get; set; }//CreatorId
+        //public virtual User User{ get; set; }
         //[ForeignKey("Client")]
         //public int? ClientId { get; set; }//ClientTarget
         //public virtual Client Client { get; set; }
@@ -33,6 +36,7 @@ namespace MEVIO.Models
             //WatchingPersons= new List<User>();
             TaskClients = new List<TasksClients>();
 
+            Users = new List<User>();
         }
     }
 }
