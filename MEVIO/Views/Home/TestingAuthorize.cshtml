@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "TestingAuthorize";
+}
+@if (User.IsInRole("Admin"))
+{
+    <h1>Hello Admin!</h1>
+    <form method="get" asp-action="Index">
+        <button type="submit">Go Index</button>
+    </form>
+
+    <form method="get" asp-action="logout">
+        <button type="submit">Logout</button>
+    </form>
+}
