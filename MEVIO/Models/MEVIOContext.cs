@@ -66,6 +66,11 @@ namespace MEVIO.Models
             .WithOne(a => a.Event)
             .HasForeignKey<EventChat>(c => c.EventId);
 
+            ////Added by Yehor
+            //modelBuilder.Entity<User>()
+            //.HasDiscriminator<string>("Discriminator")
+            //.HasValue("User");
+
 
 
 
