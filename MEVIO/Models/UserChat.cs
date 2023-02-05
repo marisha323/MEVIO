@@ -4,12 +4,12 @@
     {
         public int Id { get; set; }
         public string UserChatName { get; set; }
-        public ICollection<User> Users { get; set; }
-        public ICollection<UserChatMessage> UserChatMessages { get; set; }
+        public ICollection<UserChatUser> UserChatUsers { get; set; }
+        public ICollection<ChatMessage> ChatMessages { get; set; }
         public UserChat()
         {
-            Users = new List<User>();
-            UserChatMessages = new List<UserChatMessage>();
+            UserChatUsers = new List<UserChatUser>();
+            ChatMessages = new List<ChatMessage>();
         }
     }
 }

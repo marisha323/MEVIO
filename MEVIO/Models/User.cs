@@ -15,19 +15,24 @@
 
         public ICollection<TasksUsers> TasksUsers { get; set; }
         public ICollection<MeasureUsers> MeasureUsers { get; set; }
-        public ICollection<UserChat> UserChats { get; set; }
+        public ICollection<UserChatUser> UserChatUsers { get; set; }
         public ICollection<EventsUsers> EventsUsers { get; set; }
         public ICollection<TaskResponsiblePersons> TaskResponsiblePersons { get; set; }
         public ICollection<TasksWatchingPersons> TasksWatchingPersons { get; set; }
         public ICollection<ResponsiblePerson> ResponsiblePeople { get; set; }
         public ICollection<WatchingPerson> WatchingPeople { get; set; }
+        public int? TaskChatId { get; set; }
+        public virtual TaskChat TaskChat { get; set; }
         //and same here
         public DateTime LastTimeSignIn { get; set; }
         public DateTime Birthdate { get; set; }
         public string PassportNumber { get; set; }
         public DateTime DateOfPassportIssue { get; set; }
         public string TIN { get; set; }
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; }//в сети не в сити
+        public ICollection<UserAcceptStatus> UserAcceptStatuses { get; set; }
+        public int? UserCalendarId { get; set; }
+        public virtual UserCalendar UserCalendar { get; set; }
         public User()
         {
             //CoWorkers = new List<User>();
@@ -38,7 +43,8 @@
             TasksWatchingPersons=new List<TasksWatchingPersons>();
             TasksUsers = new List<TasksUsers>();
             MeasureUsers = new List<MeasureUsers>();
-            UserChats = new List<UserChat>();
+            UserChatUsers = new List<UserChatUser>();
+            UserAcceptStatuses = new List<UserAcceptStatus>();
             IsActive = false;
         }
     }

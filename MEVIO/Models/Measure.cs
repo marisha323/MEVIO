@@ -23,13 +23,16 @@ namespace MEVIO.Models
         public ICollection<MeasureVideos> MeasureVideos { get; set; }
         public int MeasurePowerBiId { get; set; }
         public virtual MeasurePowerBi MeasurePowerBi { get; set; }
+        public int? UserCalendarId { get; set; }
+        public virtual UserCalendar UserCalendar { get; set; }
+        public ICollection<UserMeasureAcceptStatus> UserMeasureAcceptStatuses { get; set; }
         public Measure()
         {
             MeasureUsers = new List<MeasureUsers>();
             MeasuresClients = new List<MeasuresClients>();
             MeasurePhotos=new List<MeasurePhotos>();
             MeasureVideos=new List<MeasureVideos>();
-           
+            UserMeasureAcceptStatuses = new List<UserMeasureAcceptStatus>();
         }
 
     }

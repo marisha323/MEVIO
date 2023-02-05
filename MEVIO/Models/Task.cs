@@ -28,7 +28,11 @@ namespace MEVIO.Models
         public ICollection<WatchingPerson> WatchingPersons { get; set; }
         public ICollection<TaskResponsiblePersons> TaskResponsiblePersons { get; set; }
         public ICollection<TasksWatchingPersons> TasksWatchingPersons { get; set; }
-
+        public int? TaskChatId { get; set; }
+        public virtual TaskChat TaskChat { get; set; }
+        public int? UserCalendarId { get; set; }
+        public virtual UserCalendar UserCalendar { get; set; }
+        public ICollection<UserTaskAcceptStatus> UserTaskAcceptStatuses { get; set; }
         public Task()
         {
             ResponsiblePersons = new List<ResponsiblePerson>();
@@ -39,7 +43,7 @@ namespace MEVIO.Models
             TaskClients = new List<TasksClients>();
             TaskResponsiblePersons = new List<TaskResponsiblePersons>();
             TasksWatchingPersons = new List<TasksWatchingPersons>();
-
+            UserTaskAcceptStatuses = new List<UserTaskAcceptStatus>();
             TasksUsers = new List<TasksUsers>();
         }
     }

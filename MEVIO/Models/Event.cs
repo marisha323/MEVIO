@@ -20,11 +20,14 @@ namespace MEVIO.Models
         public int? EventChatId { get; set; }
         public virtual EventChat EventChat { get; set; }
         public ICollection<EventsUsers> EventsUsers { get; set; }
-
+        public int? UserCalendarId { get; set; }
+        public virtual UserCalendar UserCalendar { get; set; }
+        public ICollection<UserEventAcceptStatus> UserEventAcceptStatuses { get; set; }
         public Event()
         {
             EventsUsers = new List<EventsUsers>();
             EventsClients = new List<EventsClients>();
+            UserEventAcceptStatuses = new List<UserEventAcceptStatus>();
         }
     }
 }

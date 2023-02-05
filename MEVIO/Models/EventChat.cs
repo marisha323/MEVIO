@@ -8,12 +8,12 @@
 
         public string EventChatName { get; set; }
         public ICollection<User> Users { get; set; }
-        public ICollection<EventChatMessage> EventChatMessage { get; set; }
+        public ICollection<ChatMessage> ChatMessage { get; set; }
 
         public EventChat()
         {
             Users = new List<User>();
-            EventChatMessage= new List<EventChatMessage>();
+            ChatMessage = new List<ChatMessage>();
 
         }
     }
