@@ -11,23 +11,80 @@ using System.Text;
 using System.Text.Json;
 using static System.Net.Mime.MediaTypeNames;
 using Microsoft.Extensions.Options;
+using User = MEVIO.Models.User;
+using Task = System.Threading.Tasks.Task;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MEVIO.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        public MEVIOContext context;
+        public HomeController(MEVIOContext db)
         {
-            _logger = logger;
+            this.context = db;
+            //UserRole roleadmin = new UserRole() { UserRoleName = "admin" };
+            //UserRole roledirector = new UserRole() { UserRoleName = "director" };
+            //UserRole rolemanager = new UserRole() { UserRoleName = "manager" };
+            //UserRole roleuser = new UserRole() { UserRoleName = "user" };
+            //context.Roles.Add(roleadmin);
+            //context.Roles.Add(roledirector);
+            //context.Roles.Add(rolemanager);
+            //context.Roles.Add(roleuser);
+            //context.SaveChanges();
         }
-
+        
         public IActionResult Index()
+        {
+
+
+            return View();
+        }
+        [Authorize(Roles = "Admin")]
+        public IActionResult TestingAuthorize()
         {
             return View();
         }
+        public IActionResult LoginRegister()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Login(string Email, string Password)
+        {
+            var a = context.Users.AsNoTracking().ToList();
+            User user = context.Users.Where(o => o.Email == Email && o.Password == Password).AsNoTracking().FirstOrDefault();
+            if (user != null)
+            {
+                CookieOptions options = new CookieOptions();
+                options.Expires = DateTime.Now.AddMinutes(45);
+                options.IsEssential = true;
+                options.Path = "/";
 
+                string str = JsonSerializer.Serialize(user);
+
+                HttpContext.Response.Cookies.Append("UserLoggedIn", str, options);
+
+                var role = await context.Roles.FindAsync(user.UserRoleId);
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimsIdentity.DefaultNameClaimType, user.UserName),
+                    new Claim(ClaimsIdentity.DefaultRoleClaimType,role!.UserRoleName)
+                };
+                var claimsIdentity = new ClaimsIdentity(claims, "Cookies");
+                var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                await HttpContext.SignInAsync(claimsPrincipal);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View("LoginRegister");
+            }
+        }
         public IActionResult Privacy()
         {
             return View();
@@ -44,19 +101,19 @@ namespace MEVIO.Controllers
         }
         string token = "5898521490:AAExzqnbIo-xFBea-Ad26XSvlX8xlxzb96U";
         static TelegramBotClient client;
-        public async Task<IActionResult> TestingBot()
-        {
-            client = new TelegramBotClient(token);
-            User user = client.GetMeAsync().Result;
-            ViewBag.User = user;
+        //public async Task<IActionResult> TestingBot()
+        //{
+        //    //client = new TelegramBotClient(token);
+        //    //User user = client.GetMeAsync().Result;
+        //    //ViewBag.User = user;
 
-            client.OnMessage += Client_OnMessage;
-            client.OnMessageEdited += Client_OnMessage;
-            client.OnCallbackQuery += Client_OnCallBackQuery;
-            client.StartReceiving();
+        //    //client.OnMessage += Client_OnMessage;
+        //    //client.OnMessageEdited += Client_OnMessage;
+        //    //client.OnCallbackQuery += Client_OnCallBackQuery;
+        //    //client.StartReceiving();
 
-            return View("Calendar");
-        }
+        //    //return View("Calendar");
+        //}
         public async Task<IActionResult> SendMessage(string text, string js)
         {
             //string userCookie = Request.Cookies["UserLoggedIn"];
