@@ -1,10 +1,10 @@
 ﻿namespace MEVIO.Models
 {
-    public class WatchingPerson:User
+    public class ResponsiblePerson:User
     {
         public int Id { get; set; }
         public ICollection<User> Users { get; set; }
-        public WatchingPersons()
+        public ResponsiblePerson()
         {
             Users = new List<User>();
         }

@@ -1,6 +1,6 @@
 ﻿namespace MEVIO.Models
 {
-    public class Requisites
+    public class Requisites//реквізіти
     {
         public int Id { get; set; }
         public string OKPO { get; set; }

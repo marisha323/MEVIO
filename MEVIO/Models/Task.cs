@@ -8,7 +8,7 @@ namespace MEVIO.Models
         public string TaskName { get; set; }
         public string? Description { get; set; }
 
-        public ICollection<User> Users { get; set; }
+        public ICollection<TasksUsers> TasksUsers  { get; set; }
 
         //[ForeignKey("User")]
         //public int UserId { get; set; }//CreatorId
@@ -20,12 +20,14 @@ namespace MEVIO.Models
 
         //public ICollection<User> ResponsiblePersons { get; set; }
         //public ICollection<User>? WatchingPersons { get; set; }
-        public ICollection<UnderTask>? UnderTasks { get; set; }//подзадача
+        public ICollection<UnderTask> UnderTasks { get; set; }//подзадача
         public bool IsImportant { get; set; }
         public DateTime Begin { get; set; }
         public DateTime End { get; set; }
         public ICollection<ResponsiblePerson> ResponsiblePersons { get; set; }
         public ICollection<WatchingPerson> WatchingPersons { get; set; }
+        public ICollection<TaskResponsiblePersons> TaskResponsiblePersons { get; set; }
+        public ICollection<TasksWatchingPersons> TasksWatchingPersons { get; set; }
 
         public Task()
         {
@@ -35,8 +37,10 @@ namespace MEVIO.Models
             UnderTasks = new List<UnderTask>();
             //WatchingPersons= new List<User>();
             TaskClients = new List<TasksClients>();
+            TaskResponsiblePersons = new List<TaskResponsiblePersons>();
+            TasksWatchingPersons = new List<TasksWatchingPersons>();
 
-            Users = new List<User>();
+            TasksUsers = new List<TasksUsers>();
         }
     }
 }

@@ -7,8 +7,8 @@
         public virtual Event Event { get; set; }
 
         public string EventChatName { get; set; }
-        public ICollection<User>? Users { get; set; }
-        public ICollection<EventChatMessage>? EventChatMessage { get; set; }
+        public ICollection<User> Users { get; set; }
+        public ICollection<EventChatMessage> EventChatMessage { get; set; }
 
         public EventChat()
         {

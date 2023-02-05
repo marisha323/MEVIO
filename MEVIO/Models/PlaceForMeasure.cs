@@ -1,16 +1,18 @@
 ﻿namespace MEVIO.Models
 {
-    public class PlaceForMeasure
+    public class PlaceForMeasure//Місце для проведення заходів
     {
         public int Id { get; set; }
         public string PlaceForMeasureName { get; set; }
         public bool IsFree { get; set; }
         public int Capacity { get; set; }
         public ICollection<MeasureBusyTable> MeasureBusyTables { get; set; }
+        public ICollection<Measure> Measures { get; set; }
 
         public PlaceForMeasure() { 
         
             MeasureBusyTables= new List<MeasureBusyTable>();
+            Measures= new List<Measure>();
         }
     }
 }

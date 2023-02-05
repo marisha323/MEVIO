@@ -1,6 +1,6 @@
 ﻿namespace MEVIO.Models
 {
-    public class MeasurePhotos //Not Sure which one you wanted to make
+    public class MeasurePhotos //Захід фото отчет 
     {
         public int Id { get; set; }
         public int MeasureId { get; set; }

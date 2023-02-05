@@ -2,7 +2,7 @@
 
 namespace MEVIO.Models
 {
-    public class Measure
+    public class Measure//Мероприятия
     {
         public int Id { get; set; }
         public string MeasureName { get; set; }
@@ -12,21 +12,24 @@ namespace MEVIO.Models
         public virtual User User { get; set; }
 
         public int FreePlaces { get; set; }
-        public ICollection<User> Users { get; set; }
-        public ICollection<Client>? Clients { get; set; }
+        public ICollection<MeasureUsers> MeasureUsers { get; set; }
+        public ICollection<MeasuresClients> MeasuresClients { get; set; }
 
-        public int PlaceForMeasureId { get; set; }
+        public int? MeasureChatId { get; set; }
+        public virtual MeasureChat MeasureChat { get; set; }
+        public int? PlaceForMeasureId { get; set; }
         public virtual PlaceForMeasure PlaceForMeasure { get; set; }
-        public ICollection<MeasurePhotos>? MeasurePhotos { get; set; }
-        public ICollection<MeasureVideos>? MeasureVideos { get; set; }
-
+        public ICollection<MeasurePhotos> MeasurePhotos { get; set; }
+        public ICollection<MeasureVideos> MeasureVideos { get; set; }
+        public int MeasurePowerBiId { get; set; }
+        public virtual MeasurePowerBi MeasurePowerBi { get; set; }
         public Measure()
         {
-            Users = new List<User>();
-            Clients = new List<Client>();
+            MeasureUsers = new List<MeasureUsers>();
+            MeasuresClients = new List<MeasuresClients>();
             MeasurePhotos=new List<MeasurePhotos>();
             MeasureVideos=new List<MeasureVideos>();
-
+           
         }
 
     }
