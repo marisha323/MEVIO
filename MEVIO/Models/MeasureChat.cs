@@ -10,12 +10,12 @@
 
 
         public ICollection<User> Users { get; set; }
-        public ICollection<MeasureChatMessage>  MeasureChatMessages { get; set; }
+        public ICollection<ChatMessage>  ChatMessages { get; set; }
 
         public MeasureChat() { 
         
             Users = new List<User>();
-            MeasureChatMessages = new List<MeasureChatMessage>();
+            ChatMessages = new List<ChatMessage>();
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     public class ResponsiblePerson:User
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
         public ICollection<User> Users { get; set; }
         public ResponsiblePerson()
         {

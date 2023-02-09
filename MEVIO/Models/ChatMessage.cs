@@ -4,8 +4,7 @@
     {
         public decimal Id { get; set; }
         //UserId
-        public int UserId { get; set; }
-        public virtual User User { get; set; }
+       
 
         public DateTime TimeStamp { get; set; }
         public string Text { get; set; }

@@ -11,7 +11,7 @@ namespace MEVIO.Models
         public int UserId { get; set; }//CreaterId
         public virtual User User { get; set; }
 
-        public int FreePlaces { get; set; }
+        public int FreePlaces { get; set; }// скільки вільних місць в аудиторії
         public ICollection<MeasureUsers> MeasureUsers { get; set; }
         public ICollection<MeasuresClients> MeasuresClients { get; set; }
 

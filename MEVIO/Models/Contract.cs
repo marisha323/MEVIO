@@ -18,7 +18,7 @@
         public int AcademyId { get; set; }
         public virtual Academy Academy { get; set; }
 
-        public int SeasonOfBeginningId { get; set; }
+        public int? SeasonOfBeginningId { get; set; }
         public virtual SeasonOfBeginning SeasonOfBeginning { get; set; }
     }
 }
