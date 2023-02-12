@@ -9,12 +9,13 @@
         public string Email { get; set; }
         public string Password { get; set; }
         public string Phone { get; set; }
-        //public ICollection<User>? CoWorkers { get; set; }
+        
         public string TelegramJson { get; set; }
-        //public ICollection<Event> Events { get; set; } //I did not understand if this should be Icollection or not
+        
 
         public ICollection<TasksUsers> TasksUsers { get; set; }
         public ICollection<MeasureUsers> MeasureUsers { get; set; }
+        
         public ICollection<UserChatUser> UserChatUsers { get; set; }
         public ICollection<EventsUsers> EventsUsers { get; set; }
         public ICollection<TaskResponsiblePersons> TaskResponsiblePersons { get; set; }
@@ -31,21 +32,22 @@
         public string TIN { get; set; }
         public bool IsActive { get; set; }//в сети не в сити
         public ICollection<UserAcceptStatus> UserAcceptStatuses { get; set; }
-        public int? UserCalendarId { get; set; }
-        public virtual UserCalendar UserCalendar { get; set; }
+        //public int? UserCalendarId { get; set; }
+        //public virtual UserCalendar UserCalendar { get; set; }
+        public ICollection<DashBoard> DashBoards { get; set; }
         public User()
         {
-            //CoWorkers = new List<User>();
+            DashBoards = new List<DashBoard>(); 
             ResponsiblePeople = new List<ResponsiblePerson>();
             WatchingPeople = new List<WatchingPerson>();
             EventsUsers = new List<EventsUsers>();
             TaskResponsiblePersons = new List<TaskResponsiblePersons>();
-            TasksWatchingPersons=new List<TasksWatchingPersons>();
+            TasksWatchingPersons = new List<TasksWatchingPersons>();
             TasksUsers = new List<TasksUsers>();
             MeasureUsers = new List<MeasureUsers>();
             UserChatUsers = new List<UserChatUser>();
-            UserAcceptStatuses = new List<UserAcceptStatus>();
-            IsActive = false;
+             UserAcceptStatuses = new List<UserAcceptStatus>();
+             IsActive = false;
         }
     }
 }

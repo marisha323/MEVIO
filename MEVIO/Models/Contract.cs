@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
 
-        public int ClientId { get; set; }
+        public int? ClientId { get; set; }
         public virtual Client Client { get; set; }
 
         public int? StudentId { get; set; }
@@ -15,7 +15,7 @@
         public int? EducationFormId { get; set; }
         public virtual EducationForm EducationForm { get; set; }
 
-        public int AcademyId { get; set; }
+        public int? AcademyId { get; set; }
         public virtual Academy Academy { get; set; }
 
         public int? SeasonOfBeginningId { get; set; }

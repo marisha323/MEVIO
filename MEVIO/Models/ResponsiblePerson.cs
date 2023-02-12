@@ -3,10 +3,10 @@
     public class ResponsiblePerson:User
     {
         //public int Id { get; set; }
-        public ICollection<User> Users { get; set; }
-        public ResponsiblePerson()
-        {
-            Users = new List<User>();
-        }
+
+
+        public string Name { get; set; }
+
+        
     }
 }

@@ -31,10 +31,10 @@ namespace MEVIO.Controllers
             UserRole roledirector = new UserRole() { UserRoleName = "director" };
             UserRole rolemanager = new UserRole() { UserRoleName = "manager" };
             UserRole roleuser = new UserRole() { UserRoleName = "user" };
-            context.Roles.Add(roleadmin);
-            context.Roles.Add(roledirector);
-            context.Roles.Add(rolemanager);
-            context.Roles.Add(roleuser);
+            context.UserRoles.Add(roleadmin);
+            context.UserRoles.Add(roledirector);
+            context.UserRoles.Add(rolemanager);
+            context.UserRoles.Add(roleuser);
             context.SaveChanges();
         }
         
@@ -54,37 +54,37 @@ namespace MEVIO.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Login(string Email, string Password)
-        {
-            var a = context.Users.AsNoTracking().ToList();
-            User user = context.Users.Where(o => o.Email == Email && o.Password == Password).AsNoTracking().FirstOrDefault();
-            if (user != null)
-            {
-                CookieOptions options = new CookieOptions();
-                options.Expires = DateTime.Now.AddMinutes(45);
-                options.IsEssential = true;
-                options.Path = "/";
+        //public async Task<IActionResult> Login(string Email, string Password)
+        //{
+        //    var a = context.Users.AsNoTracking().ToList();
+        //    User user = context.Users.Where(o => o.Email == Email && o.Password == Password).AsNoTracking().FirstOrDefault();
+        //    if (user != null)
+        //    {
+        //        CookieOptions options = new CookieOptions();
+        //        options.Expires = DateTime.Now.AddMinutes(45);
+        //        options.IsEssential = true;
+        //        options.Path = "/";
 
-                string str = JsonSerializer.Serialize(user);
+        //        string str = JsonSerializer.Serialize(user);
 
-                HttpContext.Response.Cookies.Append("UserLoggedIn", str, options);
+        //        HttpContext.Response.Cookies.Append("UserLoggedIn", str, options);
 
-                var role = await context.Roles.FindAsync(user.UserRoleId);
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, user.UserName),
-                    new Claim(ClaimsIdentity.DefaultRoleClaimType,role!.UserRoleName)
-                };
-                var claimsIdentity = new ClaimsIdentity(claims, "Cookies");
-                var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-                await HttpContext.SignInAsync(claimsPrincipal);
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                return View("LoginRegister");
-            }
-        }
+        //        //var role = await context.Roles.FindAsync(user.UserRoleId);
+        //        //var claims = new List<Claim>
+        //        //{
+        //        //    new Claim(ClaimsIdentity.DefaultNameClaimType, user.UserName),
+        //        //    new Claim(ClaimsIdentity.DefaultRoleClaimType,role!.UserRoleName)
+        //        //};
+        //        //var claimsIdentity = new ClaimsIdentity(claims, "Cookies");
+        //        //var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+        //        //await HttpContext.SignInAsync(claimsPrincipal);
+        //        //return RedirectToAction("Index", "Home");
+        //    }
+        //    else
+        //    {
+        //        return View("LoginRegister");
+        //    }
+        //}
         public IActionResult Privacy()
         {
             return View();

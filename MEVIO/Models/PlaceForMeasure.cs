@@ -9,10 +9,11 @@
         public ICollection<MeasureBusyTable> MeasureBusyTables { get; set; }
         public ICollection<Measure> Measures { get; set; }
 
-        public PlaceForMeasure() { 
-        
-            MeasureBusyTables= new List<MeasureBusyTable>();
-            Measures= new List<Measure>();
+        public PlaceForMeasure()
+        {
+
+            MeasureBusyTables = new List<MeasureBusyTable>();
+            Measures = new List<Measure>();
         }
     }
 }

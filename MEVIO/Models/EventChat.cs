@@ -3,7 +3,7 @@
     public class EventChat
     {
         public int Id { get; set; }
-        public int EventId { get; set; }
+        public int? EventId { get; set; }
         public virtual Event Event { get; set; }
 
         public string EventChatName { get; set; }

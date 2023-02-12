@@ -8,7 +8,7 @@
         //ClientStatus
         public int? ClientStatusId { get; set; }
         public virtual ClientStatus ClientStatus { get; set; }
-        public int MeasurePowerBiId { get; set; }
+        public int? MeasurePowerBiId { get; set; }
         public virtual MeasurePowerBi MeasurePowerBi { get; set; }
         public string PassportNumber { get; set; }
         public ICollection<TasksClients> TaskClients { get; set; }
