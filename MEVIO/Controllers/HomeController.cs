@@ -38,8 +38,7 @@ namespace MEVIO.Controllers
         public IActionResult Index()
         {
 
-            ViewBag.roles = context.Roles.AsNoTracking().ToList();
-            ViewBag.users = context.Users.AsNoTracking().ToList();
+            
 
             return View();
         }
@@ -47,14 +46,193 @@ namespace MEVIO.Controllers
 
         private void StartInitial()
         {
-            InitUsers();
             InitRoles();
+            InitClientStatus();
+            InitEducationForms();
+            InitUsers();
             InitRequisites();
             InitSeasons();
-            InitEducationForms();
             InitAcademy();
+            InitClients();
+            InitStudents();
+            InitContracts();
 
-            
+        }
+
+
+        private void InitContracts()
+        {
+            context.Contracts.Add(new Contract()
+            {
+                DateStamp= DateTime.Now,
+                StudentId=1,
+                AcademyId=1,
+                ClientId=1,
+                EducationFormId=1,
+                SeasonOfBeginningId=1
+            });
+
+            context.Contracts.Add(new Contract()
+            {
+                DateStamp = DateTime.Now,
+                StudentId = 2,
+                AcademyId = 1,
+                ClientId = 2,
+                EducationFormId = 2,
+                SeasonOfBeginningId = 1
+            });
+
+            context.Contracts.Add(new Contract()
+            {
+                DateStamp = DateTime.Now,
+                StudentId = 3,
+                AcademyId = 1,
+                ClientId = 3,
+                EducationFormId = 1,
+                SeasonOfBeginningId = 2
+            });
+
+            context.Contracts.Add(new Contract()
+            {
+                DateStamp = DateTime.Now,
+                StudentId = 4,
+                AcademyId = 1,
+                ClientId = 3,
+                EducationFormId = 2,
+                SeasonOfBeginningId = 2
+            });
+
+            context.SaveChanges();
+        }
+
+        private void InitStudents()
+        {
+            context.Students.Add(new Student()
+            {
+                Birthdate = DateTime.Now,
+                DateOfIssuePassport= DateTime.Now,
+                DiscountSum=5454,
+                Discount_Description="ijfiri",
+                Email="idsfidsjfij@mil.com",
+                IsDicount=true,
+                Login365="idjfifi",
+                MyStatLogin="difjijfdihfih",
+                PersonalDocumentNumber="45454",
+                Phone="65645454",
+                StudentCode="454544",
+                StudentName="Student 1",
+                TIN="4545454"
+            });
+
+            context.Students.Add(new Student()
+            {
+                Birthdate = DateTime.Now,
+                DateOfIssuePassport = DateTime.Now,
+                DiscountSum = 5454,
+                Discount_Description = "ijfiri",
+                Email = "idsfidsjfij@mil.com",
+                IsDicount = true,
+                Login365 = "idjfifi",
+                MyStatLogin = "difjijfdihfih",
+                PersonalDocumentNumber = "45454",
+                Phone = "65645454",
+                StudentCode = "454544",
+                StudentName = "Student 2",
+                TIN = "4545454"
+            });
+
+            context.Students.Add(new Student()
+            {
+                Birthdate = DateTime.Now,
+                DateOfIssuePassport = DateTime.Now,
+                DiscountSum = 5454,
+                Discount_Description = "ijfiri",
+                Email = "idsfidsjfij@mil.com",
+                IsDicount = true,
+                Login365 = "idjfifi",
+                MyStatLogin = "difjijfdihfih",
+                PersonalDocumentNumber = "45454",
+                Phone = "65645454",
+                StudentCode = "454544",
+                StudentName = "Student 3",
+                TIN = "4545454"
+            });
+
+            context.Students.Add(new Student()
+            {
+                Birthdate = DateTime.Now,
+                DateOfIssuePassport = DateTime.Now,
+                DiscountSum = 5454,
+                Discount_Description = "ijfiri",
+                Email = "idsfidsjfij@mil.com",
+                IsDicount = true,
+                Login365 = "idjfifi",
+                MyStatLogin = "difjijfdihfih",
+                PersonalDocumentNumber = "45454",
+                Phone = "65645454",
+                StudentCode = "454544",
+                StudentName = "Student 4",
+                TIN = "4545454"
+            });
+
+            context.Students.Add(new Student()
+            {
+                Birthdate = DateTime.Now,
+                DateOfIssuePassport = DateTime.Now,
+                DiscountSum = 5454,
+                Discount_Description = "ijfiri",
+                Email = "idsfidsjfij@mil.com",
+                IsDicount = true,
+                Login365 = "idjfifi",
+                MyStatLogin = "difjijfdihfih",
+                PersonalDocumentNumber = "45454",
+                Phone = "65645454",
+                StudentCode = "454544",
+                StudentName = "Student 5",
+                TIN = "4545454"
+            });
+
+            context.SaveChanges();
+        }
+
+
+        private void InitClientStatus()
+        {
+            context.ClientStatuses.Add(new ClientStatus() { StatusName = "Potencial" });
+            context.ClientStatuses.Add(new ClientStatus() { StatusName = "Explicit" });
+            context.ClientStatuses.Add(new ClientStatus() { StatusName = "Interested" });
+
+            context.SaveChanges();
+        }
+
+
+        private void InitClients()
+        {
+            context.Clients.Add(new Client()
+            {
+                ClientName = "Client1",
+                PassportNumber = "AE54554544",
+                ClientStatusId=1
+                
+            });
+
+            context.Clients.Add(new Client()
+            {
+                ClientName = "Client2",
+                PassportNumber = "AE54554544",
+                ClientStatusId = 2
+
+            });
+
+            context.Clients.Add(new Client()
+            {
+                ClientName = "Client3",
+                PassportNumber = "AE54554544",
+                ClientStatusId = 3
+
+            });
+
+            context.SaveChanges();
         }
 
 
@@ -68,10 +246,10 @@ namespace MEVIO.Controllers
                 AcademyName = "Academy 1",
                 Address = "idfihfh",
                 RequisitesId = 1,
-                UserId= userId
+                UserId = userId
             });
 
-            context.SaveChangesAsync();
+            context.SaveChanges();
         }
 
 
@@ -80,7 +258,7 @@ namespace MEVIO.Controllers
             context.EducationForms.Add(new EducationForm() { EducationFormName = "Form 1", Price = 3000 });
             context.EducationForms.Add(new EducationForm() { EducationFormName = "Form 2", Price = 2000 });
 
-            context.SaveChangesAsync();
+            context.SaveChanges();
         }
 
 
@@ -90,7 +268,7 @@ namespace MEVIO.Controllers
             context.SeasonsOfBeginning.Add(new SeasonOfBeginning() { SeasonName = "winter" });
             context.SeasonsOfBeginning.Add(new SeasonOfBeginning() { SeasonName = "summer" });
 
-            context.SaveChangesAsync();
+            context.SaveChanges();
         }
 
 
@@ -98,14 +276,14 @@ namespace MEVIO.Controllers
         {
             context.Requisites.Add(new Requisites()
             {
-                BankName="Bank1",
-                CheckingAccount="dijidfidh",
-                MFO="ijidih",
-                OKPO="idiwhdihd",
-                TotalSumForEducation=2995
+                BankName = "Bank1",
+                CheckingAccount = "dijidfidh",
+                MFO = "ijidih",
+                OKPO = "idiwhdihd",
+                TotalSumForEducation = 2995
             });
 
-            context.SaveChangesAsync();
+            context.SaveChanges();
         }
 
         private void InitRoles()
@@ -115,7 +293,7 @@ namespace MEVIO.Controllers
             context.Roles.Add(new UserRole() { UserRoleName = "manager" });
             context.Roles.Add(new UserRole() { UserRoleName = "user" });
 
-            context.SaveChangesAsync();
+            context.SaveChanges();
         }
 
         private void InitUsers()
@@ -147,7 +325,7 @@ namespace MEVIO.Controllers
                 Password = "idjsfihfihd",
                 Phone = "jefifihf",
                 UserRoleId = 3,
-                TelegramJson="odoejj"
+                TelegramJson = "odoejj"
             });
 
             context.Users.Add(new User()
@@ -181,10 +359,10 @@ namespace MEVIO.Controllers
             });
 
 
-            context.SaveChangesAsync();
+            context.SaveChanges();
         }
-        
-        
+
+
 
 
 

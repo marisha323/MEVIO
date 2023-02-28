@@ -7,9 +7,8 @@ namespace MEVIO.Models
     {
         //public DbSet<ChatMessage> ChatMessages { get; set; } = null!;
         //public DbSet<ClientHistory> ClientHistory { get; set; } = null!;
-        //public DbSet<ClientStatus> ClientStatuses { get; set; } = null!;
         //public DbSet<DashBoard> Dashboards { get; set; } = null!;
-        
+
         //public DbSet<Event> Events { get; set; } = null!;
         //public DbSet<EventChat> EventsChat { get; set; } = null!;
         //public DbSet<EventChatMessage> EventChatMessages { get; set; } = null!;
@@ -38,30 +37,33 @@ namespace MEVIO.Models
         //public DbSet<UserEventAcceptStatus> UserEventAcceptStatuses { get; set; } = null!;
         //public DbSet<UserMeasureAcceptStatus> UserMeasureAcceptStatuses { get; set; } = null;
         //public DbSet<UserTaskAcceptStatus> UserTaskAcceptStatuses { get; set; } = null!;
+        //public DbSet<UserChat> UserChats { get; set; } = null!;
 
 
 
 
 
 
-
-        public DbSet<Requisites> Requisites { get; set; } = null!;
-
-        public DbSet<SeasonOfBeginning> SeasonsOfBeginning { get; set; } = null!;
-
-       public DbSet<EducationForm> EducationForms { get; set; } = null!;
-
-        //public DbSet<Client> Clients { get; set; } = null!;
-
-        //public DbSet<Student> Students { get; set; } = null!;
 
         public DbSet<UserRole> Roles { get; set; } = null!;
 
+        public DbSet<ClientStatus> ClientStatuses { get; set; } = null!;
+
+        public DbSet<EducationForm> EducationForms { get; set; } = null!;
+
+        public DbSet<SeasonOfBeginning> SeasonsOfBeginning { get; set; } = null!;
+
         public DbSet<User> Users { get; set; } = null!;
+
+        public DbSet<Requisites> Requisites { get; set; } = null!;
 
         public DbSet<Academy> Academies { get; set; } = null!;
 
-        //public DbSet<Contract> Contracts { get; set; } = null!;
+        public DbSet<Client> Clients { get; set; } = null!;
+
+        public DbSet<Student> Students { get; set; } = null!;
+
+        public DbSet<Contract> Contracts { get; set; } = null!;
 
 
 
@@ -111,6 +113,7 @@ namespace MEVIO.Models
         }
         public MEVIOContext(DbContextOptions<MEVIOContext> options) : base(options)
         {
+            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
     }
