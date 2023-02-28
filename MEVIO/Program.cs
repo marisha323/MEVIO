@@ -4,11 +4,12 @@ using MEVIO.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//string connection = builder.Configuration.GetConnectionString("DefaultConnection");
-//builder.Services.AddDbContext<MEVIOContext>(options => options.UseSqlServer(connection));
+string connection = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<MEVIOContext>(options => options.UseSqlServer(connection));
 
-// Add services to the container.
+//Add services to the container.
 builder.Services.AddControllersWithViews();
+
 
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
