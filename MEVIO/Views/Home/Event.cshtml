@@ -1,0 +1,292 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<link type="text/css" rel="stylesheet" href="/css/NewEvent.css">
+<style>
+
+
+    input[type="date"] {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0.313rem 0.813rem;
+        gap: 0.438rem;
+        width: 10.625rem;
+        height: 2.313rem;
+        left: 0.5rem;
+        top: 9.313rem;
+        background: #111624;
+        border: 1px solid #52a7e4;
+        border-radius: 0.625rem;
+        color: #52a7e4;
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+        transform: (-50%, -50%);
+        background: url("/img/free-icon-calendar-747824.png") no-repeat center;
+        background-size: 20px;
+        background-repeat: no-repeat;
+        background-position: 95%;
+        padding: 0.313rem;
+    }
+</style>
+
+<body>
+    <div class="mainDiv">
+        <p class="pNew">Нова подія</p>
+
+        <div class="insideDiv">
+            <div>
+                <label class="labelF">Нова подія </label>
+                <input type="text" class="inputF" />
+            </div>
+
+            <div class="divTime">
+                <div class="timeText">
+                    <p class="time">Час події</p>
+                </div>
+
+                <div class="containerTime">
+                    <div class="textDateTime">
+                        <p>Дата і час початку</p>
+                    </div>
+
+                    <div class="end">
+                        <span class="endP">Дата і час закінчення</span>
+                    </div>
+                </div>
+
+                <div class="divDate">
+                    <input type="date" />
+                    <input type="time" class="superstyle" />
+                    <div class="ture"></div>
+                    <input type="date" />
+                    <input type="time" class="superstyle" />
+                </div>
+
+                <div class="checkAllDay">
+                    <input type="checkbox" />
+                    <span>Весь день</span>
+                </div>
+            </div>
+            <hr />
+
+            <div class="description">
+                <div class="divDescr">
+                    <p class="styleP">Опис</p>
+                </div>
+                <textarea name="message"
+                          cols="10"
+                          rows="3"
+                          placeholder="Enter text . . ."></textarea>
+            </div>
+            <hr />
+
+            <div class="description">
+                <div class="divDescr">
+                    <p class="styleP">Місце проведення</p>
+                </div>
+                <select>
+                    <option>Classroom1</option>
+                </select>
+            </div>
+            <hr />
+
+            <div class="description">
+                <div class="divDescr">
+                    <p class="styleP">Учасники</p>
+                </div>
+
+                <div class="members">
+                    <div class="memb">
+                        <img src="/img/girl2.jpg" />
+                        <p class="name">Julia Roberts</p>
+                    </div>
+                    <button>+ Додати</button>
+                </div>
+            </div>
+            <hr />
+
+            <p class="co">Співробітники</p>
+
+            <div class="hard">
+                <div class="coWorkers">
+                    <div class="people">
+                        <img src="/img/girl2.jpg" />
+                        <p class="peopleP">Михайло Фома</p>
+                    </div>
+                </div>
+
+                <div class="shedule">
+                    <div class="day">Субота, Лютий 25</div>
+
+                    <div class="time-span-row">
+                        <div>7-00</div>
+                        <div>8-00</div>
+                        <div>9-00</div>
+                        <div>10-00</div>
+                        <div>11-00</div>
+                        <div>12-00</div>
+                        <div>13-00</div>
+                        <div>14-00</div>
+                        <div>15-00</div>
+                        <div>16-00</div>
+                        <div>17-00</div>
+                        <div>18-00</div>
+                        <div>19-00</div>
+                        <div>20-00</div>
+                        <div>21-00</div>
+                        <div>22-00</div>
+                        <div>23-00</div>
+                        <div>00-00</div>
+                    </div>
+
+                    <div class="time-span-row time-blocks">
+                        <div class="time-change-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                    </div>
+
+                    <div class="time-span-row">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hard">
+                <div class="coWorkers">
+                    <div class="people">
+                        <img src="./ImgEvent/girl2.jpg" />
+                        <p class="peopleP">Михайло Фома</p>
+                    </div>
+                </div>
+
+                <div class="shedule">
+                    <div class="day">Субота, Лютий 25</div>
+
+                    <div class="time-span-row">
+                        <div>7-00</div>
+                        <div>8-00</div>
+                        <div>9-00</div>
+                        <div>10-00</div>
+                        <div>11-00</div>
+                        <div>12-00</div>
+                        <div>13-00</div>
+                        <div>14-00</div>
+                        <div>15-00</div>
+                        <div>16-00</div>
+                        <div>17-00</div>
+                        <div>18-00</div>
+                        <div>19-00</div>
+                        <div>20-00</div>
+                        <div>21-00</div>
+                        <div>22-00</div>
+                        <div>23-00</div>
+                        <div>00-00</div>
+                    </div>
+
+                    <div class="time-span-row time-blocks">
+                        <div class="time-change-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                    </div>
+
+                    <div class="time-span-row">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkConfirm">
+                <label>
+                    Сповіщати про підтвердженні/відмові учасників
+                    <input type="checkbox" />
+                </label>
+            </div>
+            <div class="buttons">
+                <button>Зберегти</button>
+                <button>Відмінити</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
+
+    <script src="~/js/script1.js" asp-append-version="true"></script>
+
+</body>

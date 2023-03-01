@@ -1,0 +1,219 @@
+.contener {
+    width: 85rem;
+    height: 84%;
+    background: #111624;
+}
+
+.div-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+}
+
+.search {
+    box-sizing: border-box;
+    width: 74rem;
+    height: 2.375rem;
+    /* left: 180px;
+   top: 110px; */
+    margin-left: 5rem;
+    margin-top: 4.875rem;
+    background: #111624;
+    border: 1px solid #52A7E4;
+    border-radius: 1rem;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #BAE2FF;
+}
+
+
+
+.palochka {
+    width: 0.688rem;
+    height: 2rem;
+   
+    margin-left: -14rem;
+    margin-top: 5rem;
+    border: none;
+    border-left: 1px solid #52A7E4;
+}
+
+.searchImg {
+    width: 1.563rem;
+    height: 1.563rem;
+  
+    margin-left: -10rem;
+    margin-top: 5rem;
+    margin-right: 5rem;
+   /* background: url(free-icon-search-4194718.png);*/
+    opacity: 0.8;
+}
+
+
+.div-Zag {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+    margin-left: 35rem;
+}
+
+.Zag {
+    width: 16.313rem;
+    height: 3rem;
+    left: 926px;
+    top: 179px;
+    margin: 0;
+    font-family: 'Inter';
+    font-size: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+    color: #FFFFFF;
+}
+
+.divContenerZap {
+    box-sizing: border-box;
+    margin-right: 6rem;
+    height: 93%;
+    left: 391px;
+    top: 285px;
+    margin-left: 6.5rem;
+    background: #111624;
+    border: 1px solid #52A7E4;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.div-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem;
+    margin-bottom: 1rem;
+}
+
+.buttonstyleStudent {
+    width: 9.938rem;
+    height: 3rem;
+    left: 513px;
+    top: 15px;
+    background: #111624;
+    border: 1px solid #52A7E4;
+    border-radius: 15px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+    cursor: pointer;
+    color: #52A7E4;
+    margin-left: 23.5rem;
+}
+
+.buttonstyleTeaher {
+    width: 9.938rem;
+    height: 3rem;
+    left: 680px;
+    top: 15px;
+    background: #111624;
+    border: 1px solid #52A7E4;
+    color: #52A7E4;
+    box-sizing: border-box;
+    margin-right: 23.5rem;
+    border-radius: 15px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.buttonstyleStudent2 {
+    width: 9.938rem;
+    height: 3rem;
+    left: 513px;
+    top: 15px;
+    background: #111624;
+    border: 1px solid #52A7E4;
+    color: #52A7E4;
+    border-radius: 15px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+    cursor: pointer;
+    margin-left: 35rem;
+    margin-bottom: 2rem;
+}
+
+.buttonstyleStudent2:hover {
+        background: #52A7E4;
+        color: #111624;
+}
+
+.buttonstyleStudent:hover {
+    background: #52A7E4;
+    color: #111624;
+}
+
+.buttonstyleTeaher:hover {
+    background: #52A7E4;
+    color: #111624;
+}
+
+.classPodcherk {
+    margin-right: 3rem;
+    height: 0;
+    left: 40px;
+    top: 76px;
+    margin-left: 4rem;
+    border: 1px solid #52A7E4;
+}
+
+.div-p-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem;
+    margin-left: 4rem;
+    margin-right: 13rem;
+}
+
+.divStrockZap {
+   
+    height: 1.875rem;
+    left: 38px;
+    margin: 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+    color: #52A7E4;
+}
+
+.divStrockZap2 {
+    width: 27.375rem;
+    height: 1.875rem;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+    color: #BAE2FF;
+    border: 1px solid #52A7E4;
+    border-radius: 15px;
+    background: transparent;
+}
+
+input::placeholder {
+    color: #BAE2FF;
+    font-size: 1.2em;
+    font-style: inherit;
+}

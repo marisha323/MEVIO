@@ -26,21 +26,46 @@ namespace MEVIO.Controllers
         public MEVIOContext context;
         public HomeController(MEVIOContext db)
         {
-            this.context = db;
-            UserRole roleadmin = new UserRole() { UserRoleName = "admin" };
-            UserRole roledirector = new UserRole() { UserRoleName = "director" };
-            UserRole rolemanager = new UserRole() { UserRoleName = "manager" };
-            UserRole roleuser = new UserRole() { UserRoleName = "user" };
-            context.UserRoles.Add(roleadmin);
-            context.UserRoles.Add(roledirector);
-            context.UserRoles.Add(rolemanager);
-            context.UserRoles.Add(roleuser);
-            context.SaveChanges();
+            //this.context = db;
+            //UserRole roleadmin = new UserRole() { UserRoleName = "admin" };
+            //UserRole roledirector = new UserRole() { UserRoleName = "director" };
+            //UserRole rolemanager = new UserRole() { UserRoleName = "manager" };
+            //UserRole roleuser = new UserRole() { UserRoleName = "user" };
+            //context.UserRoles.Add(roleadmin);
+            //context.UserRoles.Add(roledirector);
+            //context.UserRoles.Add(rolemanager);
+            //context.UserRoles.Add(roleuser);
+            //context.SaveChanges();
         }
         
         public IActionResult Index()
         {
 
+
+            return View();
+        }
+        public IActionResult Calendar1()
+        {
+
+            return View();
+        }
+        public IActionResult Chat()
+        {
+
+            return View();
+        }
+        public IActionResult MainPage()
+        {
+
+            return View();
+        }
+        public IActionResult ZapStudent()
+        {
+
+            return View();
+        }
+        public IActionResult ZapTeacher()
+        {
 
             return View();
         }
@@ -50,6 +75,14 @@ namespace MEVIO.Controllers
             return View();
         }
         public IActionResult LoginRegister()
+        {
+            return View();
+        }
+        public IActionResult Event()
+        {
+            return View();
+        }
+        public IActionResult Measure()
         {
             return View();
         }

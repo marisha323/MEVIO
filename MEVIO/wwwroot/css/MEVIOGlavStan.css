@@ -1,0 +1,240 @@
+.contener {
+    width: 100vh;
+    height: 100%;
+    margin: 1rem;
+    background-image: url("./stars.jpg");
+    background-size: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-width: 40rem;
+}
+
+.button-cont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+    margin-top: 4rem;
+}
+
+.button-Zahod {
+    width: 20rem;
+    height: 3rem;
+    cursor: pointer;
+
+    background: #52A7E4;
+    border-radius: 25px;
+}
+
+.button-Podii {
+    width: 20rem;
+    height: 3rem;
+    cursor: pointer;
+
+    background: #52A7E4;
+    border-radius: 25px;
+}
+
+.button-Zadachi {
+    width: 20rem;
+    height: 3rem;
+    cursor: pointer;
+
+    background: #52A7E4;
+    border-radius: 25px
+}
+
+.div-obj-News {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+}
+
+.div-obj-News-cont {
+    width: 95vh;
+    height: 23rem;
+
+    background: #111624;
+    border: 1px solid #52A7E4;
+    border-radius: 25px;
+}
+
+.img-Ava {
+    width: 5rem;
+    height: 4.5rem;
+    margin-left: 2rem;
+    margin-top: 1rem;
+    border-radius: 40px;
+    border: 1px solid #52A7E4;
+}
+
+.div-div-News {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+}
+
+.Nick-Name {
+    margin: 0;
+
+    width: 9rem;
+    height: 1rem;
+
+
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #52A7E4;
+}
+
+.div-p-Sot {
+    margin: 0;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Sotrydniki {
+    margin: 0;
+    width: 12rem;
+    height: 1.3rem;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #52A7E4;
+}
+
+.div-Img-Date {
+    margin-top: 1rem;
+    width: 12rem;
+}
+
+.Data-p {
+    margin: 0;
+    width: 9rem;
+    height: 2rem;
+    margin-top: 0.3rem;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #52A7E4;
+}
+
+.div-Sob {
+    width: 80vh;
+    height: 9rem;
+    margin: 1rem;
+    background: #6C8EED;
+    border-radius: 20px;
+
+    border: 3px solid #52A7E4;
+
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #FFFFFF;
+}
+
+.div-Naz-Pod {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-left: 2.5rem;
+    margin-top: 0.5rem;
+    width: 17rem;
+    height: 2rem;
+}
+
+.div-Poch-Pod {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-left: 2.5rem;
+    margin-top: 0.5rem;
+    width: 33rem;
+    height: 2rem;
+}
+
+.h-Pod {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #FFFFFF;
+
+    margin: 0;
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+
+}
+
+.p-Pod {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #FFFFFF;
+    width: 10rem;
+
+
+}
+
+.p1-Pod {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #FFFFFF;
+    width: 7rem;
+
+
+}
+
+.p2-Pod {
+
+    width: 12rem;
+    margin: 0;
+
+}
+
+.p2-Pod2 {
+
+    width: 32rem;
+    margin: 0;
+
+}
+
+.button-Obgovor {
+
+    background: #52A7E4;
+    border-radius: 15px;
+    margin-left: 5rem;
+    margin-top: 1rem;
+}

@@ -1,0 +1,136 @@
+.calendar-grid {
+    background: #111624;
+    border: 3px solid #52A7E4;
+    border-radius: 83px;
+    padding: 2rem;
+    margin-top: 1.5rem;
+    height: auto;
+    min-height: 80vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 2rem;
+    color: #52A7E4;
+}
+
+.month-name {
+    font-size: 60px;
+    line-height: 73px;
+    color: #52A7E4;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.trans-left {
+    transform: rotate(90deg);
+}
+
+.trans-right {
+    transform: rotate(-90deg);
+}
+
+.label {
+    font-size: 20px;
+}
+
+.select-month,
+.select-years {
+    position: relative;
+}
+
+.options-month,
+.options-years {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #52A7E4;
+    color: #111624;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 20px;
+    transition: 0.2s;
+}
+
+.hide {
+    display: none;
+}
+
+.option-item {
+    border: 3px solid #52A7E4;
+    border-radius: 0.5rem;
+    padding: 0.2rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+
+
+
+.day-flex{
+    display: flex;
+    column-gap: 0.5rem;
+    height: 100%;
+}
+
+.times-grid {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows:3.5rem repeat(16, 1fr);
+    row-gap: 2px;
+}
+
+.white-text {
+    color: white;
+    font-size: 1rem;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+
+.day-grid {
+    border-top-right-radius: 0.7rem;
+    border-top-left-radius: 0.7rem;
+    width: 100%;
+    border: 1px solid #52A7E4;
+    display: grid;
+    grid-template-rows:3.5rem repeat(16, 2rem);
+
+}
+
+
+.day-div{
+    color: #52A7E4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid #52A7E4;
+    font-size: 2rem;
+}
+
+.time-div{
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: 1px solid #ADA4A4;
+}
+
+.time-div:last-child{
+    border: none;
+}
