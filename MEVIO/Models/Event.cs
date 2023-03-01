@@ -7,27 +7,27 @@ namespace MEVIO.Models
         public int Id { get; set; }
         public string EventName{ get; set; }
         public string? Description { get; set; }
-        [ForeignKey("User")]
+        ////[ForeignKey("User")]
         public int? UserId { get; set; }//CreaterId
         public virtual User User { get; set; }
 
+        public ICollection<EventsUsers> EventsUsers { get; set; }
 
-        public ICollection <EventsClients> EventsClients { get; set; }//ClientTargetId
+       // public ICollection <EventsClients> EventsClients { get; set; }//ClientTargetId
         //public virtual EventsClients EventsClients { get; set; }
 
         public DateTime Begin { get; set; }
         public DateTime End { get; set; }
-        public int? EventChatId { get; set; }
-        public virtual EventChat EventChat { get; set; }
-        public ICollection<EventsUsers> EventsUsers { get; set; }
-        public int? UserCalendarId { get; set; }
-        public virtual UserCalendar UserCalendar { get; set; }
-        public ICollection<UserEventAcceptStatus> UserEventAcceptStatuses { get; set; }
+        //public int? EventChatId { get; set; }
+        //public virtual EventChat EventChat { get; set; }
+        //public int? UserCalendarId { get; set; }
+        //public virtual UserCalendar UserCalendar { get; set; }
+        //public ICollection<UserEventAcceptStatus> UserEventAcceptStatuses { get; set; }
         public Event()
         {
-            EventsUsers = new List<EventsUsers>();
-            EventsClients = new List<EventsClients>();
-            UserEventAcceptStatuses = new List<UserEventAcceptStatus>();
+           EventsUsers = new List<EventsUsers>();
+        //    EventsClients = new List<EventsClients>();
+        //    UserEventAcceptStatuses = new List<UserEventAcceptStatus>();
         }
     }
 }

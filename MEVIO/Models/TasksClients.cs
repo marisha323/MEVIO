@@ -5,7 +5,7 @@ namespace MEVIO.Models
 {
     public class TasksClients
     {
-        [ForeignKey("Id")]
+       
         public int Id { get; set; }
         [ForeignKey("Task")]
         public int TaskId { get; set; }

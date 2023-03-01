@@ -8,6 +8,7 @@ namespace MEVIO.Models
         [ForeignKey("Task")]
         public int TaskId { get; set; }
         public virtual Task Task { get; set; }
+       
         [ForeignKey("User")]
         public int UserId { get; set; }
         public virtual User User { get; set; }
