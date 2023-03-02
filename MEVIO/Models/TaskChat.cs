@@ -1,6 +1,6 @@
 ﻿namespace MEVIO.Models
 {
-    public class TaskChat
+    /*public class TaskChat
     {
         public int Id { get; set; }
         public int TaskId { get; set; }
@@ -15,5 +15,5 @@
             Users = new List<User>();
             Messages = new List<EventChatMessage>();
         }
-    }
+    }*/
 }

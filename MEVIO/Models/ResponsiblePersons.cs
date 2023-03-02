@@ -1,6 +1,6 @@
 ﻿namespace MEVIO.Models
 {
-    public class ResponsiblePerson:User
+   /* public class ResponsiblePerson:User
     {
         //public int Id { get; set; }
         //public ICollection<User> Users { get; set; }
@@ -8,5 +8,5 @@
         //{
         //    Users = new List<User>();
         //}
-    }
+    }*/
 }

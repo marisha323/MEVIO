@@ -23,15 +23,15 @@ namespace MEVIO.Controllers
         public HomeController(MEVIOContext db)
         {
             this.context = db;
-            //UserRole roleadmin = new UserRole() { UserRoleName = "admin" };
-            //UserRole roledirector = new UserRole() { UserRoleName = "director" };
-            //UserRole rolemanager = new UserRole() { UserRoleName = "manager" };
-            //UserRole roleuser = new UserRole() { UserRoleName = "user" };
-            //context.Roles.Add(roleadmin);
-            //context.Roles.Add(roledirector);
-            //context.Roles.Add(rolemanager);
-            //context.Roles.Add(roleuser);
-            //context.SaveChanges();
+            UserRole roleadmin = new UserRole() { UserRoleName = "admin" };
+            UserRole roledirector = new UserRole() { UserRoleName = "director" };
+            UserRole rolemanager = new UserRole() { UserRoleName = "manager" };
+            UserRole roleuser = new UserRole() { UserRoleName = "user" };
+            context.Roles.Add(roleadmin);
+            context.Roles.Add(roledirector);
+            context.Roles.Add(rolemanager);
+            context.Roles.Add(roleuser);
+            context.SaveChanges();
         }
 
         public IActionResult Index()

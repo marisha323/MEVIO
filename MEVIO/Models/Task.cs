@@ -2,7 +2,7 @@
 
 namespace MEVIO.Models
 {
-    public class Task
+    /*public class Task
     {
         public int Id { get; set; }
         public string TaskName { get; set; }
@@ -38,5 +38,5 @@ namespace MEVIO.Models
 
             Users = new List<User>();
         }
-    }
+    }*/
 }

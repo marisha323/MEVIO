@@ -1,6 +1,6 @@
 ﻿namespace MEVIO.Models
 {
-    public class DashBoard
+    /*public class DashBoard
     {
         public int Id { get; set; }
 
@@ -18,5 +18,5 @@
             Measures = new List<Measure>();
         }
 
-    }
+    }*/
 }

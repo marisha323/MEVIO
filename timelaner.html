@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+  /* Style the timeline container */
+  .timeline {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      /* Style the line */
+      .timeline::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        border-left: 2px solid #ccc;
+      }
+      
+      /* Style the timeline items */
+      .timeline-item {
+        position: relative;
+        width: 50%;
+        margin: 0 auto;
+        padding: 10px 40px;
+        text-align: center;
+      }
+      
+      /* Style the begin and end time inputs */
+      input[type="datetime-local"] {
+        margin: 10px;
+      }
+      
+      /* Style the submit button */
+      input[type="submit"] {
+        margin: 10px;
+        padding: 5px 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      
+      /* Style the selected timeline items */
+      .timeline-item.selected::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: -12px;
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+        border-left: 12px solid #4CAF50;
+        transform: translateY(-50%);
+      }
+    </style>
+</style>
+<body>
+    <div class="timeline">
+        <div class="timeline-item">
+          <h3>Begin Time</h3>
+          <input type="datetime-local" id="begin-time" name="begin-time">
+        </div>
+        <div class="timeline-item">
+          <h3>End Time</h3>
+          <input type="datetime-local" id="end-time" name="end-time">
+        </div>
+        <div class="timeline-item">
+          <input type="submit" value="Submit" onclick="displayTimeline()">
+        </div>
+      </div>
+      <script>
+        function displayTimeline() {
+          const beginTime = document.getElementById("begin-time").value;
+          const endTime = document.getElementById("end-time").value;
+          const timelineElement = document.createElement("div");
+          timelineElement.classList.add("timeline-item", "selected");
+          timelineElement.innerHTML = `
+            <h3>Timeline</h3>
+            <p>${formatTime(beginTime)} - ${formatTime(endTime)}</p>
+          `;
+          document.querySelector(".timeline").appendChild(timelineElement);
+        }
+  
+        function formatTime(timeString) {
+          const time = new Date(timeString);
+          const hours = time.getHours().toString().padStart(2, "0");
+          const minutes = time.getMinutes().toString().padStart(2, "0");
+          return `${hours}:${minutes}`;
+        }
+      </script>
+    </body>
+  </html>
+</body>
+</html>

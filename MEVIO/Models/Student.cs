@@ -1,6 +1,6 @@
 ﻿namespace MEVIO.Models
 {
-    public class Student
+    /*public class Student
     {
         public int Id { get; set; }
         public string StudentName { get; set; }
@@ -16,5 +16,5 @@
         public string? Discount_Description { get; set; }
         public double? DiscountSum { get; set; }
         public DateTime Birthdate { get; set; }
-    }
+    }*/
 }

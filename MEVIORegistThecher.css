@@ -1,0 +1,166 @@
+.contener {
+    position: absolute;
+    width: 1650px;
+    height: 1344px;
+    left: 218px;
+    top: 68px;
+    background: #111624;
+}
+
+.search {
+    box-sizing: border-box;
+    position: absolute;
+    width: 1350px;
+    height: 38px;
+    left: 180px;
+    top: 110px;
+    background: #111624;
+    border: 1px solid #52A7E4;
+    border-radius: 15px;
+
+
+}
+
+
+.palochka {
+    position: absolute;
+    width: 27px;
+    height: 0px;
+    left: 1468px;
+    top: 128px;
+
+    border: 1px solid #52A7E4;
+    transform: rotate(90deg);
+}
+
+.searchImg {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    left: 1494px;
+    top: 116px;
+
+    background: url(free-icon-search-4194718.png);
+    opacity: 0.8;
+}
+
+.divZag {
+    position: absolute;
+    width: 261px;
+    height: 48px;
+    left: 926px;
+    top: 179px;
+
+    font-family: 'Inter';
+    font-size: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+    color: #FFFFFF;
+}
+
+.divContenerZap {
+    position: absolute;
+    box-sizing: border-box;
+    width: 1360px;
+    height: 1009px;
+    left: 391px;
+    top: 285px;
+
+    background: #111624;
+    border: 1px solid #52A7E4;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.buttonstyleStudent {
+    position: absolute;
+    width: 159px;
+    height: 48px;
+    left: 513px;
+    top: 15px;
+
+    background: #52A7E4;
+    border-radius: 15px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+
+    color: #111624;
+}
+
+.buttonstyleTeaher {
+    position: absolute;
+    width: 159px;
+    height: 48px;
+    left: 680px;
+    top: 15px;
+
+    box-sizing: border-box;
+
+    background: #111624;
+    border: 1px solid #52A7E4;
+    border-radius: 15px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+
+    color: #52A7E4;
+}
+
+.classPodcherk {
+    position: absolute;
+    width: 1245px;
+    height: 0px;
+    left: 40px;
+    top: 76px;
+
+    border: 1px solid #52A7E4;
+}
+
+.divStrockZap {
+    position: absolute;
+    width: 79px;
+    height: 30px;
+    left: 38px;
+    margin: 0;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+
+    color: #52A7E4;
+}
+
+.divStrockZap2 {
+    position: absolute;
+    width: 438px;
+    height: 30px;
+
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+
+    color: #BAE2FF;
+
+    border: 1px solid #52A7E4;
+    border-radius: 15px;
+    background: transparent;
+
+
+}
+
+input::placeholder {
+    color: #BAE2FF;
+    font-size: 1.2em;
+    font-style: inherit;
+}

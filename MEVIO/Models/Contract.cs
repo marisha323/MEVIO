@@ -1,6 +1,6 @@
 ﻿namespace MEVIO.Models
 {
-    public class Contract
+    /*public class Contract
     {
         public int Id { get; set; }
 
@@ -20,5 +20,5 @@
 
         public int SeasonOfBeginningId { get; set; }
         public virtual SeasonOfBeginning SeasonOfBeginning { get; set; }
-    }
+    }*/
 }

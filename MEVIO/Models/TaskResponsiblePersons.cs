@@ -1,6 +1,6 @@
 ﻿namespace MEVIO.Models
 {
-    public class TaskResponsiblePersons
+   /* public class TaskResponsiblePersons
     {
         public int Id { get; set; }
         public int UserId { get; set; }
@@ -9,5 +9,5 @@
         public virtual Task Task { get; set; }
         public int? UnderTaskId { get; set; }
         public virtual UnderTask UnderTask { get; set; }
-    }
+    }*/
 }

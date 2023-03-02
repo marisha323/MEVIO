@@ -1,6 +1,6 @@
 ﻿namespace MEVIO.Models
 {
-    public class ClientHistory
+    /*public class ClientHistory
     {
         public int Id { get; set; }
         public ICollection<Event>? Events { get; set; }
@@ -16,5 +16,5 @@
             Tasks = new List<Task>();
             Measures = new List<Measure>();
         }
-    }
+    }*/
 }

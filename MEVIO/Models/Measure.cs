@@ -4,7 +4,7 @@ namespace MEVIO.Models
 {
     public class Measure
     {
-        public int Id { get; set; }
+        /*public int Id { get; set; }
         public string MeasureName { get; set; }
         public DateTime Begin { get; set; }
         public DateTime End { get; set; }
@@ -27,7 +27,7 @@ namespace MEVIO.Models
             MeasurePhotos=new List<MeasurePhotos>();
             MeasureVideos=new List<MeasureVideos>();
 
-        }
-
+        }*/
+        public object User { get; internal set; }
     }
 }

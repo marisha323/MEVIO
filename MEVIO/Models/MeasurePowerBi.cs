@@ -1,6 +1,6 @@
 ﻿namespace MEVIO.Models
 {
-    public class MeasurePowerBi
+    /*public class MeasurePowerBi
     {
         public int Id { get; set; }
         public int MeasureId { get; set; }
@@ -13,5 +13,5 @@
             Clients= new List<Client>();
 
         }
-    }
+    }*/
 }

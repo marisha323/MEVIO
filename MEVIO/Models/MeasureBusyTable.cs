@@ -1,6 +1,6 @@
 ﻿namespace MEVIO.Models
 {
-    public class MeasureBusyTable
+    /*public class MeasureBusyTable
     {
         public int Id { get; set; }
         public DateTime Begin { get; set; }
@@ -9,5 +9,5 @@
         public virtual PlaceForMeasure PlaceForMeasure { get; set; }
 
 
-    }
+    }*/
 }

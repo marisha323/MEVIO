@@ -15,7 +15,7 @@
 
         public ICollection<Task> Tasks { get; set; }
         public ICollection<Measure>? Measures { get; set; }
-        public ICollection<UserChat>? UserChats { get; set; }
+        /*public ICollection<UserChat>? UserChats { get; set; }*/
         //and same here
         public DateTime? LastTimeSignIn { get; set; }
         public DateTime Birthdate { get; set; }
@@ -29,7 +29,7 @@
             Events = new List<Event>();
             Tasks = new List<Task>();
             Measures = new List<Measure>();
-            UserChats = new List<UserChat>();
+            //UserChats = new List<UserChat>();
             IsActive = false;
         }
     }

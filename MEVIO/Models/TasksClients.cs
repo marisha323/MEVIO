@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace MEVIO.Models
 {
-    public class TasksClients
+    /*ublic class TasksClients
     {
         [ForeignKey("Id")]
         public int Id { get; set; }
@@ -13,5 +13,5 @@ namespace MEVIO.Models
         [ForeignKey("Client")]
         public int ClientId { get; set; }
         public virtual Client Client { get; set; }
-    }
+    }*/
 }

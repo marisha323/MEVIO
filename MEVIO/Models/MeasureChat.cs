@@ -1,6 +1,6 @@
 ﻿namespace MEVIO.Models
 {
-    public class MeasureChat
+    /*public class MeasureChat
     {
         public int Id { get; set; }
         public int MeasureId { get; set; }
@@ -17,5 +17,5 @@
             Users = new List<User>();
             Messages = new List<MeasureChatMessage>();
         }
-    }
+    }*/
 }

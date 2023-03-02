@@ -1,6 +1,6 @@
 ﻿namespace MEVIO.Models
 {
-    public class PlaceForMeasure
+   /* public class PlaceForMeasure
     {
         public int Id { get; set; }
         public string PlaceForMeasureName { get; set; }
@@ -12,5 +12,5 @@
         
             MeasureBusyTables= new List<MeasureBusyTable>();
         }
-    }
+    }*/
 }
