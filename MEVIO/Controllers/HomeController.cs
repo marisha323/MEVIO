@@ -82,6 +82,11 @@ namespace MEVIO.Controllers
         {
             return View();
         }
+
+        public IActionResult EventMini()
+        {
+            return View();
+        }
         public IActionResult Measure()
         {
             return View();
