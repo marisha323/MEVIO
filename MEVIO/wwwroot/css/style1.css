@@ -14,8 +14,11 @@ body {
 
 .container{
     display: grid;
-    grid-template-columns: 65px auto 1fr;
+    grid-template-columns: auto 1fr;
     height: 100vh;
+    width:calc(100% - 145px);
+    margin-left:65px;
+    margin-right:80px;
 }
 
 
