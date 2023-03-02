@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MEVIO</title>
-    
+
     @*  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />*@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
@@ -21,9 +21,20 @@
     <div class="left-menu">
         <img class="left-menu-img show-hide" src="/img/free-icon-left-chevron-7456442.png" alt="">
         <div class="left-flex">
-            <img class="left-menu-img" src="/img/free-icon-dog-house-2500456.png" alt="">
-            <img class="left-menu-img" src="/img/free-icon-calendar-747824.png" alt="">
-            <img class="left-menu-img" src="/img/free-icon-percentage-1390317.png" alt="">
+
+            <a asp-controller="Home" asp-action="MainPage">
+                <img class="left-menu-img" src="/img/free-icon-dog-house-2500456.png" alt="">
+            </a>
+
+            <a asp-controller="Home" asp-action="Calendar1">
+                <img class="left-menu-img" src="/img/free-icon-calendar-747824.png" alt="">
+            </a>
+            
+
+            <a asp-controller="Home" asp-action="Chat">
+                <img class="left-menu-img" src="/img/free-icon-percentage-1390317.png" alt="">
+            </a>
+
             <img class="left-menu-img" src="/img/free-icon-smile-3337247.png" alt="">
             <img class="left-menu-img" src="/img/free-icon-user-5807924.png" alt="">
         </div>
@@ -61,8 +72,8 @@
     </div>
     </footer>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-   
-   @* <script src="~/js/site.js" asp-append-version="true"></script>*@
+
+    @* <script src="~/js/site.js" asp-append-version="true"></script>*@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
