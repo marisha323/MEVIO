@@ -436,7 +436,8 @@ opacity: 0;
     font-size: 13px;
     line-height: 16px;
     /* identical to box height */
-
+    padding:0.5rem;
+    width:5rem;
     margin-right: 46rem;
     color: #52A7E4;
     cursor: pointer;
@@ -468,7 +469,6 @@ opacity: 0;
     background: #111624;
     border: 1px solid #52A7E4;
     border-radius: 15px;
-
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
@@ -479,6 +479,8 @@ opacity: 0;
     margin-right: 42rem;
     color: #52A7E4;
     cursor: pointer;
+    padding: 0.5rem;
+    width: 5rem;
 }
 
 .div-Button-ST-VD {
