@@ -45,15 +45,17 @@
 
 <body>
     @model Event
+    
     <form enctype="multipart/form-data" asp-action="EventMini">
-
+        <input type="hidden" name="Id" value="@Model.Id" />
 
         <div class="contener">
 
 
 
             <div class="divStrockZap2">
-                <input asp-for="EventName"  class="input-StrockZap2" type="text" placeholder="Нова подiя">
+
+                <input asp-for="@Model.EventName" value="@Model.EventName" class="input-StrockZap2" type="text" placeholder="Нова подiя">
             </div>
 
             <div class="classPodcherk">
@@ -62,14 +64,13 @@
             <div class="div-NazCal">
                 <img class="imgAVA" src="/img/6a523b423e71ad8b708af55f0f6a0bd5.jpg">
                 <p class="nazCalendar">Календар:
-                <p class="nazCalendar2"> @*@ViewBag.Users.UserName*@</p>
+                <p class="nazCalendar2"> @ViewBag.Useres.UserName</p>
                 </p>
             </div>
 
             <div class="Data-Calendat-Time">
-
-
-                <input type="date" class="conData">
+               
+                <input id="Date" value="@Model.Begin" type="date" class="conData">
                 <input type="time" class="conTime superstyle">
                 <div class="classPodcherk2"></div>
                 <input type="time" class="conTime2 superstyle">
@@ -192,6 +193,11 @@
             </div>
         </div>
     </form>
+    <script>
+        
+        var today = moment().format('DD-MM-YYYY');
+        document.getElementById("Date").value = today;
+    </script>
     <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
     <script src="~/js/scriptEventMini.js" asp-append-version="true"></script>
 

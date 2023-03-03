@@ -29,7 +29,7 @@ namespace MEVIO.Controllers
         User user { get; set; }
         public HomeController(MEVIOContext db)
         {
-            //this.context = db;
+            this.context = db;
             //UserRole roleadmin = new UserRole() { UserRoleName = "admin" };
             //UserRole roledirector = new UserRole() { UserRoleName = "director" };
             //UserRole rolemanager = new UserRole() { UserRoleName = "manager" };
@@ -95,8 +95,12 @@ namespace MEVIO.Controllers
         public IActionResult EventMini([Bind] Event events)
         {
 
-            //ViewBag.Users = context.Users.AsNoTracking().ToList();
-            return View();
+
+            var imegs = context.Users.FirstOrDefault();
+            ViewBag.Useres = imegs;
+            var data = context.Events.FirstOrDefault().Begin;
+            ViewBag.Date = $"{data.Year}-{data.Month}-{data.Day}";
+            return View(context.Events.FirstOrDefault());
         }
         public IActionResult Measure()
         {
