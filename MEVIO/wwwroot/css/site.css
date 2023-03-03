@@ -2,3 +2,13 @@
     margin:5rem;
 }
 
+body {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+}
+
+.body-container {
+    /*width: calc(100% - 145px);*/
+    margin: auto;
+}
