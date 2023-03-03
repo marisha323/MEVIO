@@ -2,6 +2,9 @@
     width: 85rem;
     height: 84%;
     background: #111624;
+    transform:scale(0.6);
+    margin-left:-1rem;
+    margin-top:-9rem;
 }
 
 .div-search {

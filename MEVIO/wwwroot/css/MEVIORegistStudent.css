@@ -2,8 +2,11 @@
     width: 94rem;
     height: 84%;
     background: #111624;
-    margin-right: 3rem;
-    margin-left:10rem;
+    /* margin-right: 3rem;
+    margin-left:5rem;*/
+    /* margin: 2rem,4rem,1rem,3rem;*/
+    transform: scale(0.7);
+    margin-top: -8rem;
 }
 
 .div-CONT {

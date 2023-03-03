@@ -5,148 +5,193 @@
 }
 
 <link type="text/css" rel="stylesheet" href="/css/MEVIOStvorPodii.css">
+<style>
+    .Div-Mesto-Prov2 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 1rem 0 0 1rem;
+    }
 
+    .p-Mesto-Prov2 {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 16px;
+        /* identical to box height */
+
+
+        color: #52A7E4;
+    }
+
+    .button-Mesto-Prov2 {
+        background: #111624;
+        border: 1px solid #52A7E4;
+        border-radius: 15px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 16px;
+        /* identical to box height */
+        padding: 0.5rem;
+        width: 5rem;
+        margin-right: 46rem;
+        color: #52A7E4;
+        cursor: pointer;
+    }
+</style>
 
 <body>
-    <div class="contener">
+    @model Event
+    <form enctype="multipart/form-data" asp-action="EventMini">
+
+
+        <div class="contener">
 
 
 
-        <div class="divStrockZap2">
-            <input class="input-StrockZap2" type="text" placeholder="Нова подiя">
-        </div>
+            <div class="divStrockZap2">
+                <input asp-for="EventName"  class="input-StrockZap2" type="text" placeholder="Нова подiя">
+            </div>
 
-        <div class="classPodcherk">
-        </div>
+            <div class="classPodcherk">
+            </div>
 
-        <div class="div-NazCal">
-            <img class="imgAVA" src="/img/6a523b423e71ad8b708af55f0f6a0bd5.jpg">
-            <p class="nazCalendar">Колендар:
-            <p class="nazCalendar2"> Svrpness</p>
-            </p>
-        </div>
-
-        <div class="Data-Calendat-Time">
-
-
-            <input type="date" class="conData">
-            <input type="time" class="conTime superstyle">
-            <div class="classPodcherk2"></div>
-            <input type="time" class="conTime2 superstyle">
-            <input type="date" class="conData2">
-            <input class="checkbox2" type="checkbox">
-            <p class="checkbox">На весь день</p>
-
-        </div>
-
-        <div class="Div-Spov">
-            <input type="submit"  value="Учасники" class="butonYchas">
-            <div class="Div-spov-Icon-Parad">
-                <img class="imgCol" src="/img/free-icon-ringing-bell-6816519.png">
-                <p class="classSpov">
-                    Сповіщати про рішення
+            <div class="div-NazCal">
+                <img class="imgAVA" src="/img/6a523b423e71ad8b708af55f0f6a0bd5.jpg">
+                <p class="nazCalendar">Календар:
+                <p class="nazCalendar2"> @*@ViewBag.Users.UserName*@</p>
                 </p>
             </div>
-        </div>
+
+            <div class="Data-Calendat-Time">
 
 
+                <input type="date" class="conData">
+                <input type="time" class="conTime superstyle">
+                <div class="classPodcherk2"></div>
+                <input type="time" class="conTime2 superstyle">
+                <input type="date" class="conData2">
+                <input class="checkbox2" type="checkbox">
+                <p class="checkbox">На весь день</p>
 
-        <div class="Scrol-Time">
-            <img src="/img/6a523b423e71ad8b708af55f0f6a0bd5.jpg" class="imgAva2">
-            <div class="Raz-Line">
-                <div class="shedule">
-                    <div class="day">Субота, Лютий 25</div>
+            </div>
 
-                    <div class="time-span-row">
-                        <div>7-00</div>
-                        <div>8-00</div>
-                        <div>9-00</div>
-                        <div>10-00</div>
-                        <div>11-00</div>
-                        <div>12-00</div>
-                        <div>13-00</div>
-                        <div>14-00</div>
-                        <div>15-00</div>
-                        <div>16-00</div>
-                        <div>17-00</div>
-                        <div>18-00</div>
-                        <div>19-00</div>
-                        <div>20-00</div>
-                        <div>21-00</div>
-                        <div>22-00</div>
-                        <div>23-00</div>
-                        <div>00-00</div>
-                    </div>
-
-                    <div class="time-span-row time-blocks">
-                        <div class="time-change-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                    </div>
-
-                    <div class="time-span-row">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-
+            <div class="Div-Spov">
+                <input type="submit" value="Учасники" class="butonYchas">
+                <div class="Div-spov-Icon-Parad">
+                    <img class="imgCol" src="/img/free-icon-ringing-bell-6816519.png">
+                    <p class="classSpov">
+                        Сповіщати про рішення
+                    </p>
                 </div>
             </div>
-        </div>
 
 
 
-        <div class="Div-Mesto-Prov">
-            <p class="p-Mesto-Prov">Мiсце проведення:</p>
-            <input type="submit" value="Додати" class="button-Mesto-Prov">
-        </div>
-        <div class="Div-Napom">
-            <div class="p-Napom">
-                <p>Нагадування:</p>
-                <p style="margin-left: 1rem;">
-                    За 15 хвилин
-                </p>
+            <div class="Scrol-Time">
+                <img src="/img/6a523b423e71ad8b708af55f0f6a0bd5.jpg" class="imgAva2">
+                <div class="Raz-Line">
+                    <div class="shedule">
+                        <div class="day">Субота, Лютий 25</div>
+
+                        <div class="time-span-row">
+                            <div>7-00</div>
+                            <div>8-00</div>
+                            <div>9-00</div>
+                            <div>10-00</div>
+                            <div>11-00</div>
+                            <div>12-00</div>
+                            <div>13-00</div>
+                            <div>14-00</div>
+                            <div>15-00</div>
+                            <div>16-00</div>
+                            <div>17-00</div>
+                            <div>18-00</div>
+                            <div>19-00</div>
+                            <div>20-00</div>
+                            <div>21-00</div>
+                            <div>22-00</div>
+                            <div>23-00</div>
+                            <div>00-00</div>
+                        </div>
+
+                        <div class="time-span-row time-blocks">
+                            <div class="time-change-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                        </div>
+
+                        <div class="time-span-row">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
 
-            <input type="submit" value="Додати" class="button-Napom">
-        </div>
-        <div class="div-Button-ST-VD">
-            <input type="submit" value="Створити" class="button-Stvorutu">
-            <input type="submit" value="Відмінити" class="button-Vidminutu">
-        </div>
-    </div>
 
+
+            <div class="Div-Mesto-Prov">
+                <p class="p-Mesto-Prov">Мiсце проведення:</p>
+                <input type="submit" value="Додати" class="button-Mesto-Prov">
+            </div>
+            <div class="Div-Mesto-Prov2">
+                <p class="p-Mesto-Prov2">Опис:</p>
+                <input type="submit" value="Додати" class="button-Mesto-Prov2">
+            </div>
+
+           @* <div class="Div-Napom">
+                <div class="p-Napom">
+                    <p>Нагадування:</p>
+                    <p style="margin-left: 1rem;">
+                        За 15 хвилин
+                    </p>
+                </div>
+
+                <input type="submit" value="Додати" class="button-Napom">
+            </div>*@
+            <div class="div-Button-ST-VD">
+                <input type="submit" value="Створити" class="button-Stvorutu">
+                <input type="submit" value="Відмінити" class="button-Vidminutu">
+            </div>
+        </div>
+    </form>
     <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
     <script src="~/js/scriptEventMini.js" asp-append-version="true"></script>
 

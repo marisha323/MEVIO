@@ -1,6 +1,6 @@
 var link = document.getElementById("customStyle");
-link.href = "/css/year.css";
-//link.href = "/css/month.css";
+//link.href = "/css/year.css";
+link.href = "/css/month.css";
 //link.href = "/css/week.css";
 //link.href = "/css/day.css";
 // Get the HTML link element that references the CSS file 
@@ -8,8 +8,8 @@ link.href = "/css/year.css";
 // Set the href property to the new CSS file path
 //link.href = "/css/month.css";
 
-//$("#yearGrid").hide();
-$("#monthGrid").hide();
+$("#yearGrid").hide();
+//$("#monthGrid").hide();
 $("#weekGrid").hide();
 $("#dayGrid").hide();
 

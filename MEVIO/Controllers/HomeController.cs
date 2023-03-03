@@ -24,6 +24,9 @@ namespace MEVIO.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         public MEVIOContext context;
+        Event events1 { get; set; }
+        
+        User user { get; set; }
         public HomeController(MEVIOContext db)
         {
             //this.context = db;
@@ -89,9 +92,10 @@ namespace MEVIO.Controllers
             return View();
         }
 
-        public IActionResult EventMini()
+        public IActionResult EventMini([Bind] Event events)
         {
 
+            //ViewBag.Users = context.Users.AsNoTracking().ToList();
             return View();
         }
         public IActionResult Measure()
