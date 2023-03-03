@@ -10,6 +10,8 @@ builder.Services.AddDbContext<MEVIOContext>(options => options.UseSqlServer(conn
 //Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddSession();
+
 
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
@@ -17,6 +19,9 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
+
+app.UseSession();//Ï²ÄÊËÞ×ÅÍÍß ÑÅÑ²¯
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
