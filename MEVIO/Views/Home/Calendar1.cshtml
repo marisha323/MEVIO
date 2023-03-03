@@ -10,27 +10,13 @@
 @*<link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />*@
 
 <link type="text/css" rel="stylesheet" href="/css/main.css">
-<link type="text/css" rel="stylesheet" href="/css/month.css" id="customStyle" />
+<link type="text/css" rel="stylesheet" href="/css/year.css" id="customStyle" />
+<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 
-<style>
-    body {
-        background-image: url(../img/stars.jpg);
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        background-attachment: fixed;
-        width: 100vw;
-        height: 100vh;
-        min-width: 1300px;
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 400;
-        padding-top:0;
-    }
-</style>
 
-<body>
 
-    <div class="container">
+
+    <div class="calendar-container">
         <div class="main-header">
             <div class="flex">
                 <div class="calendar pointer">
@@ -759,14 +745,14 @@
 
 
         <div id="monthGrid" class="calendar-grid">
-            <div class="header">
+            <div class="calendar-header">
                 <div class="month-name pointer">
                     Лютий 2023
                 </div>
                 <div class="flex">
                     <div class="flex-center select-month">
                         <label class="label pointer">Місяць</label>
-                        <img class="arrow pointer" src="img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                        <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
                         <div class="options-month hide">
                             <div class="option-item">Січень</div>
                             <div class="option-item">Лютий</div>
@@ -786,7 +772,7 @@
 
                     <div class="flex-center select-years">
                         <label class="label pointer">Рік</label>
-                        <img class="arrow pointer" src="img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                        <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
                         <div class="options-years hide">
                             <div class="option-item">2020</div>
                             <div class="option-item">2021</div>
@@ -1157,7 +1143,6 @@
         </div>
 
     </div>
-</body>
 <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
  <script src="~/js/script.js" asp-append-version="true"></script>
 @*<script type="text/javascript" src="~/js/script.js" asp-append-version="true"></script>*@

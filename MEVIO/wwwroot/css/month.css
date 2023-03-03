@@ -1,3 +1,9 @@
+* {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+}
+
 .calendar-grid {
     background: #111624;
     border: 3px solid #52A7E4;
@@ -6,11 +12,11 @@
     margin-top: 1.5rem;
 }
 
-.header {
+.calendar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    color: #52A7E4;
 }
 
 .month-name {

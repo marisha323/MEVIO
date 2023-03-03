@@ -3,11 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>@ViewData["Title"] - MEVIO</title>
-    
+
     @*  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />*@
-    <link rel="stylesheet" href="~/MEVIO.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" asp-append-version="true">
 
 </head>
 <body>
@@ -21,8 +23,18 @@
     <div class="left-menu">
         <img class="left-menu-img show-hide" src="/img/free-icon-left-chevron-7456442.png" alt="">
         <div class="left-flex">
-            <img class="left-menu-img" src="/img/free-icon-dog-house-2500456.png" alt="">
-            <img class="left-menu-img" src="/img/free-icon-calendar-747824.png" alt="">
+
+            <a asp-controller="Home" asp-action="MainPage">
+                <img class="left-menu-img" src="/img/free-icon-dog-house-2500456.png" alt="">
+            </a>
+
+            <a asp-controller="Home" asp-action="Calendar1">
+                <img class="left-menu-img" src="/img/free-icon-calendar-747824.png" alt="">
+            </a>
+
+
+
+
             <img class="left-menu-img" src="/img/free-icon-percentage-1390317.png" alt="">
             <img class="left-menu-img" src="/img/free-icon-smile-3337247.png" alt="">
             <img class="left-menu-img" src="/img/free-icon-user-5807924.png" alt="">
@@ -38,7 +50,9 @@
         <img class="right-menu-img" src="/img/free-icon-ringing-bell-6816519.png" alt="">
         <hr class="_hr">
 
-        <img class="right-menu-img" src="/img/free-icon-chat-892177.png" alt="">
+        <a asp-controller="Home" asp-action="Chat">
+            <img class="right-menu-img" src="/img/free-icon-chat-892177.png" alt="">
+        </a>
         <hr class="_hr">
 
         <img class="right-menu-img" src="/img/free-icon-user-5807924.png" alt="">
@@ -51,10 +65,8 @@
 
 
 
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="body-container">
+        @RenderBody()
     </div>
 
     @* <footer class="border-top footer text-muted">
@@ -63,8 +75,8 @@
     </div>
     </footer>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-   
-   @* <script src="~/js/site.js" asp-append-version="true"></script>*@
+
+    @* <script src="~/js/site.js" asp-append-version="true"></script>*@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

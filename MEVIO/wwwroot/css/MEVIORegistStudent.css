@@ -2,7 +2,11 @@
     width: 94rem;
     height: 84%;
     background: #111624;
-    margin-right: 3rem;
+    /* margin-right: 3rem;
+    margin-left:5rem;*/
+    /* margin: 2rem,4rem,1rem,3rem;*/
+    transform: scale(0.7);
+    margin-top: -8rem;
 }
 
 .div-CONT {
@@ -111,6 +115,13 @@
     align-items: center;
     margin: 2rem;
     margin-bottom: 1rem;
+}
+.div-buttons2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem;
+   margin-top:1rem;
 }
 
 .buttonstyleStudent {

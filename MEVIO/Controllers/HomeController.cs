@@ -24,9 +24,12 @@ namespace MEVIO.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         public MEVIOContext context;
+        Event events1 { get; set; }
+        
+        User user { get; set; }
         public HomeController(MEVIOContext db)
         {
-            //this.context = db;
+            this.context = db;
             //UserRole roleadmin = new UserRole() { UserRoleName = "admin" };
             //UserRole roledirector = new UserRole() { UserRoleName = "director" };
             //UserRole rolemanager = new UserRole() { UserRoleName = "manager" };
@@ -39,6 +42,12 @@ namespace MEVIO.Controllers
         }
         
         public IActionResult Index()
+        {
+
+
+            return View();
+        }
+        public IActionResult IndexTest()
         {
 
 
@@ -83,9 +92,15 @@ namespace MEVIO.Controllers
             return View();
         }
 
-        public IActionResult EventMini()
+        public IActionResult EventMini([Bind] Event events)
         {
-            return View();
+
+
+            var imegs = context.Users.FirstOrDefault();
+            ViewBag.Useres = imegs;
+            var data = context.Events.FirstOrDefault().Begin;
+            ViewBag.Date = $"{data.Year}-{data.Month}-{data.Day}";
+            return View(context.Events.FirstOrDefault());
         }
         public IActionResult Measure()
         {

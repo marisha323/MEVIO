@@ -6,7 +6,7 @@ namespace MEVIO.Models
     {
         public int Id { get; set; }
         public string EventName { get; set; }
-        public string? Description { get; set; }
+        public string? Description { get; set; }//описання
     
         public int? UserId { get; set; }//CreaterId
         public virtual User User { get; set; }
