@@ -13,7 +13,9 @@ body {
     height: 100vh;
     min-width: 1300px;
     position: relative;
- 
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
 }
 
 
@@ -122,9 +124,6 @@ body {
 
 
 
-.container {
-    width: 90%;
-    margin: auto;
-}
+
 
 

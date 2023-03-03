@@ -2,9 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
 }
 
-body {
+/*body {
     background-image: url(../img/stars.jpg);
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -17,7 +20,7 @@ body {
     font-weight: 400;
     padding-top: 0;
 }
-
+*/
 
 
 .main-header {
@@ -30,9 +33,12 @@ body {
     color: #52A7E4;
 }
 
-.container {
-    width: 90%;
+.calendar-container {
+    width: 85%;
     margin: auto;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
 }
 
 .calendar {
