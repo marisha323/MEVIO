@@ -319,5 +319,13 @@ namespace MEVIO.Controllers
             await client.SendTextMessageAsync(message.Chat.Id, "Make your choice: ",
               replyMarkup: inlineKeyboard);
         }
+        public IActionResult Calendar2([Bind] Event events)
+        {
+            //var imegs = context.Users.FirstOrDefault();
+            //ViewBag.Useres = imegs;
+            //var data = context.Events.FirstOrDefault().Begin;
+            //ViewBag.Date = $"{data.Year}-{data.Month}-{data.Day}";
+            return View(/*context.Events.FirstOrDefault()*/);
+        }
     }
 }
