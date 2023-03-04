@@ -1,6 +1,6 @@
 var link = document.getElementById("customStyle");
-//link.href = "/css/year.css";
-//link.href = "~/css/month.css";
+link.href = "/css/year.css";
+//link.href = "/css/month.css";
 //link.href = "/css/week.css";
 //link.href = "/css/day.css";
 // Get the HTML link element that references the CSS file 

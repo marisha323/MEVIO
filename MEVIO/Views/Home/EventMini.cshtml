@@ -70,12 +70,12 @@
 
             <div class="Data-Calendat-Time">
                
-                <input id="Date" value="@Model.Begin" type="date" class="conData">
-                <input type="time" class="conTime superstyle">
+                <input id="Date" value="@ViewBag.Date"  onchange="updateDates()" type="date" class="conData">
+                <input type="time"  value="@Model.Begin.ToString("hh\\:mm")" class="conTime superstyle element-time">
                 <div class="classPodcherk2"></div>
-                <input type="time" class="conTime2 superstyle">
-                <input type="date" class="conData2">
-                <input class="checkbox2" type="checkbox">
+                <input type="time"  value="@Model.End.ToString("hh\\:mm")" class="conTime2 superstyle element-time">
+                <input id="DateEnd"  value="@ViewBag.DateEnd" type="date" class="conData2">
+                <input class="checkbox2" id="checkbox" onclick="myFunction()" type="checkbox">
                 <p class="checkbox">На весь день</p>
 
             </div>
@@ -177,6 +177,9 @@
             </div>
             <div class="Div-Mesto-Prov2">
                 <p class="p-Mesto-Prov2">Опис:</p>
+                <div class="button-Mesto-Prov2" >
+                    
+                </div>
                 <input type="submit" value="Додати" class="button-Mesto-Prov2">
             </div>
 
@@ -198,8 +201,48 @@
     </form>
     <script>
         
-        var today = moment().format('DD-MM-YYYY');
-        document.getElementById("Date").value = today;
+        //var today = moment().format('DD-MM-YYYY');
+        var dateInput = document.getElementById("Date");
+        dateInput.value = "@ViewBag.Date";
+        var dateEnd = document.getElementById("DateEnd");
+        dateEnd.value = "@ViewBag.DateEnd";
+
+
+        //function toggleElement(elementId) {
+        //    var element = document.getElementById(elementId);
+        //    if (element.style.display === "none") {
+        //        element.style.display = "block";
+        //    } else {
+        //        element.style.display = "none";
+        //    }
+        //}
+
+        function toggleElements(className) {
+            var elements = document.getElementsByClassName(className);
+            for (var i = 0; i < elements.length; i++) {
+                if (elements[i].style.display === "none") {
+                    elements[i].style.display = "block";
+                } else {
+                    elements[i].style.display = "none";
+                }
+            }
+        }
+
+        function updateDates() {
+            var checkbox = document.getElementById("checkbox");
+            var date1 = document.getElementById("Date").value;
+            var date2 = document.getElementById("DateEnd");
+
+            if (checkbox.checked) {
+                date2.value = date1;
+            } else {
+                date2.value = "@ViewBag.DateEnd";
+            }
+        }
+        function myFunction() {
+            toggleElements('element-time');
+            updateDates();
+        }
     </script>
     <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
     <script src="~/js/scriptEventMini.js" asp-append-version="true"></script>
