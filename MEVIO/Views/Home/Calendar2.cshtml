@@ -1,0 +1,1428 @@
+﻿
+@{
+    ViewData["Title"] = "Calendar2";
+}
+<link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/week.css" id="customStyle">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="/css/MEVIOStvorPodii.css">
+<style>
+    .Div-Mesto-Prov2 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 1rem 0 0 1rem;
+    }
+
+    .p-Mesto-Prov2 {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 16px;
+        /* identical to box height */
+        color: #52A7E4;
+    }
+
+    .button-Mesto-Prov2 {
+        background: #111624;
+        border: 1px solid #52A7E4;
+        border-radius: 15px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 16px;
+        /* identical to box height */
+        padding: 0.5rem;
+        width: 5rem;
+        margin-right: 46rem;
+        color: #52A7E4;
+        cursor: pointer;
+    }
+</style>
+<body>
+    @*@model Event*@
+    <form enctype="multipart/form-data" asp-action="EventMini">
+        <input type="hidden" name="Id" @*value="@Model.Id"*@ />
+
+        <div class="contener">
+
+            <div class="divStrockZap2">
+
+                <input @*asp-for="@Model.EventName" value="@Model.EventName"*@ class="input-StrockZap2" type="text" placeholder="Нова подiя">
+            </div>
+
+            <div class="classPodcherk">
+            </div>
+
+            <div class="div-NazCal">
+                <img class="imgAVA" src="/img/6a523b423e71ad8b708af55f0f6a0bd5.jpg">
+                <p class="nazCalendar">Календар:
+                <p class="nazCalendar2"> @*@ViewBag.Useres.UserName*@</p>
+                </p>
+            </div>
+
+            <div class="Data-Calendat-Time">
+               
+                <input id="Date" @*value="@Model.Begin"*@ type="date" class="conData">
+                <input type="time" class="conTime superstyle">
+                <div class="classPodcherk2"></div>
+                <input type="time" class="conTime2 superstyle">
+                <input type="date" class="conData2">
+                <input class="checkbox2" type="checkbox">
+                <p class="checkbox">На весь день</p>
+
+            </div>
+
+            <div class="Div-Spov">
+                <input type="submit" value="Учасники" class="butonYchas">
+                <div class="Div-spov-Icon-Parad">
+                    <img class="imgCol" src="/img/free-icon-ringing-bell-6816519.png">
+                    <p class="classSpov">
+                        Сповіщати про рішення
+                    </p>
+                </div>
+            </div>
+
+
+
+            <div class="Scrol-Time">
+                <img src="/img/6a523b423e71ad8b708af55f0f6a0bd5.jpg" class="imgAva2">
+                <div class="Raz-Line">
+                    <div class="shedule">
+                        <div class="day">Субота, Лютий 25</div>
+
+                        <div class="time-span-row">
+                            <div>7-00</div>
+                            <div>8-00</div>
+                            <div>9-00</div>
+                            <div>10-00</div>
+                            <div>11-00</div>
+                            <div>12-00</div>
+                            <div>13-00</div>
+                            <div>14-00</div>
+                            <div>15-00</div>
+                            <div>16-00</div>
+                            <div>17-00</div>
+                            <div>18-00</div>
+                            <div>19-00</div>
+                            <div>20-00</div>
+                            <div>21-00</div>
+                            <div>22-00</div>
+                            <div>23-00</div>
+                            <div>00-00</div>
+                        </div>
+                        <div class="time-span-row time-blocks">
+                            <div class="time-change-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                        </div>
+
+                        <div class="time-span-row">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="Div-Mesto-Prov">
+                <p class="p-Mesto-Prov">Мiсце проведення:</p>
+                <input type="submit" value="Додати" class="button-Mesto-Prov">
+            </div>
+            <div class="Div-Mesto-Prov2">
+                <p class="p-Mesto-Prov2">Опис:</p>
+                <input type="submit" value="Додати" class="button-Mesto-Prov2">
+            </div>
+
+           <!-- @* <div class="Div-Napom">
+                <div class="p-Napom">
+                    <p>Нагадування:</p>
+                    <p style="margin-left: 1rem;">
+                        За 15 хвилин
+                    </p>
+                </div>
+
+                <input type="submit" value="Додати" class="button-Napom">
+            </div>*@ -->
+            <div class="div-Button-ST-VD">
+                <input type="submit" value="Створити" class="button-Stvorutu">
+                <input type="submit" value="Відмінити" class="button-Vidminutu">
+            </div>
+        </div>
+    </form>
+
+    <div class="container">
+
+        <div id="rightMenu" class="right-menu ">
+            <img onclick="closeMenu()" class="closeMenuBtn" src="https://cdn.discordapp.com/attachments/684475244664193242/1074858765746180208/free-icon-cross-mark-4225670.png">
+    <div class="container">
+        <div class="task-name">Зробити магазин</div>
+        <div class="task-desc">
+            <div class="task-left">
+                <div class="task-head">
+                    Задача №1 - чекає на виконання
+                </div>
+                <div class="task-body">
+                    <div class="textarea">
+                        <p name="" id="" cols="30" rows="10" class="task-input">Опис ...</p>
+                    </div>
+                    <div class="checklist">
+                        <p>+ Чеклист</p>
+                    </div>
+                    <div class="task-flex">
+                        <div class="task-button">Почати виконання</div>
+                        <div class="task-button">Завершити</div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="task-right">
+                <div class="task-head">
+                    <b>Чекає на виконання</b> з 02/02/2023
+                </div>
+                <div class="task-body">
+                    <div>
+                        <span><b>Дедлайн:</b></span>
+                        <span>Немає</span>
+                    </div>
+                    <hr class="right-hr">    
+
+                    <div>
+                        <span><b>Поставлена:</b></span>
+                        <span>02/02/2023</span>
+                    </div>
+                    <hr class="right-hr">    
+
+                    <div>
+                        <b>Постановник</b>
+                    </div>
+                    <div class="logo-div">
+                        <img class="logo-img" src="data:image/jpeg;base64,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" alt="">
+                        <span>W1shAgony</span>
+                    </div>
+
+                    <div class="flex-between">
+                        <div><b>Відповідальний</b></div>
+                        <div class="change pointer"><b>Змінити</b></div>
+                    </div>
+                    <div class="logo-div">
+                        <img class="logo-img" src="data:image/jpeg;base64,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" alt="">
+                        <span>W1shAgony</span>
+                    </div>
+                    <br>
+                    <div class="flex-between">
+                        <div><b>Співвиконавці</b></div>
+                        <div class="change pointer"><b>Додати</b></div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="flex-between">
+                        <div><b>Спостерігачі</b></div>
+                        <div class="change pointer"><b>Додати</b></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+    
+    </div>
+
+
+    <div class="box-shadow">
+        <div class="footer-button save">Зберегти</div>
+        <div class="footer-button cancel">Скасувати</div>
+    </div>
+
+    
+</div>
+
+        <div class="main-header">
+            <div class="flex">
+                <div class="calendar pointer">
+                    Календар
+                </div>
+                <div class="button header-button round pointer">
+                    Створити
+                </div>
+            </div>
+
+            <div class="flex round calendar-buttons">
+                <div id="daybtn" class="round pointer button calendar-button" onclick="DayButtonClick()">День</div>
+                <div id="weekbtn" class="round pointer button calendar-button" onclick="WeekButtonClick()">Тиждень</div>
+                <div id="monthbtn" class="round pointer button calendar-button" onclick="MonthButtonClick()">Місяць</div>
+                <div id="yearbtn" class="round pointer button calendar-button active" onclick="YearButtonClick()">Рік</div>
+            </div>
+
+            <div class="flex">
+                <div class="round pointer button header-button">
+                    Запросити
+                </div>
+                <div class="round pointer button header-button">
+                    Синхронізація календаря
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+        <div id="yearGrid" class="calendar-grid calGrid activeGrid">
+
+            <div class="month-div winter">
+                <div class="month-name">
+                    Січень
+                </div>
+
+                <div class="week-div">
+                    <div class="week-header">
+                        <div class="week-day">Понед</div>
+                        <div class="week-day">Вівто</div>
+                        <div class="week-day">Серед</div>
+                        <div class="week-day">Четве</div>
+                        <div class="week-day">П'ятн</div>
+                        <div class="week-day">Субот</div>
+                        <div class="week-day">Неділ</div>
+                    </div>
+
+                    <div class="month-days">
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                        <div class="month-day">6</div>
+                        <div class="month-day">7</div>
+                        <div class="month-day">8</div>
+                        <div class="month-day">9</div>
+                        <div class="month-day">10</div>
+                        <div class="month-day">11</div>
+                        <div class="month-day">12</div>
+                        <div class="month-day">13</div>
+                        <div class="month-day">14</div>
+                        <div class="month-day">15</div>
+                        <div class="month-day">16</div>
+                        <div class="month-day">17</div>
+                        <div class="month-day">18</div>
+                        <div class="month-day">19</div>
+                        <div class="month-day">20</div>
+                        <div class="month-day">21</div>
+                        <div class="month-day">22</div>
+                        <div class="month-day">23</div>
+                        <div class="month-day">24</div>
+                        <div class="month-day">25</div>
+                        <div class="month-day">26</div>
+                        <div class="month-day">27</div>
+                        <div class="month-day">28</div>
+                        <div class="month-day">29</div>
+                        <div class="month-day">30</div>
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="month-div winter">
+
+                <div class="month-name">
+                    Лютий
+                </div>
+
+                <div class="week-div">
+                    <div class="week-header">
+                        <div class="week-day">Понед</div>
+                        <div class="week-day">Вівто</div>
+                        <div class="week-day">Серед</div>
+                        <div class="week-day">Четве</div>
+                        <div class="week-day">П'ятн</div>
+                        <div class="week-day">Субот</div>
+                        <div class="week-day">Неділ</div>
+                    </div>
+
+                    <div class="month-days">
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                        <div class="month-day">6</div>
+                        <div class="month-day">7</div>
+                        <div class="month-day">8</div>
+                        <div class="month-day">9</div>
+                        <div class="month-day">10</div>
+                        <div class="month-day">11</div>
+                        <div class="month-day">12</div>
+                        <div class="month-day">13</div>
+                        <div class="month-day">14</div>
+                        <div class="month-day">15</div>
+                        <div class="month-day">16</div>
+                        <div class="month-day">17</div>
+                        <div class="month-day">18</div>
+                        <div class="month-day">19</div>
+                        <div class="month-day">20</div>
+                        <div class="month-day">21</div>
+                        <div class="month-day">22</div>
+                        <div class="month-day">23</div>
+                        <div class="month-day">24</div>
+                        <div class="month-day">25</div>
+                        <div class="month-day">26</div>
+                        <div class="month-day">27</div>
+                        <div class="month-day">28</div>
+                        <div class="month-day">29</div>
+                        <div class="month-day">30</div>
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="month-div spring">
+
+                <div class="month-name">
+                    Березень
+                </div>
+
+                <div class="week-div">
+                    <div class="week-header">
+                        <div class="week-day">Понед</div>
+                        <div class="week-day">Вівто</div>
+                        <div class="week-day">Серед</div>
+                        <div class="week-day">Четве</div>
+                        <div class="week-day">П'ятн</div>
+                        <div class="week-day">Субот</div>
+                        <div class="week-day">Неділ</div>
+                    </div>
+
+                    <div class="month-days">
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                        <div class="month-day">6</div>
+                        <div class="month-day">7</div>
+                        <div class="month-day">8</div>
+                        <div class="month-day">9</div>
+                        <div class="month-day">10</div>
+                        <div class="month-day">11</div>
+                        <div class="month-day">12</div>
+                        <div class="month-day">13</div>
+                        <div class="month-day">14</div>
+                        <div class="month-day">15</div>
+                        <div class="month-day">16</div>
+                        <div class="month-day">17</div>
+                        <div class="month-day">18</div>
+                        <div class="month-day">19</div>
+                        <div class="month-day">20</div>
+                        <div class="month-day">21</div>
+                        <div class="month-day">22</div>
+                        <div class="month-day">23</div>
+                        <div class="month-day">24</div>
+                        <div class="month-day">25</div>
+                        <div class="month-day">26</div>
+                        <div class="month-day">27</div>
+                        <div class="month-day">28</div>
+                        <div class="month-day">29</div>
+                        <div class="month-day">30</div>
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="month-div spring">
+
+                <div class="month-name">
+                    Квітень
+                </div>
+
+                <div class="week-div">
+                    <div class="week-header">
+                        <div class="week-day">Понед</div>
+                        <div class="week-day">Вівто</div>
+                        <div class="week-day">Серед</div>
+                        <div class="week-day">Четве</div>
+                        <div class="week-day">П'ятн</div>
+                        <div class="week-day">Субот</div>
+                        <div class="week-day">Неділ</div>
+                    </div>
+
+                    <div class="month-days">
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                        <div class="month-day">6</div>
+                        <div class="month-day">7</div>
+                        <div class="month-day">8</div>
+                        <div class="month-day">9</div>
+                        <div class="month-day">10</div>
+                        <div class="month-day">11</div>
+                        <div class="month-day">12</div>
+                        <div class="month-day">13</div>
+                        <div class="month-day">14</div>
+                        <div class="month-day">15</div>
+                        <div class="month-day">16</div>
+                        <div class="month-day">17</div>
+                        <div class="month-day">18</div>
+                        <div class="month-day">19</div>
+                        <div class="month-day">20</div>
+                        <div class="month-day">21</div>
+                        <div class="month-day">22</div>
+                        <div class="month-day">23</div>
+                        <div class="month-day">24</div>
+                        <div class="month-day">25</div>
+                        <div class="month-day">26</div>
+                        <div class="month-day">27</div>
+                        <div class="month-day">28</div>
+                        <div class="month-day">29</div>
+                        <div class="month-day">30</div>
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="month-div spring">
+
+                <div class="month-name">
+                    Травень
+                </div>
+
+                <div class="week-div">
+                    <div class="week-header">
+                        <div class="week-day">Понед</div>
+                        <div class="week-day">Вівто</div>
+                        <div class="week-day">Серед</div>
+                        <div class="week-day">Четве</div>
+                        <div class="week-day">П'ятн</div>
+                        <div class="week-day">Субот</div>
+                        <div class="week-day">Неділ</div>
+                    </div>
+
+                    <div class="month-days">
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                        <div class="month-day">6</div>
+                        <div class="month-day">7</div>
+                        <div class="month-day">8</div>
+                        <div class="month-day">9</div>
+                        <div class="month-day">10</div>
+                        <div class="month-day">11</div>
+                        <div class="month-day">12</div>
+                        <div class="month-day">13</div>
+                        <div class="month-day">14</div>
+                        <div class="month-day">15</div>
+                        <div class="month-day">16</div>
+                        <div class="month-day">17</div>
+                        <div class="month-day">18</div>
+                        <div class="month-day">19</div>
+                        <div class="month-day">20</div>
+                        <div class="month-day">21</div>
+                        <div class="month-day">22</div>
+                        <div class="month-day">23</div>
+                        <div class="month-day">24</div>
+                        <div class="month-day">25</div>
+                        <div class="month-day">26</div>
+                        <div class="month-day">27</div>
+                        <div class="month-day">28</div>
+                        <div class="month-day">29</div>
+                        <div class="month-day">30</div>
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="month-div summer">
+
+                <div class="month-name">
+                    Червень
+                </div>
+
+                <div class="week-div">
+                    <div class="week-header">
+                        <div class="week-day">Понед</div>
+                        <div class="week-day">Вівто</div>
+                        <div class="week-day">Серед</div>
+                        <div class="week-day">Четве</div>
+                        <div class="week-day">П'ятн</div>
+                        <div class="week-day">Субот</div>
+                        <div class="week-day">Неділ</div>
+                    </div>
+
+                    <div class="month-days">
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                        <div class="month-day">6</div>
+                        <div class="month-day">7</div>
+                        <div class="month-day">8</div>
+                        <div class="month-day">9</div>
+                        <div class="month-day">10</div>
+                        <div class="month-day">11</div>
+                        <div class="month-day">12</div>
+                        <div class="month-day">13</div>
+                        <div class="month-day">14</div>
+                        <div class="month-day">15</div>
+                        <div class="month-day">16</div>
+                        <div class="month-day">17</div>
+                        <div class="month-day">18</div>
+                        <div class="month-day">19</div>
+                        <div class="month-day">20</div>
+                        <div class="month-day">21</div>
+                        <div class="month-day">22</div>
+                        <div class="month-day">23</div>
+                        <div class="month-day">24</div>
+                        <div class="month-day">25</div>
+                        <div class="month-day">26</div>
+                        <div class="month-day">27</div>
+                        <div class="month-day">28</div>
+                        <div class="month-day">29</div>
+                        <div class="month-day">30</div>
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="month-div summer">
+
+                <div class="month-name">
+                    Липень
+                </div>
+
+                <div class="week-div">
+                    <div class="week-header">
+                        <div class="week-day">Понед</div>
+                        <div class="week-day">Вівто</div>
+                        <div class="week-day">Серед</div>
+                        <div class="week-day">Четве</div>
+                        <div class="week-day">П'ятн</div>
+                        <div class="week-day">Субот</div>
+                        <div class="week-day">Неділ</div>
+                    </div>
+
+                    <div class="month-days">
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                        <div class="month-day">6</div>
+                        <div class="month-day">7</div>
+                        <div class="month-day">8</div>
+                        <div class="month-day">9</div>
+                        <div class="month-day">10</div>
+                        <div class="month-day">11</div>
+                        <div class="month-day">12</div>
+                        <div class="month-day">13</div>
+                        <div class="month-day">14</div>
+                        <div class="month-day">15</div>
+                        <div class="month-day">16</div>
+                        <div class="month-day">17</div>
+                        <div class="month-day">18</div>
+                        <div class="month-day">19</div>
+                        <div class="month-day">20</div>
+                        <div class="month-day">21</div>
+                        <div class="month-day">22</div>
+                        <div class="month-day">23</div>
+                        <div class="month-day">24</div>
+                        <div class="month-day">25</div>
+                        <div class="month-day">26</div>
+                        <div class="month-day">27</div>
+                        <div class="month-day">28</div>
+                        <div class="month-day">29</div>
+                        <div class="month-day">30</div>
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="month-div summer">
+
+                <div class="month-name">
+                    Серпень
+                </div>
+
+                <div class="week-div">
+                    <div class="week-header">
+                        <div class="week-day">Понед</div>
+                        <div class="week-day">Вівто</div>
+                        <div class="week-day">Серед</div>
+                        <div class="week-day">Четве</div>
+                        <div class="week-day">П'ятн</div>
+                        <div class="week-day">Субот</div>
+                        <div class="week-day">Неділ</div>
+                    </div>
+
+                    <div class="month-days">
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                        <div class="month-day">6</div>
+                        <div class="month-day">7</div>
+                        <div class="month-day">8</div>
+                        <div class="month-day">9</div>
+                        <div class="month-day">10</div>
+                        <div class="month-day">11</div>
+                        <div class="month-day">12</div>
+                        <div class="month-day">13</div>
+                        <div class="month-day">14</div>
+                        <div class="month-day">15</div>
+                        <div class="month-day">16</div>
+                        <div class="month-day">17</div>
+                        <div class="month-day">18</div>
+                        <div class="month-day">19</div>
+                        <div class="month-day">20</div>
+                        <div class="month-day">21</div>
+                        <div class="month-day">22</div>
+                        <div class="month-day">23</div>
+                        <div class="month-day">24</div>
+                        <div class="month-day">25</div>
+                        <div class="month-day">26</div>
+                        <div class="month-day">27</div>
+                        <div class="month-day">28</div>
+                        <div class="month-day">29</div>
+                        <div class="month-day">30</div>
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="month-div autumn">
+
+                <div class="month-name">
+                    Вересень
+                </div>
+
+                <div class="week-div">
+                    <div class="week-header">
+                        <div class="week-day">Понед</div>
+                        <div class="week-day">Вівто</div>
+                        <div class="week-day">Серед</div>
+                        <div class="week-day">Четве</div>
+                        <div class="week-day">П'ятн</div>
+                        <div class="week-day">Субот</div>
+                        <div class="week-day">Неділ</div>
+                    </div>
+
+                    <div class="month-days">
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                        <div class="month-day">6</div>
+                        <div class="month-day">7</div>
+                        <div class="month-day">8</div>
+                        <div class="month-day">9</div>
+                        <div class="month-day">10</div>
+                        <div class="month-day">11</div>
+                        <div class="month-day">12</div>
+                        <div class="month-day">13</div>
+                        <div class="month-day">14</div>
+                        <div class="month-day">15</div>
+                        <div class="month-day">16</div>
+                        <div class="month-day">17</div>
+                        <div class="month-day">18</div>
+                        <div class="month-day">19</div>
+                        <div class="month-day">20</div>
+                        <div class="month-day">21</div>
+                        <div class="month-day">22</div>
+                        <div class="month-day">23</div>
+                        <div class="month-day">24</div>
+                        <div class="month-day">25</div>
+                        <div class="month-day">26</div>
+                        <div class="month-day">27</div>
+                        <div class="month-day">28</div>
+                        <div class="month-day">29</div>
+                        <div class="month-day">30</div>
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="month-div autumn">
+
+                <div class="month-name">
+                    Жовтень
+                </div>
+
+                <div class="week-div">
+                    <div class="week-header">
+                        <div class="week-day">Понед</div>
+                        <div class="week-day">Вівто</div>
+                        <div class="week-day">Серед</div>
+                        <div class="week-day">Четве</div>
+                        <div class="week-day">П'ятн</div>
+                        <div class="week-day">Субот</div>
+                        <div class="week-day">Неділ</div>
+                    </div>
+
+                    <div class="month-days">
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                        <div class="month-day">6</div>
+                        <div class="month-day">7</div>
+                        <div class="month-day">8</div>
+                        <div class="month-day">9</div>
+                        <div class="month-day">10</div>
+                        <div class="month-day">11</div>
+                        <div class="month-day">12</div>
+                        <div class="month-day">13</div>
+                        <div class="month-day">14</div>
+                        <div class="month-day">15</div>
+                        <div class="month-day">16</div>
+                        <div class="month-day">17</div>
+                        <div class="month-day">18</div>
+                        <div class="month-day">19</div>
+                        <div class="month-day">20</div>
+                        <div class="month-day">21</div>
+                        <div class="month-day">22</div>
+                        <div class="month-day">23</div>
+                        <div class="month-day">24</div>
+                        <div class="month-day">25</div>
+                        <div class="month-day">26</div>
+                        <div class="month-day">27</div>
+                        <div class="month-day">28</div>
+                        <div class="month-day">29</div>
+                        <div class="month-day">30</div>
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="month-div autumn">
+
+                <div class="month-name">
+                    Листопад
+                </div>
+
+                <div class="week-div">
+                    <div class="week-header">
+                        <div class="week-day">Понед</div>
+                        <div class="week-day">Вівто</div>
+                        <div class="week-day">Серед</div>
+                        <div class="week-day">Четве</div>
+                        <div class="week-day">П'ятн</div>
+                        <div class="week-day">Субот</div>
+                        <div class="week-day">Неділ</div>
+                    </div>
+
+                    <div class="month-days">
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                        <div class="month-day">6</div>
+                        <div class="month-day">7</div>
+                        <div class="month-day">8</div>
+                        <div class="month-day">9</div>
+                        <div class="month-day">10</div>
+                        <div class="month-day">11</div>
+                        <div class="month-day">12</div>
+                        <div class="month-day">13</div>
+                        <div class="month-day">14</div>
+                        <div class="month-day">15</div>
+                        <div class="month-day">16</div>
+                        <div class="month-day">17</div>
+                        <div class="month-day">18</div>
+                        <div class="month-day">19</div>
+                        <div class="month-day">20</div>
+                        <div class="month-day">21</div>
+                        <div class="month-day">22</div>
+                        <div class="month-day">23</div>
+                        <div class="month-day">24</div>
+                        <div class="month-day">25</div>
+                        <div class="month-day">26</div>
+                        <div class="month-day">27</div>
+                        <div class="month-day">28</div>
+                        <div class="month-day">29</div>
+                        <div class="month-day">30</div>
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="month-div winter">
+
+                <div class="month-name">
+                    Грудень
+                </div>
+
+                <div class="week-div">
+                    <div class="week-header">
+                        <div class="week-day">Понед</div>
+                        <div class="week-day">Вівто</div>
+                        <div class="week-day">Серед</div>
+                        <div class="week-day">Четве</div>
+                        <div class="week-day">П'ятн</div>
+                        <div class="week-day">Субот</div>
+                        <div class="week-day">Неділ</div>
+                    </div>
+
+                    <div class="month-days">
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                        <div class="month-day">6</div>
+                        <div class="month-day">7</div>
+                        <div class="month-day">8</div>
+                        <div class="month-day">9</div>
+                        <div class="month-day">10</div>
+                        <div class="month-day">11</div>
+                        <div class="month-day">12</div>
+                        <div class="month-day">13</div>
+                        <div class="month-day">14</div>
+                        <div class="month-day">15</div>
+                        <div class="month-day">16</div>
+                        <div class="month-day">17</div>
+                        <div class="month-day">18</div>
+                        <div class="month-day">19</div>
+                        <div class="month-day">20</div>
+                        <div class="month-day">21</div>
+                        <div class="month-day">22</div>
+                        <div class="month-day">23</div>
+                        <div class="month-day">24</div>
+                        <div class="month-day">25</div>
+                        <div class="month-day">26</div>
+                        <div class="month-day">27</div>
+                        <div class="month-day">28</div>
+                        <div class="month-day">29</div>
+                        <div class="month-day">30</div>
+                        <div class="month-day">1</div>
+                        <div class="month-day">2</div>
+                        <div class="month-day">3</div>
+                        <div class="month-day">4</div>
+                        <div class="month-day">5</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <div id="monthGrid" class="calendar-grid calGrid">
+            <div class="header">
+                <div class="month-name pointer">
+                    Лютий 2023
+                </div>
+                <div class="flex">
+                    <div class="flex-center select-month">
+                        <label class="label pointer">Місяць</label>
+                        <img class="arrow pointer" src="img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                        <div class="options-month hide">
+                            <div class="option-item">Січень</div>
+                            <div class="option-item">Лютий</div>
+                            <div class="option-item">Березень</div>
+                            <div class="option-item">Квітень</div>
+                            <div class="option-item">Травень</div>
+                            <div class="option-item">Червень</div>
+                            <div class="option-item">Липень</div>
+                            <div class="option-item">Серпень</div>
+                            <div class="option-item">Вересень</div>
+                            <div class="option-item">Жовтень</div>
+                            <div class="option-item">Листопад</div>
+                            <div class="option-item">Грудень</div>
+                        </div>
+                    </div>
+
+
+                    <div class="flex-center select-years">
+                        <label class="label pointer">Рік</label>
+                        <img class="arrow pointer" src="img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                        <div class="options-years hide">
+                            <div class="option-item">2020</div>
+                            <div class="option-item">2021</div>
+                            <div class="option-item">2022</div>
+                            <div class="option-item">2023</div>
+                            <div class="option-item">2024</div>
+                            <div class="option-item">2025</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div>
+                <div class="grid">
+                    <div class="week-day">Понеділок</div>
+                    <div class="week-day">Вівторок</div>
+                    <div class="week-day">Середа</div>
+                    <div class="week-day">Четвер</div>
+                    <div class="week-day">П'ятниця</div>
+                    <div class="week-day">Субота</div>
+                    <div class="week-day">Неділя</div>
+                </div>
+                <div class="month-days grid">
+                    <div class="month-day">1
+                        <div class="event">
+                           <p>Some kind of event</p> 
+                        </div>
+                        <div class="event">
+                            <p>Some kind of event</p> 
+                         </div>
+                         <div class="event">
+                            <p>Some kind of event</p> 
+                         </div>
+                    </div>
+                    <div class="month-day">2</div>
+                    <div class="month-day">3</div>
+                    <div class="month-day">4</div>
+                    <div class="month-day">5</div>
+                    <div class="month-day">6</div>
+                    <div class="month-day">7</div>
+                    <div class="month-day">8</div>
+                    <div class="month-day">9</div>
+                    <div class="month-day">10</div>
+                    <div class="month-day">11</div>
+                    <div class="month-day">12</div>
+                    <div class="month-day">13</div>
+                    <div class="month-day">14</div>
+                    <div class="month-day">15</div>
+                    <div class="month-day">16</div>
+                    <div class="month-day">17</div>
+                    <div class="month-day">18</div>
+                    <div class="month-day">19</div>
+                    <div class="month-day">20</div>
+                    <div class="month-day">21</div>
+                    <div class="month-day">22</div>
+                    <div class="month-day">23</div>
+                    <div class="month-day">24</div>
+                    <div class="month-day">25</div>
+                    <div class="month-day">26</div>
+                    <div class="month-day">27</div>
+                    <div class="month-day">28</div>
+                    <div class="month-day">29</div>
+                    <div class="month-day">30</div>
+                    <div class="month-day">1</div>
+                    <div class="month-day">2</div>
+                    <div class="month-day">3</div>
+                    <div class="month-day">4</div>
+                    <div class="month-day">5</div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div id="weekGrid" class="calendar-grid calGrid">
+            <div class="header">
+                <div class="month-name pointer">
+                    Лютий 2023
+                </div>
+                <div class="flex">
+                    <div class=" flex-center">
+                        <img class="pointer trans-left" src="img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                        <label class="label">Тиждень</label>
+                        <img class="pointer trans-right" src="img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                    </div>
+
+                    <div class="flex-center select-month">
+                        <label class="label pointer">Місяць</label>
+                        <img class="arrow pointer" src="img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                        <div class="options-month hide">
+                            <div class="option-item">Січень</div>
+                            <div class="option-item">Лютий</div>
+                            <div class="option-item">Березень</div>
+                            <div class="option-item">Квітень</div>
+                            <div class="option-item">Травень</div>
+                            <div class="option-item">Червень</div>
+                            <div class="option-item">Липень</div>
+                            <div class="option-item">Серпень</div>
+                            <div class="option-item">Вересень</div>
+                            <div class="option-item">Жовтень</div>
+                            <div class="option-item">Листопад</div>
+                            <div class="option-item">Грудень</div>
+                        </div>
+                    </div>
+
+
+                    <div class="flex-center select-years">
+                        <label class="label pointer">Рік</label>
+                        <img class="arrow pointer" src="img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                        <div class="options-years hide">
+                            <div class="option-item">2020</div>
+                            <div class="option-item">2021</div>
+                            <div class="option-item">2022</div>
+                            <div class="option-item">2023</div>
+                            <div class="option-item">2024</div>
+                            <div class="option-item">2025</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="week-flex">
+                <div class="times-grid">
+                    <div class="white-text">День</div>
+                    <div class="white-text">8:00</div>
+                    <div class="white-text">9:00</div>
+                    <div class="white-text">10:00</div>
+                    <div class="white-text">11:00</div>
+                    <div class="white-text">12:00</div>
+                    <div class="white-text">13:00</div>
+                    <div class="white-text">14:00</div>
+                    <div class="white-text">15:00</div>
+                    <div class="white-text">16:00</div>
+                    <div class="white-text">17:00</div>
+                    <div class="white-text">18:00</div>
+                    <div class="white-text">19:00</div>
+                    <div class="white-text">20:00</div>
+                    <div class="white-text">21:00</div>
+                    <div class="white-text">22:00</div>
+                    <div class="white-text">23:00</div>
+                </div>
+
+                <div class="week-grid">
+                    <div class="head-day left-radius">Понеділок</div>
+                    <div class="head-day">Вівторок</div>
+                    <div class="head-day">Середа</div>
+                    <div class="head-day">Четверг</div>
+                    <div class="head-day">П'ятниця</div>
+                    <div class="head-day">Суббота</div>
+                    <div class="head-day right-radius">Неділя</div>
+
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day">gfytfytftyftyftff</div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day">isjiuhguidhguhuughyg ygyugyugyugyugyg</div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                    <div class="week-day"></div>
+                
+                </div>
+                
+            </div>
+
+        </div>
+
+        <div id="dayGrid" class="calendar-grid calGrid">
+            <div class="header">
+                <div class="month-name pointer">
+                    Лютий 2023
+                </div>
+                <div class="flex">
+                    <div class=" flex-center">
+                        <img class="pointer trans-left" src="img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                        <label class="label">День</label>
+                        <img class="pointer trans-right" src="img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                    </div>
+
+                    <div class="flex-center select-month">
+                        <label class="label pointer">Місяць</label>
+                        <img class="arrow pointer" src="img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                        <div class="options-month hide">
+                            <div class="option-item">Січень</div>
+                            <div class="option-item">Лютий</div>
+                            <div class="option-item">Березень</div>
+                            <div class="option-item">Квітень</div>
+                            <div class="option-item">Травень</div>
+                            <div class="option-item">Червень</div>
+                            <div class="option-item">Липень</div>
+                            <div class="option-item">Серпень</div>
+                            <div class="option-item">Вересень</div>
+                            <div class="option-item">Жовтень</div>
+                            <div class="option-item">Листопад</div>
+                            <div class="option-item">Грудень</div>
+                        </div>
+                    </div>
+
+
+                    <div class="flex-center select-years">
+                        <label class="label pointer">Рік</label>
+                        <img class="arrow pointer" src="img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                        <div class="options-years hide">
+                            <div class="option-item">2020</div>
+                            <div class="option-item">2021</div>
+                            <div class="option-item">2022</div>
+                            <div class="option-item">2023</div>
+                            <div class="option-item">2024</div>
+                            <div class="option-item">2025</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="day-flex">
+                <div class="times-grid">
+                    <div class="white-text">День</div>
+                    <div class="white-text">8:00</div>
+                    <div class="white-text">9:00</div>
+                    <div class="white-text">10:00</div>
+                    <div class="white-text">11:00</div>
+                    <div class="white-text">12:00</div>
+                    <div class="white-text">13:00</div>
+                    <div class="white-text">14:00</div>
+                    <div class="white-text">15:00</div>
+                    <div class="white-text">16:00</div>
+                    <div class="white-text">17:00</div>
+                    <div class="white-text">18:00</div>
+                    <div class="white-text">19:00</div>
+                    <div class="white-text">20:00</div>
+                    <div class="white-text">21:00</div>
+                    <div class="white-text">22:00</div>
+                    <div class="white-text">23:00</div>
+                </div>
+
+                <div class="day-grid">
+
+                    <div class="day-div">
+                        П'ятниця 20
+                    </div>
+
+                    <div class="time-div"></div>
+                    <div class="time-div"></div>
+                    <div class="time-div"></div>
+                    <div class="time-div"></div>
+                    <div class="time-div"></div>
+                    <div class="time-div"></div>
+                    <div class="time-div"></div>
+                    <div class="time-div"></div>
+                    <div class="time-div"></div>
+                    <div class="time-div"></div>
+                    <div class="time-div"></div>
+                    <div class="time-div"></div>
+                    <div class="time-div"></div>
+                    <div class="time-div"></div>
+                    <div class="time-div"></div>
+                    <div class="time-div"></div>
+                
+                    
+                </div>
+                
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+    <script>
+        var today = moment().format('DD-MM-YYYY');
+        document.getElementById("Date").value = today;
+    </script>
+    <script src="/js/jquery-3.6.1.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/scriptEventMini.js" asp-append-version="true"></script>
+</body>

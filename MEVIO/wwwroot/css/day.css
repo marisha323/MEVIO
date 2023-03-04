@@ -7,7 +7,16 @@
     height: auto;
     min-height: 80vh;
 }
+    /*//////////////Animation///////////////////*/
+    .calendar-grid.shrink {
+        transform: scale(0.3) translateX(-80%);
+        transition: transform 0.3s ease;
+    }
 
+    .calendar-grid.go {
+        transform: scale(0.3) translateX(-270%);
+    }
+/*//////////////////////////////////////*/
 .header {
     display: flex;
     justify-content: space-between;
@@ -81,7 +90,7 @@
 
 
 
-.day-flex{
+.day-flex {
     display: flex;
     column-gap: 0.5rem;
     height: 100%;
@@ -90,7 +99,7 @@
 .times-grid {
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows:3.5rem repeat(16, 1fr);
+    grid-template-rows: 3.5rem repeat(16, 1fr);
     row-gap: 2px;
 }
 
@@ -110,12 +119,11 @@
     width: 100%;
     border: 1px solid #52A7E4;
     display: grid;
-    grid-template-rows:3.5rem repeat(16, 2rem);
-
+    grid-template-rows: 3.5rem repeat(16, 2rem);
 }
 
 
-.day-div{
+.day-div {
     color: #52A7E4;
     display: flex;
     justify-content: center;
@@ -124,13 +132,13 @@
     font-size: 2rem;
 }
 
-.time-div{
+.time-div {
     width: 95%;
     margin-left: auto;
     margin-right: auto;
     border-bottom: 1px solid #ADA4A4;
 }
 
-.time-div:last-child{
-    border: none;
-}
+    .time-div:last-child {
+        border: none;
+    }
