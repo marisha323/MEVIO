@@ -215,6 +215,8 @@ function YearButtonClick() {
         left: 0,
         behavior: 'smooth'
     });
+
+    document.body.style.overflowY = 'auto';
 }
 ////////////////////////////////////////////////////////////////
 //Month Animation
@@ -263,7 +265,11 @@ function MonthButtonClick() {
         left: 0,
         behavior: 'smooth'
     });
+
+    document.body.style.overflowY = 'auto';
 }
+
+
 function WeekButtonClick() {
     grids.forEach(grid => {
         if (grid.classList.contains("activeGrid")) {
@@ -379,15 +385,17 @@ monthDays.forEach(day => {
         //     });
         // }
         if (events.length == 0) {
-            if (!container.classList.contains("eventShow")) {
-                if (!rightMenu.classList.contains("trans")) {
-                    rightMenu.style.display = "block";
-                    setTimeout(() => {
-                        document.body.style.overflowY = "visible";
-                        rightMenu.classList.add("trans");
-                    }, 300)
-                }
-            }
+            $(".right-task-menu").addClass("trans");
+            //Sahsa закоментил и добавил JQuery
+            //if (!container.classList.contains("eventShow")) {
+            //    if (!rightMenu.classList.contains("trans")) {
+            //        rightMenu.style.display = "block";
+            //        setTimeout(() => {
+            //            document.body.style.overflowY = "visible";
+            //            rightMenu.classList.add("trans");
+            //        }, 300)
+            //    }
+            //}
         }
         // You can replace the console.log statement with your desired functionality
     });
@@ -420,11 +428,14 @@ calendarButtons.forEach(button => {
     });
 });
 function closeMenu() {
-    rightMenu.classList.remove("trans");
-    document.body.style.overflowY = "hidden";
-    setTimeout(() => {
-        rightMenu.style.display = "none";
-    }, 400);
+    //Sasha commented and add JQuery
+    //rightMenu.classList.remove("trans");
+    //document.body.style.overflowY = "hidden";
+    //setTimeout(() => {
+    //    rightMenu.style.display = "none";
+    //}, 400);
+
+    $(".right-task-menu").removeClass("trans");
 }
 ///////////////////////////////////////
 

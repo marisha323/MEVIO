@@ -64,7 +64,6 @@
         cursor: pointer;
     }
 </style>
-<body>
     @*@model Event*@
     <form enctype="multipart/form-data" asp-action="EventMini">
         <input type="hidden" name="Id" @*value="@Model.Id"*@ />
@@ -214,9 +213,9 @@
         </div>
     </form>
 
-    <div class="container">
+    <div class="calendar-container">
 
-        <div id="rightMenu" class="right-menu ">
+        <div id="rightMenu" class="right-task-menu ">
             <img onclick="closeMenu()" class="closeMenuBtn" src="https://cdn.discordapp.com/attachments/684475244664193242/1074858765746180208/free-icon-cross-mark-4225670.png">
     <div class="container">
         <div class="task-name">Зробити магазин</div>
@@ -1446,4 +1445,3 @@
     <script src="/js/jquery-3.6.1.min.js"></script>
     <script src="/js/script.js"></script>
     <script src="/js/scriptEventMini.js" asp-append-version="true"></script>
-</body>

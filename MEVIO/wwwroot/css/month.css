@@ -15,7 +15,7 @@
         transform: scale(0.3) translateX(-270%);
     }
 /*//////////////////////////////////////*/
-.header {
+.calendar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;

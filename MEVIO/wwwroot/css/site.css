@@ -6,9 +6,26 @@ body {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
+    overflow-x:hidden;
+    
 }
 
 .body-container {
     /*width: calc(100% - 145px);*/
     margin: auto;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+    background-color: #f9f9fd;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: linear-gradient(180deg, #00c6fb, #005bea);
 }
