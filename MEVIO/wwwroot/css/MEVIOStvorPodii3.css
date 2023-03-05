@@ -1,4 +1,3 @@
-﻿
 * {
     margin: 0;
     padding: 0;
@@ -7,30 +6,17 @@
 
 
 .contener {
-    position: absolute;
-    /*top: 50%;*/
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
     box-sizing: border-box;
-    min-width: 70rem;
-    width: 71rem;
-    margin-left:10rem;
-    margin-top:15rem;
+    min-width: 73rem;
+    width: 75rem;
+    margin-left: 10rem;
     height: 35rem;
     left: 37.5rem;
-    /*top: 16.875rem;*/
+    top: 16.875rem;
     background: #111624;
     border: 1px solid #52A7E4;
     border-radius: 1.313rem;
     padding: 1rem;
-    transform-origin: center center;
-    transition: transform 0.3s ease-in-out;
-    z-index: 2;
-}
-
-    .contener.eventShow {
-        transform: translate(-50%, -50%) scale(1);
-        transition: transform 0.3s ease-in-out;
 }
 
 .input-StrockZap2 {
@@ -391,11 +377,37 @@ opacity: 0;
     /* identical to box height */
     padding: 0.5rem;
     width: 5rem;
-    margin-right: 46rem;
+    margin-right: 58rem;
     color: #52A7E4;
     cursor: pointer;
 }
-
+.div-Mesto-Prov2 {
+   
+    /* identical to box height */
+   /* padding: 0.5rem;*/
+    width: 30rem;
+    height:4rem;
+    
+    cursor: pointer;
+    margin-left:3rem;
+    margin-right:2rem;
+}
+.textarea-Mesto-Prov2 {
+    background: #111624;
+    border: 1px solid #52A7E4;
+    border-radius: 10px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    padding: 0.3rem;
+    line-height: 16px;
+    color: #52A7E4;
+    outline: none;
+    width: 27rem;
+    height: 4rem;
+    resize: none;
+}
 .Div-Napom {
     display: flex;
     justify-content: space-between;

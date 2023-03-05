@@ -24,22 +24,12 @@ namespace MEVIO.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         public MEVIOContext context;
+        Event events1 { get; set; }
+        
+        User user { get; set; }
         public HomeController(MEVIOContext db)
         {
-
-            /* this.context = db;
-             UserRole roleadmin = new UserRole() { UserRoleName = "admin" };
-             UserRole roledirector = new UserRole() { UserRoleName = "director" };
-             UserRole rolemanager = new UserRole() { UserRoleName = "manager" };
-             UserRole roleuser = new UserRole() { UserRoleName = "user" };
-             context.Roles.Add(roleadmin);
-             context.Roles.Add(roledirector);
-             context.Roles.Add(rolemanager);
-             context.Roles.Add(roleuser);
-             context.SaveChanges();
-         }*/
-
-            //this.context = db;
+            this.context = db;
             //UserRole roleadmin = new UserRole() { UserRoleName = "admin" };
             //UserRole roledirector = new UserRole() { UserRoleName = "director" };
             //UserRole rolemanager = new UserRole() { UserRoleName = "manager" };
@@ -57,11 +47,15 @@ namespace MEVIO.Controllers
 
             return View();
         }
-        public IActionResult Calendar1()
+
+        
+        public IActionResult IndexTest()
         {
+
 
             return View();
         }
+        
         public IActionResult Chat()
         {
 
@@ -96,9 +90,21 @@ namespace MEVIO.Controllers
             return View();
         }
 
-        public IActionResult EventMini()
+        public IActionResult EventMini([Bind] Event events)
         {
-            return View();
+
+
+            var imegs = context.Users.FirstOrDefault();
+            ViewBag.Useres = imegs;
+            //var data = context.Events.FirstOrDefault().Begin;
+            //ViewBag.Date = $"{data.Year}-{data.Month}-{data.Day}";
+            var data = context.Events.FirstOrDefault().Begin;
+            ViewBag.Date = data.ToString("yyyy-MM-dd");
+            var dataEnd = context.Events.FirstOrDefault().Begin;
+            ViewBag.DateEnd = dataEnd.ToString("yyyy-MM-dd");
+
+
+            return View(context.Events.FirstOrDefault());
         }
         public IActionResult Measure()
         {
@@ -146,7 +152,7 @@ namespace MEVIO.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        public IActionResult Calendar()
+        public IActionResult CalendarTest()
         {
             return View();
         }
@@ -177,7 +183,7 @@ namespace MEVIO.Controllers
             builder.AppendLine(text);
             await client.SendTextMessageAsync(message.Chat.Id, builder.ToString());
 
-            return View("Calendar");
+            return View("CalendarTest");
         }
         [HttpPost]
         public async Task<IActionResult> SendMessageCalendar(string Email, DateTime SetDate, string Subject)
@@ -316,6 +322,14 @@ namespace MEVIO.Controllers
                 });
             await client.SendTextMessageAsync(message.Chat.Id, "Make your choice: ",
               replyMarkup: inlineKeyboard);
+        }
+        public IActionResult Calendar([Bind] Event events)
+        {
+            //var imegs = context.Users.FirstOrDefault();
+            //ViewBag.Useres = imegs;
+            //var data = context.Events.FirstOrDefault().Begin;
+            //ViewBag.Date = $"{data.Year}-{data.Month}-{data.Day}";
+            return View(/*context.Events.FirstOrDefault()*/);
         }
     }
 }

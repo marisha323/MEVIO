@@ -7,14 +7,24 @@
     height: auto;
     min-height: 80vh;
 }
+    /*//////////////Animation///////////////////*/
+    .calendar-grid.shrink {
+        transform: scale(0.3) translateX(-80%);
+        transition: transform 0.3s ease;
+    }
 
-.header {
+    .calendar-grid.go {
+        transform: scale(0.3) translateX(-270%);
+    }
+/*//////////////////////////////////////*/
+.calendar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 90%;
     margin: auto;
     margin-bottom: 2rem;
+    color: #52A7E4;
 }
 
 .month-name {
@@ -78,9 +88,9 @@
     text-align: center;
 }
 
-.option-item:hover {
-    border: 3px solid #111624;
-}
+    .option-item:hover {
+        border: 3px solid #111624;
+    }
 
 
 .trans-left {
@@ -135,21 +145,21 @@
     width: 100%;
 }
 
-.week-flex{
+.week-flex {
     display: flex;
     column-gap: 0.5rem;
     height: 100%;
 }
 
-.left-radius{
+.left-radius {
     border-top-left-radius: 0.7rem;
 }
 
-.right-radius{
+.right-radius {
     border-top-right-radius: 0.7rem;
 }
 
-.week-day{
+.week-day {
     background: linear-gradient(180deg, #80C3E4 99.99%, rgba(242, 214, 214, 0) 100%);
     margin: 1px;
     /* display: flex;
