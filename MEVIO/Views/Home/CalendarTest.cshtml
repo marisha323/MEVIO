@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "Calendar";
+}
+
+<h1>Calendar</h1>
+
+<form method="post" asp-action="SendMessageCalendar">
+    <input type="text" name="Email" placeholder="Email" required/><br />
+    <input type="date" name="SetDate" required/><br />
+    <input type="text" value="Hello this is a notification for the Calendar" name="Subject" placeholder="Subject"/><br />
+    <button type="submit">Send Notification</button>
+</form>
+<br />
+<form method="get" asp-action="TestingBot">
+    <p>Start bot</p>
+    <h1>Telegram Bot Name: CalendarBot</h1>
+    <button type="submit">Start The Bot</button>
+</form>
+<form method="get" asp-action="SendMessage">
+    <p>Message using bot to the user who is saved into cookies</p>
+    <input name="text" type="text" placeholder="Text"/>
+    <input name="js" type="hidden" value="@ViewBag.Cookie" />
+    <button type="submit">Send to User!</button>
+</form>
+<script>
+    console.log(document.cookie);
+</script>

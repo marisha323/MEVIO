@@ -19,6 +19,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: #52A7E4;
 }
 
 .month-name {
@@ -40,6 +41,7 @@
 
 .label {
     font-size: 20px;
+    color: #52A7E4;
 }
 
 .flex-center {
