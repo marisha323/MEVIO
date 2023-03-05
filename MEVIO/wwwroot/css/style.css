@@ -19,7 +19,7 @@ body {
 }
 
 
-.header {
+.layout-header {
     width: 100%;
     height: 5rem;
     background-color: #111624;
@@ -93,8 +93,8 @@ body {
     position: fixed;
     left: calc(100% - 5rem);
     top: 5rem;
-    padding-top: 4.5rem;
-    height: 100vh;
+    /*padding-top: 4.5rem;*/
+    height: 75vh;
     width: 5rem;
     background: #101A32;
     opacity: 0.8;
@@ -103,6 +103,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content:center;
     row-gap: 0.8rem;
 }
 

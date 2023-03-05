@@ -1,9 +1,12 @@
 var link = document.getElementById("customStyle");
-link.href = "/css/year.css";
-// link.remove("style/year.css");
-//link.href = "style/month.css";
-//link.href = "style/week.css";
-// link.href = "style/day.css";
+//link.href = "/css/year.css";
+//link.href = "~/css/month.css";
+//link.href = "/css/week.css";
+//link.href = "/css/day.css";
+// Get the HTML link element that references the CSS file 
+//var link = document.querySelector("link[href='~/css/month.css']");
+// Set the href property to the new CSS file path
+//link.href = "/css/month.css";
 
 //$("#yearGrid").hide();
 $("#monthGrid").hide();
@@ -76,6 +79,8 @@ divs.forEach(div => {
             }
         });
 
+
+
         setTimeout(() => {
             const screenWidth = window.innerWidth;
             const screenHeight = window.innerHeight;
@@ -92,6 +97,9 @@ divs.forEach(div => {
             const currentScale = getComputedStyle(div).transform.match(/matrix\(([^)]+)\)/)[1].split(', ')[0];
             if (currentScale === '3') {
                 div.style.transform = `translate(${middleX - (divWidth / 2) - divOffsetLeft}px, ${middleY - (divHeight / 2) - divOffsetTop}px) scale(1.0)`;
+
+
+
                 setTimeout(function () {
                     divs.forEach(div1 => {
                         if (div != div1) {
@@ -103,6 +111,10 @@ divs.forEach(div => {
                 div.style.transform = `translate(${middleX - (divWidth / 2) - divOffsetLeft}px, ${middleY - (divHeight / 2) - divOffsetTop}px) scale(3)`;
             }
         }, 400);
+
+
+
+
         setTimeout(() => {
             const screenWidth = window.innerWidth;
             const screenHeight = window.innerHeight;
@@ -117,8 +129,12 @@ divs.forEach(div => {
             const divOffsetLeft = divRect.left + window.pageXOffset;
 
             const currentScale = getComputedStyle(div).transform.match(/matrix\(([^)]+)\)/)[1].split(', ')[0];
-            if (currentScale === '3') {
+
+            if (currentScale === '3')
+            {
                 div.style.transform = `translate(${middleX - (divWidth / 2) - divOffsetLeft}px, ${middleY - (divHeight / 2) - divOffsetTop}px) scale(1.0)`;
+
+
                 setTimeout(function () {
                     divs.forEach(div1 => {
                         if (div != div1) {
@@ -126,10 +142,15 @@ divs.forEach(div => {
                         }
                     });
                 }, 500);
-            } else {
+
+            }
+            else
+            {
                 div.style.transform = `translate(${middleX - (divWidth / 2) - divOffsetLeft}px, ${middleY - (divHeight / 2) - divOffsetTop}px) scale(3)`;
             }
         }, 1000);
+
+
         const link = document.getElementById("customStyle");
 
         //div.classList.toggle('goAnimation');
@@ -166,7 +187,13 @@ divs.forEach(div => {
         monthGrid.classList.add("showw");
 
     });
+
+    div.classList.add("month-div-hover");
 });
+
+
+
+
 var grids = document.querySelectorAll(".calGrid");
 
 function YearButtonClick() {
@@ -212,6 +239,8 @@ function YearButtonClick() {
         left: 0,
         behavior: 'smooth'
     });
+
+    document.body.style.overflowY = 'auto';
 }
 ////////////////////////////////////////////////////////////////
 //Month Animation
@@ -260,7 +289,11 @@ function MonthButtonClick() {
         left: 0,
         behavior: 'smooth'
     });
+
+    document.body.style.overflowY = 'auto';
 }
+
+
 function WeekButtonClick() {
     grids.forEach(grid => {
         if (grid.classList.contains("activeGrid")) {
@@ -376,15 +409,17 @@ monthDays.forEach(day => {
         //     });
         // }
         if (events.length == 0) {
-            if (!container.classList.contains("eventShow")) {
-                if (!rightMenu.classList.contains("trans")) {
-                    rightMenu.style.display = "block";
-                    setTimeout(() => {
-                        document.body.style.overflowY = "visible";
-                        rightMenu.classList.add("trans");
-                    }, 300)
-                }
-            }
+            $(".right-task-menu").addClass("trans");
+            //Sahsa закоментил и добавил JQuery
+            //if (!container.classList.contains("eventShow")) {
+            //    if (!rightMenu.classList.contains("trans")) {
+            //        rightMenu.style.display = "block";
+            //        setTimeout(() => {
+            //            document.body.style.overflowY = "visible";
+            //            rightMenu.classList.add("trans");
+            //        }, 300)
+            //    }
+            //}
         }
         // You can replace the console.log statement with your desired functionality
     });
@@ -417,11 +452,14 @@ calendarButtons.forEach(button => {
     });
 });
 function closeMenu() {
-    rightMenu.classList.remove("trans");
-    document.body.style.overflowY = "hidden";
-    setTimeout(() => {
-        rightMenu.style.display = "none";
-    }, 400);
+    //Sasha commented and add JQuery
+    //rightMenu.classList.remove("trans");
+    //document.body.style.overflowY = "hidden";
+    //setTimeout(() => {
+    //    rightMenu.style.display = "none";
+    //}, 400);
+
+    $(".right-task-menu").removeClass("trans");
 }
 ///////////////////////////////////////
 

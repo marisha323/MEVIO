@@ -17,13 +17,14 @@
         transform: scale(0.3) translateX(-270%);
     }
 /*//////////////////////////////////////*/
-.header {
+.calendar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 90%;
     margin: auto;
     margin-bottom: 2rem;
+    color: #52A7E4;
 }
 
 .month-name {
