@@ -14,14 +14,16 @@
 </head>
 <body>
 
-    <div class="header">
+    <div class="layout-header">
         <img src="/img/logo.jpg" alt="" width="250px">
         <div class="ellipse-blur">
         </div>
     </div>
 
     <div class="left-menu">
-        <img class="left-menu-img show-hide" src="/img/free-icon-left-chevron-7456442.png" alt="">
+        <a asp-controller="Home" asp-action="Index">
+            <img class="left-menu-img show-hide" src="/img/free-icon-left-chevron-7456442.png" alt="">
+        </a>
         <div class="left-flex">
 
             <a asp-controller="Home" asp-action="MainPage">
