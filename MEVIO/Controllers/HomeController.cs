@@ -88,7 +88,7 @@ namespace MEVIO.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string email, string password)
         {
-            User user = context.Users.Where(o => o.Email == email && o.Password == password).FirstOrDefault();
+            User user = context.Users.Where(o => o.Email == email && o.Password == password).AsNoTracking().FirstOrDefault();
             if (user != null)
             {
                 CookieOptions options = new CookieOptions();
@@ -99,7 +99,7 @@ namespace MEVIO.Controllers
                 string str = JsonSerializer.Serialize(user);
 
                 HttpContext.Response.Cookies.Append("UserLoggedIn", str, options);
-                return Redirect("Index");
+                return Redirect("index");
                 //return RedirectToAction("Index", "Main");
             }
             else
@@ -223,7 +223,7 @@ namespace MEVIO.Controllers
             //Users tempUser = new Users() { FullName = FullName, Email = Email, Password = Password, PhoneNumber = PhoneNumber.ToString(), RoleId = 2 };
             //string str = JsonSerializer.Serialize(tempUser);
 
-            var fromAddress = new MailAddress("robottester51@gmail.com", "Online Shop");
+            var fromAddress = new MailAddress("robottester51@gmail.com", "Mevio");
             var toAddress = new MailAddress(Email, "Someone");
             const string fromPassword = "iokkbczukalzztuv";
             const string subject = "Calendar Notification";
