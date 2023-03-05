@@ -19,6 +19,17 @@
     position: relative;
     transition: all 0.5s ease-in-out;
 }
+
+.month-div-hover{
+
+}
+
+.month-div-hover:hover{
+    transform:scale(1.1);
+    transition: 0.5s;
+}
+
+
     /* Added animation for the year calendar */
     .month-div.goAnimation {
         transform: translate(50%, 50%);
