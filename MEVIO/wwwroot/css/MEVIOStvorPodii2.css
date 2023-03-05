@@ -1,0 +1,522 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.contener {
+    box-sizing: border-box;
+    min-width: 63rem;
+    width: 65rem;
+    margin-left: 10rem;
+    height: 35rem;
+    left: 37.5rem;
+    top: 16.875rem;
+    background: #111624;
+    border: 1px solid #52A7E4;
+    border-radius: 1.313rem;
+    padding: 1rem;
+}
+
+.input-StrockZap2 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.563rem;
+    line-height: 1.875rem;
+    color: #BAE2FF;
+    background: transparent;
+    outline: none;
+    border: none;
+}
+
+.divStrockZap2 {
+    box-sizing: border-box;
+    margin-left: 1rem;
+    width: 46.25rem;
+    height: 1.875rem;
+    left: 1.313rem;
+    top: 1.063rem;
+    /* border: 1px solid #52A7E4;
+border-radius: 15px;
+ */
+}
+
+.input-StrockZap2::placeholder {
+    color: #BAE2FF;
+    font-size: 1.2em;
+    font-style: inherit;
+}
+
+.classPodcherk {
+    /* width: 46.25rem; */
+    height: 0;
+    left: 1.313rem;
+    top: 3.688rem;
+    margin: 0;
+    border: 1px solid #52A7E4;
+}
+
+.div-NazCal {
+    display: flex;
+    margin: 1rem;
+}
+
+.imgAVA {
+    margin-right: 0.5rem;
+    width: 3.125rem;
+    height: 3.125rem;
+    left: 1.313rem;
+    top: 5rem;
+    border-radius: 3.125rem;
+}
+
+.nazCalendar {
+    width: 7.938rem;
+    height: 1.875rem;
+    left: 5.25rem;
+    top: 5.438rem;
+    margin: 0.6rem 0.2rem 0 1rem;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.563rem;
+    line-height: 1.875rem;
+    color: #52A7E4;
+}
+
+.nazCalendar2 {
+    width: 7.938rem;
+    height: 1.875rem;
+    left: 12.125rem;
+    top: 5.438rem;
+    margin: 0.6rem 0.2rem 0 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.563rem;
+    line-height: 1.875rem;
+    color: #52A7E4;
+}
+
+
+
+
+
+
+.Data-Calendat-Time {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+.conData {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.313rem 0.813rem;
+    gap: 0.438rem;
+    width: 10.625rem;
+    height: 2.313rem;
+    left: 0.5rem;
+    top: 9.313rem;
+    background: #111624;
+    border: 1px solid #52A7E4;
+    border-radius: 0.625rem;
+    color: #52A7E4;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    transform: (-50%, -50%);
+    background: url("/img/free-icon-calendar-747824.png") no-repeat center;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: 95%;
+    padding: 0.313rem;
+}
+
+input[type=date]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+
+/* input[type=time]::-webkit-time-picker-indicator {
+opacity: 0;
+} */
+
+.Div-Spov {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+.Div-spov-Icon-Parad {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 2.5%;
+}
+
+.conTime {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 1.125rem;
+    padding-top: 0.313rem;
+    padding-bottom: 0.375rem;
+    width: 5.188rem;
+    height: 2.375rem;
+    left: 11.688rem;
+    top: 9.313rem;
+    background: #111624;
+    border: 1px solid #52A7E4;
+    border-radius: 0.625rem;
+    color: #52A7E4;
+}
+
+.conTime2 {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 1.125rem;
+    padding-top: 0.313rem;
+    padding-bottom: 0.375rem;
+    width: 5.188rem;
+    height: 2.375rem;
+    left: 21.313rem;
+    top: 9.313rem;
+    background: #111624;
+    border: 1px solid #52A7E4;
+    border-radius: 0.625rem;
+    color: #52A7E4;
+}
+
+.superstyle::-webkit-inner-spin-button,
+.superstyle::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+.classPodcherk2 {
+    width: 2.75rem;
+    height: 0;
+    left: 17.688rem;
+    top: 10.5rem;
+    margin: 0;
+    border: 1px solid #52A7E4;
+}
+
+.conData2 {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.313rem 0.813rem;
+    gap: 0.438rem;
+    width: 10.625rem;
+    height: 2.313rem;
+    left: 27.375rem;
+    top: 9.313rem;
+    background: #111624;
+    border: 1px solid #52A7E4;
+    border-radius: 0.625rem;
+    color: #52A7E4;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    transform: (-50%, -50%);
+    background: url("/img/free-icon-calendar-747824.png") no-repeat center;
+    background-size: 1.25rem;
+    background-repeat: no-repeat;
+    background-position: 95%;
+    padding: 0.313rem;
+}
+
+.checkbox {
+    width: 8.125rem;
+    height: 1.5rem;
+    /* left: 40.25rem;
+    top: 9.938rem; */
+    margin: 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #52A7E4;
+}
+
+.checkbox2 {
+    box-sizing: border-box;
+    width: 1.063rem;
+    height: 1.063rem;
+    top: 10rem;
+    left: 38.688rem;
+    background: #D9D9D9;
+    border: 1px solid #000000;
+}
+
+.butonYchas {
+    width: 6.688rem;
+    height: 1.875rem;
+    left: 0.813rem;
+    top: 12.625rem;
+    background: #52A7E4;
+    border-radius: 15px;
+    border: 1px solid #111624;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #111624;
+    cursor: pointer;
+}
+
+    .butonYchas:hover {
+        background: #111624;
+        border: 1px solid #52A7E4;
+        color: #52A7E4;
+    }
+
+.imgCol {
+    width: 1.563rem;
+    height: 1.563rem;
+    left: 32.063rem;
+    top: 13rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+
+.classSpov {
+    /* width: 14.438rem; */
+    height: 1.5rem;
+    /* left: 33.938rem;
+    top: 12.938rem; */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0;
+    color: #52A7E4;
+}
+
+.Scrol-Time {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+}
+
+.imgAva2 {
+    width: 2.813rem;
+    height: 2.813rem;
+    left: 1.625rem;
+    top: 19.125rem;
+    border-radius: 30px;
+}
+
+.Raz-Line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Line-Caledare-Time {
+    position: fixed;
+    top: 15.5rem;
+    left: 8rem;
+    width: 36rem;
+    height: 4rem;
+    border-left: 1px solid #52A7E4;
+    border-bottom: 1px solid #52A7E4;
+    /* margin-left: 30rem; */
+}
+
+
+
+.Div-Mesto-Prov {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 0 0 1rem;
+}
+
+.p-Mesto-Prov {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    /* identical to box height */
+
+
+    color: #52A7E4;
+}
+
+.button-Mesto-Prov {
+    background: #111624;
+    border: 1px solid #52A7E4;
+    border-radius: 15px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    /* identical to box height */
+    padding: 0.5rem;
+    width: 5rem;
+    margin-right: 46rem;
+    color: #52A7E4;
+    cursor: pointer;
+}
+
+.Div-Napom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+}
+
+.p-Napom {
+    display: flex;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    /* identical to box height */
+
+
+    color: #52A7E4;
+}
+
+
+
+.button-Napom {
+    background: #111624;
+    border: 1px solid #52A7E4;
+    border-radius: 15px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    /* identical to box height */
+
+    margin-right: 42rem;
+    color: #52A7E4;
+    cursor: pointer;
+    padding: 0.5rem;
+    width: 5rem;
+}
+
+.div-Button-ST-VD {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+}
+
+.button-Stvorutu {
+    width: 7.688rem;
+    height: 2.875rem;
+    background: #52A7E4;
+    border: 1px solid #52A7E4;
+    border-radius: 15px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #111624;
+    margin-left: 22rem;
+}
+
+.button-Vidminutu {
+    width: 7.688rem;
+    height: 2.875rem;
+    background: #111624;
+    border: 1px solid #52A7E4;
+    border-radius: 15px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    margin-right: 22rem;
+    color: #52A7E4;
+}
+
+
+
+
+
+.shedule {
+    border-left: 1px solid #52a7e4;
+    border-bottom: 1px solid #52a7e4;
+    margin-left: 1rem;
+    width: 100%;
+}
+
+
+
+.day {
+    grid-area: 1/1/2 / span 4;
+    white-space: nowrap;
+    width: 14rem;
+    height: 1.6rem;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: #52a7e4;
+}
+
+
+
+.time-span-row {
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    width: 100%;
+}
+
+
+
+    .time-span-row > div {
+        border-right: 1px solid #52a7e4;
+        color: white;
+        padding: 0.3rem;
+    }
+
+.time-block {
+    width: 100%;
+    height: 1.5rem;
+    background-color: #a09595;
+}
+
+.time-blocks {
+    position: relative;
+}
+
+
+.time-change-block {
+    position: absolute;
+    top: -0.25rem;
+    background-color: #52a7e4;
+    height: 2rem;
+    width: 3rem;
+    opacity: 0.8;
+    cursor: move;
+}
