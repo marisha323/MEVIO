@@ -55,11 +55,7 @@ namespace MEVIO.Controllers
 
             return View();
         }
-        public IActionResult Calendar1()
-        {
-
-            return View();
-        }
+        
         public IActionResult Chat()
         {
 
@@ -155,7 +151,7 @@ namespace MEVIO.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        public IActionResult Calendar()
+        public IActionResult CalendarTest()
         {
             return View();
         }
@@ -186,7 +182,7 @@ namespace MEVIO.Controllers
             builder.AppendLine(text);
             await client.SendTextMessageAsync(message.Chat.Id, builder.ToString());
 
-            return View("Calendar");
+            return View("CalendarTest");
         }
         [HttpPost]
         public async Task<IActionResult> SendMessageCalendar(string Email, DateTime SetDate, string Subject)
@@ -326,7 +322,7 @@ namespace MEVIO.Controllers
             await client.SendTextMessageAsync(message.Chat.Id, "Make your choice: ",
               replyMarkup: inlineKeyboard);
         }
-        public IActionResult Calendar2([Bind] Event events)
+        public IActionResult Calendar([Bind] Event events)
         {
             //var imegs = context.Users.FirstOrDefault();
             //ViewBag.Useres = imegs;
