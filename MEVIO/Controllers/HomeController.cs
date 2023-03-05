@@ -17,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNet.Identity;
 
 namespace MEVIO.Controllers
 {
@@ -83,10 +84,36 @@ namespace MEVIO.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(string email, string password)
+        {
+            User user = context.Users.Where(o => o.Email == email && o.Password == password).FirstOrDefault();
+            if (user != null)
+            {
+                CookieOptions options = new CookieOptions();
+                options.Expires = DateTime.Now.AddMinutes(45);
+                options.IsEssential = true;
+                options.Path = "/";
+
+                string str = JsonSerializer.Serialize(user);
+
+                HttpContext.Response.Cookies.Append("UserLoggedIn", str, options);
+                return Redirect("Index");
+                //return RedirectToAction("Index", "Main");
+            }
+            else
+            {
+                return View("LoginRegister");
+            }
+            
+        }
+
         public IActionResult LoginRegister()
         {
             return View();
         }
+
         public IActionResult Event()
         {
             return View();
