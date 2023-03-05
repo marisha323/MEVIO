@@ -1,9 +1,12 @@
 var link = document.getElementById("customStyle");
-link.href = "/css/year.css";
-// link.remove("style/year.css");
-//link.href = "style/month.css";
-//link.href = "style/week.css";
-// link.href = "style/day.css";
+//link.href = "/css/year.css";
+//link.href = "~/css/month.css";
+//link.href = "/css/week.css";
+//link.href = "/css/day.css";
+// Get the HTML link element that references the CSS file 
+//var link = document.querySelector("link[href='~/css/month.css']");
+// Set the href property to the new CSS file path
+//link.href = "/css/month.css";
 
 //$("#yearGrid").hide();
 $("#monthGrid").hide();
