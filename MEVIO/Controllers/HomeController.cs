@@ -125,8 +125,13 @@ namespace MEVIO.Controllers
 
             var imegs = context.Users.FirstOrDefault();
             ViewBag.Useres = imegs;
+            //var data = context.Events.FirstOrDefault().Begin;
+            //ViewBag.Date = $"{data.Year}-{data.Month}-{data.Day}";
             var data = context.Events.FirstOrDefault().Begin;
-            ViewBag.Date = $"{data.Year}-{data.Month}-{data.Day}";
+            ViewBag.Date = data.ToString("yyyy-MM-dd");
+            var dataEnd = context.Events.FirstOrDefault().Begin;
+            ViewBag.DateEnd = data.ToString("yyyy-MM-dd");
+
             return View(context.Events.FirstOrDefault());
         }
         public IActionResult Measure()
@@ -345,6 +350,14 @@ namespace MEVIO.Controllers
                 });
             await client.SendTextMessageAsync(message.Chat.Id, "Make your choice: ",
               replyMarkup: inlineKeyboard);
+        }
+        public IActionResult Calendar2([Bind] Event events)
+        {
+            //var imegs = context.Users.FirstOrDefault();
+            //ViewBag.Useres = imegs;
+            //var data = context.Events.FirstOrDefault().Begin;
+            //ViewBag.Date = $"{data.Year}-{data.Month}-{data.Day}";
+            return View(/*context.Events.FirstOrDefault()*/);
         }
     }
 }

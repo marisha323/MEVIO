@@ -1,8 +1,4 @@
-* {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-}
+
 
 
 .calendar-grid {
@@ -21,13 +17,51 @@
     padding: 0.1rem 0.2rem 0.5rem;
     cursor: pointer;
     position: relative;
-    transition: 0.3s;
+    transition: all 0.5s ease-in-out;
+}
+    /* Added animation for the year calendar */
+    .month-div.goAnimation {
+        transform: translate(50%, 50%);
+        transition: transform 0.5s ease;
+        z-index: 1;
+    }
+
+    .month-div:before {
+        content: attr(data-month);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.5rem;
+    }
+
+    .month-div.expanded {
+        position: fixed;
+        left: 20%;
+        top: 25%;
+        width: 40%;
+        height: 40%;
+        transform: translate(var(--x), var(--y)) scale(2);
+        z-index: 1;
+    }
+
+    .month-div.hidden {
+        display: none;
+    }
+/*Appearing Animation*/
+
+/*////////////////////////*/
+.calendar-grid.shrink {
+    transform: scale(0.3) translateX(-80%);
+    transition: transform 0.3s ease;
 }
 
-
+.calendar-grid.go {
+    transform: scale(0.3) translateX(-270%);
+}
+/* Added animation for the year calendar */
 .month-div:hover {
     transform: scale(1.1);
-    
 }
 
 .winter {
@@ -66,7 +100,7 @@
 .month-days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    grid-gap: 2px;    
+    grid-gap: 2px;
     margin-top: 0.3rem;
     background-color: #7C7C7C;
 }
@@ -81,7 +115,7 @@
     height: 1.5rem;
 }
 
-.week-div{
+.week-div {
     filter: blur(1.5px);
 }
 
@@ -99,6 +133,8 @@
     justify-content: center;
     align-items: center;
     z-index: 1;
-    
 }
 
+/* Select month animation */
+.box {
+}
