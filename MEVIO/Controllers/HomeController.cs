@@ -101,7 +101,8 @@ namespace MEVIO.Controllers
             var data = context.Events.FirstOrDefault().Begin;
             ViewBag.Date = data.ToString("yyyy-MM-dd");
             var dataEnd = context.Events.FirstOrDefault().Begin;
-            ViewBag.DateEnd = data.ToString("yyyy-MM-dd");
+            ViewBag.DateEnd = dataEnd.ToString("yyyy-MM-dd");
+
 
             return View(context.Events.FirstOrDefault());
         }
