@@ -11,6 +11,7 @@ builder.Services.AddDbContext<MEVIOContext>(options => options.UseSqlServer(conn
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSession();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
 
 
