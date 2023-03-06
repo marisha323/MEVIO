@@ -1,16 +1,31 @@
 const time1 = document.querySelector('#time1');
 const time2 = document.querySelector('#time2');
 const timeChangeBlock = document.querySelector('.time-change-block');
+const timeSpanDivWidth = document.querySelector(".time-span-row").getBoundingClientRect().width;
+const totalMilliSec = 68400000;
+//const totalMilliSec = 64800000;
 
 
 function updateBlock() {
    
     const start = new Date(`2023-03-04T${time1.value}`);
     const end = new Date(`2023-03-04T${time2.value}`);
-    const diff = (end - start) / 1000 / 60 / 60 * (window.innerWidth / 24);
+    const diff = (end - start) / 1000 / 60 / 60 * 58;
     //const diff = (end - start) / 1000 / 60 / 60; // виконуємо розрахунок різниці в годинах
+
+    const timeString = time1.value;
+    const [hours, minutes] = timeString.split(":");
+    const hoursInMs = parseInt(hours, 10) * 60 * 60 * 1000;
+    const minutesInMs = parseInt(minutes, 10) * 60 * 1000;
+    const totalMs = hoursInMs + minutesInMs;
+
+    const timeSpanDivLeft = timeSpanDivWidth / totalMilliSec * (totalMs + 2520000);
+
+    console.log(timeSpanDivLeft);
+
+
     timeChangeBlock.style.width = `${diff}px`; // змінюємо ширину блоку, використовуючи різницю в годинах
-   
+    //timeChangeBlock.style.left = `${timeSpanDivLeft}px`;
 }
 
 
@@ -25,23 +40,37 @@ updateBlock();
 
 //// получить ссылку на элемент time-change-block
 const timeChangeBlock2 = document.querySelector(".time-change-block");
-const Shedule = document.querySelector(".shedule").offsetWidth;
+const div = document.querySelector(".time-span-row");
+const divRect = div.getBoundingClientRect();
+
+const Shedule = Math.ceil( divRect.width);
+//const Shedule = document.querySelector(".shedule").offsetWidth;
+
+//console.log(Shedule);
+//const Shedule = document.querySelector(".shedule").width;
 
 // добавить обработчик событий onmousemove
 timeChangeBlock2.addEventListener("mousemove", () => {
     // получить текущее положение time-change-block
     const timeChangeBlockRect = timeChangeBlock2.getBoundingClientRect();
     const timeChangeBlockLeft = timeChangeBlockRect.left;
+
+    //console.log(timeChangeBlockLeft);
+
     const timeChangeBlockWidth = timeChangeBlockRect.width;
    
    
     // вычислить новые значения time1 и time2 на основе положения time-change-block
-    const time1Value = new Date((timeChangeBlockLeft / Shedule) * 86400000 ).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // 25200000 миллисекунд соответствуют 7 часам утра
-    const time2Value = new Date(((timeChangeBlockLeft + timeChangeBlockWidth) / Shedule) * 86400000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    //const time1Value = new Date((timeChangeBlockLeft / Shedule) * 86400000 ).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // 25200000 миллисекунд соответствуют 7 часам утра
+    const time1Value = new Date(((timeChangeBlockLeft / Shedule) * 66400000+600000)*0.976999 ).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // 25200000 миллисекунд соответствуют 7 часам утра
+    const time2Value = new Date((((timeChangeBlockLeft + timeChangeBlockWidth) / Shedule) * 66400000+600000)*0.97699).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
 
     // обновить значения time1 и time2
     time1.value = time1Value;
     time2.value = time2Value;
+
+    //console.log(time1Value);
 });
 
 //timeChangeBlock2.addEventListener("mousemove", () => {
