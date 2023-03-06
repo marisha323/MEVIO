@@ -84,7 +84,7 @@
     @model Event
     
     <form enctype="multipart/form-data" asp-action="EventMini">
-        <input type="hidden" name="Id" value="@Model.Id" />
+        <input type="hidden" name="Id" value="@Model?.Id" />
 
         <div class="contener">
 
@@ -92,7 +92,7 @@
 
             <div class="divStrockZap2">
 
-                <input asp-for="@Model.EventName" value="@Model.EventName" class="input-StrockZap2" type="text" placeholder="Нова подiя">
+                <input asp-for="@Model.EventName?" value="@Model?.EventName" class="input-StrockZap2" type="text" placeholder="Нова подiя">
             </div>
 
             <div class="classPodcherk">
@@ -101,17 +101,17 @@
             <div class="div-NazCal">
                 <img class="imgAVA" src="/img/6a523b423e71ad8b708af55f0f6a0bd5.jpg">
                 <p class="nazCalendar">Календар:
-                <p class="nazCalendar2"> @ViewBag.Useres.UserName</p>
+                <p class="nazCalendar2"> @ViewBag.Useres?.UserName</p>
                 </p>
             </div>
 
             <div class="Data-Calendat-Time">
                
                 <input id="Date" value="@ViewBag.Date"  onchange="updateDates()" type="date" class="conData">
-                <input type="time" id="time1" min="07:00" max="00:00" value="@Model.Begin.ToString("hh\\:mm")" class="conTime superstyle element-time">
+                <input type="time" id="time1" min="07:00" max="01:00" value="@Model?.Begin.ToString("hh\\:mm")" class="conTime superstyle element-time">
                 <div class="classPodcherk2"></div>
-                <input type="time" min="07:00" max="00:00" id="time2" value="@Model.End.ToString("hh\\:mm")" class="conTime2 superstyle element-time">
-                <input id="DateEnd"  value="@ViewBag.DateEnd" type="date" class="conData2">
+                <input type="time" min="07:00" max="01:00" id="time2" value="@Model?.End.ToString("hh\\:mm")" class="conTime2 superstyle element-time">
+                <input id="DateEnd"  value="@ViewBag?.DateEnd" type="date" class="conData2">
                 <input class="checkbox2" id="checkbox" onclick="myFunction()" type="checkbox">
                 <p class="checkbox">На весь день</p>
 
@@ -215,7 +215,7 @@
             <div class="Div-Mesto-Prov2">
                 <p class="p-Mesto-Prov2">Опис:</p>
                 <div class="div-Mesto-Prov2" >
-                    <textarea  class="textarea-Mesto-Prov2">@Model.Description</textarea>
+                    <textarea  class="textarea-Mesto-Prov2">@Model?.Description</textarea>
                 </div>
                 <input type="submit" value="Редагувати" class="button-Mesto-Prov2">
             </div>
@@ -240,9 +240,9 @@
         
         //var today = moment().format('DD-MM-YYYY');
         var dateInput = document.getElementById("Date");
-        dateInput.value = "@ViewBag.Date";
+        dateInput.value = "@ViewBag?.Date";
         var dateEnd = document.getElementById("DateEnd");
-        dateEnd.value = "@ViewBag.DateEnd";
+        dateEnd.value = "@ViewBag?.DateEnd";
 
 
         //function toggleElement(elementId) {
