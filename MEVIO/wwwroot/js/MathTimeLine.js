@@ -25,7 +25,7 @@ updateBlock();
 
 //// получить ссылку на элемент time-change-block
 const timeChangeBlock2 = document.querySelector(".time-change-block");
-const Shedule = document.querySelector(".shedule").offsetWidth;
+const Shedule = document.querySelector(".shedule");
 
 // добавить обработчик событий onmousemove
 timeChangeBlock2.addEventListener("mousemove", () => {
