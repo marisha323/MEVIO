@@ -6,6 +6,43 @@
 
 <link type="text/css" rel="stylesheet" href="/css/MEVIOStvorPodii3.css">
 <style>
+    .conTime {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 1.125rem;
+        padding-top: 0.313rem;
+        padding-bottom: 0.375rem;
+        width: 5.188rem;
+        height: 2.375rem;
+        left: 11.688rem;
+        top: 9.313rem;
+        background: #111624;
+        border: 1px solid #52A7E4;
+        border-radius: 0.625rem;
+        color: #52A7E4;
+        font-size: 17px;
+    }
+
+    .conTime2 {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 1.125rem;
+        padding-top: 0.313rem;
+        padding-bottom: 0.375rem;
+        width: 5.188rem;
+        height: 2.375rem;
+        left: 21.313rem;
+        top: 9.313rem;
+        background: #111624;
+        border: 1px solid #52A7E4;
+        border-radius: 0.625rem;
+        color: #52A7E4;
+        font-size: 17px;
+    }
     .Div-Mesto-Prov2 {
         display: flex;
         justify-content: space-between;
@@ -36,8 +73,8 @@
         line-height: 16px;
         /* identical to box height */
         padding: 0.5rem;
-        width: 5rem;
-        margin-right: 46rem;
+        width: 6rem;
+        margin-right: 31rem;
         color: #52A7E4;
         cursor: pointer;
     }
@@ -71,9 +108,9 @@
             <div class="Data-Calendat-Time">
                
                 <input id="Date" value="@ViewBag.Date"  onchange="updateDates()" type="date" class="conData">
-                <input type="time"  value="@Model.Begin.ToString("hh\\:mm")" class="conTime superstyle element-time">
+                <input type="time" id="time1" min="07:00" max="00:00" value="@Model.Begin.ToString("hh\\:mm")" class="conTime superstyle element-time">
                 <div class="classPodcherk2"></div>
-                <input type="time"  value="@Model.End.ToString("hh\\:mm")" class="conTime2 superstyle element-time">
+                <input type="time" min="07:00" max="00:00" id="time2" value="@Model.End.ToString("hh\\:mm")" class="conTime2 superstyle element-time">
                 <input id="DateEnd"  value="@ViewBag.DateEnd" type="date" class="conData2">
                 <input class="checkbox2" id="checkbox" onclick="myFunction()" type="checkbox">
                 <p class="checkbox">На весь день</p>
@@ -120,25 +157,25 @@
                         </div>
 
                         <div class="time-span-row time-blocks">
-                            <div class="time-change-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
+                            <div class="time-change-block" ></div>
+                            <div class="time-block"><input value="07.00.00" hidden /></div>
+                            <div class="time-block" ><input value="08.00.00" hidden /></div>
+                            <div class="time-block" ><input value="09.00.00" hidden /></div>
+                            <div class="time-block"><input value="10.00.00" hidden /></div>
+                            <div class="time-block"><input value="11.00.00" hidden /></div>
+                            <div class="time-block"><input value="12.00.00" hidden /></div>
+                            <div class="time-block"><input value="13.00.00" hidden /></div>
+                            <div class="time-block"><input value="14.00.00" hidden /></div>
+                            <div class="time-block"><input value="15.00.00" hidden /></div>
+                            <div class="time-block"><input value="16.00.00" hidden /></div>
+                            <div class="time-block"><input value="17.00.00" hidden /></div>
+                            <div class="time-block"><input value="18.00.00" hidden /></div>
+                            <div class="time-block"><input value="19.00.00" hidden /></div>
+                            <div class="time-block"><input value="20.00.00" hidden /></div>
+                            <div class="time-block"><input value="21.00.00" hidden /></div>
+                            <div class="time-block"><input value="22.00.00" hidden /></div>
+                            <div class="time-block"><input value="23.00.00" hidden /></div>
+                            <div class="time-block"><input value="00.00.00" hidden /></div>
                         </div>
 
                         <div class="time-span-row">
@@ -173,7 +210,7 @@
 
             <div class="Div-Mesto-Prov">
                 <p class="p-Mesto-Prov">Перейти до чату:</p>
-                <input type="submit" value="Перейти" class="button-Mesto-Prov">
+                <input type="submit" value="Перейти" asp-action="Chat" asp-controller="Home" class="button-Mesto-Prov">
             </div>
             <div class="Div-Mesto-Prov2">
                 <p class="p-Mesto-Prov2">Опис:</p>
@@ -246,5 +283,7 @@
     </script>
     <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
     <script src="~/js/scriptEventMini2.js" asp-append-version="true"></script>
+    <script src="~/js/MathTimeLine.js" asp-append-version="true"></script>
+
 
 </body>

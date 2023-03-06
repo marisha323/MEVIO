@@ -178,6 +178,7 @@ opacity: 0;
     border: 1px solid #52A7E4;
     border-radius: 0.625rem;
     color: #52A7E4;
+    font-size: 17px;
 }
 
 .conTime2 {
@@ -196,6 +197,7 @@ opacity: 0;
     border: 1px solid #52A7E4;
     border-radius: 0.625rem;
     color: #52A7E4;
+    font-size: 17px;
 }
 
 .superstyle::-webkit-inner-spin-button,
@@ -538,11 +540,22 @@ opacity: 0;
 
 
 .time-change-block {
+
     position: absolute;
     top: -0.25rem;
     background-color: #52a7e4;
     height: 2rem;
-    width: 3rem;
+    width: 2.7rem;
     opacity: 0.8;
     cursor: move;
+   
 }
+/*.time-change-block {
+    position: absolute;
+    background-color: red;
+    height: 20px;
+    top: 0;
+    left: 0;
+    width: 0;
+    z-index: 1;
+}*/
