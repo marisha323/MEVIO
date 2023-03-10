@@ -27,7 +27,6 @@ timeChangeBlock.addEventListener("mousemove", function (e) {
 	let left = e.target.style.left;
 	left = left.split('p')[0];
 
-	console.log(left);
 
 	let time1Value = Math.round(left * milisecByPixel + beginOfDay);
 	if (time1Value < beginOfDay) time1Value = beginOfDay;
@@ -68,14 +67,16 @@ function ChangeTimeInput() {
 
 	const left = Math.round((time1Value) / milisecByPixel);
 
+	console.log(time1Value);
+	console.log(time2Value);
 
-
-	if (time2Value > time1Value) {
+	if (time2Value - beginOfDay > time1Value) {
 		const timeDiff = time2Value - time1Value - beginOfDay;
 		const width = Math.round(timeDiff / milisecByPixel);
 		timeChangeBlock.style.width = width + "px";
 	}
 
+	if (left < 0) left = 0;
 
 	timeChangeBlock.style.left = left + "px";
 }

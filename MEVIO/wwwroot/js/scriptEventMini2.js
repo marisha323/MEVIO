@@ -13,10 +13,9 @@ $(".time-change-block").on("mousedown",function(e){
     
     
     $(".time-change-block").css("left",e.clientX-clientX);
-    
-    $(".time-blocks").on("mousemove",function(e){
 
-        const right=$(".time-change-block").css("right").split('p')[0];
+    $("#bodyDiv").on("mousemove", function (e) {
+
         const blockWidth=$(".time-change-block").css("width").split('p')[0];
         const parentWidth=$(".time-blocks").css("width").split('p')[0];
         const End=Math.floor(parentWidth-blockWidth);
@@ -41,5 +40,9 @@ $(".time-change-block").on("mousedown",function(e){
 });
 
 $(".time-change-block").on("mouseup",function(e){
-    $(".time-blocks").off("mousemove");
+    $("#bodyDiv").off("mousemove");
+});
+
+$("#bodyDiv").on("mouseup", function (e) {
+    $("#bodyDiv").off("mousemove");
 });
