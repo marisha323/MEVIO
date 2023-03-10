@@ -97,7 +97,7 @@ namespace MEVIO.Controllers
                 string str = JsonSerializer.Serialize(user);
 
                 HttpContext.Response.Cookies.Append("UserLoggedIn", str, options);
-                return Redirect("index");
+                return Redirect("Index");
                 //return RedirectToAction("Index", "Main");
             }
             else
@@ -106,6 +106,18 @@ namespace MEVIO.Controllers
             }
             
         }
+        public IActionResult Logout()
+        {
+            CookieOptions options = new CookieOptions();
+            options.Expires = DateTime.Now;
+            options.IsEssential = true;
+            options.Path = "/";
+
+            HttpContext.Response.Cookies.Append("UserLoggedIn", "", options);
+
+            return Redirect("Index");
+        }
+
 
         public IActionResult LoginRegister()
         {
