@@ -8,6 +8,8 @@ namespace Mevio2Test.Servises
         private const string ClientId = "715700270542-m2iv2jqmaue49o43d969evbivc5jqj1s.apps.googleusercontent.com";
 
         private const string ClientSecret = "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";
+        private const string TokenServerEndpoint = "https://oauth2.googleapis.com/token";
+
 
 
         public static string GenerateOAuthRequestUrl(string scope, string redirectUrl, string codeChallenge) //генерування запиту до сервера авторизації(url, де в  get request будуть параметри для авторизації користувача)
@@ -23,6 +25,7 @@ namespace Mevio2Test.Servises
                 {"scope",scope },
                 {"code_challenge",codeChallenge },
                 {"code_challenge_method", "S256" },
+                {"access_type", "offline" }
 
             };
             var url = QueryHelpers.AddQueryString(oAuthServerEndPoint, queryParams);
@@ -31,7 +34,7 @@ namespace Mevio2Test.Servises
 
         }
 
-        public static async Task<TokenResult> ExchangeCodeOnToken(string code, string codeVerifier, string redirectUrl) //обмін коду авторизаціїї на аксес та  рефреш токен
+        public static async Task<TokenResult> ExchangeCodeOnTokenAsync(string code, string codeVerifier, string redirectUrl) //обмін коду авторизаціїї на аксес та  рефреш токен
         {
             var tokenEndPoint = "https://oauth2.googleapis.com/token";
 
@@ -50,9 +53,19 @@ namespace Mevio2Test.Servises
             return tokenResult;
         }
 
-        public static object RefreshToken(string refreshToken)//оновлення аксес токена за допомогою рефреш токена
+        public static async Task<TokenResult> RefreshTokenAsync(string refreshToken)
         {
-            throw new NotImplementedException();
+            var refreshParams = new Dictionary<string, string>
+            {
+                { "client_id", ClientId },
+                { "client_secret", ClientSecret },
+                { "grant_type", "refresh_token" },
+                { "refresh_token", refreshToken }
+            };
+
+            var tokenResult = await HttpClientHelper.SendPostRequest<TokenResult>(TokenServerEndpoint, refreshParams);
+
+            return tokenResult;
         }
     }
 

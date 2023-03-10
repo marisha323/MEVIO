@@ -131,10 +131,27 @@
 
             <div class="subGoogle">
                 <button type="submit" class="btn glow-btn">Submit</button>
-                <a class="refGoogle" href="/GoogleOAuth/RedirectOnOAuthServer">
+                <a class="refGoogle"  href="/GoogleOAuth/RedirectOnOAuthServer">
                     <img class="imgGoogle" src="/img/imgGoogle.png" alt="" />
                 </a>
             </div>
             </form>
         </div>
     </div>
+
+                    <script>
+    function onSignIn(googleUser) {
+        // Get the Google user ID token and send it to the server for verification
+        var id_token = googleUser.getAuthResponse().id_token;
+        // Send the ID token to the server via AJAX request
+        $.ajax({
+            type: 'POST',
+            url: '/signin-with-google',
+            data: { 'id_token': id_token },
+            success: function (response) {
+                // Redirect to the main page or personalized dashboard page
+                window.location.href = '/index';
+            }
+        });
+    }
+</script>
