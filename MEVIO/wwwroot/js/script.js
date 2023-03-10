@@ -134,6 +134,7 @@ divs.forEach(div => {
             {
                 div.style.transform = `translate(${middleX - (divWidth / 2) - divOffsetLeft}px, ${middleY - (divHeight / 2) - divOffsetTop}px) scale(1.0)`;
 
+                div.style.removeProperty('transform');
 
                 setTimeout(function () {
                     divs.forEach(div1 => {

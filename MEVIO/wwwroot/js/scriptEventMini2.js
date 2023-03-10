@@ -20,7 +20,6 @@ $(".time-change-block").on("mousedown",function(e){
         const blockWidth=$(".time-change-block").css("width").split('p')[0];
         const parentWidth=$(".time-blocks").css("width").split('p')[0];
         const End=Math.floor(parentWidth-blockWidth);
-        console.log(parentWidth);
 
         X=e.clientX-clientX;
         
