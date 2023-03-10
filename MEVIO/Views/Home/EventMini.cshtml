@@ -108,9 +108,9 @@
             <div class="Data-Calendat-Time">
                
                 <input id="Date" value="@ViewBag.Date"  onchange="updateDates()" type="date" class="conData">
-                <input type="time" id="time1" min="07:00" max="01:00" value="@Model?.Begin.ToString("hh\\:mm")" class="conTime superstyle element-time">
+                <input type="time" id="time1" min="07:00" max="22:00" value="@Model?.Begin.ToString("hh\\:mm")" class="conTime superstyle element-time">
                 <div class="classPodcherk2"></div>
-                <input type="time" min="07:00" max="01:00" id="time2" value="@Model?.End.ToString("hh\\:mm")" class="conTime2 superstyle element-time">
+                <input type="time" min="07:00" max="23:00" id="time2" value="@Model?.End.ToString("hh\\:mm")" class="conTime2 superstyle element-time">
                 <input id="DateEnd"  value="@ViewBag?.DateEnd" type="date" class="conData2">
                 <input class="checkbox2" id="checkbox" onclick="myFunction()" type="checkbox">
                 <p class="checkbox">На весь день</p>
@@ -152,35 +152,30 @@
                             <div>20-00</div>
                             <div>21-00</div>
                             <div>22-00</div>
-                            <div>23-00</div>
-                            <div>00-00</div>
                         </div>
 
                         <div class="time-span-row time-blocks">
                             <div class="time-change-block" ></div>
-                            <div class="time-block"><input value="07.00.00" hidden /></div>
-                            <div class="time-block" ><input value="08.00.00" hidden /></div>
-                            <div class="time-block" ><input value="09.00.00" hidden /></div>
-                            <div class="time-block"><input value="10.00.00" hidden /></div>
-                            <div class="time-block"><input value="11.00.00" hidden /></div>
-                            <div class="time-block"><input value="12.00.00" hidden /></div>
-                            <div class="time-block"><input value="13.00.00" hidden /></div>
-                            <div class="time-block"><input value="14.00.00" hidden /></div>
-                            <div class="time-block"><input value="15.00.00" hidden /></div>
-                            <div class="time-block"><input value="16.00.00" hidden /></div>
-                            <div class="time-block"><input value="17.00.00" hidden /></div>
-                            <div class="time-block"><input value="18.00.00" hidden /></div>
-                            <div class="time-block"><input value="19.00.00" hidden /></div>
-                            <div class="time-block"><input value="20.00.00" hidden /></div>
-                            <div class="time-block"><input value="21.00.00" hidden /></div>
-                            <div class="time-block"><input value="22.00.00" hidden /></div>
-                            <div class="time-block"><input value="23.00.00" hidden /></div>
-                            <div class="time-block"><input value="00.00.00" hidden /></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            <div class="time-block"></div>
+                            
                         </div>
 
                         <div class="time-span-row">
-                            <div></div>
-                            <div></div>
                             <div></div>
                             <div></div>
                             <div></div>
@@ -283,7 +278,8 @@
     </script>
     <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
     <script src="~/js/scriptEventMini2.js" asp-append-version="true"></script>
-    <script src="~/js/MathTimeLine.js" asp-append-version="true"></script>
+    @*<script src="~/js/MathTimeLine.js" asp-append-version="true"></script>*@
+    <script src="~/js/SashaTimeLine.js" asp-append-version="true"></script>
 
 
 </body>

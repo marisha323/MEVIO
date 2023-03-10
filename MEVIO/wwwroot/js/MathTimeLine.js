@@ -19,13 +19,13 @@ function updateBlock() {
     const minutesInMs = parseInt(minutes, 10) * 60 * 1000;
     const totalMs = hoursInMs + minutesInMs;
 
-    const timeSpanDivLeft = timeSpanDivWidth / totalMilliSec * (totalMs + 2520000);
+    const timeSpanDivLeft = (timeSpanDivWidth / totalMilliSec) * (totalMs - 2520000);
 
     console.log(timeSpanDivLeft);
 
 
     timeChangeBlock.style.width = `${diff}px`; // змінюємо ширину блоку, використовуючи різницю в годинах
-    //timeChangeBlock.style.left = `${timeSpanDivLeft}px`;
+    timeChangeBlock.style.left = `${timeSpanDivLeft}px`;
 }
 
 
