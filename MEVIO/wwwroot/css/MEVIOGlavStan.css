@@ -95,19 +95,7 @@
     align-items: center;
 }
 
-.Sotrydniki {
-    margin: 0;
-    width: 12rem;
-    height: 1.3rem;
 
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
-
-    color: #52A7E4;
-}
 
 .div-Img-Date {
     margin-top: 1rem;
@@ -132,24 +120,7 @@ div-p-Ychas
     color: #52A7E4;
 }
 
-.div-Sob {
-    width: 70%;
-    height: 9rem;
-    margin: 1rem;
-    background: #6C8EED;
-    border-radius: 20px;
 
-    border: 3px solid #52A7E4;
-
-
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-
-    color: #FFFFFF;
-}
 
 .div-Naz-Pod {
     margin: 0;
@@ -190,18 +161,7 @@ div-p-Ychas
 
 }
 
-.p-Pod {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
 
-    color: #FFFFFF;
-    width: 10rem;
-
-
-}
 
 .p1-Pod {
     font-family: 'Inter';

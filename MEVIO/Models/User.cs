@@ -11,11 +11,12 @@
         public string Phone { get; set; }
         
         public string TelegramJson { get; set; }
-        
+
+        public string PathImgAVA { get; set; }
 
         public ICollection<TasksUsers> TasksUsers { get; set; }
         public ICollection<MeasureUsers> MeasureUsers { get; set; }
-        
+    
         public ICollection<UserChatUser> UserChatUsers { get; set; }
         public ICollection<EventsUsers> EventsUsers { get; set; }
         public ICollection<TaskResponsiblePersons> TaskResponsiblePersons { get; set; }
