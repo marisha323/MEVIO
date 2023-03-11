@@ -4,6 +4,7 @@ using MEVIO.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,17 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MEVIO.Migrations
 {
     [DbContext(typeof(MEVIOContext))]
-    partial class MEVIOContextModelSnapshot : ModelSnapshot
+    [Migration("20230308180642_Stud")]
+    partial class Stud
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-<<<<<<< HEAD
-                .HasAnnotation("ProductVersion", "7.0.3")
-=======
                 .HasAnnotation("ProductVersion", "7.0.2")
->>>>>>> 323560fdc9da4ebf5f3ccae2fadbb3cee6a99417
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -696,13 +695,6 @@ namespace MEVIO.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-<<<<<<< HEAD
-                    b.Property<string>("PathImgAVA")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-=======
->>>>>>> 323560fdc9da4ebf5f3ccae2fadbb3cee6a99417
                     b.Property<string>("PersonDocumentNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -966,13 +958,6 @@ namespace MEVIO.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-<<<<<<< HEAD
-                    b.Property<string>("PathImgAVA")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-=======
->>>>>>> 323560fdc9da4ebf5f3ccae2fadbb3cee6a99417
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -1147,11 +1132,7 @@ namespace MEVIO.Migrations
 
                     b.HasIndex("UserId");
 
-<<<<<<< HEAD
-                    b.ToTable("Users", t =>
-=======
                     b.ToTable(t =>
->>>>>>> 323560fdc9da4ebf5f3ccae2fadbb3cee6a99417
                         {
                             t.Property("Name")
                                 .HasColumnName("WatchingPerson_Name");

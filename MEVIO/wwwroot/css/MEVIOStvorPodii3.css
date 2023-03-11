@@ -9,7 +9,7 @@
     box-sizing: border-box;
     min-width: 73rem;
     width: 75rem;
-    margin-left: 10rem;
+    margin-left: 5rem;
     height: 35rem;
     left: 37.5rem;
     top: 16.875rem;
@@ -516,7 +516,7 @@ opacity: 0;
 
 .time-span-row {
     display: grid;
-    grid-template-columns: repeat(18, 1fr);
+    grid-template-columns: repeat(16, 1fr);
     width: 100%;
 }
 
