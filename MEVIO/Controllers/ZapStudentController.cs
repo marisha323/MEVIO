@@ -14,9 +14,21 @@ namespace MEVIO.Controllers
         {
             this.context = db;
         }
-        public async Task<IActionResult> ZapClient([Bind] Client client)
+        public  IActionResult ZapClient(string ClientName,string DocumentNumber)
         {
-            return View();
+            context.Clients.Add(new Client() { ClientName =ClientName });
+            context.Clients.Add(new Client() { PassportNumber = DocumentNumber });
+            //var clietStatus = Request.Form["ClientStatus"];
+            //var statusId=context?.ClientStatuses?.FirstOrDefault(o=>o.StatusName.Equals(clietStatus))?.Id;
+            //var zap = new Client();
+            //zap.ClientStatusId = statusId;
+            //context.Add(zap);
+            //var category = Request.Form["Category"];
+            // var catId = context?.Categories?.FirstOrDefault(o => o.Name.Equals(category)).Id;
+            //product1.CategoryId = catId;
+            context.SaveChanges();
+            ViewBag.Categorya = context.Clients.AsNoTracking().ToList();
+            return Redirect("/ZapStudent/Index");
         }
         public async Task<IActionResult> ZapContract([Bind] Contract contract)
         {
@@ -29,11 +41,11 @@ namespace MEVIO.Controllers
 
         public async Task<IActionResult> ZapStudent([Bind("Id,StudentName,Phone,Email,MyStatLogin,MyStatPassword,Login365,StudentCode,PersonDocumentNumber,DateOfIssuePassport,TIN,IsDicount,Discount_Description,DiscountSum,Birthdate,PathImgAVA")] Student student)
         {
-            var contract = Request.Form["EducationForm"];
-            var catId = context?.EducationForms?.FirstOrDefault(o => o.EducationFormName.Equals(contract)).Id;
+            //var contract = Request.Form["EducationForm"];
+            //var catId = context?.EducationForms?.FirstOrDefault(o => o.EducationFormName.Equals(contract)).Id;
             //product1.CategoryId = catId;
-
-
+           
+           
 
 
             //await context.SaveChangesAsync();
@@ -82,17 +94,20 @@ namespace MEVIO.Controllers
 
 
 
+            
+
+
 
             context.Students.Add(student);
             await context.SaveChangesAsync();
-            ViewBag.Students = context.Students.AsNoTracking().ToList();
+           // ViewBag.Students = context.Students.AsNoTracking().ToList();
             return Redirect("/ZapStudent/Index");
         }
         public async Task<IActionResult> Index()
         {
             ViewBag.Status = context.ClientStatuses.AsNoTracking().ToList();
             ViewBag.ClientID = context.Clients.AsNoTracking().ToList();
-
+            ViewBag.Students = context.Students.AsNoTracking().ToList();
 
             //ViewBag.Students = context.Students.AsNoTracking().ToList();
             //ViewBag.Students = context.Students.FirstOrDefault().StudentName;

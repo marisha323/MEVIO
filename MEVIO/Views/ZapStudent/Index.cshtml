@@ -51,7 +51,7 @@
                 <div id="Client" class="contener2 active">
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 91px; ">Name:</p>
-                        <input class="divStrockZap2" style="top: 95px;  left: 400px;" placeholder="Oleg">
+                        <input type="text" class="divStrockZap2" name="ClientName" style="top: 95px;  left: 400px;" placeholder="Oleg">
                     </div>
 
 
@@ -63,14 +63,14 @@
                             <option selected>Status...</option>
                             @foreach (var item in ViewBag.Status)
                             {
-                                <option value="@item.StatusName">@item.StatusName</option>
+                                <option value="@item.Id">@item.StatusName</option>
                             }
                         </select>
                     </div>
 
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 487px;">PersonDocumentNumber:</p>
-                        <input class="divStrockZap2" style="top: 485px;  left: 400px;" placeholder="533535">
+                        <input type="text" class="divStrockZap2" name="DocumentNumber" style="top: 485px;  left: 400px;" placeholder="533535">
                     </div>
 
                     <div class="classPodcherk"> </div>
@@ -160,13 +160,14 @@
                             <label for="IsDiscount">False</label>
                         </span>
                     </div>
+                    <div class="div-p-input">
+                        <p style="color:red;font-size:30px; ">!*</p><p class="divStrockZap" style="top: 487px;">DiscountDescription:</p>
+                        <input type="text" class="divStrockZap2" asp-for="@Model.Discount_Description" style="top: 485px;  left: 400px;" placeholder="Invalid">
+                    </div>
                     <div id="hiden">
 
 
-                        <div class="div-p-input">
-                            <p class="divStrockZap" style="top: 487px;">DiscountDescription:</p>
-                            <input type="text" class="divStrockZap2" asp-for="@Model.Discount_Description" style="top: 485px;  left: 400px;" placeholder="Invalid">
-                        </div>
+                       
 
                         <div class="div-p-input">
                             <p class="divStrockZap" style="top: 949px;">DiscountSum:</p>
@@ -213,17 +214,17 @@
                     </div>
 
 
-                    <div class="div-p-input">
-                        <p class="divStrockZap" style="top: 949px;">Student</p>
-                        <select name="Studentsid" class="divStrockZap2">
+                <div class="div-p-input">
+                    <p class="divStrockZap" style="top: 949px;">Student</p>
+                    <select name="Studentsid" class="divStrockZap2">
 
-                            <option selected>Student...</option>
-                           @* @foreach (var student in ViewBag.Students)
-                            {
-                                <option>@student.StudentName?.ToString()?? "Unknown Student"</option>
-                            }*@
-                        </select>
-                    </div>
+                        <option selected>Student...</option>
+                         @foreach (var student in ViewBag.Students)
+                        {
+                        <option asp-for="@student.Id">@student.StudentName</option>
+                        }
+                    </select>
+                </div>
 
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 91px; ">DateStamp:</p>

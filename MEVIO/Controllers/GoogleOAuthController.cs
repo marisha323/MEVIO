@@ -81,7 +81,7 @@ namespace Mevio2Test.Controllers
             string codeVerifier = HttpContext.Session.GetString("codeVerifier");
             var redirectUrl = "http://localhost:5001/GoogleOauth/Code";
 
-            var tokenResult = GoogleOAuthService.ExchangeCodeOnTokenAsync(code, codeVerifier, redirectUrl);
+           // var tokenResult = GoogleOAuthService.ExchangeCodeOnTokenAsync(code, codeVerifier, redirectUrl);
 
 
 

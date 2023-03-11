@@ -102,10 +102,10 @@ namespace MEVIO.Models
             //        .HasConstraintName("FK_Contract_Student");
             //});
 
-            //modelBuilder.Entity<Contract>()
-            //.HasOne(a => a.Student)
-            //.WithOne(a => a.Contract)
-            //.HasForeignKey<Student>(c => c.ContractId);
+            modelBuilder.Entity<Contract>()
+            .HasOne(a => a.Student)
+            .WithOne(a => a.Contract)
+            .HasForeignKey<Student>(c => c.ContractId);
 
 
 

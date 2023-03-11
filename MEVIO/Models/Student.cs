@@ -24,7 +24,8 @@ namespace MEVIO.Models
         public string PathImgAVA { get; set; }
 
 
-        //public int? ContractId { get; set; }
-        //public virtual Contract Contract { get; set; }
+        public int? ContractId { get; set; }
+        public virtual Contract Contract { get; set; }
     }
+   
 }
