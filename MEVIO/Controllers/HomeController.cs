@@ -62,8 +62,9 @@ namespace MEVIO.Controllers
 
             return View();
         }
-        public IActionResult MainPage()
+        public IActionResult MainPage([Bind] Event events)
         {
+            
 
             return View();
         }
