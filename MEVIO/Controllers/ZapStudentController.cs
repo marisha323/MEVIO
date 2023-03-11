@@ -18,11 +18,11 @@ namespace MEVIO.Controllers
         {
             context.Clients.Add(new Client() { ClientName =ClientName });
             context.Clients.Add(new Client() { PassportNumber = DocumentNumber });
-            //var clietStatus = Request.Form["ClientStatus"];
-            //var statusId=context?.ClientStatuses?.FirstOrDefault(o=>o.StatusName.Equals(clietStatus))?.Id;
-            //var zap = new Client();
-            //zap.ClientStatusId = statusId;
-            //context.Add(zap);
+            var clietStatus = Request.Form["ClientStatus"];
+            var statusId = context?.ClientStatuses?.FirstOrDefault(o => o.StatusName.Equals(clietStatus))?.Id;
+            var zap = new Client();
+            zap.ClientStatusId = statusId;
+            context.Add(zap);
             //var category = Request.Form["Category"];
             // var catId = context?.Categories?.FirstOrDefault(o => o.Name.Equals(category)).Id;
             //product1.CategoryId = catId;
