@@ -58,12 +58,12 @@
 
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 949px;">Client Status</p>
-                        <select name="Contract" class="divStrockZap2">
+                        <select name="StatusName" class="divStrockZap2">
 
                             <option selected>Status...</option>
                             @foreach (var item in ViewBag.Status)
                             {
-                                <option value="@item.Id">@item.StatusName</option>
+                                <option value="@item.StatusName">@item.StatusName</option>
                             }
                         </select>
                     </div>
@@ -103,7 +103,7 @@
 
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top:289px">DataBerthday:</p>
-                        <input type="text" class="divStrockZap2" asp-for="@Model.Birthdate" style="top: 293px;  left: 400px;" placeholder="20.05.2004">
+                        <input type="text" class="divStrockZap2 ConData" asp-for="@Model.Birthdate" style="top: 293px;  left: 400px;" placeholder="20.05.2004">
                     </div>
 
                     <div class="div-p-input">
@@ -203,7 +203,7 @@
 
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 949px;">Client Name</p>
-                        <select name="Contract" class="divStrockZap2">
+                        <select name="ClientId" class="divStrockZap2">
 
                             <option selected>Name...</option>
                             @foreach (var item in ViewBag.ClientID)
@@ -219,7 +219,7 @@
                     <select name="Studentsid" class="divStrockZap2">
 
                         <option selected>Student...</option>
-                         @foreach (var student in ViewBag.Students)
+                        @foreach (var student in ViewBag.Students)
                         {
                         <option asp-for="@student.Id">@student.StudentName</option>
                         }
@@ -228,12 +228,12 @@
 
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 91px; ">DateStamp:</p>
-                        <input type="date"  class="divStrockZap2 conData" style="top: 95px;  left: 400px;">
+                        <input type="date" name="DateStamp" class="divStrockZap2 conData" style="top: 95px;  left: 400px;">
                     </div>
 
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 949px;">Education Form</p>
-                        <select name="Contract" class="divStrockZap2">
+                        <select name="EducationForm" class="divStrockZap2">
 
                             <option selected>Education Form...</option>
                             @foreach (var item in ViewBag.EducationFormId)
@@ -245,7 +245,7 @@
 
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 949px;">Academy</p>
-                        <select name="Contract" class="divStrockZap2">
+                        <select name="Academyid" class="divStrockZap2">
 
                             <option selected>Academy Name...</option>
                             @foreach (var item in ViewBag.AcademiID)
@@ -257,7 +257,7 @@
 
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 949px;">Season</p>
-                        <select name="Contract" class="divStrockZap2">
+                        <select name="Seasonid" class="divStrockZap2">
 
                             <option selected>Season...</option>
                             @foreach (var item in ViewBag.SeasonID)
@@ -282,39 +282,65 @@
                 <div id="Teacher" class="contener2">
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 91px; ">Name:</p>
-                        <input class="divStrockZap2" style="top: 95px;  left: 400px;" placeholder="Oleg">
+                        <input class="divStrockZap2" name="NameUser" style="top: 95px;  left: 400px;" placeholder="Oleg">
                     </div>
 
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top:157px">Email:</p>
-                        <input class="divStrockZap2" style="top: 161px;  left: 400px;" placeholder="blabla@gmail.com">
+                        <input class="divStrockZap2" name="Email" style="top: 161px;  left: 400px;" placeholder="blabla@gmail.com">
                     </div>
 
 
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top:223px">Password:</p>
-                        <input class="divStrockZap2" style="top: 227px;  left: 400px;" placeholder="8g3Q0glm4">
+                        <input class="divStrockZap2" name="Password" style="top: 227px;  left: 400px;" placeholder="8g3Q0glm4">
+                    </div>
+                    @*Date LastTime*@
+                    <div class="div-p-input">
+                        <p class="divStrockZap" style="top: 91px; ">Last Time Sign In:</p>
+                        <input type="date" name="LastTime" class="divStrockZap2 conData" style="top: 95px;  left: 400px;">
                     </div>
 
+                    @*Date Birthdate*@
+                    <div class="div-p-input">
+                        <p class="divStrockZap" style="top: 91px; ">Birthdate:</p>
+                        <input type="date" name="Birthdate" class="divStrockZap2 conData" style="top: 95px;  left: 400px;">
+                    </div>
+                    <div class="div-p-input">
+                        <p class="divStrockZap" style="top: 949px;">Role User</p>
+                        <select name="UserRoleId" class="divStrockZap2">
+
+                            <option selected>Role...</option>
+                            @foreach (var item in ViewBag.RoleId)
+                            {
+                                <option value="@item.UserRoleName">@item.UserRoleName</option>
+                            }
+                        </select>
+                    </div>
 
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top:289px">Phone:</p>
-                        <input class="divStrockZap2" style="top:293px;  left: 400px;" placeholder="38069812114">
+                        <input type="text" class="divStrockZap2" name="Phone" style="top:293px;  left: 400px;" placeholder="38069812114">
                     </div>
 
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 365px;">PersonDocumentNumber:</p>
-                        <input class="divStrockZap2" style="top: 361px;  left: 400px;" placeholder="2834791392487">
+                        <input type="text" class="divStrockZap2" name="DocumentNumber" style="top: 361px;  left: 400px;" placeholder="2834791392487">
                     </div>
 
                     <div class="div-p-input">
-                        <p class="divStrockZap" style="top: 421px;">DateOfIssuePasport?:</p>
-                        <input class="divStrockZap2" style="top: 425px;  left: 400px;" placeholder="Number Pasport">
+                        <p class="divStrockZap" style="top: 421px;">Date Of Issue Pasport:</p>
+                        <input type="date" class="divStrockZap2 conData" name="DatePasport" style="top: 425px;  left: 400px;" placeholder="Number Pasport">
                     </div>
-
+                    <div class="div-p-input">
+                        <p class="divStrockZap" style="top: 817px;">Photo:</p>
+                       
+                        <label class="input-file-button divStrockZap2" style="margin-left:21.5rem" for="files" tabindex="0">Choose a file</label>
+                        <input class="input-file-hidden"  type="file" id="files" name="PathImgAva" multiple tabindex="-1">
+                    </div>
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 487px;">TIN:</p>
-                        <input class="divStrockZap2" style="top: 485px;  left: 400px;" placeholder="533535">
+                        <input type="text" name="TIN" class="divStrockZap2" style="top: 485px;  left: 400px;" placeholder="533535">
                     </div>
 
                     <div class="classPodcherk"> </div>

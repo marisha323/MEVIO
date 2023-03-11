@@ -3,7 +3,7 @@
     public class User
     {
         public int Id { get; set; }
-        public int UserRoleId { get; set; }
+        public int? UserRoleId { get; set; }
         public virtual UserRole Role { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
@@ -11,7 +11,7 @@
         public string Phone { get; set; }
         public string PathImgAVA { get; set; }
 
-        public string TelegramJson { get; set; }
+        //public string TelegramJson { get; set; }
 
         
 
