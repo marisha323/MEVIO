@@ -8,10 +8,12 @@ namespace MEVIO.Controllers
 
         MEVIOContext context;
 
-        MeassureController(MEVIOContext context)
+        public MeassureController(MEVIOContext context)
         {
             this.context = context;
         }
+
+
         public IActionResult Index()
         {
             ViewBag.Place=context.PlaceForMeasures.ToList();
@@ -19,19 +21,19 @@ namespace MEVIO.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddMeasure([Bind("Id,MeasureName,Description,UserId,Begin,End")] Event event1)
-        // public async Task<ActionResult> AddEvent(string title)
+        public async Task<ActionResult> AddMeasure([Bind("Id,MeasureName,Description,UserId,Begin,End")] Measure measure)
         {
             //var data = context.Events.FirstOrDefault().Begin;
             //ViewBag.Date = data.ToString("yyyy-MM-dd");
             //var dataEnd = context.Events.FirstOrDefault().Begin;
             //ViewBag.DateEnd = dataEnd.ToString("yyyy-MM-dd");
-            if (event1 != null)
+            if (measure != null)
             {
-                context.Events.Add(event1);
+                context.Measures.Add(measure);
                 context.SaveChanges();
 
             }
+
 
             return Redirect("/Home/Index");
         }

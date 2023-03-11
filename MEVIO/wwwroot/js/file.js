@@ -38,3 +38,5 @@ $(".time-change-block").on("mouseup", function (e) {
   $(".time-blocks").off("mousemove");
   //$(".time-change-block").css("left",X);
 });
+
+

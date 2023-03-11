@@ -3,18 +3,19 @@
 *@
 @{
 }
+@model Measure
 
 <link type="text/css" rel="stylesheet" href="/css/NewMeasure.css">
-
 
 <body>
     <div class="mainDiv">
         <p class="pNew">Захід</p>
+        <form asp-controller="Meassure" asp-action="AddMeasure" method="post">
 
         <div class="insideDiv">
             <div>
                 <label class="labelF">Новий захід</label>
-                <input type="text" class="inputF" />
+                <input type="text" class="inputF" asp-for="@Model.MeasureName" />
             </div>
 
             <div class="divTime">
@@ -33,10 +34,10 @@
                 </div>
 
                 <div class="divDate">
-                    <input type="date" />
+                        <input type="date" asp-for="@Model.Begin" />
                     <input type="time" class="superstyle" />
                     <div class="ture"></div>
-                    <input type="date" />
+                    <input type="date" asp-for="@Model.Begin"/>
                     <input type="time" class="superstyle" />
                 </div>
 
@@ -64,8 +65,12 @@
                 <div class="divDescr">
                     <p class="styleP">Місце проведення</p>
                 </div>
-                <select>
-                    <option>Classroom1</option>
+                <select name="placeSpend">
+
+                        @foreach (PlaceForMeasure item in ViewBag.Place)
+                        {
+                            <option value="@item.Id">@item.PlaceForMeasureName</option>
+                        }
                 </select>
             </div>
             <hr />
@@ -167,11 +172,17 @@
                     Сповіщати про підтвердження/відмові учасників
                     <input type="checkbox" />
                 </label>
+
+                    <label>
+                        Вільних місць в аудиторії:
+                        <input type="number" />
+                    </label>
             </div>
             <div class="buttons">
                 <button>Зберегти</button>
                 <button>Відмінити</button>
             </div>
+        </form>
         </div>
     </div>
     <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
