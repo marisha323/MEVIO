@@ -1,25 +1,47 @@
-﻿using Mevio2Test.Helhers;
+﻿using Google.Apis.Auth;
+using Mevio2Test.Helhers;
 using Mevio2Test.Servises;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Google.Apis.Auth.OAuth2.Mvc;
+using Google.Apis.Json;
+using Google.Apis.Plus.v1;
+using Google.Apis.Plus.v1.Data;
+using Google.Apis.Services;
+using Google.Apis.Util.Store;
+
+
+
 
 namespace Mevio2Test.Controllers
 {
     public class GoogleOAuthController : Controller
     {
         //private const string scope = "https://www.googleapis.com/auth/userinfo.email";
-        // private const string scope = "https://www.googleapis.com/auth/userinfo.email";
+        // private const string scope = "https://www.googleapis.com/auth/userinfo.profile";
 
-      string[] scope =new [] {"https://www.googleapis.com/auth/userinfo.email",
-            
-                            "https://www.googleapis.com/auth/userinfo.profile" };// доступ до інформації профілu  // доступ до адреси електронної пошти
+        //string[] skopes = {"https://www.googleapis.com/auth/userinfo.email",
 
-    private const string redirectUrl = "http://localhost:5001/GoogleOauth/Code";
+        //                    "https://www.googleapis.com/auth/userinfo.profile" };// доступ до інформації профілu  // доступ до адреси електронної пошти
+
+        string[] scopes = new[] {"https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.profile"};
+      
+        static List<string> scopes2 = new List<string>()
+        {
+"https://www.googleapis.com/auth/userinfo.email",
+"https://www.googleapis.com/auth/userinfo.profile"
+        };
+        string scopesString = string.Join(" ", scopes2);
+        //var url = GoogleOAuthService.GenerateOAuthRequestUrl(scopesString, redirectUrl, codeChellange);
+
+        private const string redirectUrl = "http://localhost:5001/GoogleOauth/Code";
+        
         private const string PkceSessionKey = "codeVerifier";
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+
+
+        public IActionResult Index() => View();
+        
 
 
         public IActionResult RedirectOnOAuthServer()
@@ -47,7 +69,7 @@ namespace Mevio2Test.Controllers
             var codeChellange = Sha256Helper.ComputeHash(codeVerifier);
 
 
-            var url = GoogleOAuthService.GenerateOAuthRequestUrl(scope[0], redirectUrl, codeChellange);
+            var url = GoogleOAuthService.GenerateOAuthRequestUrl(scopesString, redirectUrl, codeChellange);
 
             return Redirect(url);
         }
@@ -59,11 +81,54 @@ namespace Mevio2Test.Controllers
             string codeVerifier = HttpContext.Session.GetString("codeVerifier");
             var redirectUrl = "http://localhost:5001/GoogleOauth/Code";
 
-            var tokenResult = GoogleOAuthService.ExchangeCodeOnToken(code, codeVerifier, redirectUrl);
+           // var tokenResult = GoogleOAuthService.ExchangeCodeOnTokenAsync(code, codeVerifier, redirectUrl);
+
+
+
+            // Почекаємо 3600 секунд
+            // (саме стільки можна використовувати AccessToken, поки його термін придатності не спливе).
+
+            // І оновлюємо Токен Доступу за допомогою Refresh-токена.
+           // var refreshedTokenResult = await GoogleOAuthService.RefreshTokenAsync(tokenResult.);
 
             return Ok();
 
         }
     }
+
+    //[HttpPost]
+    //public async Task<ActionResult> SignInWithGoogle(string id_token)
+    //{
+    //    try
+    //    {
+    //        // Verify the Google ID token
+    //        var tokenVerifier = new GoogleJsonWebSignature.ValidationSettings
+    //        {
+    //            Audience = new[] { "<your-client-id>.apps.googleusercontent.com" }
+    //        };
+    //        var payload = await GoogleJsonWebSignature.ValidateAsync(id_token, tokenVerifier);
+
+    //        // Retrieve the user's profile information from the Google API
+    //        var userId = payload.Subject;
+    //        var name = payload.Name;
+    //        var email = payload.Email;
+
+    //        // Create a new account on your website using the retrieved information
+    //        // ...
+
+    //        // Return a success response to the client
+
+    //     return ContentResult(JsonConvert.SerializeObject(new { success = true }), "application/json");
+
+
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        // Return an error response to the client
+    //       // return Json(new { success = false, error = ex.Message });
+    //    }
+
+
+    //}
 }
 

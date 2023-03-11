@@ -99,31 +99,59 @@
         height:10rem;
     }
 
-    .imgGoogle
-    {
-        width: 10rem;
-        height:3.7rem;
+    .imgGoogle {
+        position: absolute;
+        width: 5rem;
+        height: 2.2rem;
         border-radius: 30px;
         font-weight: 900;
-        transition: all 0.2s ease-in-out;
+        align-self: center;
+        border: 1px solid black;
+        margin-left:0.7rem;
+    }
+
+    .subGoogle {
+        margin-left: 3rem;
+        justify-content: center;
+        align-items: center;
     }
 </style>
     <div class="card">
         <div class="login-box" id="login">
             <h2 style="font-weight:bold; color:#52A7E4;">MEVIO</h2>
-            <form method="post" action="Login">
+            <form method="post"  action="Login" >
                 <div class="user-box">
-                    <input type="text" name="email" required="">
+                    <input type="text" name="email" required>
                     <label>Email</label>
                 </div>
                 <div class="user-box">
-                    <input type="password" name="password" required="">
+                    <input type="password" name="password" required>
                     <label>Password</label>
                 </div>
-                <center>
-                    <button type="submit" class="btn glow-btn">Submit</button>
-                     <a class="refGoogle" href="/GoogleOAuth/RedirectOnOAuthServer"><img class="imgGoogle" src="/img/imgGoogle.png" alt="" /></a>
-                </center>
+
+            <div class="subGoogle">
+                <button type="submit" class="btn glow-btn">Submit</button>
+                <a class="refGoogle"  href="/GoogleOAuth/RedirectOnOAuthServer">
+                    <img class="imgGoogle" src="/img/imgGoogle.png" alt="" />
+                </a>
+            </div>
             </form>
         </div>
     </div>
+
+                    <script>
+    function onSignIn(googleUser) {
+        // Get the Google user ID token and send it to the server for verification
+        var id_token = googleUser.getAuthResponse().id_token;
+        // Send the ID token to the server via AJAX request
+        $.ajax({
+            type: 'POST',
+            url: '/signin-with-google',
+            data: { 'id_token': id_token },
+            success: function (response) {
+                // Redirect to the main page or personalized dashboard page
+                window.location.href = '/index';
+            }
+        });
+    }
+</script>

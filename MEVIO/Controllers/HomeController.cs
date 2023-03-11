@@ -17,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNet.Identity;
 
 namespace MEVIO.Controllers
 {
@@ -30,17 +31,17 @@ namespace MEVIO.Controllers
         public HomeController(MEVIOContext db)
         {
             this.context = db;
-            //UserRole roleadmin = new UserRole() { UserRoleName = "admin" };
-            //UserRole roledirector = new UserRole() { UserRoleName = "director" };
-            //UserRole rolemanager = new UserRole() { UserRoleName = "manager" };
-            //UserRole roleuser = new UserRole() { UserRoleName = "user" };
-            //context.UserRoles.Add(roleadmin);
-            //context.UserRoles.Add(roledirector);
-            //context.UserRoles.Add(rolemanager);
-            //context.UserRoles.Add(roleuser);
-            //context.SaveChanges();
+/*          UserRole roleadmin = new UserRole() { UserRoleName = "admin" };
+            UserRole roledirector = new UserRole() { UserRoleName = "director" };
+            UserRole rolemanager = new UserRole() { UserRoleName = "manager" };
+            UserRole roleuser = new UserRole() { UserRoleName = "user" };
+            context.UserRoles.Add(roleadmin);
+            context.UserRoles.Add(roledirector);
+            context.UserRoles.Add(rolemanager);
+            context.UserRoles.Add(roleuser);
+            context.SaveChanges();*/
         }
-        
+
         public IActionResult Index()
         {
 
@@ -82,10 +83,48 @@ namespace MEVIO.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(string email, string password)
+        {
+            User user = context.Users.Where(o => o.Email == email && o.Password == password).AsNoTracking().FirstOrDefault();
+            if (user != null)
+            {
+                CookieOptions options = new CookieOptions();
+                options.Expires = DateTime.Now.AddMinutes(45);
+                options.IsEssential = true;
+                options.Path = "/";
+
+                string str = JsonSerializer.Serialize(user);
+
+                HttpContext.Response.Cookies.Append("UserLoggedIn", str, options);
+                return Redirect("Index");
+                //return RedirectToAction("Index", "Main");
+            }
+            else
+            {
+                return View("LoginRegister");
+            }
+            
+        }
+        public IActionResult Logout()
+        {
+            CookieOptions options = new CookieOptions();
+            options.Expires = DateTime.Now;
+            options.IsEssential = true;
+            options.Path = "/";
+
+            HttpContext.Response.Cookies.Append("UserLoggedIn", "", options);
+
+            return Redirect("Index");
+        }
+
+
         public IActionResult LoginRegister()
         {
             return View();
         }
+
         public IActionResult Event()
         {
             return View();
@@ -106,6 +145,7 @@ namespace MEVIO.Controllers
 
 
             return View(context.Events.FirstOrDefault());
+            //return View(context.Events.FirstOrDefault());
         }
         public IActionResult Measure()
         {
@@ -196,7 +236,7 @@ namespace MEVIO.Controllers
             //Users tempUser = new Users() { FullName = FullName, Email = Email, Password = Password, PhoneNumber = PhoneNumber.ToString(), RoleId = 2 };
             //string str = JsonSerializer.Serialize(tempUser);
 
-            var fromAddress = new MailAddress("robottester51@gmail.com", "Online Shop");
+            var fromAddress = new MailAddress("robottester51@gmail.com", "Mevio");
             var toAddress = new MailAddress(Email, "Someone");
             const string fromPassword = "iokkbczukalzztuv";
             const string subject = "Calendar Notification";

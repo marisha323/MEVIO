@@ -9,7 +9,8 @@
         public string Email { get; set; }
         public string Password { get; set; }
         public string Phone { get; set; }
-        
+        public string PathImgAVA { get; set; }
+
         public string TelegramJson { get; set; }
 
         public string PathImgAVA { get; set; }
@@ -33,6 +34,8 @@
         public string TIN { get; set; }
         public bool IsActive { get; set; }//в сети не в сити
         public ICollection<UserAcceptStatus> UserAcceptStatuses { get; set; }
+
+        
         //public int? UserCalendarId { get; set; }
         //public virtual UserCalendar UserCalendar { get; set; }
         public ICollection<DashBoard> DashBoards { get; set; }

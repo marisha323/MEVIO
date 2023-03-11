@@ -4,6 +4,7 @@
 @{
 }
 
+@model Event
 <link type="text/css" rel="stylesheet" href="/css/NewEvent.css">
 <style>
 
@@ -40,11 +41,11 @@
 <body>
     <div class="mainDiv">
         <p class="pNew">Нова подія</p>
-
+        <form asp-controller="Event" asp-action="AddEvent" method="post">
         <div class="insideDiv">
             <div>
                 <label class="labelF">Нова подія </label>
-                <input type="text" class="inputF" />
+                <input type="text" class="inputF" asp-for="@Model.EventName" />
             </div>
 
             <div class="divTime">
@@ -63,15 +64,15 @@
                 </div>
 
                 <div class="divDate">
-                    <input type="date" />
-                    <input type="time" class="superstyle" />
+                        <input type="date" name="dateStart" />
+                        <input type="time" class="superstyle" id="dateBeginInput" asp-for="@Model.Begin" />
                     <div class="ture"></div>
-                    <input type="date" />
-                    <input type="time" class="superstyle" />
+                        <input type="date" name="dateEnd" />
+                        <input type="time" class="superstyle" id="dateEndInput" asp-for="@Model.End" />
                 </div>
 
                 <div class="checkAllDay">
-                    <input type="checkbox" />
+                        <input type="checkbox" on />
                     <span>Весь день</span>
                 </div>
             </div>
@@ -81,21 +82,26 @@
                 <div class="divDescr">
                     <p class="styleP">Опис</p>
                 </div>
-                <textarea name="message"
+                <textarea  
+                    asp-for="@Model.Description"
                           cols="10"
                           rows="3"
                           placeholder="Enter text . . ."></textarea>
             </div>
             <hr />
-
+@*
             <div class="description">
                 <div class="divDescr">
                     <p class="styleP">Місце проведення</p>
                 </div>
-                <select>
-                    <option>Classroom1</option>
+                @*<select name="placeSpend">
+
+                        @foreach (PlaceForMeasure item in ViewBag.Place)
+                        {
+                            <option value="@item.Id">@item.PlaceForMeasureName</option>
+                        }
                 </select>
-            </div>
+            </div>*@
             <hr />
 
             <div class="description">
@@ -276,12 +282,55 @@
                 </label>
             </div>
             <div class="buttons">
-                <button>Зберегти</button>
-                <button>Відмінити</button>
+                <button type="submit">Зберегти</button>
+                <button type="reset">Відмінити</button>
             </div>
         </div>
+        </form>
     </div>
 
+
+    <script>
+
+        var dateBegin = document.getElementById("dateBeginInput");
+        var dateEnd = document.getElementById("dateEndInput");
+        
+      
+        function toggleElements(className) {
+            var elements = document.getElementsByClassName(className);
+            for (var i = 0; i < elements.length; i++) {
+                if (elements[i].style.display === "none") {
+                    elements[i].style.display = "block";
+                } else {
+                    elements[i].style.display = "none";
+                }
+            }
+        }
+
+       
+       
+        function updateDates() {
+            var checkbox = document.getElementById("checkbox");
+            var date1 = document.getElementById("Date").value;
+            var date2 = document.getElementById("DateEnd"); if (checkbox.checked) {
+                date2.value = date1;
+            } else {
+                date2.value = "@ViewBag.DateEnd";
+            }
+        }
+        function myFunction() {
+            toggleElements('element-time');
+            updateDates();
+        }
+
+        
+        var dateInput = document.getElementById("Date");
+        dateInput.value = "@ViewBag?.Date";
+        var dateEnd = document.getElementById("DateEnd");
+        dateEnd.value = "@ViewBag?.DateEnd";
+
+
+    </script>
 
 
 

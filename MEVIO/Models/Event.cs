@@ -23,6 +23,8 @@ namespace MEVIO.Models
         //public int? UserCalendarId { get; set; }
         //public virtual UserCalendar UserCalendar { get; set; }
         public ICollection<UserEventAcceptStatus> UserEventAcceptStatuses { get; set; }
+      
+        
         public Event()
         {
             EventsUsers = new List<EventsUsers>();
