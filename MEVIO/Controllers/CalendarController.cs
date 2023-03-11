@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MEVIO.Models.BackendClasses;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MEVIO.Controllers
@@ -8,6 +9,13 @@ namespace MEVIO.Controllers
         // GET: CalendarController
         public ActionResult Index()
         {
+            List<MonthGenerator> months = new List<MonthGenerator>();
+            months = MonthGenerator.Fill();
+
+            ViewBag.months = months;
+
+            List<string> days = new List<string>(){ "Понед", "Вівто", "Серед", "Четве", "П'ятн", "Субот", "Неділ" };
+            ViewBag.weekDays = days;
             return View();
         }
 
