@@ -8,7 +8,7 @@ namespace MEVIO.Controllers
 
         MEVIOContext context;
 
-        MeassureController(MEVIOContext context)
+        public MeassureController(MEVIOContext context)
         {
             this.context = context;
         }
