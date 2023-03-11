@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using System.Data.Entity.ModelConfiguration;
 using System.Diagnostics.Metrics;
 
 namespace MEVIO.Models
@@ -40,11 +42,11 @@ namespace MEVIO.Models
         public DbSet<User> Users { get; set; } = null!;//+
         public DbSet<UserAcceptStatus> UserAcceptStatuses { get; set; } = null;//+
         //public DbSet<UserCalendar> UserCalendars { get; set; } = null!;
-        public DbSet<UserChat> UserChats { get; set; } = null!; 
+        public DbSet<UserChat> UserChats { get; set; } = null!;
         public DbSet<UserChatUser> UserChatUsers { get; set; } = null!;
         public DbSet<UserEventAcceptStatus> UserEventAcceptStatuses { get; set; } = null!;
         public DbSet<UserMeasureAcceptStatus> UserMeasureAcceptStatuses { get; set; } = null;
-        public DbSet<UserRole> UserRoles  { get; set; } = null!;
+        public DbSet<UserRole> UserRoles { get; set; } = null!;
         public DbSet<UserTaskAcceptStatus> UserTaskAcceptStatuses { get; set; } = null!;//+
         public DbSet<WatchingPerson> WatchingPeople { get; set; } = null!;
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -82,10 +84,28 @@ namespace MEVIO.Models
                 .WithMany(c => c.TaskClients)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            modelBuilder.Entity<Contract>()
-            .HasOne(a => a.Student)
-            .WithOne(a => a.Contract)
-            .HasForeignKey<Student>(c => c.ContractId);
+            //modelBuilder.Entity<Student>(entity =>
+            //{
+            //    entity.Property(e => e.StudentName)
+            //        .IsRequired()
+            //        .HasMaxLength(50);
+            //});
+
+            //modelBuilder.Entity<Contract>(entity =>
+            //{
+            //    entity.Property(e => e.DateStamp).HasColumnType("datetime");
+
+            //    entity.HasOne(d => d.Student)
+            //        .WithMany(p => p.C)
+            //        .HasForeignKey(d => d.StudentId)
+            //        .OnDelete(DeleteBehavior.ClientSetNull)
+            //        .HasConstraintName("FK_Contract_Student");
+            //});
+
+            //modelBuilder.Entity<Contract>()
+            //.HasOne(a => a.Student)
+            //.WithOne(a => a.Contract)
+            //.HasForeignKey<Student>(c => c.ContractId);
 
 
 
@@ -141,9 +161,14 @@ namespace MEVIO.Models
             //    .WithOne(c => c.Task);
             //base.OnModelCreating(modelBuilder);
         }
+
+       
         public MEVIOContext(DbContextOptions<MEVIOContext> options) : base(options)
         {
             Database.EnsureCreated();
+            
         }
+        
+
     }
 }
