@@ -11,7 +11,7 @@ namespace MEVIO.Models
         public string Email { get; set; }
         public string MyStatPassword { get; set; }
         public string MyStatLogin { get; set; }
-        public string MyStatPassword { get; set; }
+      
         public string Login365 { get; set; }
         public string StudentCode { get; set; }
         public string PersonDocumentNumber { get; set; }
