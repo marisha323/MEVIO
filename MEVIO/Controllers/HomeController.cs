@@ -62,8 +62,9 @@ namespace MEVIO.Controllers
 
             return View();
         }
-        public IActionResult MainPage()
+        public IActionResult MainPage([Bind] Event events)
         {
+            
 
             return View();
         }
@@ -133,18 +134,18 @@ namespace MEVIO.Controllers
         {
 
 
-            //var imegs = context.Users.FirstOrDefault();
-            //ViewBag.Useres = imegs;
+            var imegs = context.Users.FirstOrDefault();
+            ViewBag.Useres = imegs;
             //var data = context.Events.FirstOrDefault().Begin;
             //ViewBag.Date = $"{data.Year}-{data.Month}-{data.Day}";
-            //var data = context.Events.FirstOrDefault().Begin;
-            //ViewBag.Date = data.ToString("yyyy-MM-dd");
-            //var dataEnd = context.Events.FirstOrDefault().Begin;
-            //ViewBag.DateEnd = dataEnd.ToString("yyyy-MM-dd");
+            var data = context.Events.FirstOrDefault().Begin;
+            ViewBag.Date = data.ToString("yyyy-MM-dd");
+            var dataEnd = context.Events.FirstOrDefault().Begin;
+            ViewBag.DateEnd = dataEnd.ToString("yyyy-MM-dd");
 
 
+            return View(context.Events.FirstOrDefault());
             //return View(context.Events.FirstOrDefault());
-            return View(/*context.Events.FirstOrDefault()*/);
         }
         public IActionResult Measure()
         {

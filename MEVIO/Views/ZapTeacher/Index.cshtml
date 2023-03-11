@@ -44,6 +44,20 @@
                     <input class="divStrockZap2" asp-for="@Model.UserName" style="top: 95px;  left: 400px;" placeholder="Oleg">
                 </div>
 
+
+                <div class="div-p-input">
+                    <p class="divStrockZap" style="top: 949px;">Student</p>
+                    <select name="Studentsid" class="divStrockZap2">
+
+                        <option selected>Student...</option>
+                         @foreach (var student in ViewBag.Students)
+                        {
+                        <option asp-for="@student.Id">@student.StudentName</option>
+                        }
+                    </select>
+                </div>
+
+
                 <div class="div-p-input">
                     <p class="divStrockZap" style="top: 91px; ">TelegramJson:</p>
                     <input class="divStrockZap2" asp-for="@Model.TelegramJson" style="top: 95px;  left: 400px;" placeholder="Oleg">
