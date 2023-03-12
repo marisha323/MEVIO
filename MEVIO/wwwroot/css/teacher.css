@@ -1,0 +1,189 @@
+body,
+html {
+  margin: 0px;
+  padding: 0px;
+  height: 100vh;
+}
+
+.container {
+  box-sizing: border-box;
+  position: static;
+  width: 100%;
+  min-height: 100%;
+  top: 54px;
+  /* background: #09122c; */
+  border: 3px solid #52a7e4;
+  border-radius: 25px;
+  background-image: url(./img/stars.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.gridBox {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.leftBox {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: 1fr 2fr 1fr;
+  margin: 2rem, 4rem;
+  align-items: center;
+  justify-self: center;
+}
+
+.leftBox h2 {
+  left: 20rem;
+  top: 1rem;
+  font-size: 35px;
+  line-height: 42px;
+  color: #bae2ff;
+}
+
+.leftBox h2,
+.status,
+.pStatus,
+.ofline,
+.online,
+.top,
+.infoResult,
+.infoField {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+}
+.avatar {
+  width: 20rem;
+  height: 20rem;
+  left: 10rem;
+  top: 7rem;
+  background: url(./img/Indian-Girl-Images-042202.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.status {
+  display: flex;
+  width: 20rem;
+  height: 2.1rem;
+  font-size: 1, 7rem;
+  line-height: 30px;
+  align-items: center;
+  justify-self: center;
+  color: #ffffff;
+}
+
+.pStatus {
+  width: 6rem;
+  height: 2.1rem;
+  font-size: 1.7rem;
+  line-height: 30px;
+  color: #ffffff;
+}
+.online {
+  width: 6rem;
+  height: 2rem;
+  left: 37rem;
+  top: 56rem;
+  font-weight: 100rem;
+  font-size: 1.5rem;
+  line-height: 30px;
+  color: #24ff00;
+}
+.ofline {
+  width: 6rem;
+  height: 2rem;
+  left: 43rem;
+  top: 56rem;
+  font-weight: 60rem;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  color: #ff0000;
+}
+.infoBox {
+  width: 40rem;
+  height: 4rem;
+  left: 67rem;
+  top: 7rem;
+  border-radius: 20px 20px 0px 0px;
+  align-items: center;
+  justify-self: center;
+  padding: 1rem;
+  text-align: center;
+}
+
+.top {
+  width: 41rem;
+  height: 2rem;
+  left: 67.3rem;
+  top: 7rem;
+
+  background: #52a7e4;
+  border-radius: 20px 20px 0px 0px;
+}
+
+.infoField {
+  width: 2.5rem;
+  height: 1.3rem;
+  left: 69rem;
+  top: 11.8rem;
+  font-size: 1.4rem;
+  line-height: 1.5rem;
+  margin-left: 2rem;
+  white-space: nowrap;
+  color: #ffffff;
+}
+
+.infoResult {
+  width: 9rem;
+  height: 1.3rem;
+  left: 73rem;
+  top: 12rem;
+  font-size: 1.4rem;
+  line-height: 1.5rem;
+  white-space: nowrap;
+  color: #bae2ff;
+  justify-self: center;
+  align-self: center;
+  margin-right: 2rem;
+}
+
+.box {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  background: #09122c;
+  width: 41rem;
+  border-bottom: 1px solid #52a7e4;
+}
+
+.rightBox {
+  top: 3rem;
+  right: 6rem;
+  left: 50rem;
+  margin-bottom: 3rem;
+}
+
+.button {
+  width: 367px;
+  height: 58px;
+  left: 693px;
+  top: 944px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #52a7e4;
+  border-radius: 15px;
+}
+
+.buttonDiv {
+  display: flex;
+  justify-items: center;
+  transition: all 0.7s ease-in-out;
+}
+
+.button:hover {
+  background: #0a68ab;
+  transform: scale(1.04);
+  transition: all 0.07s ease-in-out;
+}
