@@ -53,39 +53,81 @@ namespace MEVIO.Controllers
 
             return Redirect("/ZapStudent/Index");
         }
-        public IActionResult ZapTeacher(string NameUser,string Email, string Password,DateTime LastTime,DateTime Birthdate,string Phone,string DocumentNumber,DateTime DatePasport,string PathImgAva, string TIN)
+        public IActionResult ZapTeacher([Bind] User user)
         {
+            //string NameUser,string Email, string Password,DateTime LastTime,DateTime Birthdate,string Phone,string DocumentNumber,DateTime DatePasport, string TIN
             var roleId = Request.Form["UserRoleId"];
             var UserRole = context?.UserRoles.FirstOrDefault(o=>o.UserRoleName.Equals(roleId))?.Id;
+
+            ////if (Request.Form.Files.Count > 0)
+            ////{
+            //    var files = Request.Form.Files;
+            //    var ava = new User();
+
+            //    var passrom = $@"{Directory.GetCurrentDirectory()}/wwwroot/Imeg1/{user.UserName.Replace(" ", "-")}";
+            //    Directory.CreateDirectory(passrom);
+
+            //    user.PathImgAVA = $"{files[0].FileName}";
+
+            //    var path = $@"{Directory.GetCurrentDirectory()}/wwwroot/Imeg1/{user.UserName.Replace(" ", "-")}";
+            //    Directory.CreateDirectory(path);
+            //    var imeg = new User();
+
+            //    // Loop through files collection
+            //    for (var i = 0; i < files.Count; i++)
+            //    {
+            //        string FullPath = $"{path}/{files[i].FileName}";
+            //        using (var fs = new FileStream(FullPath, FileMode.Create))
+            //        {
+            //            files[i].CopyTo(fs);
+            //        }
+
+            //        ava.PathImgAVA = files[i].FileName;
+
+            //        // Add imeg object to the context
+            //        //await context.AddAsync(imeg);
+            //    }
+            ////}
+
+            //// Check if user object properties are not null before accessing them
+            ////if (user != null && user.UserName != null)
+            ////{
+            //    var passrom = $@"{Directory.GetCurrentDirectory()}/wwwroot/Imeg1/{user.UserName.Replace(" ", "-")}";
+            //    Directory.CreateDirectory(passrom);
+            //}
+            //user.UserRoleId = UserRole;
+            //context.Users.Add(user);
+
 
             var ava = new User();
 
             IFormFileCollection files = Request.Form.Files;
+            Console.WriteLine(files[0].FileName);
 
-            var passrom = $@"{Directory.GetCurrentDirectory()}/wwwroot/Imeg1/{NameUser.Replace(" ", "-")}";
+            var passrom = $@"{Directory.GetCurrentDirectory()}/wwwroot/Imeg1/{user.UserName.Replace(" ", "-")}";
             Directory.CreateDirectory(passrom);
-           
-            Console.WriteLine(PathImgAva);
-           // PathImgAva = $"{files[0].FileName}";
-            
-            var path = $@"{Directory.GetCurrentDirectory()}/wwwroot/Imeg1/{NameUser.Replace(" ", "-")}";
-            Directory.CreateDirectory(path);
-            var imeg = new User();
-            foreach (var file in files)
-            {
-                string FullPath = $"{path}/{file.FileName}";
-                using (var fs = new FileStream(FullPath, FileMode.Create))
-                {
-                     file.CopyTo(fs);
-                }
+
+            //Console.WriteLine(PathImgAva);
+            user.PathImgAVA = $@"{files[0].FileName}";
+
+            //var path = $@"{Directory.GetCurrentDirectory()}/wwwroot/Imeg1/{user.UserName.Replace(" ", "-")}";
+            //Directory.CreateDirectory(path);
+            //var imeg = new User();
+            //foreach (var file in files)
+            //{
+            //    string FullPath = $@"{path}/{file.FileName}";
+            //    using (var fs = new FileStream(FullPath, FileMode.Create))
+            //    {
+            //        file.CopyTo(fs);
+            //    }
 
 
-                ava.PathImgAVA = file.FileName; /*imeg.Pass.Split("wwwroot")[1];*/
-                //await context.AddAsync(imeg);
-            }
+            //    ava.PathImgAVA = file.FileName; /*imeg.Pass.Split("wwwroot")[1];*/
+            //    //await context.AddAsync(imeg);
+            //}
+            //UserRoleId= UserRole, UserName= UserName, Email=Email,Password=Password,LastTimeSignIn=LastTime,Birthdate=Birthdate,Phone=Phone,PassportNumber=DocumentNumber,DateOfPassportIssue=DatePasport, TIN=TIN
 
 
-            context.Add(new User() { UserRoleId= UserRole, UserName=NameUser,Email=Email,Password=Password,LastTimeSignIn=LastTime,Birthdate=Birthdate,Phone=Phone,PassportNumber=DocumentNumber,DateOfPassportIssue=DatePasport, TIN=TIN });
             context.SaveChanges();
             //ViewBag.Userses = context.Users.AsNoTracking().ToList();
             return Redirect("/ZapStudent/Index");

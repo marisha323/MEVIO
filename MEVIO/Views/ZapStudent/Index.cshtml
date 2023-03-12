@@ -278,11 +278,11 @@
             </form>
 
 
-            <form enctype="multipart/form-data" asp-action="ZapTeacher">
+            <form enctype="multipart/form-data" method="post" asp-action="ZapTeacher">
                 <div id="Teacher" class="contener2">
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 91px; ">Name:</p>
-                        <input class="divStrockZap2" name="NameUser" style="top: 95px;  left: 400px;" placeholder="Oleg">
+                        <input class="divStrockZap2" name="UserName" style="top: 95px;  left: 400px;" placeholder="Oleg">
                     </div>
 
                     <div class="div-p-input">
@@ -298,7 +298,7 @@
                     @*Date LastTime*@
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 91px; ">Last Time Sign In:</p>
-                        <input type="date" name="LastTime" class="divStrockZap2 conData" style="top: 95px;  left: 400px;">
+                        <input type="date" name="LastTimeSignIn" class="divStrockZap2 conData" style="top: 95px;  left: 400px;">
                     </div>
 
                     @*Date Birthdate*@
@@ -325,18 +325,18 @@
 
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 365px;">PersonDocumentNumber:</p>
-                        <input type="text" class="divStrockZap2" name="DocumentNumber" style="top: 361px;  left: 400px;" placeholder="2834791392487">
+                        <input type="text" class="divStrockZap2" name="PassportNumber" style="top: 361px;  left: 400px;" placeholder="2834791392487">
                     </div>
 
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 421px;">Date Of Issue Pasport:</p>
-                        <input type="date" class="divStrockZap2 conData" name="DatePasport" style="top: 425px;  left: 400px;" placeholder="Number Pasport">
+                        <input type="date" class="divStrockZap2 conData" name="DateOfPassportIssue" style="top: 425px;  left: 400px;" placeholder="Number Pasport">
                     </div>
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 817px;">Photo:</p>
                        
-                        <label class="input-file-button divStrockZap2" style="margin-left:21.5rem" for="files" tabindex="0">Choose a file</label>
-                        <input class="input-file-hidden"  type="file" id="files" name="PathImgAva" multiple tabindex="-1">
+                        <label class="input-file-button divStrockZap2"  style="margin-left:21.5rem" for="files" tabindex="0">Choose a file</label>
+                        <input class="input-file-hidden" type="file" id="files" name="files"  tabindex="-1">
                     </div>
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 487px;">TIN:</p>
@@ -360,6 +360,11 @@
 
 
 </body>
+
+
+
+
+
 @*
 <script>
     function toggleDiscountDescription() {
