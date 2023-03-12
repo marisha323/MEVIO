@@ -21,7 +21,7 @@
 </style>
 <body>
 
-    @model Student
+    @*@model Student*@
 
     <div class="contener">
 
@@ -84,7 +84,143 @@
             </form>
 
 
+
+
+
+
+            @*Sasha*@
+
             <form enctype="multipart/form-data" asp-action="ZapStudent">
+                <div id="Student" class="contener2">
+                    <div class="div-p-input">
+                        <p class="divStrockZap" style="top: 91px; ">Name:</p>
+                        <input type="text" class="divStrockZap2" name="StudentName" style="top: 95px;  left: 400px;" placeholder="Oleg">
+                    </div>
+
+                    <div class="div-p-input">
+                        <p class="divStrockZap" style="top:157px">Phone:</p>
+                        <input type="text" class="divStrockZap2" name="Phone" style="top:161px;  left: 400px;" placeholder="38069812114">
+                    </div>
+
+                    <div class="div-p-input">
+                        <p class="divStrockZap" style="top:223px">Email:</p>
+                        <input type="text" class="divStrockZap2" name="Email" style="top: 227px;  left: 400px;" placeholder="blabla@gmail.com">
+                    </div>
+
+                    <div class="div-p-input">
+                        <p class="divStrockZap" style="top:289px">DataBerthday:</p>
+                        <input type="text" class="divStrockZap2 ConData" name="Birthdate" style="top: 293px;  left: 400px;" placeholder="20.05.2004">
+                    </div>
+
+                    <div class="div-p-input">
+                        <p class="divStrockZap" style="top:365px">MyStatLogin:</p>
+                        <input type="text" class="divStrockZap2" name="MyStatLogin" style="top: 361px;  left: 400px;" placeholder="teny_ny02">
+                    </div>
+
+                    <div class="div-p-input">
+                        <p class="divStrockZap" style="top:421px">Password:</p>
+                        <input type="text" class="divStrockZap2" name="MyStatPassword" style="top: 425px;  left: 400px;" placeholder="8g3Q0glm4">
+                    </div>
+
+
+
+                    <div class="div-p-input">
+                        <p class="divStrockZap" style="top: 553px;">Login365:</p>
+                        <input type="text" class="divStrockZap2" name="Login365" style="top: 554px;  left: 400px;" placeholder="blabla@student.itstep.org">
+                    </div>
+
+                    <div class="div-p-input">
+                        <p class="divStrockZap" style="top: 619px;">StudentCode:</p>
+                        <input type="text" class="divStrockZap2" name="StudentCode" style="top: 623px;  left: 400px;" placeholder="5359118734">
+                    </div>
+
+                    <div class="div-p-input">
+                        <p class="divStrockZap" style="top: 685px;">PersonDocumentNumber:</p>
+                        <input type="text" class="divStrockZap2" name="PersonDocumentNumber" style="top: 685px;  left: 400px;" placeholder="2834791392487">
+                    </div>
+
+                    <div class="div-p-input">
+                        <p class="divStrockZap" style="top: 751px;">DateOfIssuePasport?:</p>
+                        <input type="text" class="divStrockZap2" name="DateOfIssuePassport" style="top: 753px;  left: 400px;" placeholder="Number Pasport">
+                    </div>
+                    <div class="div-p-input">
+                        <p class="divStrockZap" style="top: 817px;">Photo:</p>
+                         <input type="file" class="divStrockZap2" name="PathImgAVA" style="top: 818px;  left: 400px;" placeholder="533535">
+                        <label class="input-file-button divStrockZap2" style="margin-left:21.5rem" for="PathImgAVA" tabindex="0">Choose a file</label>
+                        @*<input class="input-file-hidden" name="PathImgAVA" type="file" id="files"  multiple tabindex="-1">*@
+                    </div>
+                    <div class="div-p-input">
+                        <p class="divStrockZap" style="top: 817px;">TIN:</p>
+                        <input type="text" class="divStrockZap2" name="TIN" style="top: 818px;  left: 400px;" placeholder="533535">
+                    </div>
+
+                    <div class="div-p-input">
+                        <p class="divStrockZap" style="top: 883px;">IsDiscount:</p>
+                        <span class="Chek">
+                            <input namer="IsDicount" value="true" class="divStrockCheckBoxZap2" type="checkbox" onchange="toggleDiscountDescription()" />
+                            <label for="IsDiscount">True</label>
+                        </span>
+                        <span class="Chek">
+                            <input name="IsDicount" value="false" class="divStrockCheckBoxZap2" onchange="toggleDiscountDescription()" type="checkbox" />
+                            <label for="IsDiscount">False</label>
+                        </span>
+                    </div>
+                    <div class="div-p-input">
+                        <p style="color:red;font-size:30px; ">!*</p><p class="divStrockZap" style="top: 487px;">DiscountDescription:</p>
+                        <input type="text" class="divStrockZap2" name="Discount_Description" style="top: 485px;  left: 400px;" placeholder="Invalid">
+                    </div>
+                    <div id="hiden">
+
+
+                       
+
+                        <div class="div-p-input">
+                            <p class="divStrockZap" style="top: 949px;">DiscountSum:</p>
+                            <input type="text" class="divStrockZap2" name="DiscountSum" style="top: 949px;  left: 400px;" placeholder="500 UAN">
+                        </div>
+                    </div>
+
+
+                    <div class="div-p-input">
+                    <p class="divStrockZap" style="top: 949px;">Education Form:</p>
+
+                    @*Sahsa*@
+                    @*<select name="Contract" class="divStrockZap2" >
+
+                    <option selected>Education Form...</option>
+                    @foreach (var item in ViewBag.Contract)
+                    {
+                    <option value="@item.">@item.DateStamp</option>
+                    }
+                    </select>*@
+
+                    </div>
+
+                    <div class="classPodcherk"> </div>
+
+
+                    <div class="div-buttons2">
+                        <input class="buttonstyleStudent2" type="button" value="Заповнити договір">
+                        <input class="buttonstyleTeaher2" type="submit" value="Зберегти">
+                    </div>
+                </div>
+
+            </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            @*<form enctype="multipart/form-data" asp-action="ZapStudent">
                 <div id="Student" class="contener2">
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 91px; ">Name:</p>
@@ -139,7 +275,6 @@
                     </div>
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 817px;">Photo:</p>
-                        @* <input type="file" class="divStrockZap2" asp-for="@Model.PathImgAVA" style="top: 818px;  left: 400px;" placeholder="533535">*@
                         <label class="input-file-button divStrockZap2" style="margin-left:21.5rem" for="files" tabindex="0">Choose a file</label>
                         <input class="input-file-hidden" asp-for="@Model.PathImgAVA" type="file" id="files" name="files" multiple tabindex="-1">
                     </div>
@@ -150,7 +285,6 @@
 
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 883px;">IsDiscount:</p>
-                        @*<input class="divStrockZap2" style="top: 883px;  left: 400px;" placeholder="True">*@
                         <span class="Chek">
                             <input asp-for="@Model.IsDicount" value="true" class="divStrockCheckBoxZap2" type="checkbox" onchange="toggleDiscountDescription()" />
                             <label for="IsDiscount">True</label>
@@ -167,7 +301,7 @@
                     <div id="hiden">
 
 
-                       
+
 
                         <div class="div-p-input">
                             <p class="divStrockZap" style="top: 949px;">DiscountSum:</p>
@@ -184,7 +318,7 @@
                     <option value="@item.">@item.DateStamp</option>
                     }
                     </select>
-                    </div>*@
+                    </div>
 
                     <div class="classPodcherk"> </div>
 
@@ -195,7 +329,7 @@
                     </div>
                 </div>
 
-            </form>
+            </form>*@
 
 
             <form enctype="multipart/form-data" asp-action="ZapContract">
@@ -278,7 +412,10 @@
             </form>
 
 
-            <form enctype="multipart/form-data" method="post" asp-action="ZapTeacher">
+
+
+
+            <form enctype="multipart/form-data"  asp-action="ZapTeacher">
                 <div id="Teacher" class="contener2">
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 91px; ">Name:</p>
@@ -335,8 +472,9 @@
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 817px;">Photo:</p>
                        
-                        <label class="input-file-button divStrockZap2"  style="margin-left:21.5rem" for="files" tabindex="0">Choose a file</label>
-                        <input class="input-file-hidden" type="file" id="files" name="files"  tabindex="-1">
+                        <label class="input-file-button divStrockZap2" style="margin-left:21.5rem" for="fileTeacher" tabindex="0">Choose a file</label>
+                        @*<input class="input-file-hidden" type="file" id="files" name="files"  tabindex="-1">*@
+                        <input type="file" class="divStrockZap2" name="PathImgAVA" id="fileTeacher" placeholder="Choose file">
                     </div>
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 487px;">TIN:</p>
