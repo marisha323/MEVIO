@@ -9,11 +9,11 @@
         public string Email { get; set; }
         public string Password { get; set; }
         public string Phone { get; set; }
-        public string PathImgAVA { get; set; }
+        public string? PathImgAVA { get; set; }
 
         public string TelegramJson { get; set; }
 
-        public string PathImgAVA { get; set; }
+        
 
         public ICollection<TasksUsers> TasksUsers { get; set; }
         public ICollection<MeasureUsers> MeasureUsers { get; set; }
@@ -32,7 +32,7 @@
         public string PassportNumber { get; set; }
         public DateTime DateOfPassportIssue { get; set; }
         public string TIN { get; set; }
-        public bool IsActive { get; set; }//в сети не в сити
+        public bool IsActive { get; set; }//в сети не в сeти
         public ICollection<UserAcceptStatus> UserAcceptStatuses { get; set; }
 
         
