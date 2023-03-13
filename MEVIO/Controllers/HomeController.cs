@@ -138,10 +138,10 @@ namespace MEVIO.Controllers
             ViewBag.Useres = imegs;
             //var data = context.Events.FirstOrDefault().Begin;
             //ViewBag.Date = $"{data.Year}-{data.Month}-{data.Day}";
-            var data = context.Events.FirstOrDefault().Begin;
-            ViewBag.Date = data.ToString("yyyy-MM-dd");
-            var dataEnd = context.Events.FirstOrDefault().Begin;
-            ViewBag.DateEnd = dataEnd.ToString("yyyy-MM-dd");
+            //var data = context.Events.FirstOrDefault().Begin;
+            //ViewBag.Date = data.ToString("yyyy-MM-dd");
+            //var dataEnd = context.Events.FirstOrDefault().Begin;
+            //ViewBag.DateEnd = dataEnd.ToString("yyyy-MM-dd");
 
 
             return View(context.Events.FirstOrDefault());

@@ -1,48 +1,47 @@
-var X;
-var clientX;
 
-function SetClientX(value){
-    if(clientX==null)
-        clientX=value;
-}
+var offsetX;
+var parentLeft;
+var parentWidth;
+const changeBlock = document.querySelector(".time-change-block");
+var changeBlockWidth;
 
-$(".time-change-block").on("mousedown",function(e){
 
-    SetClientX(e.clientX);
-    
-    
-    
-    $(".time-change-block").css("left",e.clientX-clientX);
 
-    $("#bodyDiv").on("mousemove", function (e) {
+$(".time-change-block").on("mousedown", function (e) {
 
-        const blockWidth=$(".time-change-block").css("width").split('p')[0];
-        const parentWidth=$(".time-blocks").css("width").split('p')[0];
-        const End=Math.floor(parentWidth-blockWidth);
+    const parentDiv = document.querySelector(".time-blocks");
 
-        X=e.clientX-clientX;
-        
-        $(".time-change-block").css("left",X);
+    parentLeft = Math.ceil(parentDiv.getBoundingClientRect().left);
 
-        if(X>=End){
-            X=End;
-            console.log(X);
-            $(".time-change-block").css("left",X);
-        }
 
-        if(X<=0){
-            X=0;
-            $(".time-change-block").css("left",X);
-        }
+    parentWidth = parentDiv.getBoundingClientRect().width;
 
-        
+    offsetX = e.offsetX;
+
+    changeBlockWidth = changeBlock.getBoundingClientRect().width
+
+
+
+    $(".time-blocks").on("mousemove", function (e) {
+
+        const endX = parentWidth - changeBlockWidth;
+        let blockLeft = e.clientX - parentLeft - offsetX;
+
+        if (blockLeft < 0) blockLeft = 0;
+        if (blockLeft > endX) blockLeft = endX;
+
+        changeBlock.style.left = `${blockLeft}px`;
+
     });
+
+
+
+
+
 });
 
-$(".time-change-block").on("mouseup",function(e){
-    $("#bodyDiv").off("mousemove");
+$(".time-blocks").on("mouseup", function (e) {
+    $(".time-span-row").off("mousemove");
 });
 
-$("#bodyDiv").on("mouseup", function (e) {
-    $("#bodyDiv").off("mousemove");
-});
+
