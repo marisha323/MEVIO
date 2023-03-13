@@ -29,4 +29,8 @@
     <None Include="Views\ZapStudent\ZapTeacher.cshtml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Img1\" />
+  </ItemGroup>
+
 </Project>
