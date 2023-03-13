@@ -1,4 +1,6 @@
-﻿namespace MEVIO.Models
+﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+
+namespace MEVIO.Models
 {
     public class MeasureUsers
     {
@@ -8,6 +10,7 @@
         public int? UserId { get; set; }
        public virtual User User { get; set; }
 
+        public bool IsCreator { get;set; }
         public int? UserMeasureAcceptStatusId { get; set; }
         public virtual UserMeasureAcceptStatus UserMeasureAcceptStatus{ get; set; }
         public MeasureUsers()

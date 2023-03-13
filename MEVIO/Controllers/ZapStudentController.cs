@@ -58,242 +58,153 @@ namespace MEVIO.Controllers
         
         
         
-        public async Task<IActionResult> ZapTeacherAsync(/*[Bind] User user*/)
+        public IActionResult ZapTeacher([Bind] User user)
         {
-            //Sasha
+            
 
-            await Console.Out.WriteLineAsync("Hello");
+            var roleId = Request.Form["UserRoleId"];
+            var UserRole = context?.UserRoles.FirstOrDefault(o => o.UserRoleName.Equals(roleId))?.Id;
 
-            var form = Request.Form;
 
 
-            var name = form["UserName"];
-            var email = form["Email"];
+
+
             
             var files = Request.Form.Files;
-            foreach (var file in files)
-            {
-                await Console.Out.WriteLineAsync(file.FileName);
-            }
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            //string NameUser,string Email, string Password,DateTime LastTime,DateTime Birthdate,string Phone,string DocumentNumber,DateTime DatePasport, string TIN
-            
-            
-            //var roleId = Request.Form["UserRoleId"];
-            //var UserRole = context?.UserRoles.FirstOrDefault(o=>o.UserRoleName.Equals(roleId))?.Id;
-
-            
-            
-            
-            
-            ////if (Request.Form.Files.Count > 0)
-            ////{
-            //    var files = Request.Form.Files;
-            //    var ava = new User();
-
-            //    var passrom = $@"{Directory.GetCurrentDirectory()}/wwwroot/Imeg1/{user.UserName.Replace(" ", "-")}";
-            //    Directory.CreateDirectory(passrom);
-
-            //    user.PathImgAVA = $"{files[0].FileName}";
-
-            //    var path = $@"{Directory.GetCurrentDirectory()}/wwwroot/Imeg1/{user.UserName.Replace(" ", "-")}";
-            //    Directory.CreateDirectory(path);
-            //    var imeg = new User();
-
-            //    // Loop through files collection
-            //    for (var i = 0; i < files.Count; i++)
-            //    {
-            //        string FullPath = $"{path}/{files[i].FileName}";
-            //        using (var fs = new FileStream(FullPath, FileMode.Create))
-            //        {
-            //            files[i].CopyTo(fs);
-            //        }
-
-            //        ava.PathImgAVA = files[i].FileName;
-
-            //        // Add imeg object to the context
-            //        //await context.AddAsync(imeg);
-            //    }
-            ////}
-
-            //// Check if user object properties are not null before accessing them
-            ////if (user != null && user.UserName != null)
-            ////{
-            //    var passrom = $@"{Directory.GetCurrentDirectory()}/wwwroot/Imeg1/{user.UserName.Replace(" ", "-")}";
-            //    Directory.CreateDirectory(passrom);
-            //}
-            //user.UserRoleId = UserRole;
-            //context.Users.Add(user);
-
-
-            
-            
-            
-            
-            
-            
-            
-            //var ava = new User();
-
-            //IFormFileCollection files = Request.Form.Files;
-            //Console.WriteLine(files[0].FileName);
 
             //var passrom = $@"{Directory.GetCurrentDirectory()}/wwwroot/Imeg1/{user.UserName.Replace(" ", "-")}";
             //Directory.CreateDirectory(passrom);
 
-            ////Console.WriteLine(PathImgAva);
-            //user.PathImgAVA = $@"{files[0].FileName}";
+            //user.PathImgAVA = $"{files[0].FileName}";
 
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            //var path = $@"{Directory.GetCurrentDirectory()}/wwwroot/Imeg1/{user.UserName.Replace(" ", "-")}";
-            //Directory.CreateDirectory(path);
-            //var imeg = new User();
+            var passrom2 = $@"{Directory.GetCurrentDirectory()}/wwwroot/Img1/{user.UserName.Replace(" ", "-")}";
+            Directory.CreateDirectory(passrom2);
+            user.PathImgAVA = $"{files[0].FileName}";
+
+            // Loop through files collection
+
+            var path = $@"{Directory.GetCurrentDirectory()}/wwwroot/Img1/{user.UserName.Replace(" ", "-")}";
+            Directory.CreateDirectory(path);
+            foreach (var file in files)
+            {
+
+
+                //imeg = new Imeg();
+                //imeg.ProductId = context.Products.Where(o => o.Name == product1.Name).FirstOrDefault().Id;
+
+                //imeg.Pass = $"{file.FileName}";
+                string FullPath = $"{path}/{file.FileName}";
+                using (var fs = new FileStream(FullPath, FileMode.Create))
+                {
+                     file.CopyTo(fs);
+                }
+                var imeg = new User();
+
+                imeg.PathImgAVA = file.FileName; /*imeg.Pass.Split("wwwroot")[1];*/
+                //await context.AddAsync(imeg);
+            }
+
+
+
+
+            //var path2 = $@"{Directory.GetCurrentDirectory()}/wwwroot/Imeg1/{user.UserName.Replace(" ", "-")}";
+            //Directory.CreateDirectory(path2);
             //foreach (var file in files)
             //{
-            //    string FullPath = $@"{path}/{file.FileName}";
+
+
+                
+            //    string FullPath = $"{path2}/{file.FileName}";
             //    using (var fs = new FileStream(FullPath, FileMode.Create))
             //    {
-            //        file.CopyTo(fs);
+            //        await file.CopyToAsync(fs);
             //    }
+            //    var imeg = new User();
 
-
-            //    ava.PathImgAVA = file.FileName; /*imeg.Pass.Split("wwwroot")[1];*/
-            //    //await context.AddAsync(imeg);
+            //    imeg.PathImgAVA = file.FileName; 
             //}
-            //UserRoleId= UserRole, UserName= UserName, Email=Email,Password=Password,LastTimeSignIn=LastTime,Birthdate=Birthdate,Phone=Phone,PassportNumber=DocumentNumber,DateOfPassportIssue=DatePasport, TIN=TIN
 
+          
+            user.UserRoleId = UserRole;
+            context.Users.Add(user);
 
-            //context.SaveChanges();
-            //ViewBag.Userses = context.Users.AsNoTracking().ToList();
+            context.SaveChanges();
+            ViewBag.Userses = context.Users.AsNoTracking().ToList();
             return Redirect("/ZapStudent/Index");
         }
 
 
 
-        //Sasha
-
-        //////////////////////////////////////////////////////////////////////////////////////////
-
-        public async Task<IActionResult> ZapStudent([Bind] Student student)
-        {
-            var Student = student;
-            var files=Request.Form.Files;
-
-
-            return Redirect("/ZapStudent/Index");
-        }
-
-
-
-        //////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
+       
         //Marina
 
         //////////////////////////////////////////////////////////////////////////////////////////
         ///
-        //public async Task<IActionResult> ZapStudent([Bind("Id,StudentName,Phone,Email,MyStatLogin,MyStatPassword,Login365,StudentCode,PersonDocumentNumber,DateOfIssuePassport,TIN,IsDicount,Discount_Description,DiscountSum,Birthdate,PathImgAVA")] Student student)
-        //{
-        //    //var contract = Request.Form["EducationForm"];
-        //    //var catId = context?.EducationForms?.FirstOrDefault(o => o.EducationFormName.Equals(contract)).Id;
-        //    //product1.CategoryId = catId;
+        public async Task<IActionResult> ZapStudent([Bind("Id,StudentName,Phone,Email,MyStatLogin,MyStatPassword,Login365,StudentCode,PersonDocumentNumber,DateOfIssuePassport,TIN,IsDicount,Discount_Description,DiscountSum,Birthdate,PathImgAVA")] Student student)
+        {
+            //var contract = Request.Form["EducationForm"];
+            //var catId = context?.EducationForms?.FirstOrDefault(o => o.EducationFormName.Equals(contract)).Id;
+            //product1.CategoryId = catId;
 
 
 
 
-        //    //await context.SaveChangesAsync();
+            //await context.SaveChangesAsync();
 
-        //    IFormFileCollection files = Request.Form.Files;
+            IFormFileCollection files = Request.Form.Files;
 
-        //    var passrom = $@"{Directory.GetCurrentDirectory()}/wwwroot/Imeg2/{student.StudentName.Replace(" ", "-")}";
-        //    Directory.CreateDirectory(passrom);
-        //    student.PathImgAVA = $"{files[0].FileName}";
-        //    //using (var fs = new FileStream(product1.PathLong, FileMode.Create))
-        //    //{
-        //    //    await files[0].CopyToAsync(fs);
-        //    //}
-        //    //product1.PathLong = product1.PathLong.Split("wwwroot")[1];
-        //    //context.Students.Add(student);
-        //    //await context.SaveChangesAsync();
+            var passrom = $@"{Directory.GetCurrentDirectory()}/wwwroot/Imeg2/{student.StudentName.Replace(" ", "-")}";
+            Directory.CreateDirectory(passrom);
+            student.PathImgAVA = $"{files[0].FileName}";
+            //using (var fs = new FileStream(product1.PathLong, FileMode.Create))
+            //{
+            //    await files[0].CopyToAsync(fs);
+            //}
+            //product1.PathLong = product1.PathLong.Split("wwwroot")[1];
+            //context.Students.Add(student);
+            //await context.SaveChangesAsync();
 
-        //    //product1 = context.Products.Where(o => o.Name == product1.Name).AsNoTracking().FirstOrDefault();
-        //    // context.Imegs.Add(new Imeg() { Pass = files[0].FileName, ProductId = product1.Id });
-        //    // context.AddAsync(product1);
+            //product1 = context.Products.Where(o => o.Name == product1.Name).AsNoTracking().FirstOrDefault();
+            // context.Imegs.Add(new Imeg() { Pass = files[0].FileName, ProductId = product1.Id });
+            // context.AddAsync(product1);
 
-        //    //await context.SaveChangesAsync();
+            //await context.SaveChangesAsync();
 
-        //    //for (int i = 1; i < files.Count; i++)
-        //    //{}
-        //    var path = $@"{Directory.GetCurrentDirectory()}/wwwroot/Imeg2/{student.StudentName.Replace(" ", "-")}";
-        //    Directory.CreateDirectory(path);
-        //    foreach (var file in files)
-        //    {
-
-
-        //        //imeg = new Imeg();
-        //        //imeg.ProductId = context.Products.Where(o => o.Name == product1.Name).FirstOrDefault().Id;
-
-        //        //imeg.Pass = $"{file.FileName}";
-        //        string FullPath = $"{path}/{file.FileName}";
-        //        using (var fs = new FileStream(FullPath, FileMode.Create))
-        //        {
-        //            await file.CopyToAsync(fs);
-        //        }
-        //        var imeg = new Student();
-
-        //        imeg.PathImgAVA = file.FileName; /*imeg.Pass.Split("wwwroot")[1];*/
-        //        //await context.AddAsync(imeg);
-        //    }
+            //for (int i = 1; i < files.Count; i++)
+            //{}
+            var path = $@"{Directory.GetCurrentDirectory()}/wwwroot/Imeg2/{student.StudentName.Replace(" ", "-")}";
+            Directory.CreateDirectory(path);
+            foreach (var file in files)
+            {
 
 
+                //imeg = new Imeg();
+                //imeg.ProductId = context.Products.Where(o => o.Name == product1.Name).FirstOrDefault().Id;
+
+                //imeg.Pass = $"{file.FileName}";
+                string FullPath = $"{path}/{file.FileName}";
+                using (var fs = new FileStream(FullPath, FileMode.Create))
+                {
+                    await file.CopyToAsync(fs);
+                }
+                var imeg = new Student();
+
+                imeg.PathImgAVA = file.FileName; /*imeg.Pass.Split("wwwroot")[1];*/
+                //await context.AddAsync(imeg);
+            }
 
 
 
 
 
-        //    context.Students.Add(student);
-        //    await context.SaveChangesAsync();
-        //   // ViewBag.Students = context.Students.AsNoTracking().ToList();
-        //    return Redirect("/ZapStudent/Index");
-        //}
+
+
+            context.Students.Add(student);
+            await context.SaveChangesAsync();
+            // ViewBag.Students = context.Students.AsNoTracking().ToList();
+            return Redirect("/ZapStudent/Index");
+        }
 
 
         //////////////////////////////////////////////////////////////////////////////////////////
@@ -305,9 +216,9 @@ namespace MEVIO.Controllers
         {
             ViewBag.Status = context.ClientStatuses.AsNoTracking().ToList();
             ViewBag.ClientID = context.Clients.AsNoTracking().ToList();
-            ViewBag.Students = context.Students.AsNoTracking().ToList();
-            ViewBag.RoleId=context.UserRoles.AsNoTracking().ToList();
             //ViewBag.Students = context.Students.AsNoTracking().ToList();
+            ViewBag.RoleId=context.UserRoles.AsNoTracking().ToList();
+            ViewBag.Students = context.Students.AsNoTracking().ToList();
             //ViewBag.Students = context.Students.FirstOrDefault().StudentName;
             //ViewBag.Students=context.Students.AsNoTracking().Where(s => s.StudentName != null).ToList();
             // ViewBag.StudentID = context.Students

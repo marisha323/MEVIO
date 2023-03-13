@@ -282,6 +282,7 @@ textarea {
     border: 1px solid #52a7e4;
     border-radius: 1rem;
     margin: 0.7rem;
+    position:relative;
 }
 
 .memb {
@@ -588,6 +589,10 @@ input:focus {
         background: linear-gradient(180deg, #00c6fb, #005bea);
     }
 
+    .mainBox{
+        position:absolute;
+    }
+
 .inBox {
     display: flex;
     justify-items: center;
@@ -598,12 +603,17 @@ input:focus {
     width: 27.51rem;
     margin-left: 0.428rem;
     margin-right: 1.214rem;
+
 }
 
     .inBox:hover {
         background-color: #52a7e4;
+        
     }
 
+    .inBox p:hover {
+        color: #111624;
+    }
     .inBox img {
         width: 2rem;
         height: 2rem;
@@ -613,6 +623,7 @@ input:focus {
         border: 1px solid #a0d7ff;
         margin-left: 0.7rem;
     }
+
 
     .inBox p {
         width: 7.857rem;
