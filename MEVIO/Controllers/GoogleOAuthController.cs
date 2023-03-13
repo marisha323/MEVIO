@@ -1,14 +1,14 @@
-﻿using Google.Apis.Auth;
+﻿//using Google.Apis.Auth;
 using Mevio2Test.Helhers;
 using Mevio2Test.Servises;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using Google.Apis.Auth.OAuth2.Mvc;
-using Google.Apis.Json;
-using Google.Apis.Plus.v1;
-using Google.Apis.Plus.v1.Data;
-using Google.Apis.Services;
-using Google.Apis.Util.Store;
+//using Google.Apis.Auth.OAuth2.Mvc;
+//using Google.Apis.Json;
+//using Google.Apis.Plus.v1;
+//using Google.Apis.Plus.v1.Data;
+//using Google.Apis.Services;
+//using Google.Apis.Util.Store;
 
 
 
@@ -81,7 +81,7 @@ namespace Mevio2Test.Controllers
             string codeVerifier = HttpContext.Session.GetString("codeVerifier");
             var redirectUrl = "http://localhost:5001/GoogleOauth/Code";
 
-           // var tokenResult = GoogleOAuthService.ExchangeCodeOnTokenAsync(code, codeVerifier, redirectUrl);
+            var tokenResult = GoogleOAuthService.ExchangeCodeOnTokenAsync(code, codeVerifier, redirectUrl);
 
 
 

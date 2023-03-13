@@ -16,9 +16,9 @@ namespace MEVIO.Controllers
         {
             /*context.Users.Add(user);
             await context.SaveChangesAsync();*/
-            ViewBag.Students3 = context.Clients.AsNoTracking().ToList();
+            //ViewBag.Students3 = context.Clients.AsNoTracking().ToList();
             /* return View(context.Users.FirstOrDefault());*/
-            ViewBag.Students = context.Students.AsNoTracking().ToList();
+            //ViewBag.Students = context.Students.AsNoTracking().ToList();
 
             return View();
         }
