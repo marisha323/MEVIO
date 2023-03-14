@@ -73,6 +73,9 @@ function ChangeTimeInput() {
 	if (time2Value - beginOfDay > time1Value) {
 		const timeDiff = time2Value - time1Value - beginOfDay;
 		const width = Math.round(timeDiff / milisecByPixel);
+
+		if (width > timeSpanDivWidth-left) width = timeSpanDivWidth;
+
 		timeChangeBlock.style.width = width + "px";
 	}
 

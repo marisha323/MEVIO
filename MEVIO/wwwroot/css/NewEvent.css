@@ -151,26 +151,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     -webkit-appearance: none;
 }
 
-input[type="time"] {
-    box-sizing: border-box;
-    display: flex;
-    height: 2.313rem;
-    width: 5.2rem;
-    flex-direction: row;
-    align-items: center;
-    padding-left: 0.6rem;
-    padding-right: 0.6rem;
-    padding-top: 0.2rem;
-    padding-bottom: 0.375rem;
-    margin-left: 0.5rem;
-    background: #111624;
-    border: 1px solid #52a7e4;
-    border-radius: 0.625rem;
-    color: #52a7e4;
-    font-family: "Inter";
-    font-style: normal;
-    font-size: 1.5rem;
-}
+
 
 .ture {
     width: 2.75rem;
@@ -301,6 +282,7 @@ textarea {
     border: 1px solid #52a7e4;
     border-radius: 1rem;
     margin: 0.7rem;
+    position:relative;
 }
 
 .memb {
@@ -438,11 +420,7 @@ input[type="checkbox"] {
     color: #52a7e4;
 }
 
-.time-span-row {
-    display: grid;
-    grid-template-columns: repeat(18, 1fr);
-    width: 100%;
-}
+
 
     .time-span-row > div {
         border-right: 1px solid #52a7e4;
@@ -611,6 +589,10 @@ input:focus {
         background: linear-gradient(180deg, #00c6fb, #005bea);
     }
 
+    .mainBox{
+        position:absolute;
+    }
+
 .inBox {
     display: flex;
     justify-items: center;
@@ -621,12 +603,17 @@ input:focus {
     width: 27.51rem;
     margin-left: 0.428rem;
     margin-right: 1.214rem;
+
 }
 
     .inBox:hover {
         background-color: #52a7e4;
+        
     }
 
+    .inBox p:hover {
+        color: #111624;
+    }
     .inBox img {
         width: 2rem;
         height: 2rem;
@@ -636,6 +623,7 @@ input:focus {
         border: 1px solid #a0d7ff;
         margin-left: 0.7rem;
     }
+
 
     .inBox p {
         width: 7.857rem;
