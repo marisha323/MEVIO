@@ -339,7 +339,7 @@
             </div>
         }
 
-        
+
 
     </div>
 
@@ -347,179 +347,214 @@
 
 
     @*<div id="monthGrid" class="calendar-grid calGrid">
-        <div class="calendar-header">
-            <div class="month-name pointer">
-                Лютий 2023
-            </div>
-            <div class="flex">
-                <div class="flex-center select-month">
-                    <label style="color: #52A7E4;" class="label pointer">Місяць</label>
-                    <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
-                    <div class="options-month hide">
-                        <div class="option-item">Січень</div>
-                        <div class="option-item">Лютий</div>
-                        <div class="option-item">Березень</div>
-                        <div class="option-item">Квітень</div>
-                        <div class="option-item">Травень</div>
-                        <div class="option-item">Червень</div>
-                        <div class="option-item">Липень</div>
-                        <div class="option-item">Серпень</div>
-                        <div class="option-item">Вересень</div>
-                        <div class="option-item">Жовтень</div>
-                        <div class="option-item">Листопад</div>
-                        <div class="option-item">Грудень</div>
-                    </div>
-                </div>
-
-
-                <div class="flex-center select-years">
-                    <label style="color: #52A7E4;" class="label pointer">Рік</label>
-                    <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
-                    <div class="options-years hide">
-                        <div class="option-item">2020</div>
-                        <div class="option-item">2021</div>
-                        <div class="option-item">2022</div>
-                        <div class="option-item">2023</div>
-                        <div class="option-item">2024</div>
-                        <div class="option-item">2025</div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-
-        <div>
-            <div class="grid">
-                <div class="week-day">Понеділок</div>
-                <div class="week-day">Вівторок</div>
-                <div class="week-day">Середа</div>
-                <div class="week-day">Четвер</div>
-                <div class="week-day">П'ятниця</div>
-                <div class="week-day">Субота</div>
-                <div class="week-day">Неділя</div>
-            </div>
-            <div class="month-days grid">
-                <div class="month-day">
-                    1
-                    <div class="event">
-                        <p>Some kind of event</p>
-                    </div>
-                    <div class="event">
-                        <p>Some kind of event</p>
-                    </div>
-                    <div class="event">
-                        <p>Some kind of event</p>
-                    </div>
-                </div>
-                <div class="month-day">2</div>
-                <div class="month-day">3</div>
-                <div class="month-day">4</div>
-                <div class="month-day">5</div>
-                <div class="month-day">6</div>
-                <div class="month-day">7</div>
-                <div class="month-day">8</div>
-                <div class="month-day">9</div>
-                <div class="month-day">10</div>
-                <div class="month-day">11</div>
-                <div class="month-day">12</div>
-                <div class="month-day">13</div>
-                <div class="month-day">14</div>
-                <div class="month-day">15</div>
-                <div class="month-day">16</div>
-                <div class="month-day">17</div>
-                <div class="month-day">18</div>
-                <div class="month-day">19</div>
-                <div class="month-day">20</div>
-                <div class="month-day">21</div>
-                <div class="month-day">22</div>
-                <div class="month-day">23</div>
-                <div class="month-day">24</div>
-                <div class="month-day">25</div>
-                <div class="month-day">26</div>
-                <div class="month-day">27</div>
-                <div class="month-day">28</div>
-                <div class="month-day">29</div>
-                <div class="month-day">30</div>
-                <div class="month-day">1</div>
-                <div class="month-day">2</div>
-                <div class="month-day">3</div>
-                <div class="month-day">4</div>
-                <div class="month-day">5</div>
-            </div>
-        </div>
-    </div>*@
-
-    <div id="monthGrid" class="calendar-grid calGrid">
-        @foreach (var month in Enumerable.Range(1, 12))
-        {
-            <div class="calendar-header">
-                <div class="month-name pointer">
-                    @DateTimeFormatInfo.CurrentInfo.GetMonthName(month) 2023
-                </div>
-                <div class="flex">
-                    <div class="flex-center select-month">
-                        <label style="color: #52A7E4;" class="label pointer">Місяць</label>
-                        <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
-                        <div class="options-month hide">
-                            @foreach (var m in Enumerable.Range(1, 12))
-                            {
-                                <div class="option-item">@DateTimeFormatInfo.CurrentInfo.GetMonthName(m)</div>
-                            }
-                        </div>
-                    </div>
-
-                    <div class="flex-center select-years">
-                        <label style="color: #52A7E4;" class="label pointer">Рік</label>
-                        <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
-                        <div class="options-years hide">
-                            <div class="option-item">2020</div>
-                            <div class="option-item">2021</div>
-                            <div class="option-item">2022</div>
-                            <div class="option-item">2023</div>
-                            <div class="option-item">2024</div>
-                            <div class="option-item">2025</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <div class="grid">
-                    <div class="week-day">Понеділок</div>
-                    <div class="week-day">Вівторок</div>
-                    <div class="week-day">Середа</div>
-                    <div class="week-day">Четвер</div>
-                    <div class="week-day">П'ятниця</div>
-                    <div class="week-day">Субота</div>
-                    <div class="week-day">Неділя</div>
-                </div>
-                <div class="month-days grid">
-                    @foreach (var day in Enumerable.Range(1, DateTime.DaysInMonth(2023, month)))
-                    {
-                        <div class="month-day">
-                            @day
-                            <div class="event">
-                                <p>Some kind of event</p>
-                            </div>
-                            <div class="event">
-                                <p>Some kind of event</p>
-                            </div>
-                            <div class="event">
-                                <p>Some kind of event</p>
-                            </div>
-                        </div>
-                    }
-                </div>
-            </div>
-        }
+    <div class="calendar-header">
+    <div class="month-name pointer">
+    Лютий 2023
+    </div>
+    <div class="flex">
+    <div class="flex-center select-month">
+    <label style="color: #52A7E4;" class="label pointer">Місяць</label>
+    <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+    <div class="options-month hide">
+    <div class="option-item">Січень</div>
+    <div class="option-item">Лютий</div>
+    <div class="option-item">Березень</div>
+    <div class="option-item">Квітень</div>
+    <div class="option-item">Травень</div>
+    <div class="option-item">Червень</div>
+    <div class="option-item">Липень</div>
+    <div class="option-item">Серпень</div>
+    <div class="option-item">Вересень</div>
+    <div class="option-item">Жовтень</div>
+    <div class="option-item">Листопад</div>
+    <div class="option-item">Грудень</div>
+    </div>
     </div>
 
 
+    <div class="flex-center select-years">
+    <label style="color: #52A7E4;" class="label pointer">Рік</label>
+    <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+    <div class="options-years hide">
+    <div class="option-item">2020</div>
+    <div class="option-item">2021</div>
+    <div class="option-item">2022</div>
+    <div class="option-item">2023</div>
+    <div class="option-item">2024</div>
+    <div class="option-item">2025</div>
+    </div>
+    </div>
+    </div>
+
+    </div>
+
+
+    <div>
+    <div class="grid">
+    <div class="week-day">Понеділок</div>
+    <div class="week-day">Вівторок</div>
+    <div class="week-day">Середа</div>
+    <div class="week-day">Четвер</div>
+    <div class="week-day">П'ятниця</div>
+    <div class="week-day">Субота</div>
+    <div class="week-day">Неділя</div>
+    </div>
+    <div class="month-days grid">
+    <div class="month-day">
+    1
+    <div class="event">
+    <p>Some kind of event</p>
+    </div>
+    <div class="event">
+    <p>Some kind of event</p>
+    </div>
+    <div class="event">
+    <p>Some kind of event</p>
+    </div>
+    </div>
+    <div class="month-day">2</div>
+    <div class="month-day">3</div>
+    <div class="month-day">4</div>
+    <div class="month-day">5</div>
+    <div class="month-day">6</div>
+    <div class="month-day">7</div>
+    <div class="month-day">8</div>
+    <div class="month-day">9</div>
+    <div class="month-day">10</div>
+    <div class="month-day">11</div>
+    <div class="month-day">12</div>
+    <div class="month-day">13</div>
+    <div class="month-day">14</div>
+    <div class="month-day">15</div>
+    <div class="month-day">16</div>
+    <div class="month-day">17</div>
+    <div class="month-day">18</div>
+    <div class="month-day">19</div>
+    <div class="month-day">20</div>
+    <div class="month-day">21</div>
+    <div class="month-day">22</div>
+    <div class="month-day">23</div>
+    <div class="month-day">24</div>
+    <div class="month-day">25</div>
+    <div class="month-day">26</div>
+    <div class="month-day">27</div>
+    <div class="month-day">28</div>
+    <div class="month-day">29</div>
+    <div class="month-day">30</div>
+    <div class="month-day">1</div>
+    <div class="month-day">2</div>
+    <div class="month-day">3</div>
+    <div class="month-day">4</div>
+    <div class="month-day">5</div>
+    </div>
+    </div>
+    </div>*@
+
+    <div id="monthGrid" class="calendar-grid calGrid">
+
+        @{
+            string yearValue = "";
+        }
+        @for (int month = 1; month <= 12; month++)
+        {
+            <div class="calendar-header">
+                <div class="month-name pointer">@DateTimeFormatInfo.CurrentInfo.GetMonthName(month) 2023</div>
+                <div class="select-month">
+                    <label style="color: #52A7E4;" class="label pointer">Місяць</label>
+                    <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                    <div class="options-month hide">
+                        @for (int m = 1; m <= 12; m++)
+                        {
+                            <div class="option-item">@DateTimeFormatInfo.CurrentInfo.GetMonthName(m)</div>
+                        }
+                    </div>
+                </div>
+                <div class="select-years">
+                    <label style="color: #52A7E4;" class="label pointer">Рік</label>
+                    <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                    <div class="options-years hide">
+                        @for (int year = 2020; year <= 2025; year++)
+                        {
+                            <div class="option-item" onclick="setMyValue('@year');">@year</div>
+                        }
+                    </div>
+                </div>
+                <input type="hidden" name="yearValue" id="myInput">
+            </div>
+            <script>
+                function setMyValue(year) {
+                @*var input = document.getElementById("myInput").value;
+                    input = year;*@
+                        '@(yearValue)' = year;
+                    console.log('@(yearValue)');
+                @* document.getElementsByName("yearValue")[0].value = year;
+                    console.log(year);*@
+                                                }
+            </script>
+
+            <div>
+                <div class="grid">
+                    @foreach (var dayOfWeek in Enum.GetValues(typeof(DayOfWeek)))
+                    {
+                        <div class="week-day">@dayOfWeek.ToString()</div>
+                    }
+                </div>
+                <div class="month-days grid">
+                    @{
+                        DateTime firstDayOfMonth = new DateTime(2023, month, 1);
+                        int daysInMonth = DateTime.DaysInMonth(2023, month);
+                        int daysInLastMonth = DateTime.DaysInMonth(2023, month == 1 ? 12 : month - 1);
+                        int firstDayOfWeek = (int)firstDayOfMonth.DayOfWeek;
+                        int lastDayOfWeek = (int)new DateTime(2023, month, daysInMonth).DayOfWeek;
+                        int rows = (firstDayOfWeek + daysInMonth + (6 - lastDayOfWeek)) / 7;
+                        int day = 1 - firstDayOfWeek;
+                    }
+                    @for (int row = 0; row < rows; row++)
+                    {
+                        @for (int col = 0; col < 7; col++)
+                        {
+                            if (day >= 1 && day <= daysInMonth)
+                            {
+                                DateTime currentDate = new DateTime(2023, month, day);
+                                <div class="month-day" id="@currentDate.ToString("yyyy-MM-dd")">
+                                    @day
+                                    @foreach (var item in @ViewBag.Events)
+                                    {
+                                        if (item.Begin.ToString("yyyy-MM-dd") == currentDate.ToString("yyyy-MM-dd"))
+                                        {
+                                            <div class="event">
+                                                <p>@item.EventName</p>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                                day++;
+                            }
+                            else
+                            {
+                                int dayToShow = day < 1 ? daysInLastMonth + day : day - daysInMonth;
+                                <div class="month-day">@dayToShow</div>
+                                day++;
+                            }
+                        }
+                    }
+                </div>
+
+                <script>
+                    var yearValue = document.getElementById("myInput").value;
+                </script>
+
+                <input type="hidden" name="yearValue" id="myInput" value="2023" />
+            </div>
+        }
+    </div>
+    @*this peace of code gets the value of the year when picked*@
+
+    @*///////////////////////////////////////////////*@
     <div id="weekGrid" class="calendar-grid calGrid">
         <div class="calendar-header">
             <div class="month-name pointer">
-                Лютий 2023
+                Лютий 1 2023
             </div>
             <div class="flex">
                 <div class=" flex-center">
@@ -566,22 +601,10 @@
         <div class="week-flex">
             <div class="times-grid">
                 <div class="white-text">День</div>
-                <div class="white-text">8:00</div>
-                <div class="white-text">9:00</div>
-                <div class="white-text">10:00</div>
-                <div class="white-text">11:00</div>
-                <div class="white-text">12:00</div>
-                <div class="white-text">13:00</div>
-                <div class="white-text">14:00</div>
-                <div class="white-text">15:00</div>
-                <div class="white-text">16:00</div>
-                <div class="white-text">17:00</div>
-                <div class="white-text">18:00</div>
-                <div class="white-text">19:00</div>
-                <div class="white-text">20:00</div>
-                <div class="white-text">21:00</div>
-                <div class="white-text">22:00</div>
-                <div class="white-text">23:00</div>
+                @for (int i = 8; i < 24; i++)
+                {
+                    <div class="white-text">@i:00</div>
+                }
             </div>
 
             <div class="week-grid">
@@ -593,130 +616,15 @@
                 <div class="head-day">Суббота</div>
                 <div class="head-day right-radius">Неділя</div>
 
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day">gfytfytftyftyftff</div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day">isjiuhguidhguhuughyg ygyugyugyugyugyg</div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-                <div class="week-day"></div>
-
+                @for (int i = 0; i < 16; i++)
+                {
+                    for (int j = 0; j < 7; j++)
+                    {
+                        <div class="week-day"></div>
+                    }
+                }
             </div>
-
         </div>
-
     </div>
 
     <div id="dayGrid" class="calendar-grid calGrid">
@@ -726,101 +634,78 @@
             </div>
             <div class="flex">
                 <div class=" flex-center">
-                    <img class="pointer trans-left" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                    <img class="pointer trans-left" src="img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
                     <label class="label">День</label>
-                    <img class="pointer trans-right" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                    <img class="pointer trans-right" src="img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
                 </div>
 
                 <div class="flex-center select-month">
                     <label class="label pointer">Місяць</label>
-                    <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                    <img class="arrow pointer" src="img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
                     <div class="options-month hide">
-                        <div class="option-item">Січень</div>
-                        <div class="option-item">Лютий</div>
-                        <div class="option-item">Березень</div>
-                        <div class="option-item">Квітень</div>
-                        <div class="option-item">Травень</div>
-                        <div class="option-item">Червень</div>
-                        <div class="option-item">Липень</div>
-                        <div class="option-item">Серпень</div>
-                        <div class="option-item">Вересень</div>
-                        <div class="option-item">Жовтень</div>
-                        <div class="option-item">Листопад</div>
-                        <div class="option-item">Грудень</div>
+                        @{
+                            string[] arr = new string[] { "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
+                            foreach (var item in arr)
+                            {
+                                        <div class="option-item">item</div>
+                            }
+                        }
                     </div>
                 </div>
 
 
                 <div class="flex-center select-years">
                     <label class="label pointer">Рік</label>
-                    <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                    <img class="arrow pointer" src="img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
                     <div class="options-years hide">
-                        <div class="option-item">2020</div>
-                        <div class="option-item">2021</div>
-                        <div class="option-item">2022</div>
-                        <div class="option-item">2023</div>
-                        <div class="option-item">2024</div>
-                        <div class="option-item">2025</div>
+                        @for (int i = 2020; i < 2026; i++)
+                        {
+                            <div class="option-item">@i</div>
+                        }
                     </div>
                 </div>
             </div>
 
         </div>
-
-
         <div class="day-flex">
             <div class="times-grid">
                 <div class="white-text">День</div>
-                <div class="white-text">8:00</div>
-                <div class="white-text">9:00</div>
-                <div class="white-text">10:00</div>
-                <div class="white-text">11:00</div>
-                <div class="white-text">12:00</div>
-                <div class="white-text">13:00</div>
-                <div class="white-text">14:00</div>
-                <div class="white-text">15:00</div>
-                <div class="white-text">16:00</div>
-                <div class="white-text">17:00</div>
-                <div class="white-text">18:00</div>
-                <div class="white-text">19:00</div>
-                <div class="white-text">20:00</div>
-                <div class="white-text">21:00</div>
-                <div class="white-text">22:00</div>
-                <div class="white-text">23:00</div>
+                @for (int i = 8; i < 24; i++)
+                {
+                    <div class="white-text">@i:00</div>
+                }
             </div>
 
             <div class="day-grid">
-
                 <div class="day-div">
                     П'ятниця 20
                 </div>
-
-                <div class="time-div"></div>
-                <div class="time-div"></div>
-                <div class="time-div"></div>
-                <div class="time-div"></div>
-                <div class="time-div"></div>
-                <div class="time-div"></div>
-                <div class="time-div"></div>
-                <div class="time-div"></div>
-                <div class="time-div"></div>
-                <div class="time-div"></div>
-                <div class="time-div"></div>
-                <div class="time-div"></div>
-                <div class="time-div"></div>
-                <div class="time-div"></div>
-                <div class="time-div"></div>
-                <div class="time-div"></div>
-
-
+                @for (int i = 8; i < 24; i++)
+                {
+                    bool eventFound = false;
+                    foreach (var item in @ViewBag.Events)
+                    {
+                     
+                        string b = item.Begin.ToString(); // example value: "3/15/2023 12:30:00 PM"
+                        string[] parts = b.Split(' '); // splits the string into an array of strings, using the space character as the separator
+                        string timeString = parts[1]; // retrieves the second element of the array, which should be the time
+                        string hourString = timeString.Substring(0, 2);
+                        
+                        if (hourString == i.ToString())
+                        {
+                            <center style="color:white;">
+                                <p style="position:absolute;">@item.Description</p>
+                            </center>
+                            break;
+                        }
+                    }
+                        <div class="time-div"></div>
+                }
             </div>
 
         </div>
     </div>
 </div>
-
-
-
 <script>
     var today = moment().format('DD-MM-YYYY');
     document.getElementById("Date").value = today;
