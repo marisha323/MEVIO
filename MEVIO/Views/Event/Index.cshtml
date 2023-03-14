@@ -140,8 +140,9 @@
                             <img src="/img/girl2.jpg" />
                             <p class="name">Julia Roberts</p>
                         </div>
-                        <button onclick="AddMembers">+ Додати</button>
-                        <div class="mainBox">
+                        <button id="addMemberss">+ Додати</button>                        
+                       
+                        <div class="mainBox" style="display: none">
                             <button class="membersWindow">учасники</button>
 
                             <div class="box">
@@ -156,41 +157,15 @@
                                 </div>  -->
 
                                 <div class="secondBox">
-                                    <div class="inBox">
-                                        <img src="./Img/Indian-Girl-Images-042202.jpg" />
-                                        <p>Джейсон Фрич</p>
-                                        <div class="bird">&#10004;</div>
-                                    </div>
-                                    <div class="inBox">
-                                        <img src="./Img/Indian-Girl-Images-042202.jpg" />
-                                        <p>Джейсон Фрич</p>
-                                        <div class="bird">&#10004;</div>
-                                    </div>
-                                    <div class="inBox">
-                                        <img src="./Img/Indian-Girl-Images-042202.jpg" />
-                                        <p>Джейсон Фрич</p>
-                                        <div class="bird">&#10004;</div>
-                                    </div>
-                                    <div class="inBox">
-                                        <img src="./Img/Indian-Girl-Images-042202.jpg" />
-                                        <p>Джейсон Фрич</p>
-                                        <div class="bird">&#10004;</div>
-                                    </div>
-                                    <div class="inBox">
-                                        <img src="./Img/Indian-Girl-Images-042202.jpg" />
-                                        <p>Джейсон Фрич</p>
-                                        <div class="bird">&#10004;</div>
-                                    </div>
-                                    <div class="inBox">
-                                        <img src="./Img/Indian-Girl-Images-042202.jpg" />
-                                        <p>Джейсон Фрич</p>
-                                        <div class="bird">&#10004;</div>
-                                    </div>
-                                    <div class="inBox">
-                                        <img src="./Img/Indian-Girl-Images-042202.jpg" />
-                                        <p>Джейсон Фрич</p>
-                                        <div class="bird">&#10004;</div>
-                                    </div>
+                                    @foreach (var itemUser in ViewBag.Users)
+                                    {
+                                        <div class="inBox">
+                                            <img src="@itemUser.PathImgAVA" />
+                                            <p>@itemUser.UserName</p>
+                                            <div class="bird">&#10004;</div>
+                                        </div>
+                                    }
+                                                                      
                                 </div>
 
                             </div>
@@ -200,16 +175,10 @@
                 <hr />
 
                 <p class="co">Співробітники</p>
-
-
-
-
-
-
                 <div class="hard">
                     <div class="coWorkers">
                         <div class="people">
-                            <img src="./ImgEvent/girl2.jpg" />
+                            <img src="./Imeg2/Angelina-Joli/beauty-wandel-angelina-jolie-2021-10-18.jpg" />
                             <p class="peopleP">Михайло Фома</p>
                         </div>
                     </div>
@@ -277,13 +246,6 @@
                     </div>
                 </div>
 
-
-
-
-
-
-
-
                 <div class="checkConfirm">
                     <label>
                         Сповіщати про підтвердженні/відмові учасників
@@ -297,22 +259,32 @@
             </div>
         </form>
 
-        <select name="placeSpend">
+        @*@*<select name="placeSpend">
 
             @foreach (Student item in ViewBag.Stud)
             {
                 <option value="@item.Id">@item.StudentName</option>
             }
-        </select>
+        </select>*@
 
     </div>
 
+    <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
 
+ 
     <script>
 
         var dateBegin = document.getElementById("time1");
         var dateEnd = document.getElementById("time2");
 
+        $('#addMemberss').click(function () {
+            $(".mainBox").css("display", "block");
+        });
+
+
+        $('.inBox').click(function(){
+            $(".mainBox").css("display","none");
+        });
 
         function toggleElements(className) {
             var elements = document.getElementsByClassName(className);
@@ -350,12 +322,10 @@
 
     </script>
 
-
-
-    <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
-
     <script src="~/js/scriptEventMini2.js" asp-append-version="true"></script>
 
     <script src="~/js/SashaTimeLine.js" asp-append-version="true"></script>
+
+
 
 </body>
