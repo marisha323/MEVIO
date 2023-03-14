@@ -36,33 +36,6 @@
         background-position: 95%;
         padding: 0.313rem;
     }
-
-    input[type="time"] {
-        box-sizing: border-box;
-        display: flex;
-        height: 2.313rem;
-        /*width: 5.2rem;*/
-        flex-direction: row;
-        align-items: center;
-        padding-left: 0.6rem;
-        padding-right: 0.6rem;
-        padding-top: 0.2rem;
-        padding-bottom: 0.375rem;
-        margin-left: 0.5rem;
-        background: #111624;
-        border: 1px solid #52a7e4;
-        border-radius: 0.625rem;
-        color: #52a7e4;
-        font-family: "Inter";
-        font-style: normal;
-        font-size: 1.2rem;
-    }
-
-    .time-span-row {
-        display: grid;
-        grid-template-columns: repeat(16, 1fr);
-        width: 100%;
-    }
 </style>
 
 <body>
@@ -92,11 +65,11 @@
 
                     <div class="divDate">
                         <input type="date" name="dateStart" />
-                        <input type="time" class="superstyle" id="time1" asp-for="@Model.Begin" />
-                        <div class="ture"></div>
+                        <input type="time" class="superstyle" id="dateBeginInput" asp-for="@Model.Begin" />
+                    <div class="ture"></div>
                         <input type="date" name="dateEnd" />
-                        <input type="time" class="superstyle" id="time2" asp-for="@Model.End" />
-                    </div>
+                        <input type="time" class="superstyle" id="dateEndInput" asp-for="@Model.End" />
+                </div>
 
                     <div class="checkAllDay">
                         <input type="checkbox" id="CheckAllDay" />
@@ -135,12 +108,12 @@
                         <p class="styleP">Учасники</p>
                     </div>
 
-                    <div class="members">
-                        <div class="memb">
-                            <img src="/img/girl2.jpg" />
-                            <p class="name">Julia Roberts</p>
-                        </div>
-                        <button onclick="AddMembers">+ Додати</button>
+                <div class="members">
+                    <div class="memb">
+                        <img src="/img/girl2.jpg" />
+                        <p class="name">Julia Roberts</p>
+                    </div>
+                    <button onclick="AddMembers">+ Додати</button>
                         <div class="mainBox">
                             <button class="membersWindow">учасники</button>
 
@@ -156,41 +129,17 @@
                                 </div>  -->
 
                                 <div class="secondBox">
-                                    <div class="inBox">
-                                        <img src="./Img/Indian-Girl-Images-042202.jpg" />
-                                        <p>Джейсон Фрич</p>
-                                        <div class="bird">&#10004;</div>
-                                    </div>
-                                    <div class="inBox">
-                                        <img src="./Img/Indian-Girl-Images-042202.jpg" />
-                                        <p>Джейсон Фрич</p>
-                                        <div class="bird">&#10004;</div>
-                                    </div>
-                                    <div class="inBox">
-                                        <img src="./Img/Indian-Girl-Images-042202.jpg" />
-                                        <p>Джейсон Фрич</p>
-                                        <div class="bird">&#10004;</div>
-                                    </div>
-                                    <div class="inBox">
-                                        <img src="./Img/Indian-Girl-Images-042202.jpg" />
-                                        <p>Джейсон Фрич</p>
-                                        <div class="bird">&#10004;</div>
-                                    </div>
-                                    <div class="inBox">
-                                        <img src="./Img/Indian-Girl-Images-042202.jpg" />
-                                        <p>Джейсон Фрич</p>
-                                        <div class="bird">&#10004;</div>
-                                    </div>
-                                    <div class="inBox">
-                                        <img src="./Img/Indian-Girl-Images-042202.jpg" />
-                                        <p>Джейсон Фрич</p>
-                                        <div class="bird">&#10004;</div>
-                                    </div>
-                                    <div class="inBox">
-                                        <img src="./Img/Indian-Girl-Images-042202.jpg" />
-                                        <p>Джейсон Фрич</p>
-                                        <div class="bird">&#10004;</div>
-                                    </div>
+
+                                    @foreach (var itemUsers in ViewBag.Users)
+                                    {
+                                        <div class="inBox">
+                                            <img src="@itemUsers.PathImgAVA" />
+                                           @* <img src="~/Imeg2/Jamala/Jamala_1944_cover.jpg" />*@
+                                            <p>@itemUsers.UserName</p>
+                                            <div class="bird">&#10004;</div>
+                                        </div>
+                                    }
+                                    
                                 </div>
 
                             </div>
@@ -201,100 +150,171 @@
 
                 <p class="co">Співробітники</p>
 
-
-
-
-
-
-                <div class="hard">
-                    <div class="coWorkers">
-                        <div class="people">
-                            <img src="./ImgEvent/girl2.jpg" />
-                            <p class="peopleP">Михайло Фома</p>
-                        </div>
+            <div class="hard">
+                <div class="coWorkers">
+                    <div class="people">
+                        <img src="/img/girl2.jpg" />
+                        <p class="peopleP">Михайло Фома</p>
                     </div>
+                </div>
+
+                <div class="shedule">
+                    <div class="day">Субота, Лютий 25</div>
+
+                    <div class="time-span-row">
+                        <div>7-00</div>
+                        <div>8-00</div>
+                        <div>9-00</div>
+                        <div>10-00</div>
+                        <div>11-00</div>
+                        <div>12-00</div>
+                        <div>13-00</div>
+                        <div>14-00</div>
+                        <div>15-00</div>
+                        <div>16-00</div>
+                        <div>17-00</div>
+                        <div>18-00</div>
+                        <div>19-00</div>
+                        <div>20-00</div>
+                        <div>21-00</div>
+                        <div>22-00</div>
+                        <div>23-00</div>
+                        <div>00-00</div>
+                    </div>
+
+                    <div class="time-span-row time-blocks">
+                        <div class="time-change-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                    </div>
+
+                    <div class="time-span-row">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hard">
+                <div class="coWorkers">
+                    <div class="people">
+                        <img src="./ImgEvent/girl2.jpg" />
+                        <p class="peopleP">Михайло Фома</p>
+                    </div>
+                </div>
 
                     <div class="shedule">
                         <div class="day">Субота, Лютий 25</div>
 
-                        <div class="time-span-row">
-                            <div>7-00</div>
-                            <div>8-00</div>
-                            <div>9-00</div>
-                            <div>10-00</div>
-                            <div>11-00</div>
-                            <div>12-00</div>
-                            <div>13-00</div>
-                            <div>14-00</div>
-                            <div>15-00</div>
-                            <div>16-00</div>
-                            <div>17-00</div>
-                            <div>18-00</div>
-                            <div>19-00</div>
-                            <div>20-00</div>
-                            <div>21-00</div>
-                            <div>22-00</div>
-                        </div>
+                    <div class="time-span-row">
+                        <div>7-00</div>
+                        <div>8-00</div>
+                        <div>9-00</div>
+                        <div>10-00</div>
+                        <div>11-00</div>
+                        <div>12-00</div>
+                        <div>13-00</div>
+                        <div>14-00</div>
+                        <div>15-00</div>
+                        <div>16-00</div>
+                        <div>17-00</div>
+                        <div>18-00</div>
+                        <div>19-00</div>
+                        <div>20-00</div>
+                        <div>21-00</div>
+                        <div>22-00</div>
+                        <div>23-00</div>
+                        <div>00-00</div>
+                    </div>
 
-                        <div class="time-span-row time-blocks">
-                            <div class="time-change-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                        </div>
+                    <div class="time-span-row time-blocks">
+                        <div class="time-change-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                    </div>
 
-                        <div class="time-span-row">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>
+                    <div class="time-span-row">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
                     </div>
                 </div>
-
-
-
-
-
-
-
-
-                <div class="checkConfirm">
-                    <label>
-                        Сповіщати про підтвердженні/відмові учасників
-                        <input type="checkbox" />
-                    </label>
-                </div>
-                <div class="buttons">
-                    <button type="submit">Зберегти</button>
-                    <button type="reset">Відмінити</button>
-                </div>
             </div>
+
+            <div class="checkConfirm">
+                <label>
+                    Сповіщати про підтвердженні/відмові учасників
+                    <input type="checkbox" />
+                </label>
+            </div>
+            <div class="buttons">
+                <button type="submit">Зберегти</button>
+                <button type="reset">Відмінити</button>
+            </div>
+        </div>
         </form>
 
         <select name="placeSpend">
@@ -307,13 +327,16 @@
 
     </div>
 
+     <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
+
+    <script src="~/js/file.js" asp-append-version="true"></script>
 
     <script>
 
-        var dateBegin = document.getElementById("time1");
-        var dateEnd = document.getElementById("time2");
-
-
+        var dateBegin = document.getElementById("dateBeginInput");
+        var dateEnd = document.getElementById("dateEndInput");
+        
+      
         function toggleElements(className) {
             var elements = document.getElementsByClassName(className);
             for (var i = 0; i < elements.length; i++) {
@@ -352,10 +375,6 @@
 
 
 
-    <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
-
-    <script src="~/js/scriptEventMini2.js" asp-append-version="true"></script>
-
-    <script src="~/js/SashaTimeLine.js" asp-append-version="true"></script>
+    <script src="~/js/file.js" asp-append-version="true"></script>
 
 </body>
