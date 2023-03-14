@@ -420,7 +420,11 @@ input[type="checkbox"] {
     color: #52a7e4;
 }
 
-
+.time-span-row {
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    width: 100%;
+}
 
     .time-span-row > div {
         border-right: 1px solid #52a7e4;
