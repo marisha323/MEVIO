@@ -17,7 +17,10 @@ namespace MEVIO.Controllers
         public IActionResult Index()
         {
             ViewBag.Place = context.PlaceForMeasures.ToList();
-            ViewBag.Stud = context.Students.ToList();
+           // ViewBag.Stud = context.Students.ToList();
+            ViewBag.Users = context.Users.ToList();
+            ViewBag.Events = context.Events.ToList();
+            ViewBag.EventsUsers = context.EventsUsers.ToList();
             return View();
         }
 

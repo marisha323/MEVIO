@@ -398,7 +398,10 @@ textarea {
     font-size: 1rem;
     margin-left: 2rem;
 }
-
+.usefullClass{
+    display:flex;
+    justify-content:space-between;
+}
 input[type="checkbox"] {
     justify-self: baseline;
 }
