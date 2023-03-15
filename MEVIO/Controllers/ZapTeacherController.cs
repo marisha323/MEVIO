@@ -12,6 +12,18 @@ namespace MEVIO.Controllers
         {
             this.context = db;
         }
+        public IActionResult Teacher()
+        {
+            return View();
+        }
+        public IActionResult student()
+        {
+            return View();
+        }
+        public IActionResult profileBoss()
+        {
+            return View();
+        }
         public IActionResult Index()
         {
             /*context.Users.Add(user);
