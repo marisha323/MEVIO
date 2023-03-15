@@ -10,13 +10,7 @@ pà {
     box-sizing: border-box;
 }
 
-.mainDiv {
-    position: absolute;
-    /* width: 100vw; */
-    /* height: 100vh; */
-    background-color: #52a7e4;
-    padding-bottom: 1rem;
-}
+
 
 .insideDiv {
     padding: 1rem 3rem;
@@ -145,11 +139,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     opacity: 0;
 }
 
-.superstyle::-webkit-inner-spin-button,
-.superstyle::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
-}
+
 
 
 
@@ -593,9 +583,7 @@ input:focus {
         background: linear-gradient(180deg, #00c6fb, #005bea);
     }
 
-    .mainBox{
-        position:absolute;
-    }
+   
 
 .inBox {
     display: flex;

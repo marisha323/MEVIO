@@ -84,40 +84,8 @@ namespace MEVIO.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Login(string email, string password)
-        {
-            User user = context.Users.Where(o => o.Email == email && o.Password == password).AsNoTracking().FirstOrDefault();
-            if (user != null)
-            {
-                CookieOptions options = new CookieOptions();
-                options.Expires = DateTime.Now.AddMinutes(45);
-                options.IsEssential = true;
-                options.Path = "/";
-
-                string str = JsonSerializer.Serialize(user);
-
-                HttpContext.Response.Cookies.Append("UserLoggedIn", str, options);
-                return Redirect("Index");
-                //return RedirectToAction("Index", "Main");
-            }
-            else
-            {
-                return View("LoginRegister");
-            }
-            
-        }
-        public IActionResult Logout()
-        {
-            CookieOptions options = new CookieOptions();
-            options.Expires = DateTime.Now;
-            options.IsEssential = true;
-            options.Path = "/";
-
-            HttpContext.Response.Cookies.Append("UserLoggedIn", "", options);
-
-            return Redirect("Index");
-        }
+        
+      
 
 
         public IActionResult LoginRegister()

@@ -119,7 +119,7 @@
     <div class="card">
         <div class="login-box" id="login">
             <h2 style="font-weight:bold; color:#52A7E4;">MEVIO</h2>
-            <form method="post"  action="Login" >
+        <form asp-controller="Registry" action="Login" method="post">
                 <div class="user-box">
                     <input type="text" name="email" required>
                     <label>Email</label>
@@ -130,8 +130,8 @@
                 </div>
 
             <div class="subGoogle">
-                <button type="submit" class="btn glow-btn">Submit</button>
-                <a class="refGoogle"  href="/GoogleOAuth/RedirectOnOAuthServer">
+                <button type="submit" class="btn glow-btn">Вхід</button>
+                <a class="refGoogle" href="/Registry/RedirectOnOAuthServer">
                     <img class="imgGoogle" src="/img/imgGoogle.png" alt="" />
                 </a>
             </div>
