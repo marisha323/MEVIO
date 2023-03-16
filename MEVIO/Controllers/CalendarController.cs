@@ -21,6 +21,37 @@ namespace MEVIO.Controllers
             months = MonthGenerator.Fill();
             ViewBag.months = months;
 
+            List<string> days = new List<string>() { "Неділ", "Вівто", "Серед", "Четве", "П'ятн", "Субот", "Понед" };
+            string[] monthNames = new string[] { "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень ", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
+            List<int> spacesInDay = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
+            ViewBag.weekDays = days;
+            ViewBag.spaces = spacesInDay;
+
+            //var Events = db.Events.AsNoTracking().ToList();
+            //List <BreakDate> breakDates= new List<BreakDate>();
+            //foreach(var item in Events)
+            //{
+            //    BreakDate date = new BreakDate(item);
+            //    breakDates.Add(date);
+            //}
+            //ViewBag.Events = breakDates;
+
+            ViewBag.Events = db.Events.AsNoTracking().ToList();
+            ViewBag.Tasks = db.Tasks.AsNoTracking().ToList();
+            ViewBag.Measures = db.Measures.AsNoTracking().ToList();
+            ViewBag.Monthnames = monthNames;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Action(int month)
+        {
+            // Create a ViewBag object with some data
+            ViewBag.MyValue = "Hello, World!";
+            // Return the Calendar view
+            List<MonthGenerator> months = new List<MonthGenerator>();
+            months = MonthGenerator.Fill();
+            ViewBag.months = months;
+
             List<string> days = new List<string>() { "Понед", "Вівто", "Серед", "Четве", "П'ятн", "Субот", "Неділ" };
             List<int> spacesInDay = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
             ViewBag.weekDays = days;
@@ -36,12 +67,7 @@ namespace MEVIO.Controllers
             //ViewBag.Events = breakDates;
 
             ViewBag.Events = db.Events.AsNoTracking().ToList();
-            return View();
-        }
-        //[HttpPost]
-        public IActionResult GetDigit()
-        {
-            return Json(1);
+            return View("Index");
         }
         // GET: CalendarController/Details/5
         public ActionResult Details(int id)

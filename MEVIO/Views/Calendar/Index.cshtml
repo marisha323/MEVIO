@@ -42,6 +42,15 @@
         color: #52A7E4;
         cursor: pointer;
     }
+    .event{
+        color:black;
+    }
+    .red{
+        background-color: #FFC0CB;
+    }
+    .yellow{
+        background-color:yellow;
+    }
 </style>
 @*@model Event*@
 <form enctype="multipart/form-data" asp-action="EventMini">
@@ -305,13 +314,6 @@
 
     </div>
 
-
-
-
-
-
-
-
     <div id="yearGrid" class="calendar-grid calGrid activeGrid">
 
         @foreach (var month in ViewBag.months)
@@ -451,105 +453,223 @@
     </div>*@
 
     <div id="monthGrid" class="calendar-grid calGrid">
-
-        @{
-            string yearValue = "";
-        }
-        @for (int month = 1; month <= 12; month++)
+        @for (int year = 2020; year <= 2026; year++)
         {
-            <div class="calendar-header">
-                <div class="month-name pointer">@DateTimeFormatInfo.CurrentInfo.GetMonthName(month) 2023</div>
-                <div class="select-month">
-                    <label style="color: #52A7E4;" class="label pointer">Місяць</label>
-                    <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
-                    <div class="options-month hide">
-                        @for (int m = 1; m <= 12; m++)
-                        {
-                            <div class="option-item">@DateTimeFormatInfo.CurrentInfo.GetMonthName(m)</div>
-                        }
-                    </div>
-                </div>
-                <div class="select-years">
-                    <label style="color: #52A7E4;" class="label pointer">Рік</label>
-                    <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
-                    <div class="options-years hide">
-                        @for (int year = 2020; year <= 2025; year++)
-                        {
-                            <div class="option-item" onclick="setMyValue('@year');">@year</div>
-                        }
-                    </div>
-                </div>
-                <input type="hidden" name="yearValue" id="myInput">
-            </div>
-            <script>
-                function setMyValue(year) {
-                @*var input = document.getElementById("myInput").value;
-                    input = year;*@
-                        '@(yearValue)' = year;
-                    console.log('@(yearValue)');
-                @* document.getElementsByName("yearValue")[0].value = year;
-                    console.log(year);*@
-                                                }
-            </script>
+            <div class="year-switcher" id="@($"year_{year}")" @(year == 2020 ? "style='display:block'" : "style='display:none'")>
+                @for (int month = 1; month <= 12; month++)
+                {
+                    var monthName = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
 
-            <div>
-                <div class="grid">
-                    @foreach (var dayOfWeek in Enum.GetValues(typeof(DayOfWeek)))
-                    {
-                        <div class="week-day">@dayOfWeek.ToString()</div>
-                    }
-                </div>
-                <div class="month-days grid">
-                    @{
-                        DateTime firstDayOfMonth = new DateTime(2023, month, 1);
-                        int daysInMonth = DateTime.DaysInMonth(2023, month);
-                        int daysInLastMonth = DateTime.DaysInMonth(2023, month == 1 ? 12 : month - 1);
-                        int firstDayOfWeek = (int)firstDayOfMonth.DayOfWeek;
-                        int lastDayOfWeek = (int)new DateTime(2023, month, daysInMonth).DayOfWeek;
-                        int rows = (firstDayOfWeek + daysInMonth + (6 - lastDayOfWeek)) / 7;
-                        int day = 1 - firstDayOfWeek;
-                    }
-                    @for (int row = 0; row < rows; row++)
-                    {
-                        @for (int col = 0; col < 7; col++)
-                        {
-                            if (day >= 1 && day <= daysInMonth)
-                            {
-                                DateTime currentDate = new DateTime(2023, month, day);
-                                <div class="month-day" id="@currentDate.ToString("yyyy-MM-dd")">
-                                    @day
-                                    @foreach (var item in @ViewBag.Events)
+                    <div class="month-switcher @monthName">
+                        <div class="calendar-header">
+                            <div class="month-name pointer">@monthName @year</div>@*@ViewBag.monthNames[month-1]*@
+                            <div class="select-month">
+                                <label class="label pointer">Місяць</label>
+                                <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                                <div class="options-month hide">
+                                    @for (int m = 1; m <= 12; m++)
                                     {
-                                        if (item.Begin.ToString("yyyy-MM-dd") == currentDate.ToString("yyyy-MM-dd"))
-                                        {
-                                            <div class="event">
-                                                <p>@item.EventName</p>
-                                            </div>
-                                        }
+                                        <div class="option-item option-item-month">
+                                            @DateTimeFormatInfo.CurrentInfo.GetMonthName(m)
+                                        </div>
                                     }
                                 </div>
-                                day++;
-                            }
-                            else
-                            {
-                                int dayToShow = day < 1 ? daysInLastMonth + day : day - daysInMonth;
-                                <div class="month-day">@dayToShow</div>
-                                day++;
-                            }
-                        }
-                    }
-                </div>
+                            </div>
+                            <div class="select-years">
+                                <label class="label pointer">Рік</label>
+                                <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                                <div class="options-years hide">
+                                    @for (int y = 2020; y <= 2025; y++)
+                                    {
+                                        <div class="option-item" onclick="toggleVisibility('@($"year_{y}")'); setMyValue('@y');">@y</div>
+                                    }
+                                </div>
+                            </div>
+                            <input type="hidden" name="yearValue" id="myInput">
+                        </div>
 
-                <script>
-                    var yearValue = document.getElementById("myInput").value;
-                </script>
-
-                <input type="hidden" name="yearValue" id="myInput" value="2023" />
+                        <div>
+                            <div class="grid">
+                                @for (int i = 0; i < 7; i++)
+                                {
+                                    <div class="week-day">@ViewBag.weekDays[i]@*@dayOfWeek.ToString()*@</div>
+                                }
+                                @*@foreach (var dayOfWeek in Enum.GetValues(typeof(DayOfWeek)))
+                        {
+                        <div class="week-day">@dayOfWeek.ToString()</div>
+                        }*@
+                            </div>
+                            <div class="month-days grid">
+                                @{
+                                    DateTimeOffset firstDayOfMonth = new DateTimeOffset(year, month, 1, 0, 0, 0, TimeSpan.Zero);
+                                    int daysInMonth = DateTime.DaysInMonth(year, month);
+                                    int daysInLastMonth = DateTime.DaysInMonth(year, month == 1 ? 12 : month - 1);
+                                    int firstDayOfWeek = (int)firstDayOfMonth.DayOfWeek;
+                                    int lastDayOfWeek = (int)new DateTimeOffset(year, month, daysInMonth, 0, 0, 0, TimeSpan.Zero).DayOfWeek;
+                                    int rows = (firstDayOfWeek + daysInMonth + (6 - lastDayOfWeek)) / 7;
+                                    int day = 1 - firstDayOfWeek;
+                                }
+                                @for (int row = 0; row < rows; row++)
+                                {
+                                    @for (int col = 0; col < 7; col++)
+                                    {
+                                        if (day >= 1 && day <= daysInMonth)
+                                        {
+                                            DateTime currentDate = new DateTime(year, month, day);
+                                            <div class="month-day" id="@currentDate.ToString("yyyy-MM-dd")">
+                                                @day
+                                                @foreach (var item in @ViewBag.Events)
+                                                {
+                                                    if (item.Begin.ToString("yyyy-MM-dd") == currentDate.ToString("yyyy-MM-dd"))
+                                                    {
+                                                        <div class="event red">
+                                                            <p>@item.EventName</p>
+                                                        </div>
+                                                    }
+                                                }
+                                                @foreach (var item in @ViewBag.Tasks)
+                                                {
+                                                    if (item.Begin.ToString("yyyy-MM-dd") == currentDate.ToString("yyyy-MM-dd"))
+                                                    {
+                                                        <div class="event yellow">
+                                                            <p>@item.TaskName</p>
+                                                        </div>
+                                                    }
+                                                }
+                                                @foreach (var item in @ViewBag.Measures)
+                                                {
+                                                    if (item.Begin.ToString("yyyy-MM-dd") == currentDate.ToString("yyyy-MM-dd"))
+                                                    {
+                                                        <div class="event">
+                                                            <p>@item.MeasureName</p>
+                                                        </div>
+                                                    }
+                                                }
+                                            </div>
+                                        }
+                                        else if (day < 1)
+                                        {
+                                            int prevMonthDay = daysInLastMonth + day;
+                                            DateTime prevMonthDate = new DateTime(month == 1 ? year - 1 : year, month == 1 ? 12 : month - 1, prevMonthDay);
+                                            <div class="month-day prev-month">
+                                                @prevMonthDate.Day
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            int nextMonthDay = day - daysInMonth;
+                                            DateTime nextMonthDate = new DateTime(month == 12 ? year + 1 : year, month == 12 ? 1 : month + 1, nextMonthDay);
+                                            <div class="month-day next-month">
+                                                @nextMonthDate.Day
+                                            </div>
+                                        }
+                                        day++;
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         }
-    </div>
-    @*this peace of code gets the value of the year when picked*@
 
+    </div>
+
+
+
+
+    @*this peace of code gets the value of the year when picked*@
+    <script src="/js/jquery-3.6.1.min.js"></script>
+    @*<script>
+    $(".option-item-month").on("click", function (event) {
+    var month = $(event.target).text();
+    console.log(month);
+    $.ajax({
+    url: '/Calendar/Action',
+    type: 'POST',
+    data: { month: month },
+    success: function (response) {
+    $('#my-container').html(response);
+    var myValue = response.MyValue;
+    // Do something with myValue
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+    console.log(textStatus, errorThrown);
+    }
+    });
+    });
+    </script>*@
+    <script>
+        function toggleVisibility(id) {
+            var allYears = document.querySelectorAll('.year-switcher');
+            for (var i = 0; i < allYears.length; i++) {
+                if (allYears[i].id === id) {
+                    allYears[i].style.display = 'block';
+                } else {
+                    allYears[i].style.display = 'none';
+                }
+            }
+        }
+
+        function setMyValue(value) {
+            document.getElementById("myInput").value = value;
+            toggleVisibility('year_' + value);
+        }
+
+        window.onload = function () {
+            var currentYear = new Date().getFullYear();
+            var allYears = document.querySelectorAll('.year-switcher');
+            for (var i = 0; i < allYears.length; i++) {
+                var yearId = allYears[i].id.split('_')[1];
+                if (yearId === currentYear.toString()) {
+                    allYears[i].style.display = 'block';
+                } else {
+                    allYears[i].style.display = 'none';
+                }
+            }
+            document.getElementById("myInput").value = currentYear.toString();
+        }
+    </script>
+    <script>
+        // Get all the month switcher divs
+        var monthSwitchers = document.querySelectorAll('.month-switcher');
+        var currentMonth = new Date().getMonth() + 1;
+        var monthSwitchers = document.querySelectorAll('.month-switcher');
+
+        for (var i = 0; i < monthSwitchers.length; i++) {
+            var monthSwitcher = monthSwitchers[i];
+            var monthName = monthSwitcher.classList[1].split('-')[0];
+            var monthNumber = new Date(Date.parse('01 ' + monthName + ' 2023')).getMonth() + 1;
+
+            if (monthNumber !== currentMonth) {
+                monthSwitcher.style.display = 'none';
+            }
+        }
+        // Add click event listener to each month option item
+        var monthOptionItems = document.querySelectorAll('.option-item-month');
+        monthOptionItems.forEach(function (item) {
+            item.addEventListener('click', function () {
+                // Get the selected month name
+                var selectedMonth = this.innerText.trim();
+
+                // Loop through all the month switcher divs
+                monthSwitchers.forEach(function (switcher) {
+                    // Get the month name from the switcher class name
+                    var switcherMonth = switcher.classList[1];
+
+                    // Show the switcher if it matches the selected month, hide it otherwise
+                    if (switcherMonth === selectedMonth) {
+                        switcher.style.display = 'block';
+                    } else {
+                        switcher.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+
+    </script>
     @*///////////////////////////////////////////////*@
     <div id="weekGrid" class="calendar-grid calGrid">
         <div class="calendar-header">
@@ -630,7 +750,7 @@
     <div id="dayGrid" class="calendar-grid calGrid">
         <div class="header">
             <div class="month-name pointer">
-                Лютий 2023
+                @DateTime.Now.ToString("MMMM yyyy", new System.Globalization.CultureInfo("uk-UA")).ToUpper()
             </div>
             <div class="flex">
                 <div class=" flex-center">
@@ -647,7 +767,7 @@
                             string[] arr = new string[] { "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
                             foreach (var item in arr)
                             {
-                                        <div class="option-item">item</div>
+                                <div class="option-item">item</div>
                             }
                         }
                     </div>
@@ -678,38 +798,46 @@
 
             <div class="day-grid">
                 <div class="day-div">
-                    П'ятниця 20
+                    @(DateTime.Now.ToString("dddd", new CultureInfo("uk-UA")).ToString().ToUpper())
+                    @DateTime.Now.ToString("dd")
                 </div>
+                @{
+                    DateTime currentDate1 = DateTime.Now;
+                }
+
                 @for (int i = 8; i < 24; i++)
                 {
                     bool eventFound = false;
                     foreach (var item in @ViewBag.Events)
                     {
-                     
+                        DateTime eventDate = item.Begin.Date;
                         string b = item.Begin.ToString(); // example value: "3/15/2023 12:30:00 PM"
                         string[] parts = b.Split(' '); // splits the string into an array of strings, using the space character as the separator
                         string timeString = parts[1]; // retrieves the second element of the array, which should be the time
                         string hourString = timeString.Substring(0, 2);
-                        
-                        if (hourString == i.ToString())
+
+                        if (hourString == i.ToString() && eventDate == currentDate1.Date)
                         {
                             <center style="color:white;">
                                 <p style="position:absolute;">@item.Description</p>
                             </center>
+                            eventFound = true;
                             break;
                         }
                     }
+                    if (!eventFound)
+                    {
                         <div class="time-div"></div>
+                    }
                 }
             </div>
 
         </div>
     </div>
-</div>
-<script>
-    var today = moment().format('DD-MM-YYYY');
-    document.getElementById("Date").value = today;
-</script>
-<script src="/js/jquery-3.6.1.min.js"></script>
-<script src="/js/script.js"></script>
-<script src="/js/scriptEventMini.js" asp-append-version="true"></script>
+    <script>
+        var today = moment().format('DD-MM-YYYY');
+        document.getElementById("Date").value = today;
+    </script>
+
+    <script src="/js/script.js"></script>
+    <script src="/js/scriptEventMini.js" asp-append-version="true"></script>
