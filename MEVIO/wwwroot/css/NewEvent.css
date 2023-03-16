@@ -228,7 +228,7 @@ p {
     margin: 0.5rem;
     background: #111624;
     border: 1px solid #52a7e4;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 .description select {
