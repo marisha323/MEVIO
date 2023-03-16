@@ -13,18 +13,16 @@ namespace MEVIO.Controllers
     {
         public MEVIOContext context;
 
-        public RegistryController( MEVIOContext context) 
+        public RegistryController(MEVIOContext context)
         {
-        
-          this.context = context;
+
+            this.context = context;
         }
 
         public IActionResult Index()
         {
-
             return View();
         }
-
 
         [HttpPost]
         public async Task<IActionResult> Login(string email, string password)

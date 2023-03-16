@@ -21,7 +21,7 @@ namespace MEVIO.Controllers
             months = MonthGenerator.Fill();
             ViewBag.months = months;
 
-            List<string> days = new List<string>() { "Неділ", "Вівто", "Серед", "Четве", "П'ятн", "Субот", "Понед" };
+            List<string> days = new List<string>() { "Неділ", "Понед", "Вівто", "Серед", "Четве", "П'ятн", "Субот"};
             string[] monthNames = new string[] { "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень ", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
             List<int> spacesInDay = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
             ViewBag.weekDays = days;
