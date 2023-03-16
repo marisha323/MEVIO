@@ -119,11 +119,13 @@
         align-items: center;
     }
 </style>
+
+
     <div class="card">
         <div class="login-box" id="login">
             <h2 style="font-weight:bold; color:#52A7E4;">MEVIO</h2>
 
-        <form action="Login" method="post" asp-controller="Registry">
+        <form asp-controller="Registry" asp-action="Login" method="post">
                 <div class="user-box">
                     <input type="text" name="email" required>
                     <label>Email</label>
@@ -143,7 +145,8 @@
         </div>
     </div>
 
-                    <script>
+
+<script>
     function onSignIn(googleUser) {
         // Get the Google user ID token and send it to the server for verification
         var id_token = googleUser.getAuthResponse().id_token;
