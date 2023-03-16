@@ -272,7 +272,7 @@ textarea {
     border: 1px solid #52a7e4;
     border-radius: 1rem;
     margin: 0.7rem;
-    position:relative;
+   /* position:relative;*/
 }
 
 .memb {
@@ -438,8 +438,8 @@ input[type="checkbox"] {
 .membersWindow {
     width: 7.6rem;
     height: 2.1rem;
-    left: 44.5rem;
-    top: 36.8rem;
+   /* left: 44.5rem;
+    top: 36.8rem;*/
     border: none;
     cursor: pointer;
     background: #52a7e4;
@@ -460,15 +460,14 @@ input[type="checkbox"] {
         color: #111624;
     }
 
-.box {
+.box2 {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    position: absolute;
     width: 29rem;
     height: 17.5rem;
     left: 622px;
-    top: 39rem;
+    top: 42rem;
     background: #111624;
     border: 1px solid #52a7e4;
 }

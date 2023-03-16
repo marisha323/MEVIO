@@ -17,9 +17,14 @@ namespace MEVIO.Controllers
         {
         
           this.context = context;
-        } 
+        }
 
-               
+        public IActionResult Index()
+        {
+
+            return View();
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> Login(string email, string password)

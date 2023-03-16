@@ -1,16 +1,14 @@
-document.querySelector("#addMembers").addEventListener("click", function (e) {
+//document.querySelector("#addMembers").addEventListener("click", function (e) {
 
-    document.getElementById("mainBox").style.display = "block";
+//    document.getElementById("mainBox").style.display = "block";
 
 
-});
+//});
 
 console.log("kfig");
-<script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
 
-$('#addMembers').click(function () {
-    $("#mainBox").css("display", "block");
-});
+
+
 
 var dateBegin = document.getElementById("time1");
 var dateEnd = document.getElementById("time2");
