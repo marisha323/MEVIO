@@ -3,104 +3,22 @@
 *@
 @{
 }
-<link rel="stylesheet" href="~/css/MEVIORegistThecher.css" asp-append-version="true" />
+
+<link type="text/css" rel="stylesheet" href="/css/site.css">
+<div class="divMar">
+
+    
+  
+    <br />
+    <a style="color:aqua" asp-controller="ZapTeacher" asp-action="profileBoss"> Boss </a>
+    <br />
+    <a style="color:aqua" asp-controller="ZapTeacher" asp-action="student"> Student </a>
+    <br />
+    <a style="color:aqua" asp-controller="ZapTeacher" asp-action="Teacher"> Teacher </a>
+    <br />
+    
 
 
-<body>
-    @model User
+</div>
 
-    <form enctype="multipart/form-data"  asp-action="ZapTeacher">
-        <div class="contener">
-            <div class="div-search">
-                <input class="search">
-                <!-- <div class="searh-img"> -->
-                <div class="palochka"></div>
-                <img class="searchImg" src="/img/free-icon-search-4194718.png">
-                <!-- </div> -->
-            </div>
-
-            <div class="div-Zag">
-                <p class="Zag">Регистрация</p>
-            </div>
-
-
-
-            <div class="divContenerZap">
-                <div class="div-buttons">
-                    <input class="buttonstyleStudent" type="submit" value="Учень">
-                    <input class="buttonstyleTeaher" type="submit" value="Вчитель">
-                </div>
-
-                <div class="classPodcherk"> </div>
-
-
-                <div class="div-p-input">
-                    <p class="divStrockZap" style="top: 91px; ">Name:</p>
-                    <input class="divStrockZap2" asp-for="@Model.UserRoleId" style="top: 95px;  left: 400px;" placeholder="Oleg">
-                </div>
-
-                <div class="div-p-input">
-                    <p class="divStrockZap" style="top: 91px; ">Name:</p>
-                    <input class="divStrockZap2" asp-for="@Model.UserName" style="top: 95px;  left: 400px;" placeholder="Oleg">
-                </div>
-
-
-                <div class="div-p-input">
-                    <p class="divStrockZap" style="top: 949px;">Student</p>
-                    <select name="Studentsid" class="divStrockZap2">
-
-                        <option selected>Student...</option>
-                         @foreach (var student in ViewBag.Students)
-                        {
-                        <option asp-for="@student.Id">@student.StudentName</option>
-                        }
-                    </select>
-                </div>
-
-
-                @*<div class="div-p-input">
-                    <p class="divStrockZap" style="top: 91px; ">TelegramJson:</p>
-                    <input class="divStrockZap2" asp-for="@Model.TelegramJson" style="top: 95px;  left: 400px;" placeholder="Oleg">
-                </div>*@
-
-                <div class="div-p-input">
-                    <p class="divStrockZap" style="top:157px">Email:</p>
-                <input class="divStrockZap2" asp-for="@Model.Email" style="top: 161px;  left: 400px;" placeholder="blabla@gmail.com">
-                </div>
-
-
-                <div class="div-p-input">
-                    <p class="divStrockZap" style="top:223px">Password:</p>
-                <input class="divStrockZap2" asp-for="@Model.Password" style="top: 227px;  left: 400px;" placeholder="8g3Q0glm4">
-                </div>
-
-
-                <div class="div-p-input">
-                    <p class="divStrockZap" style="top:289px">Phone:</p>
-                    <input class="divStrockZap2" asp-for="@Model.Phone" style="top:293px;  left: 400px;" placeholder="38069812114">
-                </div>
-
-                <div class="div-p-input">
-                    <p class="divStrockZap" style="top: 365px;">PersonDocumentNumber:</p>
-                <input class="divStrockZap2" asp-for="@Model.PassportNumber" style="top: 361px;  left: 400px;" placeholder="2834791392487">
-                </div>
-
-                <div class="div-p-input">
-                    <p class="divStrockZap" style="top: 421px;">DateOfIssuePasport?:</p>
-                <input class="divStrockZap2" asp-for="@Model.DateOfPassportIssue" style="top: 425px;  left: 400px;" placeholder="Number Pasport">
-                </div>
-
-                <div class="div-p-input">
-                    <p class="divStrockZap" style="top: 487px;">TIN:</p>
-                <input class="divStrockZap2" asp-for="@Model.TIN" style="top: 485px;  left: 400px;" placeholder="533535">
-                </div>
-
-               
-            </div>
-            <div class="div-buttons">
-                <input class="buttonstyleStudent2" type="submit" value="Зберегти">
-
-            </div>
-        </div>
-    </form>
-</body>
+   
