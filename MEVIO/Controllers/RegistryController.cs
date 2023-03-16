@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Text.Json;
-
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace MEVIO.Controllers
 {
@@ -13,9 +13,10 @@ namespace MEVIO.Controllers
     {
         public MEVIOContext context;
 
-        public RegistryController( MEVIOContext context) {
+        public RegistryController( MEVIOContext context) 
+        {
         
-        this.context = context;
+          this.context = context;
         } 
 
 
@@ -27,6 +28,7 @@ namespace MEVIO.Controllers
             "https://www.googleapis.com/auth/userinfo.profile"
         };
         string scopesString = string.Join(" ", scopes2);
+
         //var url = GoogleOAuthService.GenerateOAuthRequestUrl(scopesString, redirectUrl, codeChellange);
 
         private const string redirectUrl = "http://localhost:5001/GoogleOauth/Code";
@@ -35,7 +37,11 @@ namespace MEVIO.Controllers
 
 
 
-        public IActionResult Index() => View();
+        public IActionResult Index()
+        {
+
+            return View();
+        }
 
 
 
@@ -103,7 +109,7 @@ namespace MEVIO.Controllers
                 options.IsEssential = true;
                 options.Path = "/";
 
-                string str = System.Text.Json.JsonSerializer.Serialize(user);
+                string str = JsonSerializer.Serialize(user);
 
                 HttpContext.Response.Cookies.Append("UserLoggedIn", str, options);
                 return Redirect("Index");
@@ -111,7 +117,7 @@ namespace MEVIO.Controllers
             }
             else
             {
-                return View("LoginRegister");
+                return View("/home/MainPage");
             }
 
         }
