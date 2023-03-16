@@ -48,46 +48,20 @@ button {
     height: 3rem;
 }
 
-img {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    margin-top: 0.2rem;
-    margin-left: 35%;
-}
 
-.imgs {
-    grid-column-start: 2;
-    border: 1px solid #52a7e4;
-}
 
-    .imgs p {
-        color: #ffffff;
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: 400;
-        font-size: 1.5rem;
-        margin-left: 3rem;
-    }
 
-.name {
-    grid-column-start: 3;
-    border: 1px solid #52a7e4;
-    color: #ffffff;
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 1.5rem;
-    justify-content: center;
-}
 
-.namep {
-    margin-left: 35%;
-}
+    
+
+
+
+
 
 .name a {
     text-decoration: none;
     color: #ffffff;
+    
 }
 
 .namea {
@@ -114,15 +88,7 @@ img {
     margin-right: auto;
 }
 
-.numb {
-    margin-left: auto;
-    margin-top: 20%;
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 1.5rem;
-    color: #ffffff;
-}
+
 
 /* .mainDivAll {
   width: 90%;

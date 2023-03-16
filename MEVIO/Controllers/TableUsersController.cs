@@ -14,7 +14,10 @@ namespace MEVIO.Controllers
 
         public IActionResult Index()
         {
+            
             ViewBag.Users=context.Users.ToList();
+            ViewBag.UserRoles=context.UserRoles.ToList();
+            ViewBag.Students=context.Students.ToList();
             return View();
         }
     }

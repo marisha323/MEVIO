@@ -17,18 +17,18 @@ namespace MEVIO.Controllers
         {
             this.context = db;
         }
-        public IActionResult Teacher()
+        public IActionResult Teacher(int id)
         {
-            selectedUserId = 1;//Вместо 1 поместить Id полученное из таблички
-            ViewBag.Useres = context.Users.Where(o=>o.Id == selectedUserId).FirstOrDefault();
+            
+            ViewBag.Useres = context.Users.Where(o=>o.Id == id).FirstOrDefault();
 
 
             return View();
         }
-        public IActionResult student()
+        public IActionResult student(int id)
         {
-            selectedStudentId = 4;//Вместо 4 поместить Id полученное из таблички
-            ViewBag.Students = context.Students.Where(o => o.Id == selectedStudentId).FirstOrDefault();
+            
+            ViewBag.Students = context.Students.Where(o => o.Id == id).FirstOrDefault();
 
 
             return View();
