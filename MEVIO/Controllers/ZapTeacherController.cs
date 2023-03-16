@@ -1,5 +1,6 @@
 ﻿using MEVIO.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 
 namespace MEVIO.Controllers
@@ -8,16 +9,28 @@ namespace MEVIO.Controllers
     {
         public MEVIOContext context;
         User user { get; set; }
+
+        int selectedUserId = 0;
+        int selectedStudentId = 0;
+
         public ZapTeacherController(MEVIOContext db)
         {
             this.context = db;
         }
         public IActionResult Teacher()
         {
+            selectedUserId = 1;//Вместо 1 поместить Id полученное из таблички
+            ViewBag.Useres = context.Users.Where(o=>o.Id == selectedUserId).FirstOrDefault();
+
+
             return View();
         }
         public IActionResult student()
         {
+            selectedStudentId = 4;//Вместо 4 поместить Id полученное из таблички
+            ViewBag.Students = context.Students.Where(o => o.Id == selectedStudentId).FirstOrDefault();
+
+
             return View();
         }
         public IActionResult profileBoss()

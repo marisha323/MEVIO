@@ -23,7 +23,7 @@
         <div><h2>Студент</h2></div>
 
         <div class="avatar">
-            <img class="avatar" src="~/Img1/FFFF/154785-temnota-multfilm-zhivopis-lev-art-360x640.jpg" />
+            <img class="avatar" src="~/Imeg2/@ViewBag.Students.StudentName/@ViewBag.Students.PathImgAVA" />
         </div>
 
         <div class="status">
@@ -40,170 +40,169 @@
             <div class="top">Info</div>
 
 
-            @*Student// Director*@
-            <div class="hiden active">
-                <div class="hiden active">
+            @*Student //if Director click*@
+            <div class="hiden active ">
+                <div class="hiden ">
                     <div class="box">
                         <div><p class="infoField">Name</p></div>
-                        <span class="infoResult">Петренко Петро Петрович</span>
+                        <span class="infoResult">@ViewBag.Students.StudentName</span>
                     </div>
 
                     <div class="box">
                         <div><p class="infoField">Phone</p></div>
-                        <span class="infoResult">+380963254123</span>
+                        <span class="infoResult">@ViewBag.Students.Phone</span>
                     </div>
 
                     <div class="box">
                         <div><p class="infoField">Email</p></div>
-                        <span class="infoResult">inga@gmail.com</span>
+                        <span class="infoResult">@ViewBag.Students.Email</span>
                     </div>
 
                     <div class="box">
                         <div><p class="infoField">Login365</p></div>
-                        <span class="infoResult">inga@gmail.com</span>
+                        <span class="infoResult">@ViewBag.Students.Login365</span>
                     </div>
 
                     <div class="box">
                         <div><p class="infoField">MyStat Login</p></div>
-                        <span class="infoResult">IngTEF634</span>
+                        <span class="infoResult">@ViewBag.Students.MyStatLogin</span>
                     </div>
                     <div class="box">
                         <div><p class="infoField">MyStat Password</p></div>
-                        <span class="infoResult">DF4342</span>
+                        <span class="infoResult">@ViewBag.Students.MyStatPassword</span>
                     </div>
 
                     <div class="box">
                         <div><p class="infoField">Student Code</p></div>
-                        <span class="infoResult">inga@gmail.com</span>
+                        <span class="infoResult">@ViewBag.Students.StudentCode</span>
                     </div>
 
                     <div class="box">
                         <div><p class="infoField">Date Birthday</p></div>
-                        <span class="infoResult">10.02.2021</span>
+                        <span class="infoResult">@ViewBag.Students.Birthdate</span>
                     </div>
 
                     <div class="box">
                         <div><p class="infoField">Pasport Number</p></div>
-                        <span class="infoResult">633663254123</span>
+                        <span class="infoResult">@ViewBag.Students.PersonDocumentNumber</span>
                     </div>
 
                     <div class="box">
                         <div><p class="infoField">Date Of Passport Issue</p></div>
-                        <span class="infoResult">12.12.2013</span>
+                        <span class="infoResult">@ViewBag.Students.DateOfIssuePassport</span>
                     </div>
                     <div class="box">
                         <div><p class="infoField">ІНН</p></div>
-                        <span class="infoResult">633663254123</span>
+                        <span class="infoResult">@ViewBag.Students.TIN</span>
                     </div>
+
                     <div class="box">
                         <div><p class="infoField">IsDiscount</p></div>
-                        <span class="infoResult">true/false</span>
+                        <span class="infoResult">@ViewBag.Students.IsDicount</span>
                     </div>
                     <div>
                         <div class="box">
                             <div><p class="infoField">Discount Sum</p></div>
-                            <span class="infoResult">300</span>
+                            <span class="infoResult">@ViewBag.Students.DiscountSum</span>
                         </div>
                         <div class="box">
                             <div><p class="infoField">Discount Description</p></div>
-                            <span class="infoResult">dshgdfhgjfgjdfhh</span>
+                            <span class="infoResult">@ViewBag.Students.Discount_Description</span>
                         </div>
                     </div>
                 </div>
 
 
-                @*Student// Meneger*@
+                @*Student// if Meneger click*@
                 <div class="hiden ">
                     <div class="box">
                         <div><p class="infoField">Name</p></div>
-                        <span class="infoResult">Петренко Петро Петрович</span>
+                        <span class="infoResult">@ViewBag.Students.StudentName</span>
                     </div>
 
                     <div class="box">
                         <div><p class="infoField">Phone</p></div>
-                        <span class="infoResult">+380963254123</span>
+                        <span class="infoResult">@ViewBag.Students.Phone</span>
                     </div>
 
                     <div class="box">
                         <div><p class="infoField">Email</p></div>
-                        <span class="infoResult">inga@gmail.com</span>
+                        <span class="infoResult">@ViewBag.Students.Email</span>
                     </div>
 
                     <div class="box">
                         <div><p class="infoField">Login365</p></div>
-                        <span class="infoResult">inga@gmail.com</span>
+                        <span class="infoResult">@ViewBag.Students.Login365</span>
                     </div>
 
                     <div class="box">
                         <div><p class="infoField">MyStat Login</p></div>
-                        <span class="infoResult">IngTEF634</span>
+                        <span class="infoResult">@ViewBag.Students.MyStatLogin</span>
                     </div>
                     <div class="box">
                         <div><p class="infoField">MyStat Password</p></div>
-                        <span class="infoResult">DF4342</span>
+                        <span class="infoResult">@ViewBag.Students.MyStatPassword</span>
                     </div>
-
-
                     <div class="box">
                         <div><p class="infoField">Student Code</p></div>
-                        <span class="infoResult">inga@gmail.com</span>
+                        <span class="infoResult">@ViewBag.Students.StudentCode</span>
                     </div>
 
                     <div class="box">
                         <div><p class="infoField">Date Birthday</p></div>
-                        <span class="infoResult">10.02.2021</span>
+                        <span class="infoResult">@ViewBag.Students.Birthdate</span>
                     </div>
 
                     <div class="box">
                         <div><p class="infoField">Pasport Number</p></div>
-                        <span class="infoResult">633663254123</span>
+                        <span class="infoResult">@ViewBag.Students.PersonDocumentNumber</span>
                     </div>
 
                     <div class="box">
                         <div><p class="infoField">Date Of Passport Issue</p></div>
-                        <span class="infoResult">12.12.2013</span>
+                        <span class="infoResult">@ViewBag.Students.DateOfIssuePassport</span>
                     </div>
                     <div class="box">
                         <div><p class="infoField">ІНН</p></div>
-                        <span class="infoResult">633663254123</span>
+                        <span class="infoResult">@ViewBag.Students.TIN</span>
                     </div>
                     <div class="box">
                         <div><p class="infoField">IsDiscount</p></div>
-                        <span class="infoResult">true/false</span>
+                        <span class="infoResult">@ViewBag.Students.IsDicount</span>
                     </div>
                     <div>
                         <div class="box">
                             <div><p class="infoField">Discount Sum</p></div>
-                            <span class="infoResult">300</span>
+                            <span class="infoResult">@ViewBag.Students.DiscountSum</span>
                         </div>
                         <div class="box">
                             <div><p class="infoField">Discount Description</p></div>
-                            <span class="infoResult">dshgdfhgjfgjdfhh</span>
+                            <span class="infoResult">@ViewBag.Students.Discount_Description</span>
                         </div>
                     </div>
                 </div>
 
 
-                @*Student// User*@
-                <div class="hiden ">
+                @*Student// User click*@
+                <div class="hiden  active">
                     <div class="box">
                         <div><p class="infoField">Name</p></div>
-                        <span class="infoResult">Петренко Петро Петрович</span>
+                        <span class="infoResult">@ViewBag.Students.StudentName</span>
                     </div>
 
                     <div class="box">
                         <div><p class="infoField">Phone</p></div>
-                        <span class="infoResult">+380963254123</span>
+                        <span class="infoResult">@ViewBag.Students.Phone</span>
                     </div>
 
                     <div class="box">
                         <div><p class="infoField">Email</p></div>
-                        <span class="infoResult">inga@gmail.com</span>
+                        <span class="infoResult">@ViewBag.Students.Email</span>
                     </div>
 
                     <div class="box">
                         <div><p class="infoField">Date Birthday</p></div>
-                        <span class="infoResult">10.02.2021</span>
+                        <span class="infoResult">@ViewBag.Students.Birthdate</span>
                     </div>
 
 
