@@ -24,77 +24,77 @@ namespace Mevio2Test.Controllers
 
         //                    "https://www.googleapis.com/auth/userinfo.profile" };// доступ до інформації профілu  // доступ до адреси електронної пошти
 
-        string[] scopes = new[] {"https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.profile"};
-      
-        static List<string> scopes2 = new List<string>()
-        {
-"https://www.googleapis.com/auth/userinfo.email",
-"https://www.googleapis.com/auth/userinfo.profile"
-        };
-        string scopesString = string.Join(" ", scopes2);
-        //var url = GoogleOAuthService.GenerateOAuthRequestUrl(scopesString, redirectUrl, codeChellange);
+    ////    string[] scopes = new[] { "https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.profile" };
 
-        private const string redirectUrl = "http://localhost:5001/GoogleOauth/Code";
-        
-        private const string PkceSessionKey = "codeVerifier";
+    ////    static List<string> scopes2 = new List<string>()
+    ////    {
+    ////       "https://www.googleapis.com/auth/userinfo.email",
+    ////        "https://www.googleapis.com/auth/userinfo.profile"
+    ////    };
+    ////    string scopesString = string.Join(" ", scopes2);
+    ////    //var url = GoogleOAuthService.GenerateOAuthRequestUrl(scopesString, redirectUrl, codeChellange);
 
+    ////    private const string redirectUrl = "http://localhost:5001/GoogleOauth/Code";
 
-
-        public IActionResult Index() => View();
-        
-
-
-        public IActionResult RedirectOnOAuthServer()
-        {
-
-            //// Права доступа
-            //const GOOGLE_SCOPES = [
-            //    'https://www.googleapis.com/auth/userinfo.email', // доступ до адреси електронної пошти
-            //    'https://www.googleapis.com/auth/userinfo.profile' // доступ до інформації профілю
-            //];
-
-            //// Посилання на аутентифікацію
-            //const GOOGLE_AUTH_URI = 'https://accounts.google.com/o/oauth2/auth';
-
-            //// Посилання на отримання токена
-            //const GOOGLE_TOKEN_URI = 'https://accounts.google.com/o/oauth2/token';
-
-            //// Посилання на отримання інформації про користувача
-            //const GOOGLE_USER_INFO_URI = 'https://www.googleapis.com/oauth2/v1/userinfo';
-
-            var codeVerifier = Guid.NewGuid().ToString();
-
-            HttpContext.Session.SetString(PkceSessionKey, codeVerifier);
-
-            var codeChellange = Sha256Helper.ComputeHash(codeVerifier);
-
-
-            var url = GoogleOAuthService.GenerateOAuthRequestUrl(scopesString, redirectUrl, codeChellange);
-
-            return Redirect(url);
-        }
-
-
-        public async Task<IActionResult> CodeAsync(string code)
-        {
-
-            string codeVerifier = HttpContext.Session.GetString("codeVerifier");
-            var redirectUrl = "http://localhost:5001/GoogleOauth/Code";
-
-            var tokenResult = GoogleOAuthService.ExchangeCodeOnTokenAsync(code, codeVerifier, redirectUrl);
+    ////    private const string PkceSessionKey = "codeVerifier";
 
 
 
-            // Почекаємо 3600 секунд
-            // (саме стільки можна використовувати AccessToken, поки його термін придатності не спливе).
+    ////    public IActionResult Index() => View();
 
-            // І оновлюємо Токен Доступу за допомогою Refresh-токена.
-           // var refreshedTokenResult = await GoogleOAuthService.RefreshTokenAsync(tokenResult.);
 
-            return Ok();
 
-        }
-    }
+    ////    public IActionResult RedirectOnOAuthServer()
+    ////    {
+
+    ////        //// Права доступа
+    ////        //const GOOGLE_SCOPES = [
+    ////        //    'https://www.googleapis.com/auth/userinfo.email', // доступ до адреси електронної пошти
+    ////        //    'https://www.googleapis.com/auth/userinfo.profile' // доступ до інформації профілю
+    ////        //];
+
+    ////        //// Посилання на аутентифікацію
+    ////        //const GOOGLE_AUTH_URI = 'https://accounts.google.com/o/oauth2/auth';
+
+    ////        //// Посилання на отримання токена
+    ////        //const GOOGLE_TOKEN_URI = 'https://accounts.google.com/o/oauth2/token';
+
+    ////        //// Посилання на отримання інформації про користувача
+    ////        //const GOOGLE_USER_INFO_URI = 'https://www.googleapis.com/oauth2/v1/userinfo';
+
+    ////        var codeVerifier = Guid.NewGuid().ToString();
+
+    ////        HttpContext.Session.SetString(PkceSessionKey, codeVerifier);
+
+    ////        var codeChellange = Sha256Helper.ComputeHash(codeVerifier);
+
+
+    ////        var url = GoogleOAuthService.GenerateOAuthRequestUrl(scopesString, redirectUrl, codeChellange);
+
+    ////        return Redirect(url);
+    ////    }
+
+
+    ////    public async Task<IActionResult> CodeAsync(string code)
+    ////    {
+
+    ////        string codeVerifier = HttpContext.Session.GetString("codeVerifier");
+    ////        var redirectUrl = "http://localhost:5001/GoogleOauth/Code";
+
+    ////        var tokenResult = GoogleOAuthService.ExchangeCodeOnTokenAsync(code, codeVerifier, redirectUrl);
+
+
+
+    ////        // Почекаємо 3600 секунд
+    ////        // (саме стільки можна використовувати AccessToken, поки його термін придатності не спливе).
+
+    ////        // І оновлюємо Токен Доступу за допомогою Refresh-токена.
+    ////        // var refreshedTokenResult = await GoogleOAuthService.RefreshTokenAsync(tokenResult.);
+
+    ////        return Ok();
+
+    ////    }
+    ////}
 
     //[HttpPost]
     //public async Task<ActionResult> SignInWithGoogle(string id_token)
@@ -129,6 +129,6 @@ namespace Mevio2Test.Controllers
     //    }
 
 
-    //}
+    }
 }
 

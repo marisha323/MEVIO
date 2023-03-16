@@ -7,6 +7,13 @@
 @model Event
 <link type="text/css" rel="stylesheet" href="/css/NewEvent.css">
 <style>
+    .mainDiv {
+        position: absolute;
+        width: 90vw;
+        background-color: #52a7e4;
+        padding-bottom: 1rem;
+        margin-left: 4rem;
+    }
 
 
     input[type="date"] {
@@ -36,87 +43,143 @@
         background-position: 95%;
         padding: 0.313rem;
     }
+
+
+    .time-span-row {
+        display: grid;
+        grid-template-columns: repeat(16, 1fr);
+        width: 100%;
+    }
+
+    .superstyle::-webkit-inner-spin-button,
+    .superstyle::-webkit-calendar-picker-indicator {
+        display: none;
+        -webkit-appearance: none;
+    }
+
+    input[type="time"] {
+        box-sizing: border-box;
+        display: flex;
+        height: 2.313rem;
+        width: 5.2rem;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 0.6rem;
+        padding-right: 0.6rem;
+        padding-top: 0.2rem;
+        padding-bottom: 0.375rem;
+        margin-left: 0.5rem;
+        background: #111624;
+        border: 1px solid #52a7e4;
+        border-radius: 0.625rem;
+        color: #52a7e4;
+        font-family: "Inter";
+        font-style: normal;
+        font-size: 1rem;
+    }
+
+    #addMembers {
+        width: 8rem;
+        height: 2rem;
+        margin: 0.8rem;
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.6rem;
+        line-height: 1.7rem;
+        background-color: #111624;
+        color: #52a7e4;
+        border: none;
+        cursor: pointer;
+    }
+
+    .mainBox {
+         position:absolute;
+        display: none;
+    }
+
 </style>
 
 <body>
     <div class="mainDiv">
         <p class="pNew">Нова подія</p>
+
         <form asp-controller="Event" asp-action="AddEvent" method="post">
-        <div class="insideDiv">
-            <div>
-                <label class="labelF">Нова подія </label>
-                <input type="text" class="inputF" asp-for="@Model.EventName" />
-            </div>
-
-            <div class="divTime">
-                <div class="timeText">
-                    <p class="time">Час події</p>
+            <div class="insideDiv">
+                <div>
+                    <label class="labelF">Нова подія </label>
+                    <input type="text" class="inputF" asp-for="@Model.EventName" />
                 </div>
 
-                <div class="containerTime">
-                    <div class="textDateTime">
-                        <p>Дата і час початку</p>
+                <div class="divTime">
+                    <div class="timeText">
+                        <p class="time">Час події</p>
                     </div>
 
-                    <div class="end">
-                        <span class="endP">Дата і час закінчення</span>
-                    </div>
-                </div>
+                    <div class="containerTime">
+                        <div class="textDateTime">
+                            <p>Дата і час початку</p>
+                        </div>
 
-                <div class="divDate">
-                        <input type="date" name="dateStart" />
-                        <input type="time" class="superstyle" id="dateBeginInput" asp-for="@Model.Begin" />
+                        <div class="end">
+                            <span class="endP">Дата і час закінчення</span>
+                        </div>
+                    </div>
+
+                    <div class="divDate">
+                        <input type="date"  asp-for="@Model.Begin" id="date1"/>
+                        <input type="time" class="superstyle" id="time1" name="time1" />
                     <div class="ture"></div>
-                        <input type="date" name="dateEnd" />
-                        <input type="time" class="superstyle" id="dateEndInput" asp-for="@Model.End" />
+                        <input type="date" asp-for="@Model.End" id="date2" />
+                        <input type="time" class="superstyle" id="time2" name="time2" />
                 </div>
 
-                <div class="checkAllDay">
-                        <input type="checkbox" id="CheckAllDay"/>
-                    <span>Весь день</span>
+                    <div class="checkAllDay">
+                        <input type="checkbox" id="CheckAllDay" />
+                        <span>Весь день</span>
+                    </div>
                 </div>
-            </div>
-            <hr />
+                <hr />
 
-            <div class="description">
-                <div class="divDescr">
-                    <p class="styleP">Опис</p>
+                <div class="description">
+                    <div class="divDescr">
+                        <p class="styleP">Опис</p>
+                    </div>
+                    <textarea asp-for="@Model.Description"
+                              cols="10"
+                              rows="3"
+                              placeholder="Enter text . . ."></textarea>
                 </div>
-                <textarea  
-                    asp-for="@Model.Description"
-                          cols="10"
-                          rows="3"
-                          placeholder="Enter text . . ."></textarea>
-            </div>
-            <hr />
-@*
-            <div class="description">
+                <hr />
+                @*
+                <div class="description">
                 <div class="divDescr">
-                    <p class="styleP">Місце проведення</p>
+                <p class="styleP">Місце проведення</p>
                 </div>
                 @*<select name="placeSpend">
 
-                        @foreach (PlaceForMeasure item in ViewBag.Place)
-                        {
-                            <option value="@item.Id">@item.PlaceForMeasureName</option>
-                        }
+                @foreach (PlaceForMeasure item in ViewBag.Place)
+                {
+                <option value="@item.Id">@item.PlaceForMeasureName</option>
+                }
                 </select>
-            </div>*@
-            <hr />
+                </div>*@
+                <hr />
 
-            <div class="description">
-                <div class="divDescr">
-                    <p class="styleP">Учасники</p>
-                </div>
+                <div class="description">
+                    <div class="divDescr">
+                        <p class="styleP">Учасники</p>
+                    </div>
 
                 <div class="members">
                     <div class="memb">
                         <img src="/img/girl2.jpg" />
                         <p class="name">Julia Roberts</p>
                     </div>
-                    <button onclick="AddMembers">+ Додати</button>
+
+                        <div id="addMembers">+ Додати</div>
                         <div class="mainBox">
-                            <button class="membersWindow">учасники</button>
+                            <div class="membersWindow">учасники</div>
 
                             <div class="box">
                                 <!-- <div class="first">
@@ -130,50 +193,26 @@
                                 </div>  -->
 
                                 <div class="secondBox">
-                                    <div class="inBox">
-                                        <img src="./Img/Indian-Girl-Images-042202.jpg" />
-                                        <p>Джейсон Фрич</p>
-                                        <div class="bird">&#10004;</div>
-                                    </div>
-                                    <div class="inBox">
-                                        <img src="./Img/Indian-Girl-Images-042202.jpg" />
-                                        <p>Джейсон Фрич</p>
-                                        <div class="bird">&#10004;</div>
-                                    </div>
-                                    <div class="inBox">
-                                        <img src="./Img/Indian-Girl-Images-042202.jpg" />
-                                        <p>Джейсон Фрич</p>
-                                        <div class="bird">&#10004;</div>
-                                    </div>
-                                    <div class="inBox">
-                                        <img src="./Img/Indian-Girl-Images-042202.jpg" />
-                                        <p>Джейсон Фрич</p>
-                                        <div class="bird">&#10004;</div>
-                                    </div>
-                                    <div class="inBox">
-                                        <img src="./Img/Indian-Girl-Images-042202.jpg" />
-                                        <p>Джейсон Фрич</p>
-                                        <div class="bird">&#10004;</div>
-                                    </div>
-                                    <div class="inBox">
-                                        <img src="./Img/Indian-Girl-Images-042202.jpg" />
-                                        <p>Джейсон Фрич</p>
-                                        <div class="bird">&#10004;</div>
-                                    </div>
-                                    <div class="inBox">
-                                        <img src="./Img/Indian-Girl-Images-042202.jpg" />
-                                        <p>Джейсон Фрич</p>
-                                        <div class="bird">&#10004;</div>
-                                    </div>
+
+                                    @foreach (var itemUsers in ViewBag.Users)
+                                    {
+                                        <div class="inBox">
+                                            <img src="@itemUsers.PathImgAVA" />
+                                           @* <img src="~/Imeg2/Jamala/Jamala_1944_cover.jpg" />*@
+                                            <p>@itemUsers.UserName</p>
+                                            <div class="bird">&#10004;</div>
+                                        </div>
+                                    }
+                                    
                                 </div>
 
                             </div>
                         </div>
+                    </div>
                 </div>
-            </div>
-            <hr />
+                <hr />
 
-            <p class="co">Співробітники</p>
+                <p class="co">Співробітники</p>
 
             <div class="hard">
                 <div class="coWorkers">
@@ -203,8 +242,6 @@
                         <div>20-00</div>
                         <div>21-00</div>
                         <div>22-00</div>
-                        <div>23-00</div>
-                        <div>00-00</div>
                     </div>
 
                     <div class="time-span-row time-blocks">
@@ -225,13 +262,9 @@
                         <div class="time-block"></div>
                         <div class="time-block"></div>
                         <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
                     </div>
 
                     <div class="time-span-row">
-                        <div></div>
-                        <div></div>
                         <div></div>
                         <div></div>
                         <div></div>
@@ -252,82 +285,7 @@
                 </div>
             </div>
 
-            <div class="hard">
-                <div class="coWorkers">
-                    <div class="people">
-                        <img src="./ImgEvent/girl2.jpg" />
-                        <p class="peopleP">Михайло Фома</p>
-                    </div>
-                </div>
-
-                <div class="shedule">
-                    <div class="day">Субота, Лютий 25</div>
-
-                    <div class="time-span-row">
-                        <div>7-00</div>
-                        <div>8-00</div>
-                        <div>9-00</div>
-                        <div>10-00</div>
-                        <div>11-00</div>
-                        <div>12-00</div>
-                        <div>13-00</div>
-                        <div>14-00</div>
-                        <div>15-00</div>
-                        <div>16-00</div>
-                        <div>17-00</div>
-                        <div>18-00</div>
-                        <div>19-00</div>
-                        <div>20-00</div>
-                        <div>21-00</div>
-                        <div>22-00</div>
-                        <div>23-00</div>
-                        <div>00-00</div>
-                    </div>
-
-                    <div class="time-span-row time-blocks">
-                        <div class="time-change-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                        <div class="time-block"></div>
-                    </div>
-
-                    <div class="time-span-row">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                </div>
-            </div>
+            
 
             <div class="checkConfirm">
                 <label>
@@ -341,23 +299,51 @@
             </div>
         </div>
         </form>
+@*
+        <select name="placeSpend">
 
-         <select name="placeSpend">
-
-                        @foreach (Student item in ViewBag.Stud)
-                        {
-                            <option value="@item.Id">@item.StudentName</option>
-                        }
-         </select>
+            @foreach (Student item in ViewBag.Stud)
+            {
+                <option value="@item.Id">@item.StudentName</option>
+            }
+        </select>*@
 
     </div>
 
+     
+    <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
+    <script src="~/js/scriptEventMini2.js" asp-append-version="true"></script>
+    <script src="~/js/SashaTimeLine.js" asp-append-version="true"></script>
+    <script src="~/js/AddNewEvent.js"></script>
 
     <script>
-
-        var dateBegin = document.getElementById("dateBeginInput");
-        var dateEnd = document.getElementById("dateEndInput");
         
+        var dateBegin = document.getElementById("time1");
+        var dateEnd = document.getElementById("time2");
+        
+      
+        
+        function updateDates() {
+            var checkbox = document.getElementById("CheckAllDay");
+            var date1 = document.getElementById("date1").value;
+            var date2 = document.getElementById("date2").value;
+
+            if (checkbox.checked) {
+                date2.value = date1;
+            } else {
+                date2.value = "@ViewBag.DateEnd";
+            }
+        }
+        function myFunction() {
+            toggleElements('element-time');
+            updateDates();
+        }
+
+        var dateInput = document.getElementById("date1");
+        dateInput.value = "@ViewBag?.Date";
+        var dateEnd = document.getElementById("date2");
+        dateEnd.value = "@ViewBag?.DateEnd";
+
       
         function toggleElements(className) {
             var elements = document.getElementsByClassName(className);
@@ -370,35 +356,9 @@
             }
         }
 
-       
-       
-        function updateDates() {
-            var checkbox = document.getElementById("checkbox");
-            var date1 = document.getElementById("Date").value;
-            var date2 = document.getElementById("DateEnd"); if (checkbox.checked) {
-                date2.value = date1;
-            } else {
-                date2.value = "@ViewBag.DateEnd";
-            }
-        }
-        function myFunction() {
-            toggleElements('element-time');
-            updateDates();
-        }
-
-        
-        var dateInput = document.getElementById("Date");
-        dateInput.value = "@ViewBag?.Date";
-        var dateEnd = document.getElementById("DateEnd");
-        dateEnd.value = "@ViewBag?.DateEnd";
-
-
     </script>
 
 
-
-    <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
-
-    <script src="~/js/file.js" asp-append-version="true"></script>
+    
 
 </body>
