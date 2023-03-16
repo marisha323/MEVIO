@@ -12,7 +12,7 @@
         width: 90vw;
         background-color: #52a7e4;
         padding-bottom: 1rem;
-        margin-left: 5rem;
+        margin-left: 4rem;
     }
 
 
@@ -75,12 +75,26 @@
         color: #52a7e4;
         font-family: "Inter";
         font-style: normal;
-        font-size: 1.5rem;
+        font-size: 1rem;
     }
 
+    #addMembers {
+        width: 8rem;
+        height: 2rem;
+        margin: 0.8rem;
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.6rem;
+        line-height: 1.7rem;
+        background-color: #111624;
+        color: #52a7e4;
+        border: none;
+        cursor: pointer;
+    }
 
     .mainBox {
-        /*  position:absolute;*/
+         position:absolute;
         display: none;
     }
 
@@ -89,6 +103,7 @@
 <body>
     <div class="mainDiv">
         <p class="pNew">Нова подія</p>
+
         <form asp-controller="Event" asp-action="AddEvent" method="post">
             <div class="insideDiv">
                 <div>
@@ -112,10 +127,10 @@
                     </div>
 
                     <div class="divDate">
-                        <input type="date"  asp-for="@Model.Begin" />
+                        <input type="date"  asp-for="@Model.Begin" id="date1"/>
                         <input type="time" class="superstyle" id="time1" name="time1" />
                     <div class="ture"></div>
-                        <input type="date" asp-for="@Model.End" />
+                        <input type="date" asp-for="@Model.End" id="date2" />
                         <input type="time" class="superstyle" id="time2" name="time2" />
                 </div>
 
@@ -162,7 +177,7 @@
                         <p class="name">Julia Roberts</p>
                     </div>
 
-                    <div id="addMembers">+ Додати</div>
+                        <div id="addMembers">+ Додати</div>
                         <div class="mainBox">
                             <div class="membersWindow">учасники</div>
 
@@ -302,47 +317,8 @@
     <script src="~/js/AddNewEvent.js"></script>
 
     <script>
-
-
-
-        var dateBegin = document.getElementById("time1");
-        var dateEnd = document.getElementById("time2");
         
-      
-        function toggleElements(className) {
-            var elements = document.getElementsByClassName(className);
-            for (var i = 0; i < elements.length; i++) {
-                if (elements[i].style.display === "none") {
-                    elements[i].style.display = "block";
-                } else {
-                    elements[i].style.display = "none";
-                }
-            }
-        }
-
-
-
-        function updateDates() {
-            var checkbox = document.getElementById("checkbox");
-            var date1 = document.getElementById("Date").value;
-            var date2 = document.getElementById("DateEnd"); if (checkbox.checked) {
-                date2.value = date1;
-            } else {
-                date2.value = "@ViewBag.DateEnd";
-            }
-        }
-        function myFunction() {
-            toggleElements('element-time');
-            updateDates();
-        }
-
-
-        var dateInput = document.getElementById("Date");
-        dateInput.value = "@ViewBag?.Date";
-        var dateEnd = document.getElementById("DateEnd");
-        dateEnd.value = "@ViewBag?.DateEnd";
-
-
+        
     </script>
 
 
