@@ -38,12 +38,14 @@ namespace MEVIO.Controllers
                 string str = JsonSerializer.Serialize(user);
 
                 HttpContext.Response.Cookies.Append("UserLoggedIn", str, options);
-                return Redirect("Index");
+
+               
+                 return Redirect("/MainPage/MainPage");
                 //return RedirectToAction("Index", "Main");
             }
             else
             {
-                return View("/home/MainPage");
+                return Redirect("Index");
             }
 
         }
