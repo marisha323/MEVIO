@@ -14,36 +14,37 @@ namespace MEVIO.Models
             Environment = environment;
         }
 
-        public void ConfigureServices(IServiceCollection services)
-        {
-            // Добавление сервиса для доступа к настройкам в appsettings.json
-            services.AddSingleton(Configuration);
+//        public void ConfigureServices(IServiceCollection services)
+//        {
+//            // Добавление сервиса для доступа к настройкам в appsettings.json
+//            services.AddSingleton(Configuration);
 
-            services.AddControllersWithViews();
+//            services.AddControllersWithViews();
 
-            // Добавление сервисов для аутентификации через Google и проверки данных в базе данных
-            services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
-            })
-                .AddCookie(options =>
-                {
-                    options.LoginPath = "/Account/Login";
-                    options.AccessDeniedPath = "/Account/AccessDenied";
-                })
-                .AddGoogle(options =>
-                {
-                    options.ClientId = Configuration["Google:ClientId"];
-                    options.ClientSecret = Configuration["Google:ClientSecret"];
-                    options.Scope.Add("email");
-                    options.SaveTokens = true;
-                });
+//            // Добавление сервисов для аутентификации через Google и проверки данных в базе данных
+//            services.AddAuthentication(options =>
+//            {
+//                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+//                options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+//            })
 
-            // Добавление сервиса для доступа к базе данных
-            services.AddDbContext<MEVIOContext>();
+//.AddCookie("MyScheme", options =>
+//{
+//    options.LoginPath = "/Account/Login";
+//    options.AccessDeniedPath = "/Account/AccessDenied";
+//})
+//.AddGoogle(options =>
+//{
+//    options.ClientId = Configuration["Google:ClientId"];
+//    options.ClientSecret = Configuration["Google:ClientSecret"];
+//    options.Scope.Add("email");
+//    options.SaveTokens = true;
+//});
 
-        }
+//            // Добавление сервиса для доступа к базе данных
+//            services.AddDbContext<MEVIOContext>();
+
+//        }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
