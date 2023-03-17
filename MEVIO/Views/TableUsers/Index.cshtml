@@ -4,41 +4,158 @@
 @{
 }
 <link type="text/css" rel="stylesheet" href="/css/TableUsers.css">
+<style>
+    .namep {
+    /*margin-left: auto;
+    margin-right: auto;*/
+    
+    align-items:center;
+    text-align:center;
+    margin-top:1.7rem;
+}
+.numb {
+    margin-left: auto;
+    margin-top: 20%;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-right:1.5rem;
+}
+.namepimg {
+    /*margin-left: auto;
+    margin-right: auto;*/
+    
+    align-items:center;
+    text-align:center;
+    margin-top:0.5rem;
+}
+.imgs p {
+        color: #ffffff;
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.5rem;
+        /*margin-left: 3rem;*/
+        text-align:center;
+    }
+    .imgs {
+    grid-column-start: 2;
+    border: 1px solid #52a7e4;
+    justify-content: center;
+}
+img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    margin-top: 0.2rem;
+    /*margin-left: 35%;*/
+    justify-content: center;
+}
+.name {
+    grid-column-start: 3;
+    border: 1px solid #52a7e4;
+    color: #ffffff;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    justify-content: center;
+}
 
+    .displaynone {
+        display: none;
+    }
+
+    .active {
+        display: block;
+    }
+</style>
 <div class="cont">
     <div class="button-cont">
-        <button id="btnMeasure" class="button_">
-            Заходи
+        <button id="btnUser" class="button_">
+            Користувач
         </button>
-        <button id="btnAll" class="button_">
-            Все
+        <button id="btnStudent" class="button_">
+            Студент
         </button>
     </div>
 
     <div class="ww">
         <div class="box">
-            <div class="imgs"><p class="hr">Фото профілю</p></div>
+            <div class="imgs"><p class="namep">Фото профілю</p></div>
             <div class="name "><p class="namep">Ім'я</p></div>
             <div class="role"><p class="namep">Роль</p></div>
         </div>
-
-        <div class="box">
-            <p class="numb">1</p>
-            <div class="imgs"><img src="./imgs/lion.jfif" /></div>
-            <div class="name">
-                <p><a href="#" class="namea">Benjamin Franclin</a></p>
+        <div id="UserTable" class="displaynone active">
+        @{
+            var counterUsers = 1;
+        }
+        @foreach (var itemUsers in ViewBag.Users)
+        {
+            <div class="box">
+                <p class="numb">@counterUsers</p>
+                <div class="imgs">
+                 <p class="namepimg"> <img src="./imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" /></p>
+                </div>
+                <div class="name">
+                    <p>
+                      <p class="namep" ><a asp-controller="ZapTeacher" asp-action="Teacher" asp-route-id="@itemUsers.Id" class="namea">@itemUsers.UserName</a></p>
+                    </p>
+                </div>
+                @foreach (var itemRoleName in ViewBag.UserRoles)
+                {
+                    @if (itemUsers.UserRoleId == itemRoleName.Id)
+                    {
+                        <div class="role">
+                            <p class="namep">@itemRoleName.UserRoleName</p>
+                        </div>
+                    }
+                }
             </div>
-            <div class="role"><p class="namep">Admin</p></div>
+            counterUsers++;
+        }
         </div>
-
-        <div class="box">
-            <p class="numb">2</p>
-            <div class="imgs"><img src="./imgs/lion.jfif" /></div>
+        <div id="StudentTable" class="displaynone active">
+        @{
+            var counterStudents = 1;
+        }
+        @foreach (var itemStudents in ViewBag.Students)
+        {
+         <div class="box">
+            <p class="numb">@counterStudents</p>
+            <div class="imgs"><p class="namepimg"><img src="./imeg2/@itemStudents.StudentName/@itemStudents.PathImgAVA" /></p></div>
             <div class="name">
-                <p><a href="#" class="namea">Benjamin Franclin</a></p>
+             <p class="namep" ><a asp-controller="ZapTeacher" asp-action="student" asp-route-id="@itemStudents.Id" >@itemStudents.StudentName</a></p>
             </div>
-            <div class="role"><p class="namep">Admin</p></div>
+            <div class="role"><p class="namep">Студент</p></div>
+         </div>
+            counterStudents++;
+            
+        }
         </div>
 
     </div>
 </div>
+
+  <script>
+       const btnuser = document.getElementById("btnUser")
+       const usertable = document.getElementById("UserTable")
+
+       const btnstudent = document.getElementById("btnStudent")
+       const studenttable = document.getElementById("StudentTable")
+
+       btnuser.addEventListener('click', () => 
+  {
+      usertable.classList.add('active');
+      studenttable.classList.remove('active');
+      
+  });
+   btnstudent.addEventListener('click', () => 
+  {
+      usertable.classList.remove('active');
+      studenttable.classList.add('active');
+      
+  });
+  </script>

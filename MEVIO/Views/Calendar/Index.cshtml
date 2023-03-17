@@ -59,7 +59,6 @@
     <div class="contener">
 
         <div class="divStrockZap2">
-
             <input @*asp-for="@Model.EventName" value="@Model.EventName"*@ class="input-StrockZap2" type="text" placeholder="Нова подiя">
         </div>
 
@@ -164,9 +163,6 @@
                         <div></div>
                         <div></div>
                         <div></div>
-
-
-
                     </div>
 
                 </div>
@@ -315,12 +311,14 @@
     </div>
 
     <div id="yearGrid" class="calendar-grid calGrid activeGrid">
-
+        @{
+            int monthcount = 1;
+        }
         @foreach (var month in ViewBag.months)
         {
             <div class="month-div @month.Season">
-                <div class="month-name">
-                    @month.Name
+                <div class="month-name option-item-month">
+                    @DateTimeFormatInfo.CurrentInfo.GetMonthName(monthcount)
                 </div>
 
                 <div class="week-div">
@@ -332,125 +330,17 @@
                     </div>
 
                     <div class="month-days">
-                        @for (int i = 1; i <= month.DaysInMonth; i++)
+                        @for (int i = 1; i <= 35; i++)
                         {
                             <div class="month-day">@i</div>
                         }
                     </div>
                 </div>
             </div>
+            monthcount++;
         }
 
-
-
     </div>
-
-
-
-
-    @*<div id="monthGrid" class="calendar-grid calGrid">
-    <div class="calendar-header">
-    <div class="month-name pointer">
-    Лютий 2023
-    </div>
-    <div class="flex">
-    <div class="flex-center select-month">
-    <label style="color: #52A7E4;" class="label pointer">Місяць</label>
-    <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
-    <div class="options-month hide">
-    <div class="option-item">Січень</div>
-    <div class="option-item">Лютий</div>
-    <div class="option-item">Березень</div>
-    <div class="option-item">Квітень</div>
-    <div class="option-item">Травень</div>
-    <div class="option-item">Червень</div>
-    <div class="option-item">Липень</div>
-    <div class="option-item">Серпень</div>
-    <div class="option-item">Вересень</div>
-    <div class="option-item">Жовтень</div>
-    <div class="option-item">Листопад</div>
-    <div class="option-item">Грудень</div>
-    </div>
-    </div>
-
-
-    <div class="flex-center select-years">
-    <label style="color: #52A7E4;" class="label pointer">Рік</label>
-    <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
-    <div class="options-years hide">
-    <div class="option-item">2020</div>
-    <div class="option-item">2021</div>
-    <div class="option-item">2022</div>
-    <div class="option-item">2023</div>
-    <div class="option-item">2024</div>
-    <div class="option-item">2025</div>
-    </div>
-    </div>
-    </div>
-
-    </div>
-
-
-    <div>
-    <div class="grid">
-    <div class="week-day">Понеділок</div>
-    <div class="week-day">Вівторок</div>
-    <div class="week-day">Середа</div>
-    <div class="week-day">Четвер</div>
-    <div class="week-day">П'ятниця</div>
-    <div class="week-day">Субота</div>
-    <div class="week-day">Неділя</div>
-    </div>
-    <div class="month-days grid">
-    <div class="month-day">
-    1
-    <div class="event">
-    <p>Some kind of event</p>
-    </div>
-    <div class="event">
-    <p>Some kind of event</p>
-    </div>
-    <div class="event">
-    <p>Some kind of event</p>
-    </div>
-    </div>
-    <div class="month-day">2</div>
-    <div class="month-day">3</div>
-    <div class="month-day">4</div>
-    <div class="month-day">5</div>
-    <div class="month-day">6</div>
-    <div class="month-day">7</div>
-    <div class="month-day">8</div>
-    <div class="month-day">9</div>
-    <div class="month-day">10</div>
-    <div class="month-day">11</div>
-    <div class="month-day">12</div>
-    <div class="month-day">13</div>
-    <div class="month-day">14</div>
-    <div class="month-day">15</div>
-    <div class="month-day">16</div>
-    <div class="month-day">17</div>
-    <div class="month-day">18</div>
-    <div class="month-day">19</div>
-    <div class="month-day">20</div>
-    <div class="month-day">21</div>
-    <div class="month-day">22</div>
-    <div class="month-day">23</div>
-    <div class="month-day">24</div>
-    <div class="month-day">25</div>
-    <div class="month-day">26</div>
-    <div class="month-day">27</div>
-    <div class="month-day">28</div>
-    <div class="month-day">29</div>
-    <div class="month-day">30</div>
-    <div class="month-day">1</div>
-    <div class="month-day">2</div>
-    <div class="month-day">3</div>
-    <div class="month-day">4</div>
-    <div class="month-day">5</div>
-    </div>
-    </div>
-    </div>*@
 
     <div id="monthGrid" class="calendar-grid calGrid">
         @for (int year = 2020; year <= 2026; year++)
@@ -469,6 +359,7 @@
                                 <div class="options-month hide">
                                     @for (int m = 1; m <= 12; m++)
                                     {
+                                        //here
                                         <div class="option-item option-item-month">
                                             @DateTimeFormatInfo.CurrentInfo.GetMonthName(m)
                                         </div>

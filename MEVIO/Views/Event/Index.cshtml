@@ -2,10 +2,14 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+
 }
 
 @model Event
+
 <link type="text/css" rel="stylesheet" href="/css/NewEvent.css">
+
+
 <style>
     .mainDiv {
         width: 80%;
@@ -94,7 +98,8 @@
 
     .mainBox {
          position:absolute;
-        display: none;
+       display: none;
+        z-index: 1;
     }
 
 </style>
@@ -177,10 +182,11 @@
                     </div>
 
                         <div id="addMembers">+ Додати</div>
-                        <div class="mainBox">
+
+                        <div class="mainBox" @*style="display: none"*@>
                             <div class="membersWindow">учасники</div>
 
-                            <div class="box">
+                            <div class="box2">
                                 <!-- <div class="first">
                                   <div class="block">
                                     <img src="./Img/photo.jpeg" />
@@ -315,17 +321,26 @@
     <script src="~/js/SashaTimeLine.js" asp-append-version="true"></script>
     <script src="~/js/AddNewEvent.js"></script>
 
+    
     <script>
-        
+
+    $('#addMembers').click(function () {
+    $(".mainBox").css("display", "block");
+    });
+
+        $('.inBox').click(function () {
+            $(".mainBox").css("display", "none");
+        });
+
         var dateBegin = document.getElementById("time1");
         var dateEnd = document.getElementById("time2");
-        
-      
+
+        var date1 = document.getElementById("date1").value;
+        var date2 = document.getElementById("date2").value;
         
         function updateDates() {
             var checkbox = document.getElementById("CheckAllDay");
-            var date1 = document.getElementById("date1").value;
-            var date2 = document.getElementById("date2").value;
+            
 
             if (checkbox.checked) {
                 date2.value = date1;
