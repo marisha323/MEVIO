@@ -60,7 +60,7 @@ namespace Mevio2Test.Controllers
 
             var url = GoogleOAuthService.GenerateOAuthRequestUrl(scopesString, redirectUrl, codeChellange);
 
-            return Redirect(url);
+            return Redirect (url);
         }
 
 
