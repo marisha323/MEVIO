@@ -1,9 +1,11 @@
 ﻿using MEVIO.Models;
 using Mevio2Test.Helhers;
 using Mevio2Test.Servises;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System.Drawing;
 using System.Text.Json;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
@@ -48,6 +50,19 @@ namespace MEVIO.Controllers
 
         }
 
+        [Authorize]
+        public async Task<IActionResult> MyProtectedAction()
+        {
+            var user = await context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+            // Перевірка, чи існує користувач в базі даних
+            if (user == null)
+            {
+                return Forbid();
+            }
+            return View("/MainPage/MainPage");
+            // Код захищеної дії
+        }
         public IActionResult Logout()
         {
             CookieOptions options = new CookieOptions();
