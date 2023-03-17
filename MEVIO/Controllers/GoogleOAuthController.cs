@@ -33,15 +33,6 @@ namespace Mevio2Test.Controllers
         private const string PkceSessionKey = "codeVerifier";
 
 
-
-        public IActionResult Index()
-        {
-
-            return View();
-        }
-
-
-
         public IActionResult RedirectOnOAuthServer()
         {
 

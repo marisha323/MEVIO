@@ -21,6 +21,10 @@ namespace MEVIO.Controllers
             ViewBag.Users = context.Users.ToList();
             ViewBag.Events = context.Events.ToList();
             ViewBag.EventsUsers = context.EventsUsers.ToList();
+                 
+                       
+            ViewBag.UserAccept = context.UserAcceptStatuses.ToList();
+                     
             return View();
         }
 
