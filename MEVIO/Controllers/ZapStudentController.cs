@@ -78,13 +78,13 @@ namespace MEVIO.Controllers
 
             //user.PathImgAVA = $"{files[0].FileName}";
 
-            var passrom2 = $@"{Directory.GetCurrentDirectory()}/wwwroot/Img1/{user.UserName.Replace(" ", "-")}";
+            var passrom2 = $@"{Directory.GetCurrentDirectory()}/wwwroot/Imeg1/{user.UserName.Replace(" ", "-")}";
             Directory.CreateDirectory(passrom2);
             user.PathImgAVA = $"{files[0].FileName}";
 
             // Loop through files collection
 
-            var path = $@"{Directory.GetCurrentDirectory()}/wwwroot/Img1/{user.UserName.Replace(" ", "-")}";
+            var path = $@"{Directory.GetCurrentDirectory()}/wwwroot/Imeg1/{user.UserName.Replace(" ", "-")}";
             Directory.CreateDirectory(path);
             foreach (var file in files)
             {
