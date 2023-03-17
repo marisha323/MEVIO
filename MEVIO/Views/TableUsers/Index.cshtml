@@ -45,7 +45,7 @@
     border: 1px solid #52a7e4;
     justify-content: center;
 }
-img {
+.user-img {
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
@@ -97,7 +97,7 @@ img {
             <div class="box">
                 <p class="numb">@counterUsers</p>
                 <div class="imgs">
-                 <p class="namepimg"> <img src="./imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" /></p>
+                 <p class="namepimg"> <img class="user-img" src="./imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" /></p>
                 </div>
                 <div class="name">
                     <p>
@@ -125,7 +125,7 @@ img {
         {
          <div class="box">
             <p class="numb">@counterStudents</p>
-            <div class="imgs"><p class="namepimg"><img src="./imeg2/@itemStudents.StudentName/@itemStudents.PathImgAVA" /></p></div>
+            <div class="imgs"><p class="namepimg"><img class="user-img" src="./imeg2/@itemStudents.StudentName/@itemStudents.PathImgAVA" /></p></div>
             <div class="name">
              <p class="namep" ><a asp-controller="ZapTeacher" asp-action="student" asp-route-id="@itemStudents.Id" >@itemStudents.StudentName</a></p>
             </div>

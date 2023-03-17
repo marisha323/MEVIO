@@ -138,11 +138,15 @@ html {
 
 .top {
     width: 41rem;
-    height: 2rem;
+    height: 4rem;
     left: 67.3rem;
     top: 7rem;
     background: #52a7e4;
     border-radius: 20px 20px 0px 0px;
+    font-size:2rem;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 .infoField {
