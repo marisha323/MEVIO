@@ -3,7 +3,12 @@ const time2 = document.querySelector('#time2');
 const timeChangeBlock = document.querySelector(".time-change-block");
 
 //const beginOfDay = 25200000;
-const beginOfDay = 18000000;
+
+var offset = Math.abs(new Date().getTimezoneOffset()) * 60 * 1000;
+
+//console.log(offset);
+
+const beginOfDay = 25200000 - offset;
 const endOfDay = 75600000;
 const totalDay = 57600000;
 
@@ -74,7 +79,7 @@ function ChangeTimeInput() {
 		const timeDiff = time2Value - time1Value - beginOfDay;
 		const width = Math.round(timeDiff / milisecByPixel);
 
-		if (width > timeSpanDivWidth-left) width = timeSpanDivWidth;
+		if (width > timeSpanDivWidth - left) width = timeSpanDivWidth;
 
 		timeChangeBlock.style.width = width + "px";
 	}
@@ -88,7 +93,7 @@ function ChangeTimeInput() {
 
 time1.addEventListener("change", ChangeTimeInput);
 time2.addEventListener("change", ChangeTimeInput);
-	
+
 
 
 
