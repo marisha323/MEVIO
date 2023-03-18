@@ -40,7 +40,21 @@ namespace MEVIO.Controllers
             ViewBag.Tasks = db.Tasks.AsNoTracking().ToList();
             ViewBag.Measures = db.Measures.AsNoTracking().ToList();
             ViewBag.Monthnames = monthNames;
+            ViewBag.users = db.Users.AsNoTracking().ToList();
             return View();
+        }
+        [HttpGet]
+        public async Task<IActionResult> EditEvent(EventViewModel eventView)
+        {
+            var test = eventView;
+            Event ev = db.Events.Where(o => o.Id == test.EventId).AsNoTracking().FirstOrDefault();
+            ev.Begin = test.Date;
+            ev.End = test.DateEnd;
+            ev.Description = test.EventDescription;
+            ev.EventName = test.EventName;
+            db.Update(ev);
+            await db.SaveChangesAsync();
+            return View("Calendar");
         }
         [HttpPost]
         public ActionResult Action(int month)
