@@ -425,23 +425,23 @@ monthDays.forEach(day => {
         // You can replace the console.log statement with your desired functionality
     });
 });
-const events = document.querySelectorAll('.event'); // Get all elements with the class 'event'
-//Adding events for every <p> child that is inside the event div
-events.forEach(event => {
-    const paragraph = event.querySelector('p'); // Get the paragraph element inside the event
-    paragraph.addEventListener('click', () => {
+//const events = document.querySelectorAll('.event'); // Get all elements with the class 'event'
+////Adding events for every <p> child that is inside the event div
+//events.forEach(event => {
+//    const paragraph = event.querySelector('p'); // Get the paragraph element inside the event
+//    paragraph.addEventListener('click', () => {
 
-        if (!rightMenu.classList.contains("trans")) {
+//        if (!rightMenu.classList.contains("trans")) {
 
-            if (!container.classList.contains("eventShow")) {
-                container.classList.add("eventShow");
-            }
-            else {
-                container.classList.remove("eventShow");
-            }
-        }
-    });
-});
+//            if (!container.classList.contains("eventShow")) {
+//                container.classList.add("eventShow");
+//            }
+//            else {
+//                container.classList.remove("eventShow");
+//            }
+//        }
+//    });
+//});
 //if clicked on some kind of other calendar button while in the
 //menu or some shit this happens
 const calendarButtons = document.querySelectorAll('.calendar-button');
