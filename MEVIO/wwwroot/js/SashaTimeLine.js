@@ -6,7 +6,7 @@ const timeChangeBlock = document.querySelector(".time-change-block");
 
 var offset = Math.abs(new Date().getTimezoneOffset()) * 60 * 1000;
 
-//console.log(offset);
+console.log(offset);
 
 const beginOfDay = 25200000 - offset;
 const endOfDay = 75600000;

@@ -11,6 +11,31 @@
 
 
 <style>
+
+    input[type="checkbox"] {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .checkbox-style {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #52a7e3;
+        /* margin-top: auto;
+            margin-bottom: auto;*/
+        border-radius: 3px;
+        outline: none;
+        cursor: pointer;
+        margin-left: 1rem;
+    }
+
+        .checkbox-style:checked {
+            background-color: #1e90ff;
+            border: 1px solid #1e90ff;
+        }
     .mainDiv {
         width: 80%;
         background-color: #52a7e4;
@@ -102,7 +127,10 @@
         z-index: 1;
         top: 22rem;
     }
-
+    .textCenter {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
 </style>
 
 <body>
@@ -140,7 +168,7 @@
                     </div>
 
                     <div class="checkAllDay">
-                        <input type="checkbox" id="CheckAllDay" />
+                        <input type="checkbox" id="CheckAllDay" class="checkbox-style" />
                         <span>Весь день</span>
                     </div>
                 </div>
@@ -304,10 +332,11 @@
 
 
                 <div class="checkConfirm">
-                    <label>
+                    <label class="textCenter">
                         Сповіщати про підтвердженні/відмові учасників
-                        <input type="checkbox" />
                     </label>
+                        <input type="checkbox" class="checkbox-style" id="confirmMembers" />
+                    
                 </div>
                 <div class="buttons">
                     <button type="submit">Зберегти</button>
@@ -334,40 +363,36 @@
 
 
     <script>
-        myFunction();
-        updateDates();
+      
 
-        $('#addMembers').click(function () {
-            $(".mainBox").fadeToggle(100);
+        $(function () {
+
+            var dateStart = $('#date1').val();
+
+            //var dateEnd = $('#date2').value();
+
+            $('#addMembers').click(function () {
+                $(".mainBox").fadeToggle(100);
+
+            });
+
+            $('.inBox').click(function () {
+                $(".mainBox").css("display", "none");
+            });
+
+            $('#CheckAllDay').click(function () {
+                $('#time1').fadeToggle(200);
+                $('#time2').fadeToggle(200);
+
+                //var dateObject = new Date(dateStart);
+                //$('#date2').val()=dateStart;
+
+                var dateValue = $('#date1').val();
+                $('#date2').val(dateValue);
+            });
         });
 
-        $('.inBox').click(function () {
-            $(".mainBox").css("display", "none");
-        });
 
-
-
-        $('#CheckAllDay').click(function () {
-            $('#time1').fadeToggle(200);
-            $('#time2').fadeToggle(200);
-        });
-
-
-        var timeBegin = document.getElementById("time1");
-        var timeeEnd = document.getElementById("time2");
-
-        var date1 = document.getElementById("date1").value;
-        var date2 = document.getElementById("date2").value;
-
-        function updateDates() {
-
-            var checkbox = document.getElementById("CheckAllDay");
-            if (checkbox.checked) {
-                date2.value = date1;
-            } else {
-                date2.value = "@ViewBag.DateEnd";
-            }
-        }
         function myFunction() {
             //toggleElements('element-time');
             toggleElements('.time1'); toggleElements('.time2');
