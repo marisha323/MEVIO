@@ -18,6 +18,45 @@
         background: #52A7E4;
         color: #111624;
     }
+
+    .conData {
+       /* box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0.313rem 0.813rem;
+        gap: 0.438rem;
+        width: 10.625rem;
+        height: 2.313rem;
+        left: 0.5rem;
+        top: 9.313rem;*/
+        background: #111624;
+        border: 1px solid #52A7E4;
+        border-radius: 0.625rem;
+        color: #BAE2FF;
+       /* font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.25rem;
+        line-height: 1.5rem;*/
+          font-family: 'Inter';
+         font-style: normal;
+         font-weight: 700;
+         font-size: 30px;
+           line-height: 30px;
+        transform: (-50%, -50%);
+        background: url("/img/free-icon-calendar-747824.png") no-repeat center;
+        background-size: 20px;
+        background-repeat: no-repeat;
+        background-position: 95%;
+        padding: 0.313rem;
+    }
+
+    input[type=date]::-webkit-calendar-picker-indicator {
+        opacity: 0;
+
+    }
+
 </style>
 <body>
 
@@ -170,16 +209,16 @@
                             <input type="text" class="divStrockZap2" asp-for="@Model.DiscountSum" style="top: 949px;  left: 400px;" placeholder="500 UAN">
                         </div>
                     </div>
-                   @* <div class="div-p-input">
-                        <p class="divStrockZap" style="top: 949px;">Education Form:</p>
-                        <select name="Contract" class="divStrockZap2">
+                    @* <div class="div-p-input">
+                    <p class="divStrockZap" style="top: 949px;">Education Form:</p>
+                    <select name="Contract" class="divStrockZap2">
 
-                            <option selected>Education Form...</option>
-                            @foreach (var item in ViewBag.Contract)
-                            {
-                                <option value="@item.">@item.DateStamp</option>
-                            }
-                        </select>
+                    <option selected>Education Form...</option>
+                    @foreach (var item in ViewBag.Contract)
+                    {
+                    <option value="@item.">@item.DateStamp</option>
+                    }
+                    </select>
                     </div>*@
 
                     <div class="classPodcherk"> </div>
@@ -224,7 +263,7 @@
 
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 91px; ">DateStamp:</p>
-                        <input type="date" name="DateStamp" class="divStrockZap2 conData" style="top: 95px;  left: 400px;">
+                        <input type="date" name="DateStamp" class="conData divStrockZap2" style="top: 95px;  left: 400px;">
                     </div>
 
                     <div class="div-p-input">
