@@ -440,8 +440,8 @@
                                 </div>  -->
 
                                 <div class="secondBox">
-
-                                    @foreach (var itemUsers in ViewBag.Users)
+                                    
+                                    @foreach (var itemUsers in ViewBag?.Users)
                                     {
                                         <div class="inBox">
                                             <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
@@ -567,9 +567,27 @@
 
     <script>
 
+        function()
+        {
+            //Получаем значения элементов управления ввода даты и времени
+            const dateStart = document.getElementById("#date1").value;
+            const timeValue2 = document.getElementById("#time1").value;
+
+            const dateValue1 = document.getElementById("#date2").value;
+            const timeValue2 = document.getElementById("#time2").value;
+
+            // Объединяем значения даты и времени в строку формата ISO 8601
+            const dateTimeString1 = dateValue + "T" + timeValue + ":00";
+            const dateTimeString2 = dateValue + "T" + timeValue + ":00";
+
+            // Создаем объект DateTime из строки
+            const dateTime1 = new Date(dateTimeString);
+            const dateTime2 = new Date(dateTimeString);
+        }
+
 
         $(function () {
-
+           
             var dateStart = $('#date1').val();
 
             //var dateEnd = $('#date2').value();
@@ -581,14 +599,7 @@
 
             $('.inBox').click(function () {
 
-                //// Получаем ссылки на элементы, которые нужно перенести
-                //var userImg = document.querySelector('.inBox img');
-                //var userName = document.querySelector('.inBox p');
-
-                //// Получаем ссылки на элементы, в которые нужно перенести данные
-                //var memImg = document.querySelector('.memb img');
-                //var memName=document.querySelector('.memb p');
-                
+                             
 
                 var imgSrc = $(this).find('img').attr('src');
                 var userName = $(this).find('p').text();
@@ -614,6 +625,10 @@
                 var dateValue = $('#date1').val();
                 $('#date2').val(dateValue);
             });
+
+
+        
+
         });
 
 

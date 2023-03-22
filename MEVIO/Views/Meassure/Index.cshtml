@@ -12,6 +12,7 @@
         margin-top: auto;
         margin-bottom: auto;
     }
+
     .checkbox-style {
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -19,12 +20,12 @@
         width: 20px;
         height: 20px;
         border: 1px solid #52a7e3;
-       /* margin-top: auto;
-        margin-bottom: auto;*/
+        /* margin-top: auto;
+            margin-bottom: auto;*/
         border-radius: 3px;
         outline: none;
         cursor: pointer;
-        margin-left:1rem;
+        margin-left: 1rem;
     }
 
         .checkbox-style:checked {
@@ -116,12 +117,12 @@
             border: none;
         }
     /*
-        ---------------------window with users*/
+            ---------------------window with users*/
     .membersWindow {
         width: 7.6rem;
         height: 2.1rem;
         /* left: 44.5rem;
-            top: 36.8rem;*/
+                top: 36.8rem;*/
         border: none;
         cursor: pointer;
         background: #52a7e4;
@@ -345,10 +346,10 @@
 
                     <div class="divDate">
                         <input type="date" asp-for="@Model.Begin" id="date1" />
-                        <input type="time" class="superstyle" id="time1"@* name="time1"*@ />
+                        <input type="time" class="superstyle" id="time1" @* name="time1"*@ />
                         <div class="ture"></div>
                         <input type="date" asp-for="@Model.End" id="date2" />
-                        <input type="time" class="superstyle" id="time2"@* name="time2"*@ />
+                        <input type="time" class="superstyle" id="time2" @* name="time2"*@ />
                     </div>
 
                     <div class="checkAllDay">
@@ -396,7 +397,7 @@
                             <img src="@ViewBag.ImgPath" />
                             <p class="name"> @ViewBag.NameUser</p>
                         </div>
-                                 
+
                         <div id="addMembers">+ Додати</div>
                         <div class="mainBox" @*style="display: none"*@>
                             @*<div class="membersWindow">учасники</div>*@
@@ -520,7 +521,7 @@
                         <label class="textCenter" for="freePlaces">
                             Вільних місць в аудиторії:
                         </label>
-                            <input type="number" id="freePlaces" asp-for="@Model.FreePlaces"/>
+                        <input type="number" id="freePlaces" asp-for="@Model.FreePlaces" />
 
                     </div>
                 </div>
@@ -540,12 +541,12 @@
         //MEASURE;
         //
 
-      
 
-        $(function(){
+
+        $(function () {
 
             var dateStart = $('#date1').val();
-            
+
             //var dateEnd = $('#date2').value();
 
             $('#addMembers').click(function () {
@@ -556,12 +557,12 @@
             $('.inBox').click(function () {
                 $(".mainBox").css("display", "none");
             });
-            
+
             $('#CheckAllDayBox').click(function () {
                 $('#time1').fadeToggle(200);
                 $('#time2').fadeToggle(200);
 
-                
+
                 //var dateObject = new Date(dateStart);
                 //$('#date2').val()=dateStart;
 
@@ -569,31 +570,41 @@
                 $('#date2').val(dateValue);
             });
         });
+        $.ajax({
+            url: "/Meassure/Index",
+            type: "POST",
+            data: { param1: "value1", param2: "value2" },
+            success: function (result) {
+                // обработка ответа от сервера
+            },
+            error: function (xhr, status, error) {
+                // обработка ошибок
+            }
+        });
+               // Получаем значения элементов управления ввода даты и времени
+                //const dateValue1 = document.getElementById("#date1").value;
+                //const timeValue2 = document.getElementById("#time1").value;
 
-       // Получаем значения элементов управления ввода даты и времени
-        //const dateValue1 = document.getElementById("#date1").value;
-        //const timeValue2 = document.getElementById("#time1").value;
+                //const dateValue1 = document.getElementById("#date2").value;
+                //const timeValue2 = document.getElementById("#time2").value;
 
-        //const dateValue1 = document.getElementById("#date2").value;
-        //const timeValue2 = document.getElementById("#time2").value;
+                //// Объединяем значения даты и времени в строку формата ISO 8601
+                //const dateTimeString1 = dateValue + "T" + timeValue + ":00";
+                //const dateTimeString2 = dateValue + "T" + timeValue + ":00";
 
-        //// Объединяем значения даты и времени в строку формата ISO 8601
-        //const dateTimeString1 = dateValue + "T" + timeValue + ":00";
-        //const dateTimeString2 = dateValue + "T" + timeValue + ":00";
-
-        //// Создаем объект DateTime из строки
-        //const dateTime1 = new Date(dateTimeString);
-        //const dateTime2 = new Date(dateTimeString);
+                //// Создаем объект DateTime из строки
+                //const dateTime1 = new Date(dateTimeString);
+                //const dateTime2 = new Date(dateTimeString);
 
 
 
 
 
 
-                //var dateStart= document.getElementById("#date1");
-        //dateInput.value = "@ViewBag?.Date";
-        //var dateEnd = document.getElementById("#date2");
-        //dateEnd.value = "@ViewBag?.DateEnd";
+                        //var dateStart= document.getElementById("#date1");
+                //dateInput.value = "@ViewBag?.Date";
+                //var dateEnd = document.getElementById("#date2");
+                //dateEnd.value = "@ViewBag?.DateEnd";
 
 
     </script>
