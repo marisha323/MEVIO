@@ -11,11 +11,37 @@
 
 
 <style>
+
+    input[type="checkbox"] {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .checkbox-style {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #52a7e3;
+        /* margin-top: auto;
+                margin-bottom: auto;*/
+        border-radius: 3px;
+        outline: none;
+        cursor: pointer;
+        margin-left: 1rem;
+    }
+
+        .checkbox-style:checked {
+            background-color: #1e90ff;
+            border: 1px solid #1e90ff;
+        }
+
     .mainDiv {
         width: 80%;
         background-color: #52a7e4;
         padding-bottom: 1rem;
-        margin:auto;
+        margin: auto;
     }
 
 
@@ -103,6 +129,216 @@
         top: 22rem;
     }
 
+    .textCenter {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .styleP {
+        width: 5rem;
+        height: 2.5rem;
+        font-size: 1.3rem;
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        line-height: 2.5rem;
+        white-space: nowrap;
+        color: #52a7e4;
+        margin-right: 1rem;
+    }
+    /*/////////////////////////////////////*window*/
+    .parent{
+        display:flex;
+    }
+    .membersWindow {
+        width: 7.6rem;
+        height: 2.1rem;
+        /* left: 44.5rem;
+            top: 36.8rem;*/
+        border: none;
+        cursor: pointer;
+        background: #52a7e4;
+        border-radius: 15px 15px 0px 0px;
+    }
+
+        .membersWindow p {
+            width: 6.5rem;
+            height: 24px;
+            left: 45rem;
+            top: 37rem;
+            text-align: end;
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 1.4rem;
+            line-height: 1.7rem;
+            color: #111624;
+        }
+
+    .box2 {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        width: 29rem;
+        height: 17.5rem;
+        left: 622px;
+        top: 42rem;
+        background: #111624;
+        border: 1px solid #52a7e4;
+    }
+
+    .first {
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        height: 3rem;
+        left: 44.86rem;
+        width: 27.4rem;
+        margin-left: 0.428rem;
+        margin-right: 1.214rem;
+        margin-top: 0.642rem;
+        background: #111624;
+        border: 1px solid #52a7e4;
+    }
+
+    .block {
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        width: 11.4rem;
+        height: 2.1rem;
+        left: 45.64rem;
+        top: 39.85rem;
+        margin-left: 0.8rem;
+        background: #a0d7ff;
+    }
+
+        .block img {
+            width: 1.6rem;
+            height: 1.6rem;
+            left: 647px;
+            margin-left: 0.5rem;
+            top: 562px;
+            border-radius: 50%;
+            border: 1px solid #52a7e4;
+        }
+
+        .block p {
+            width: 8.35rem;
+            height: 1.714rem;
+            white-space: nowrap;
+            margin-left: 0.9rem;
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
+            color: #111624;
+        }
+
+    .inpSearch {
+        width: 11rem;
+        height: 1.7rem;
+        margin-left: 4rem;
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        background-color: #111624;
+        color: #52a7e4;
+        border: none;
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    .secondBox {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 29rem;
+        margin-top: 1rem;
+        overflow: scroll;
+        /*для вертикального*/
+        overflow-x: hidden; /*для горизонтального*/
+    }
+
+    ::-webkit-scrollbar {
+        width: 20px;
+    }
+
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey;
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background-color: #52a7e4;
+        border-radius: 10px;
+    }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #00c6fb, #005bea);
+        }
+
+
+
+    .inBox {
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        height: 2.5rem;
+        left: 45.57rem;
+        margin-top: 1rem;
+        width: 27.51rem;
+        margin-left: 0.428rem;
+        margin-right: 1.214rem;
+    }
+
+        .inBox:hover {
+            background-color: #52a7e4;
+        }
+
+        .inBox p:hover {
+            color: #111624;
+        }
+
+        .inBox img {
+            width: 2rem;
+            height: 2rem;
+            left: 46rem;
+            top: 43.14rem;
+            border-radius: 50%;
+            border: 1px solid #a0d7ff;
+            margin-left: 0.7rem;
+        }
+
+
+        .inBox p {
+            width: 7.857rem;
+            height: 18px;
+            left: 674px;
+            top: 603px;
+            margin-left: 3rem;
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 1.2rem;
+            line-height: 18px;
+        }
+
+    .bird {
+        width: 15.5px;
+        height: 15px;
+        top: 650px;
+        color: #111624;
+        margin: 0.57rem 0.71rem 1.2rem 12rem;
+    }
+
 </style>
 
 <body>
@@ -118,7 +354,7 @@
 
                 <div class="divTime">
                     <div class="timeText">
-                        <p class="time">Час події</p>
+                        <p class="time styleP">Час події</p>
                     </div>
 
                     <div class="containerTime">
@@ -132,15 +368,15 @@
                     </div>
 
                     <div class="divDate">
-                        <input type="date" asp-for="@Model.Begin" id="date1" />
-                        <input type="time" class="superstyle" id="time1" name="time1" />
+                        <input type="date" id="date1" asp-for="@Model.Begin" />
+                        <input type="time" class="superstyle" id="time1"  asp-for="@Model.Begin" />
                         <div class="ture"></div>
-                        <input type="date" asp-for="@Model.End" id="date2" />
-                        <input type="time" class="superstyle" id="time2" name="time2" />
+                        <input type="date" id="date2" asp-for="@Model.End" />
+                        <input type="time" class="superstyle" id="time2" asp-for="@Model.End" />
                     </div>
 
                     <div class="checkAllDay">
-                        <input type="checkbox" id="CheckAllDay" />
+                        <input type="checkbox" id="CheckAllDay" class="checkbox-style" />
                         <span>Весь день</span>
                     </div>
                 </div>
@@ -156,20 +392,7 @@
                               placeholder="Enter text . . ."></textarea>
                 </div>
                 <hr />
-                @*
-                <div class="description">
-                <div class="divDescr">
-                <p class="styleP">Місце проведення</p>
-                </div>
-                @*<select name="placeSpend">
 
-                @foreach (PlaceForMeasure item in ViewBag.Place)
-                {
-                <option value="@item.Id">@item.PlaceForMeasureName</option>
-                }
-                </select>
-                </div>*@
-                <hr />
 
                 <div class="description">
                     <div class="divDescr">
@@ -177,21 +400,29 @@
                     </div>
 
                     <div class="members">
-                        @foreach (var itemUsers in ViewBag.Users)
+                        @* @foreach (var itemUsers in ViewBag.Users)
                         {
-                            @foreach (var itemEvent in ViewBag.Events) @*All Events*@
-                            {
-                                @foreach (var itemEventUser in ViewBag.EventsUsers) @*Витягухємо зв'язуючу таблицю користувачів та задач*@
-                                {
-                                    @if (itemEventUser.UserId == itemUsers.Id && itemEvent.Id == itemEventUser.EventId && itemEventUser.IsCreator == true)
-                                    {
-                                        <div class="memb">
-                                            <img src="@itemUsers.PathImgAVA" />
-                                            <p class="name">@itemUsers.UserName</p>
-                                        </div>
-                                    }
-                                }
-                            }}
+                        @foreach (var itemEvent in ViewBag.Events) @*All Events*@
+                        @*
+                        @foreach (var itemEventUser in ViewBag.EventsUsers)
+                        {
+                        @if (itemEventUser.UserId == itemUsers.Id && itemEvent.Id == itemEventUser.EventId && itemEventUser.IsCreator == true)
+                        {
+                        <div class="memb">
+                        <img src="@itemUsers.PathImgAVA" />
+                        <p class="name">@itemUsers.UserName</p>
+                        </div>
+                        }
+                        }
+                        }}*@
+
+                       
+                        <div class="parent">
+                            <div class="memb">
+                                <img src="~/Imeg1/@ViewBag.NameUser/@ViewBag.ImgPath" />
+                                <p class="name"> @ViewBag.NameUser</p>
+                            </div>
+                        </div>
                         <div id="addMembers">+ Додати</div>
 
                         <div class="mainBox" @*style="display: none"*@>
@@ -214,8 +445,8 @@
                                     {
                                         <div class="inBox">
                                             <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
-                                            @* <img src="~/Imeg2/Jamala/Jamala_1944_cover.jpg" />*@
                                             <p>@itemUsers.UserName</p>
+                                            <span hidden>@itemUsers.Id</span>
                                             <div class="bird">&#10004;</div>
                                         </div>
                                     }
@@ -304,10 +535,11 @@
 
 
                 <div class="checkConfirm">
-                    <label>
+                    <label class="textCenter">
                         Сповіщати про підтвердженні/відмові учасників
-                        <input type="checkbox" />
                     </label>
+                    <input type="checkbox" class="checkbox-style" id="confirmMembers" />
+
                 </div>
                 <div class="buttons">
                     <button type="submit">Зберегти</button>
@@ -334,40 +566,57 @@
 
 
     <script>
-        myFunction();
-        updateDates();
 
-        $('#addMembers').click(function () {
-            $(".mainBox").fadeToggle(100);
+
+        $(function () {
+
+            var dateStart = $('#date1').val();
+
+            //var dateEnd = $('#date2').value();
+
+            $('#addMembers').click(function () {
+                $(".mainBox").fadeToggle(100);
+
+            });
+
+            $('.inBox').click(function () {
+
+                //// Получаем ссылки на элементы, которые нужно перенести
+                //var userImg = document.querySelector('.inBox img');
+                //var userName = document.querySelector('.inBox p');
+
+                //// Получаем ссылки на элементы, в которые нужно перенести данные
+                //var memImg = document.querySelector('.memb img');
+                //var memName=document.querySelector('.memb p');
+                
+
+                var imgSrc = $(this).find('img').attr('src');
+                var userName = $(this).find('p').text();
+                $('.memb img').attr('src', imgSrc);
+                $('.memb .name').text(userName);
+
+                //var UserId= $('.inBox span').text();
+
+                var block = '<div class="memb"><img src="" />' + '<p class="name"></p>'+'</div>';
+                $('.parent').append(block);
+
+                $(".mainBox").css("display", "none");
+                count++;
+            });
+
+            $('#CheckAllDay').click(function () {
+                $('#time1').fadeToggle(200);
+                $('#time2').fadeToggle(200);
+
+                //var dateObject = new Date(dateStart);
+                //$('#date2').val()=dateStart;
+
+                var dateValue = $('#date1').val();
+                $('#date2').val(dateValue);
+            });
         });
 
-        $('.inBox').click(function () {
-            $(".mainBox").css("display", "none");
-        });
 
-
-
-        $('#CheckAllDay').click(function () {
-            $('#time1').fadeToggle(200);
-            $('#time2').fadeToggle(200);
-        });
-
-
-        var timeBegin = document.getElementById("time1");
-        var timeeEnd = document.getElementById("time2");
-
-        var date1 = document.getElementById("date1").value;
-        var date2 = document.getElementById("date2").value;
-
-        function updateDates() {
-
-            var checkbox = document.getElementById("CheckAllDay");
-            if (checkbox.checked) {
-                date2.value = date1;
-            } else {
-                date2.value = "@ViewBag.DateEnd";
-            }
-        }
         function myFunction() {
             //toggleElements('element-time');
             toggleElements('.time1'); toggleElements('.time2');

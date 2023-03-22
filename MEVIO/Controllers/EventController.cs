@@ -1,5 +1,6 @@
 ﻿using MEVIO.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace MEVIO.Controllers
 {
@@ -16,6 +17,31 @@ namespace MEVIO.Controllers
 
         public IActionResult Index()
         {
+            User user = null;
+            string UserLoggedIn = HttpContext.Request.Cookies["UserLoggedIn"];
+            
+            if (UserLoggedIn != null && UserLoggedIn != "")
+            {
+                user = JsonSerializer.Deserialize<User>(UserLoggedIn);
+                ViewBag.NameUser=user.UserName;
+                //ViewBag.User = user;
+                //ViewBag.Id = user.Id;
+                //ViewBag.Role = user.UserRoleId;
+                //ViewBag.NameUser = user.UserName;
+                ViewBag.ImgPath = user.PathImgAVA;
+
+            }
+
+            //if (db.Users.AsNoTracking().Count() == 0)
+            //{
+            //    db.Roles.Add(new Roles() { Name = "Admin" });
+            //    db.Roles.Add(new Roles() { Name = "User" });
+            //    db.Users.Add(new Users() { FullName = "Admin", Email = "admin@gmail.com", Password = "12345", PhoneNumber = "0000", RoleId = 1 });
+            //    db.SaveChanges();
+            //}
+
+
+
             ViewBag.Place = context.PlaceForMeasures.ToList();
             ViewBag.Stud = context.Students.ToList();
             ViewBag.Users = context.Users.ToList();
