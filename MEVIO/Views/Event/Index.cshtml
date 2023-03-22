@@ -148,7 +148,8 @@
     }
     /*/////////////////////////////////////*window*/
     .parent{
-        display:flex;
+        display:grid;
+        grid-template-columns:1fr 1fr 1fr;
     }
     .membersWindow {
         width: 7.6rem;
@@ -345,7 +346,7 @@
     <div class="mainDiv">
         <p class="pNew">Нова подія</p>
 
-        <form asp-controller="Event" asp-action="AddEvent" method="post">
+        <form id="eventForm" asp-controller="Event" asp-action="AddEvent" method="post">
             <div class="insideDiv">
                 <div>
                     <label class="labelF">Нова подія </label>
@@ -417,12 +418,14 @@
                         }}*@
 
                        
-                        <div class="parent">
+                        <div id="parent" class="parent">
                             <div class="memb">
                                 <img src="~/Imeg1/@ViewBag.NameUser/@ViewBag.ImgPath" />
                                 <p class="name"> @ViewBag.NameUser</p>
                             </div>
                         </div>
+
+
                         <div id="addMembers">+ Додати</div>
 
                         <div class="mainBox" @*style="display: none"*@>
@@ -445,8 +448,8 @@
                                     {
                                         <div class="inBox">
                                             <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
-                                            <p>@itemUsers.UserName</p>
-                                            <span hidden>@itemUsers.Id</span>
+                                            <p class="userName">@itemUsers.UserName</p>
+                                            <span class="userId" hidden>@itemUsers.Id</span>
                                             <div class="bird">&#10004;</div>
                                         </div>
                                     }
@@ -579,7 +582,9 @@
 
             });
 
-            $('.inBox').click(function () {
+            $('.inBox').click(function (e) {
+
+                
 
                 //// Получаем ссылки на элементы, которые нужно перенести
                 //var userImg = document.querySelector('.inBox img');
@@ -589,19 +594,73 @@
                 //var memImg = document.querySelector('.memb img');
                 //var memName=document.querySelector('.memb p');
                 
+                
 
-                var imgSrc = $(this).find('img').attr('src');
-                var userName = $(this).find('p').text();
-                $('.memb img').attr('src', imgSrc);
-                $('.memb .name').text(userName);
+                //const userName=text.Splil("/")[1];
+
+                //$('.memb img').attr('src', imgSrc);
+                //$('.memb .name').text(userName);
 
                 //var UserId= $('.inBox span').text();
 
-                var block = '<div class="memb"><img src="" />' + '<p class="name"></p>'+'</div>';
-                $('.parent').append(block);
+                //var block = '<div class="memb"><img src="" />' + '<p class="name"></p>'+'</div>';
+                //$('.parent').append(block);
+
+
+
+
+
+
+
+
+
+                //Sasha
+
+                const imgSrc = $(this).find('img').attr('src');
+                const userId=$(this).find(".userId").text();
+                const userName = $(this).find('.userName').text();
+
+                console.log(userId);
+                console.log(userName);
+                console.log(imgSrc);
+
+
+                const parent=document.getElementById("parent");
+
+                const div=document.createElement("div");
+                div.className="memb";
+                div.id=userId;
+
+                const img=document.createElement("img");
+                img.setAttribute("src",imgSrc);
+
+                const p=document.createElement("p");
+                p.className="name";
+                p.innerText=userName;
+
+                div.appendChild(img);
+                div.appendChild(p);
+
+                parent.appendChild(div);
+
+
+                const list = document.querySelectorAll(".memb");
+                console.log(list);
+
+                const form=document.getElementById("eventForm");
+
+                const input=document.createElement("input");
+                input.hidden=true;
+                input.name="userId";
+                input.setAttribute("value",userId);
+
+                form.appendChild(input);
+
+
 
                 $(".mainBox").css("display", "none");
-                count++;
+
+                //count++;
             });
 
             $('#CheckAllDay').click(function () {

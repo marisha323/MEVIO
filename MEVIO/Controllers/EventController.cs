@@ -63,6 +63,14 @@ namespace MEVIO.Controllers
             //ViewBag.Date = data.ToString("yyyy-MM-dd");
             //var dataEnd = context.Events.FirstOrDefault().Begin;
             //ViewBag.DateEnd = dataEnd.ToString("yyyy-MM-dd");
+
+            
+
+            //Sasha Alex
+            //var ids = Request.Form["userId"];
+
+
+
             if (event1 != null)
             {
                 context.Events.Add(event1);
