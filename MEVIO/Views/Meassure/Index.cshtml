@@ -391,21 +391,12 @@
                     </div>
 
                     <div class="members">
-                        @foreach (var itemUsers in ViewBag.Users)
-                        {
-                            @foreach (var itemMeassure in ViewBag.Meassure) @*All Events*@
-                            {
-                                @foreach (var itemMeassureUser in ViewBag.MeassuresUsers)
-                                {
-                                    @if (itemMeassureUser.UserId == itemUsers.Id && itemMeassure.Id == itemMeassureUser.MeasureId && itemMeassureUser.IsCreator == true)
-                                    {
-                                        <div class="memb">
-                                            <img src="@itemUsers.PathImgAVA" />
-                                            <p class="name">@itemUsers.UserName</p>
-                                        </div>
-                                    }
-                                }
-                            }}
+
+                        <div class="memb">
+                            <img src="@ViewBag.ImgPath" />
+                            <p class="name"> @ViewBag.NameUser</p>
+                        </div>
+                                 
                         <div id="addMembers">+ Додати</div>
                         <div class="mainBox" @*style="display: none"*@>
                             @*<div class="membersWindow">учасники</div>*@
