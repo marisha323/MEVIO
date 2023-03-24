@@ -4,6 +4,7 @@ using MEVIO.Views.Calendar;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace MEVIO.Controllers
 {
@@ -21,12 +22,12 @@ namespace MEVIO.Controllers
             months = MonthGenerator.Fill();
             ViewBag.months = months;
 
-            List<string> days = new List<string>() { "Неділ", "Понед", "Вівто", "Серед", "Четве", "П'ятн", "Субот"};
+            List<string> days = new List<string>() { "Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота" };
             string[] monthNames = new string[] { "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень ", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
             List<int> spacesInDay = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
             ViewBag.weekDays = days;
             ViewBag.spaces = spacesInDay;
-
+            
             //var Events = db.Events.AsNoTracking().ToList();
             //List <BreakDate> breakDates= new List<BreakDate>();
             //foreach(var item in Events)
@@ -41,6 +42,14 @@ namespace MEVIO.Controllers
             ViewBag.Measures = db.Measures.AsNoTracking().ToList();
             ViewBag.Monthnames = monthNames;
             ViewBag.users = db.Users.AsNoTracking().ToList();
+
+            CultureInfo culture = CultureInfo.GetCultureInfo("uk-UA");
+            int monthNow = DateTime.Now.Month;
+            string monthName = culture.DateTimeFormat.GetMonthName(monthNow);
+            //string monthNumber = culture.DateTimeFormat.GetMonthName(monthNow);
+
+            ViewBag.monthNow = new { Name = monthName, Number = monthNow };
+
             return View();
         }
         [HttpGet]

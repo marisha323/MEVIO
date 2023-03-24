@@ -398,7 +398,7 @@
                                                 {
                                                     if (item.Begin.ToString("yyyy-MM-dd") == currentDate.ToString("yyyy-MM-dd"))
                                                     {
-                                                        <div class="event red">
+                                                        <div class="event">
                                                             <input type="hidden" value="@item.Id">
                                                             <p>@item.EventName</p>
                                                         </div>
@@ -417,7 +417,7 @@
                                                 {
                                                     if (item.Begin.ToString("yyyy-MM-dd") == currentDate.ToString("yyyy-MM-dd"))
                                                     {
-                                                        <div class="event">
+                                                        <div class="event red">
                                                             <p>@item.MeasureName</p>
                                                         </div>
                                                     }
@@ -477,6 +477,36 @@
     });
     </script>*@
     <script>
+    const monthBtn = document.getElementById("monthbtn");
+    
+    // Add event listeners to each button
+    //dayBtn.addEventListener("click", DayButtonClick);
+    //weekBtn.addEventListener("click", WeekButtonClick);
+    monthBtn.addEventListener("click", CurrentMonth);
+    //yearBtn.addEventListener("click", CurrentMonth);
+    
+    function CurrentMonth(){
+            var currentMonth = @ViewBag.monthNow.Number;
+            var monthSwitchers = document.querySelectorAll('.month-switcher');
+            //var currentMonth = new Date().getMonth() + 1;
+            var currentMonth = @ViewBag.monthNow.Number;
+            var monthSwitchers = document.querySelectorAll('.month-switcher');
+
+            for (var i = 0; i < monthSwitchers.length; i++) {
+                var monthSwitcher = monthSwitchers[i];
+                var monthName = monthSwitcher.classList[1].split('-')[0];
+                var monthNumber = new Date(Date.parse('01 ' + monthName + ' 2023')).getMonth() + 1;
+
+                if (monthNumber !== currentMonth) {
+                    monthSwitcher.style.display = 'none';
+                }
+                else{
+                    monthSwitcher.style.display = 'block';
+                }
+            }
+    }
+    </script>
+    <script>
         function toggleVisibility(id) {
             var allYears = document.querySelectorAll('.year-switcher');
             for (var i = 0; i < allYears.length; i++) {
@@ -510,8 +540,8 @@
     <script>
         // Get all the month switcher divs
         var monthSwitchers = document.querySelectorAll('.month-switcher');
-        var currentMonth = new Date().getMonth() + 1;
-        var monthSwitchers = document.querySelectorAll('.month-switcher');
+        //var currentMonth = new Date().getMonth() + 1;
+        var currentMonth = @ViewBag.monthNow.Number;
 
         for (var i = 0; i < monthSwitchers.length; i++) {
             var monthSwitcher = monthSwitchers[i];
@@ -523,7 +553,7 @@
             }
         }
         // Add click event listener to each month option item
-        var monthOptionItems = document.querySelectorAll('.option-item-month');
+        var monthOptionItems = document.querySelectorAll('.option-item-month'); 
         monthOptionItems.forEach(function (item) {
             item.addEventListener('click', function () {
                 // Get the selected month name
@@ -644,7 +674,7 @@
                             string[] arr = new string[] { "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
                             foreach (var item in arr)
                             {
-                                <div class="option-item">item</div>
+                                        <div class="option-item">item</div>
                             }
                         }
                     </div>
@@ -794,6 +824,7 @@
                 container.classList.remove("eventShow");
             }
         }
+        //getting all events by class .event
         const events = document.querySelectorAll('.event');
 
         let eventId = document.getElementsByName("EventId");
@@ -862,6 +893,8 @@
                 }
             });
         });
+        const measures = document.querySelectorAll('.red');
+        events.forEach(event => {
     </script>
     <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
     <script src="~/js/scriptEventMini2.js" asp-append-version="true"></script>
