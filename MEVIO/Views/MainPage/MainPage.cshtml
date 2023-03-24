@@ -96,7 +96,10 @@
                 
                     @if (itemUsers.Id == itemEvents.UserId) @*Робимо перевірку всередині таблиці подій, на те щоб саме наш користувач був прив'язаний до цієї події*@
                     {
-                        <div class="div-obj-News">
+                        @if(ViewBag.UsersId == itemEvents.UserId)
+                        { 
+                            
+                          <div class="div-obj-News">
                             <div class="div-obj-News-cont">
                                 <div class="div-div-News">
                                     <img class="img-Ava" src=~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA>
@@ -113,7 +116,7 @@
                                 {
                                         @foreach (var ItemsEventUsers in ViewBag.EventsUsers)
                                         {
-                                            @if (ItemsEventUsers.EventId == itemEvents.Id && ItemsEventUsers.UserId == item.Id)@*Перевірка в середині зв'язуючої таблиці на прив'язку користувача який відповідальний за цю подію *@
+                                            @if (ItemsEventUsers.EventId == itemEvents.Id && ItemsEventUsers.UserId == item.Id && ItemsEventUsers.UserId == ViewBag.UserId)@*Перевірка в середині зв'язуючої таблиці на прив'язку користувача який відповідальний за цю подію *@
                                             {
                                                 <p class="Sotrydniki">@item.UserName</p>
                                             }
@@ -141,7 +144,7 @@
                                 <input type="button" value="Обговорити" class="button-Obgovor">
                             </div>
                         </div>
-                    }}}
+                    }}}}
         </div>@* кінець контейнера з подіями*@
         <div id="TaskDiv" class="displaynone active" >  @*контейнер з задачами*@
         @foreach (var itemUsers in ViewBag.Useres) @*Витягуємо список користувачів*@
