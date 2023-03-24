@@ -7,12 +7,323 @@
 
 <link type="text/css" rel="stylesheet" href="/css/NewMeasure.css">
 
+<style>
+    input[type="checkbox"] {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .checkbox-style {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #52a7e3;
+        /* margin-top: auto;
+            margin-bottom: auto;*/
+        border-radius: 3px;
+        outline: none;
+        cursor: pointer;
+        margin-left: 1rem;
+    }
+
+        .checkbox-style:checked {
+            background-color: #1e90ff;
+            border: 1px solid #1e90ff;
+        }
+
+    .mainDiv {
+        width: 90%;
+        background-color: #52a7e4;
+        padding-bottom: 1rem;
+        margin: auto;
+        margin-left: 4.2rem;
+    }
+
+    .textCenter {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .mainBox {
+        position: absolute;
+        display: none;
+        z-index: 1;
+        top: 22rem;
+    }
+
+
+    #addMembers {
+        width: 8rem;
+        height: 2rem;
+        margin: 0.8rem;
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.6rem;
+        line-height: 1.7rem;
+        background-color: #111624;
+        color: #52a7e4;
+        border: none;
+        cursor: pointer;
+    }
+
+    .memb {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 12rem;
+        margin-left: 1rem;
+        height: 2.5rem;
+        background: #a0d7ff;
+        border: 1px solid #52a7e4;
+        margin: 0.5rem;
+    }
+
+    input[type="time"], input[type="number"] {
+        box-sizing: border-box;
+        display: flex;
+        height: 2.313rem;
+        width: 5rem;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 0.6rem;
+        padding-right: 0.6rem;
+        padding-top: 0.2rem;
+        padding-bottom: 0.375rem;
+        margin-left: 0.5rem;
+        background: #111624;
+        border: 1px solid #52a7e4;
+        border-radius: 0.625rem;
+        color: #52a7e4;
+        font-family: "Inter";
+        font-style: normal;
+        font-size: 1rem;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+    }
+
+        .buttons button {
+            width: 12rem;
+            height: 2.7rem;
+            margin: 1rem;
+            background: #52a7e4;
+            border-radius: 15px;
+            cursor: pointer;
+            border: none;
+        }
+    /*
+            ---------------------window with users*/
+    .membersWindow {
+        width: 7.6rem;
+        height: 2.1rem;
+        /* left: 44.5rem;
+                top: 36.8rem;*/
+        border: none;
+        cursor: pointer;
+        background: #52a7e4;
+        border-radius: 15px 15px 0px 0px;
+    }
+
+        .membersWindow p {
+            width: 6.5rem;
+            height: 24px;
+            left: 45rem;
+            top: 37rem;
+            text-align: end;
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 1.4rem;
+            line-height: 1.7rem;
+            color: #111624;
+        }
+
+    .box2 {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        width: 29rem;
+        height: 17.5rem;
+        left: 622px;
+        top: 42rem;
+        background: #111624;
+        border: 1px solid #52a7e4;
+    }
+
+    .first {
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        height: 3rem;
+        left: 44.86rem;
+        width: 27.4rem;
+        margin-left: 0.428rem;
+        margin-right: 1.214rem;
+        margin-top: 0.642rem;
+        background: #111624;
+        border: 1px solid #52a7e4;
+    }
+
+    .block {
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        width: 11.4rem;
+        height: 2.1rem;
+        left: 45.64rem;
+        top: 39.85rem;
+        margin-left: 0.8rem;
+        background: #a0d7ff;
+    }
+
+        .block img {
+            width: 1.6rem;
+            height: 1.6rem;
+            left: 647px;
+            margin-left: 0.5rem;
+            top: 562px;
+            border-radius: 50%;
+            border: 1px solid #52a7e4;
+        }
+
+        .block p {
+            width: 8.35rem;
+            height: 1.714rem;
+            white-space: nowrap;
+            margin-left: 0.9rem;
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
+            color: #111624;
+        }
+
+    .inpSearch {
+        width: 11rem;
+        height: 1.7rem;
+        margin-left: 4rem;
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        background-color: #111624;
+        color: #52a7e4;
+        border: none;
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    .secondBox {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 29rem;
+        margin-top: 1rem;
+        overflow: scroll;
+        /*для вертикального*/
+        overflow-x: hidden; /*для горизонтального*/
+    }
+
+    ::-webkit-scrollbar {
+        width: 20px;
+    }
+
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey;
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background-color: #52a7e4;
+        border-radius: 10px;
+    }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #00c6fb, #005bea);
+        }
+
+
+
+    .inBox {
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        height: 2.5rem;
+        left: 45.57rem;
+        margin-top: 1rem;
+        width: 27.51rem;
+        margin-left: 0.428rem;
+        margin-right: 1.214rem;
+    }
+
+        .inBox:hover {
+            background-color: #52a7e4;
+        }
+
+        .inBox p:hover {
+            color: #111624;
+        }
+
+        .inBox img {
+            width: 2rem;
+            height: 2rem;
+            left: 46rem;
+            top: 43.14rem;
+            border-radius: 50%;
+            border: 1px solid #a0d7ff;
+            margin-left: 0.7rem;
+        }
+
+
+        .inBox p {
+            width: 7.857rem;
+            height: 18px;
+            left: 674px;
+            top: 603px;
+            margin-left: 3rem;
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 1.2rem;
+            line-height: 18px;
+        }
+
+    .bird {
+        width: 15.5px;
+        height: 15px;
+        top: 650px;
+        color: #111624;
+        margin: 0.57rem 0.71rem 1.2rem 12rem;
+    }
+
+    .containerTime {
+        grid-column-start: 2;
+        grid-row-start: 1;
+        display: flex;
+        /*    justify-content: center;*/
+    }
+
+</style>
+
+
+
 <body>
     <div class="mainDiv">
         <p class="pNew">Захід</p>
 
-            <div class="insideDiv">
-        <form asp-controller="Meassure" asp-action="AddMeasure" method="post">
+        <div class="insideDiv">
+            <form asp-controller="Meassure" asp-action="AddMeasure" method="post">
                 <div>
                     <label class="labelF">Новий захід</label>
                     <input type="text" class="inputF" asp-for="@Model.MeasureName" />
@@ -25,24 +336,24 @@
 
                     <div class="containerTime">
                         <div class="textDateTime">
-                            <p class="endP">Дата і час початку</p>
+                            <p>Дата і час початку</p>
                         </div>
 
                         <div class="end">
-                            <p class="endP">Дата і час закінчення</p>
+                            <span class="endP">Дата і час закінчення</span>
                         </div>
                     </div>
 
                     <div class="divDate">
-                        <input type="date" asp-for="@Model.Begin" />
-                        <input type="time" class="superstyle" />
+                        <input type="date" asp-for="@Model.Begin" id="date1" />
+                        <input type="time" class="superstyle" id="time1" @* name="time1"*@ />
                         <div class="ture"></div>
-                        <input type="date" asp-for="@Model.End" />
-                        <input type="time" class="superstyle" />
+                        <input type="date" asp-for="@Model.End" id="date2" />
+                        <input type="time" class="superstyle" id="time2" @* name="time2"*@ />
                     </div>
 
                     <div class="checkAllDay">
-                        <input type="checkbox" />
+                        <input type="checkbox" class="checkbox-style" id="CheckAllDayBox" />
                         <label>Весь день</label>
                     </div>
                 </div>
@@ -81,11 +392,43 @@
                     </div>
 
                     <div class="members">
+
                         <div class="memb">
-                            <img src="./Img/Indian-Girl-Images-042202.jpg" />
-                            <p class="name">Julia Roberts</p>
+                            <img src="@ViewBag.ImgPath" />
+                            <p class="name"> @ViewBag.NameUser</p>
                         </div>
-                        <button>+ Додати</button>
+
+                        <div id="addMembers">+ Додати</div>
+                        <div class="mainBox" @*style="display: none"*@>
+                            @*<div class="membersWindow">учасники</div>*@
+
+                            <div class="box2">
+                                <!-- <div class="first">
+                                  <div class="block">
+                                    <img src="./Img/photo.jpeg" />
+                                    <p>W1sh Agony</p>
+                                    <div>
+                                      <input class="inpSearch" type="search" placeholder="Пошук" />
+                                    </div>
+                                  </div>
+                                </div>  -->
+
+                                <div class="secondBox">
+
+                                    @foreach (var itemUsers in ViewBag.Users)
+                                    {
+                                        <div class="inBox">
+                                            <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
+                                            @* <img src="~/Imeg2/Jamala/Jamala_1944_cover.jpg" />*@
+                                            <p>@itemUsers.UserName</p>
+                                            <div class="bird">&#10004;</div>
+                                        </div>
+                                    }
+
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <hr />
@@ -169,27 +512,101 @@
 
                 <div class="usefullClass">
                     <div class="checkConfirm">
-                        <label>
+                        <label class="textCenter" for="confirmMembers">
                             Сповіщати про підтвердження/відмові учасників
-                            <input type="checkbox" />
                         </label>
+                        <input type="checkbox" id="confirmMembers" class="checkbox-style" />
                     </div>
                     <div class="checkConfirm">
-                        <label>
+                        <label class="textCenter" for="freePlaces">
                             Вільних місць в аудиторії:
-                            <input type="number" />
                         </label>
+                        <input type="number" id="freePlaces" asp-for="@Model.FreePlaces" />
 
                     </div>
                 </div>
                 <div class="buttons">
-                    <button>Зберегти</button>
-                    <button>Відмінити</button>
+                    <button type="submit">Зберегти</button>
+                    <button type="reset">Відмінити</button>
                 </div>
-        </form>
+            </form>
+        </div>
     </div>
-    </div>
+
     <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
     <script src="~/js/file.js" asp-append-version="true"></script>
+
+
+    <script>
+        //MEASURE;
+        //
+
+
+
+        $(function () {
+
+            var dateStart = $('#date1').val();
+
+            //var dateEnd = $('#date2').value();
+
+            $('#addMembers').click(function () {
+                $(".mainBox").fadeToggle(100);
+
+            });
+
+            $('.inBox').click(function () {
+                $(".mainBox").css("display", "none");
+            });
+
+            $('#CheckAllDayBox').click(function () {
+                $('#time1').fadeToggle(200);
+                $('#time2').fadeToggle(200);
+
+
+                //var dateObject = new Date(dateStart);
+                //$('#date2').val()=dateStart;
+
+                var dateValue = $('#date1').val();
+                $('#date2').val(dateValue);
+            });
+        });
+        $.ajax({
+            url: "/Meassure/Index",
+            type: "POST",
+            data: { param1: "value1", param2: "value2" },
+            success: function (result) {
+                // обработка ответа от сервера
+            },
+            error: function (xhr, status, error) {
+                // обработка ошибок
+            }
+        });
+               // Получаем значения элементов управления ввода даты и времени
+                //const dateValue1 = document.getElementById("#date1").value;
+                //const timeValue2 = document.getElementById("#time1").value;
+
+                //const dateValue1 = document.getElementById("#date2").value;
+                //const timeValue2 = document.getElementById("#time2").value;
+
+                //// Объединяем значения даты и времени в строку формата ISO 8601
+                //const dateTimeString1 = dateValue + "T" + timeValue + ":00";
+                //const dateTimeString2 = dateValue + "T" + timeValue + ":00";
+
+                //// Создаем объект DateTime из строки
+                //const dateTime1 = new Date(dateTimeString);
+                //const dateTime2 = new Date(dateTimeString);
+
+
+
+
+
+
+                        //var dateStart= document.getElementById("#date1");
+                //dateInput.value = "@ViewBag?.Date";
+                //var dateEnd = document.getElementById("#date2");
+                //dateEnd.value = "@ViewBag?.DateEnd";
+
+
+    </script>
 
 </body>
