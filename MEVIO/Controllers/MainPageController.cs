@@ -1,6 +1,7 @@
 ﻿using MEVIO.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.Entity;
+using System.Text.Json;
 
 namespace MEVIO.Controllers
 {
@@ -16,7 +17,15 @@ namespace MEVIO.Controllers
         }
         public IActionResult MainPage()
         {
-            
+            User user = null;
+            string UserLoggedIn = HttpContext.Request.Cookies["UserLoggedIn"];
+            if (UserLoggedIn != null && UserLoggedIn != "")
+            {
+                user = JsonSerializer.Deserialize<User>(UserLoggedIn);
+                ViewBag.NameUser = user.UserName;
+                ViewBag.UsersId = user.Id;
+                ViewBag.CurrentRole = user.UserRoleId;
+            }
             ViewBag.Useres = context.Users.ToList();
             ViewBag.Tasks = context.Tasks.ToList();
             ViewBag.MeasureUsers= context.MeasuresUsers.ToList();

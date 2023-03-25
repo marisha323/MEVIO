@@ -43,6 +43,9 @@
                     <div class="top">Info</div>
 
                     @*User // if Director click*@
+                    @if(ViewBag.CurrentRole == 1)  @*1 это роль директора*@
+                    {
+                        
                     <div class="hiden active">
                       
                         <div class="box">
@@ -82,12 +85,13 @@
                             <div><p class="infoField">ІНН</p></div>
                             <span class="infoResult">@ViewBag.Useres.TIN</span>
                         </div>
-                    </div>
-
-
+                        </div>
+                    }
+                    else if(@ViewBag.CurrentRole == 2)@*2 это роль менеджера*@
+                    {
                     @*User // Maneger click*@
 
-                    <div class="hiden ">
+                    <div class="hiden active">
 
 
                         <div class="box">
@@ -128,14 +132,11 @@
                             <span class="infoResult">@ViewBag.Useres.TIN</span>
                         </div>
                     </div>
-
-
-
+                    }
+                    else if(@ViewBag.CurrentRole == 3) @*3 это роль юзера*@
+                    { 
                     @*User // User click*@
-
-                    <div class="hiden ">
-
-
+                    <div class="hiden active">
                         <div class="box">
                             <div><p class="infoField">Name</p></div>
                             <span class="infoResult">@ViewBag.Useres.UserName</span>
@@ -156,12 +157,13 @@
                             <span class="infoResult">@ViewBag.Useres.Birthdate</span>
                         </div>
                     </div>
+                    }
 
                     
 
                 </div>
             </div>
-
+            <p>@ViewBag.CurrentRole</p>
             <div style="padding-top:2rem;" class="buttonDiv"><button class="button">Send Message</button></div>
         </div>
         

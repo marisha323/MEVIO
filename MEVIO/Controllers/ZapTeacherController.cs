@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 
 namespace MEVIO.Controllers
 {
@@ -21,6 +22,14 @@ namespace MEVIO.Controllers
         {
             
             ViewBag.Useres = context.Users.Where(o=>o.Id == id).FirstOrDefault();
+            User user = null;
+            string UserLoggedIn = HttpContext.Request.Cookies["UserLoggedIn"];
+            if (UserLoggedIn != null && UserLoggedIn != "")
+            {
+                user = JsonSerializer.Deserialize<User>(UserLoggedIn);
+                ViewBag.NameUser = user.UserName;
+                ViewBag.CurrentRole = user.UserRoleId;
+            }
 
 
             return View();
@@ -29,7 +38,14 @@ namespace MEVIO.Controllers
         {
             
             ViewBag.Students = context.Students.Where(o => o.Id == id).FirstOrDefault();
-
+            User user = null;
+            string UserLoggedIn = HttpContext.Request.Cookies["UserLoggedIn"];
+            if (UserLoggedIn != null && UserLoggedIn != "")
+            {
+                user = JsonSerializer.Deserialize<User>(UserLoggedIn);
+                ViewBag.NameUser = user.UserName;
+                ViewBag.CurrentRole = user.UserRoleId;
+            }
 
             return View();
         }
