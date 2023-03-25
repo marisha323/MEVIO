@@ -1,0 +1,85 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<link type="text/css" rel="stylesheet" href="/css/TaskStyle.css">
+
+<body id="body">
+    <div class="container">
+        <div class="head-flex">
+            <div class="head-button">Завдання</div>
+            <div class="head-button">Події</div>
+            <div class="head-button">Заходи</div>
+        </div>
+        <div>
+            <input type="text" on class="head-input" placeholder="Ввести назву завдання">
+        </div>
+
+        <div>
+            <textarea class="textarea" placeholder="Опис"></textarea>
+        </div>
+
+        <div class="check-list-flex">
+            <div class="flex">
+                <input type="file" name="file" id="file" hidden>
+                <label class="label" for="file"><img src="img/free-icon-paperclip-8774561 2.png" alt=""></label>
+                <label for="file" class="label">Файл</label>
+            </div>
+
+            <div>
+                <label for="" class="label check-list">+ Чек лист</label>
+            </div>
+        </div>
+
+        <div class="response-block">
+            <div class="response-div">Відповідальний</div>
+            <div class="response-div">
+                <div class="add-response-block">
+                    <div class="user-block">
+                        W1sh
+                    </div>
+                    <div class="add-response-user">
+                        + Додати ще
+                    </div>
+                </div>
+
+            </div>
+            <div class="response-div">Постановник</div>
+        </div>
+
+        <hr class="hr">
+
+        <div class="response-block">
+            <div class="response-div">Крайній термін</div>
+            <div class="response-div">
+                <input class="conData" type="date" id="date" name="date">
+            </div>
+            <div class="response-div">Планування термінів</div>
+        </div>
+
+        <hr class="hr">
+
+        <div class="results-block">
+            <div class="result">
+                Результати завдання
+            </div>
+            <div>
+                <input class="alert-checkbox" type="checkbox" name="" id="alertMe">
+                <label class="label-alert" for="alertMe">Обов'язковий звіт при завершенні завдання</label>
+            </div>
+        </div>
+
+        <div class="submit-block">
+            <div class="form-button">Зберегти</div>
+            <div class="form-button">Відмінити</div>
+        </div>
+
+
+    </div>
+
+
+
+
+</body>
