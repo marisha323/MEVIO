@@ -71,12 +71,67 @@
     .active {
         display: block;
     }
+
+
+    .div-search{
+        display:grid;
+        grid-template-columns:4fr 1fr;
+        align-items:center;
+        border-radius: 1rem;
+        border: 1px solid #52A7E4;
+        width:45%;
+        column-gap:0.5rem;
+    }
+
+    .searchImg{
+        width:2rem;
+        cursor:pointer;
+    }
+
+    .search {
+        box-sizing: border-box;
+        height: 2.375rem;
+        background: #111624;
+        font-family: 'Inter';
+        font-style: normal; 
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 24px;
+        color: #BAE2FF;
+        border:none;
+        outline:none;
+        border-right: 1px solid #52A7E4;
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        padding-left:0.5rem;
+    }
+
+    .active-input{
+        border: 1px solid #4BFF99;
+    }
+
 </style>
+
+
+
+
 <div class="cont">
     <div class="button-cont">
         <button id="btnUser" class="button_">
             Користувач
         </button>
+
+        <div class="div-search">
+            <input class="search" id="searchInput">
+
+            <a asp-action="Index">
+                <img class="searchImg" src="/img/free-icon-search-4194718.png">
+            </a>
+            
+        </div>
+
+        
+
         <button id="btnStudent" class="button_">
             Студент
         </button>
@@ -140,6 +195,19 @@
 </div>
 
   <script>
+
+      document.getElementById("searchInput").addEventListener("focus",()=>{
+          const div=document.querySelector(".div-search");
+
+        $(div).addClass("active-input");
+      });
+
+    document.getElementById("searchInput").addEventListener("focusout", () => {
+        const div = document.querySelector(".div-search");
+
+        $(div).removeClass("active-input");
+    })
+
        const btnuser = document.getElementById("btnUser")
        const usertable = document.getElementById("UserTable")
 

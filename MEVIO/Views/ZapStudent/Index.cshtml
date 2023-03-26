@@ -5,83 +5,27 @@
 }
 
 <link rel="stylesheet" href="~/css/MEVIORegistStudent.css" asp-append-version="true" />
-<style>
-    div.contener2 {
-        display: none;
-    }
 
-    div .active {
-        display: block;
-    }
 
-    .buttonClick {
-        background: #52A7E4;
-        color: #111624;
-    }
 
-    .conData {
-       /* box-sizing: border-box;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding: 0.313rem 0.813rem;
-        gap: 0.438rem;
-        width: 10.625rem;
-        height: 2.313rem;
-        left: 0.5rem;
-        top: 9.313rem;*/
-        background: #111624;
-        border: 1px solid #52A7E4;
-        border-radius: 0.625rem;
-        color: #BAE2FF;
-       /* font-family: 'Inter';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 1.25rem;
-        line-height: 1.5rem;*/
-          font-family: 'Inter';
-         font-style: normal;
-         font-weight: 700;
-         font-size: 30px;
-           line-height: 30px;
-        transform: (-50%, -50%);
-        background: url("/img/free-icon-calendar-747824.png") no-repeat center;
-        background-size: 20px;
-        background-repeat: no-repeat;
-        background-position: 95%;
-        padding: 0.313rem;
-    }
 
-    input[type=date]::-webkit-calendar-picker-indicator {
-        opacity: 0;
-
-    }
-
-</style>
 <body>
+
+
 
     @model Student
 
-    <div class="contener">
+    <div class="register-student-contener">
 
-        <div class="div-search">
-            <input class="search">
-
-            <div class="palochka"> </div>
-            <img class="searchImg" src="/img/free-icon-search-4194718.png">
-        </div>
-
-        <div class="div-Zag">
-            <p class="Zag">Регистрация</p>
-        </div>
+        
 
 
         <div class="divContenerZap">
             <div class="div-buttons">
-                <input id="ZapClient1" onclick="changeStyle()" class="buttonstyleStudent" type="button" value="Client">
-                <input id="ZapStudet1" onclick="changeStyle()" class="buttonstyleTeaher" type="button" value="Student">
-                <input id="ZapContract1" onclick="changeStyle()" class="buttonstyleStudent" type="button" value="Contract">
-                <input id="ZapTeacher1" onclick="changeStyle()" class="buttonstyleTeaher" type="button" value="Teacher">
+                <input id="ZapClient1" onclick="changeStyle(event)" class="buttonstyleStudent input-button active-button" type="button" value="Client">
+                <input id="ZapStudet1" onclick="changeStyle(event)" class="buttonstyleTeaher input-button" type="button" value="Student">
+                <input id="ZapContract1" onclick="changeStyle(event)" class="buttonstyleStudent input-button" type="button" value="Contract">
+                <input id="ZapTeacher1" onclick="changeStyle(event)" class="buttonstyleTeaher input-button" type="button" value="Teacher">
             </div>
             <div class="classPodcherk"> </div>
 
@@ -117,7 +61,7 @@
 
                     <div class="div-buttons2">
                         @* <input class="buttonstyleStudent2" type="button" value="Заповнити договір">*@
-                        <input style="margin-left:30rem" class="buttonstyleTeaher2" type="submit" value="Зберегти">
+                        <input class="buttonstyleTeaher2 input-button" type="submit" value="Зберегти">
                     </div>
                 </div>
             </form>
@@ -174,13 +118,13 @@
                     </div>
 
                     <div class="div-p-input">
-                        <p class="divStrockZap" style="top: 751px;">DateOfIssuePasport?:</p>
+                        <p class="divStrockZap" style="top: 751px;">DateOfIssuePasport:</p>
                         <input type="text" class="divStrockZap2" asp-for="@Model.DateOfIssuePassport" style="top: 753px;  left: 400px;" placeholder="Number Pasport">
                     </div>
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 817px;">Photo:</p>
-                        <label class="input-file-button divStrockZap2" style="margin-left:21.5rem" for="files" tabindex="0">Choose a file</label>
-                        <input class="input-file-hidden" asp-for="@Model.PathImgAVA" type="file" id="files" name="files" multiple tabindex="-1">
+                        <label class="input-file-button divStrockZap2" for="files" tabindex="0">Choose a file</label>
+                        <input hidden class="input-file-hidden" asp-for="@Model.PathImgAVA" type="file" id="files" name="files" multiple tabindex="-1">
                     </div>
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 817px;">TIN:</p>
@@ -190,12 +134,12 @@
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 883px;">IsDiscount:</p>
                         <span class="Chek">
-                            <input asp-for="@Model.IsDicount" value="true" class="divStrockCheckBoxZap2" type="checkbox" onchange="toggleDiscountDescription()" />
-                            <label for="IsDiscount">True</label>
+                            <input id="IsDiscountTrue" asp-for="@Model.IsDicount" value="true" class="divStrockCheckBoxZap2" type="checkbox" onchange="toggleDiscountDescription()" />
+                            <label for="IsDiscountTrue">True</label>
                         </span>
                         <span class="Chek">
-                            <input asp-for="@Model.IsDicount" value="false" class="divStrockCheckBoxZap2" onchange="toggleDiscountDescription()" type="checkbox" />
-                            <label for="IsDiscount">False</label>
+                            <input id="IsDiscountFalse" asp-for="@Model.IsDicount" value="false" class="divStrockCheckBoxZap2" onchange="toggleDiscountDescription()" type="checkbox" />
+                            <label for="IsDiscountFalse">False</label>
                         </span>
                     </div>
                     <div class="div-p-input">
@@ -225,8 +169,8 @@
 
 
                     <div class="div-buttons2">
-                        <input class="buttonstyleStudent2" type="button" value="Заповнити договір">
-                        <input class="buttonstyleTeaher2" type="submit" value="Зберегти">
+                        <input class="buttonstyleStudent2 input-button" type="button" value="Заповнити договір">
+                        <input class="buttonstyleTeaher2 input-button" type="submit" value="Зберегти">
                     </div>
                 </div>
 
@@ -307,7 +251,7 @@
 
                     <div class="div-buttons2">
                         @* <input class="buttonstyleStudent2" type="button" value="Заповнити договір">*@
-                        <input style="margin-left:30rem" class="buttonstyleTeaher2" type="submit" value="Зберегти">
+                        <input class="buttonstyleTeaher2 input-button" type="submit" value="Зберегти">
                     </div>
                 </div>
             </form>
@@ -373,9 +317,9 @@
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 817px;">Photo:</p>
 
-                        <label class="input-file-button divStrockZap2" style="margin-left:21.5rem" for="fileTeacher" tabindex="0">Choose a file</label>
+                        <label class="input-file-button divStrockZap2" for="fileTeacher" tabindex="0">Choose a file</label>
                         @*<input class="input-file-hidden" type="file" id="files" name="files"  tabindex="-1">*@
-                        <input type="file" class=" input-file-hidden" name="PathImgAVA" id="fileTeacher" placeholder="Choose file" tabindex="-1">
+                        <input hidden type="file" class=" input-file-hidden" name="PathImgAVA" id="fileTeacher" placeholder="Choose file" tabindex="-1">
                     </div>
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 487px;">TIN:</p>
@@ -387,7 +331,7 @@
 
                     <div class="div-buttons2">
                         @* <input class="buttonstyleStudent2" type="button" value="Заповнити договір">*@
-                        <input style="margin-left:30rem" class="buttonstyleTeaher2" type="submit" value="Зберегти">
+                        <input class="buttonstyleTeaher2 input-button" type="submit" value="Зберегти">
                     </div>
                 </div>
             </form>
@@ -491,15 +435,13 @@
 
     });
 
-    function changeStyle() {
+    function changeStyle(event) {
         var button = event.target;
-        if (button.style.backgroundColor == "111624") {
-            button.style.backgroundColor = "52A7E4";
-            button.style.color = "111624";
-        } else {
-            button.style.backgroundColor = "111624";
-            button.style.color = "52A7E4";
-        }
+
+        $(button).closest(".div-buttons").find(".active-button").removeClass("active-button");
+        $(button).addClass("active-button");
+        
+        
     }
 
 </script>

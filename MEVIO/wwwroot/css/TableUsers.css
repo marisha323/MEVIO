@@ -26,17 +26,13 @@
     cursor: pointer;
     background: #52a7e4;
     border-radius: 25px;
-}
-
-button {
     font-family: "Inter";
     font-style: normal;
     font-weight: 400;
     font-size: 2rem;
-    width: 15rem;
-    height: 3rem;
-    margin-top: 2rem;
 }
+
+
 
 .box {
     display: grid;
