@@ -42,7 +42,11 @@
             <img class="left-menu-img" src="/img/free-icon-user-5807924.png" alt="">
         </div>
 
-        <img class="left-menu-img" asp-controller="Home" asp-action="Logout" src="/img/free-icon-exit-1286907.png" alt="">
+        @* <img asp-controller="Registry" asp-action="Logout" class="left-menu-img" src="/img/free-icon-exit-1286907.png" alt="">*@
+
+        <a asp-controller="Registry" asp-action="Logout">
+            <img class="left-menu-img" src="/img/free-icon-exit-1286907.png" alt="">
+        </a>
     </div>
 
     <div class="right-menu">

@@ -4,10 +4,10 @@
 @{
 
 }
+<link type="text/css" rel="stylesheet" href="/css/NewEvent.css">
 
 @model Event
 
-<link type="text/css" rel="stylesheet" href="/css/NewEvent.css">
 
 
 <style>
@@ -45,14 +45,14 @@
     }
 
 
-    input[type="date"] {
+    input[type="date"], input[type="datetime-local"] {
         box-sizing: border-box;
         display: flex;
         flex-direction: row;
         align-items: center;
         padding: 0.313rem 0.813rem;
         gap: 0.438rem;
-        width: 10.625rem;
+        width: 15.625rem;  /*changed for new datetime from 10.625*/
         height: 2.313rem;
         left: 0.5rem;
         top: 9.313rem;
@@ -85,6 +85,16 @@
         display: none;
         -webkit-appearance: none;
     }
+
+  
+    input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+       /* display: none;*/
+       
+        position: relative;
+        z-index: 1;
+        opacity: 0;
+    }
+    
 
     input[type="time"] {
         box-sizing: border-box;
@@ -352,7 +362,18 @@
                     <label class="labelF">Нова подія </label>
                     <input type="text" class="inputF" asp-for="@Model.EventName" />
                 </div>
+               
 
+                <div class="description">
+                    <div class="divDescr">
+                        <p class="styleP">Опис</p>
+                    </div>
+                    <textarea asp-for="@Model.Description"
+                              cols="10"
+                              rows="3"
+                              placeholder="Enter text . . ."></textarea>
+                </div>
+                <hr />
                 <div class="divTime">
                     <div class="timeText">
                         <p class="time styleP">Час події</p>
@@ -369,11 +390,16 @@
                     </div>
 
                     <div class="divDate">
-                        <input type="date" id="date1" asp-for="@Model.Begin" />
-                        <input type="time" class="superstyle" id="time1"  asp-for="@Model.Begin" />
+                     @*   <input type="date" id="date1" asp-for="@Model.Begin" />
+                        <input type="time" class="superstyle" id="time1" asp-for="@Model.Begin" />
                         <div class="ture"></div>
                         <input type="date" id="date2" asp-for="@Model.End" />
-                        <input type="time" class="superstyle" id="time2" asp-for="@Model.End" />
+                        <input type="time" class="superstyle" id="time2" asp-for="@Model.End" />*@
+
+                        <input type="datetime-local" class="date11" id="date1" asp-for="@Model.Begin" />
+                          <div class="ture"></div>
+                        <input type="datetime-local" class="date11" id="date2" asp-for="@Model.End" />
+
                     </div>
 
                     <div class="checkAllDay">
@@ -382,98 +408,18 @@
                     </div>
                 </div>
                 <hr />
-
-                <div class="description">
-                    <div class="divDescr">
-                        <p class="styleP">Опис</p>
-                    </div>
-                    <textarea asp-for="@Model.Description"
-                              cols="10"
-                              rows="3"
-                              placeholder="Enter text . . ."></textarea>
-                </div>
-                <hr />
-
-
-                <div class="description">
-                    <div class="divDescr">
-                        <p class="styleP">Учасники</p>
-                    </div>
-
-                    <div class="members">
-                        @* @foreach (var itemUsers in ViewBag.Users)
-                        {
-                        @foreach (var itemEvent in ViewBag.Events) @*All Events*@
-                        @*
-                        @foreach (var itemEventUser in ViewBag.EventsUsers)
-                        {
-                        @if (itemEventUser.UserId == itemUsers.Id && itemEvent.Id == itemEventUser.EventId && itemEventUser.IsCreator == true)
-                        {
-                        <div class="memb">
-                        <img src="@itemUsers.PathImgAVA" />
-                        <p class="name">@itemUsers.UserName</p>
-                        </div>
-                        }
-                        }
-                        }}*@
-
-                       
-                        <div id="parent" class="parent">
-                            <div class="memb">
-                                <img src="~/Imeg1/@ViewBag.NameUser/@ViewBag.ImgPath" />
-                                <p class="name"> @ViewBag.NameUser</p>
-                            </div>
-                        </div>
-
-
-                        <div id="addMembers">+ Додати</div>
-
-                        <div class="mainBox" @*style="display: none"*@>
-                            @*<div class="membersWindow">учасники</div>*@
-
-                            <div class="box2">
-                                <!-- <div class="first">
-                                  <div class="block">
-                                    <img src="./Img/photo.jpeg" />
-                                    <p>W1sh Agony</p>
-                                    <div>
-                                      <input class="inpSearch" type="search" placeholder="Пошук" />
-                                    </div>
-                                  </div>
-                                </div>  -->
-
-                                <div class="secondBox">
-
-                                    @foreach (var itemUsers in ViewBag.Users)
-                                    {
-                                        <div class="inBox">
-                                            <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
-                                            <p class="userName">@itemUsers.UserName</p>
-                                            <span class="userId" hidden>@itemUsers.Id</span>
-                                            <div class="bird">&#10004;</div>
-                                        </div>
-                                    }
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr />
-
                 <p class="co">Співробітники</p>
 
                 <div class="hard">
                     <div class="coWorkers">
                         <div class="people">
-                            <img src="/img/girl2.jpg" />
-                            <p class="peopleP">Михайло Фома</p>
+                            <img src="~/Imeg1/@ViewBag.NameUser/@ViewBag.ImgPath" />
+                            <p class="peopleP">@ViewBag.NameUser</p>
                         </div>
                     </div>
 
                     <div class="shedule">
-                        <div class="day">Субота, Лютий 25</div>
+                        <div class="day">@ViewBag.CurrentDate</div>
 
                         <div class="time-span-row">
                             <div>7-00</div>
@@ -536,6 +482,62 @@
                 </div>
 
 
+               
+                <hr />
+
+
+                <div class="description">
+                    <div class="divDescr">
+                        <p class="styleP">Учасники</p>
+                    </div>
+
+                    <div class="members">
+                                               
+                        <div id="parent" class="parent">
+                            <div class="memb">
+                                <img src="~/Imeg1/@ViewBag.NameUser/@ViewBag.ImgPath" />
+                                <p class="name"> @ViewBag.NameUser</p>
+                            </div>
+                        </div>
+
+
+                        <div id="addMembers">+ Додати</div>
+
+                        <div class="mainBox" @*style="display: none"*@>
+                            @*<div class="membersWindow">учасники</div>*@
+
+                            <div class="box2">
+                                <!-- <div class="first">
+                                  <div class="block">
+                                    <img src="./Img/photo.jpeg" />
+                                    <p>W1sh Agony</p>
+                                    <div>
+                                      <input class="inpSearch" type="search" placeholder="Пошук" />
+                                    </div>
+                                  </div>
+                                </div>  -->
+
+                                <div class="secondBox">
+
+                                    @foreach (var itemUsers in ViewBag.Users)
+                                    {
+                                        <div class="inBox">
+                                            <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
+                                            <p class="userName">@itemUsers.UserName</p>
+                                            <span class="userId" hidden>@itemUsers.Id</span>
+                                            <div class="bird">&#10004;</div>
+                                        </div>
+                                    }
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+
+            
 
                 <div class="checkConfirm">
                     <label class="textCenter">
@@ -545,7 +547,7 @@
 
                 </div>
                 <div class="buttons">
-                    <button type="submit">Зберегти</button>
+                    <button type="submit" id="sub">Зберегти</button>
                     <button type="reset">Відмінити</button>
                 </div>
             </div>
@@ -570,7 +572,7 @@
 
     <script>
 
-
+        //EVENT
         $(function () {
 
             var dateStart = $('#date1').val();
@@ -582,9 +584,40 @@
 
             });
 
-            $('.inBox').click(function (e) {
+            //$('#sub').click(function(){
 
-                
+            //    // Получаем значения элементов управления ввода даты и времени
+            //    const dateValue1 = document.getElementById("#date1").val();
+            //    const timeValue1 = document.getElementById("#time1").val();
+
+            //    const dateValue2 = document.getElementById("#date2").val();
+            //    const timeValue2 = document.getElementById("#time2").val();
+
+            //    //// Объединяем значения даты и времени в строку формата ISO 8601
+            //    const dateTimeString1 = dateValue1 + "T" + timeValue1 + ":00";
+            //    const dateTimeString2 = dateValue2 + "T" + timeValue2 + ":00";
+
+            //    //// Создаем объект DateTime из строки
+            //    const dateTime1 = new Date(dateTimeString1);
+            //    const dateTime2 = new Date(dateTimeString2);
+
+
+            //    $.ajax({
+            //        url: "/Meassure/AddMeasure",
+            //        type: "POST",
+            //        data: { dateStart1: dateTime1, dateEnd2: dateTime2 },
+            //        success: function (result) {
+            //            // обработка ответа от сервера
+            //        },
+            //        error: function (xhr, status, error) {
+            //            // обработка ошибок
+            //        }
+            //    });
+
+            //});
+
+            $('.inBox').click(function (e) {
+                           
 
                 //// Получаем ссылки на элементы, которые нужно перенести
                 //var userImg = document.querySelector('.inBox img');
@@ -593,10 +626,9 @@
                 //// Получаем ссылки на элементы, в которые нужно перенести данные
                 //var memImg = document.querySelector('.memb img');
                 //var memName=document.querySelector('.memb p');
-                
-                
+                             
 
-                //const userName=text.Splil("/")[1];
+                //const userName=text.Split("/")[1];
 
                 //$('.memb img').attr('src', imgSrc);
                 //$('.memb .name').text(userName);
@@ -605,14 +637,6 @@
 
                 //var block = '<div class="memb"><img src="" />' + '<p class="name"></p>'+'</div>';
                 //$('.parent').append(block);
-
-
-
-
-
-
-
-
 
                 //Sasha
 
@@ -657,10 +681,62 @@
                 form.appendChild(input);
 
 
+                //CREATE Shedule Block
+
+                const div = document.createElement('div');
+                div.classList.add('shedule');
+
+                // Создаем элемент div для дня и добавляем текстовое содержимое "Субота, Лютий 25"
+                const day = document.createElement('div');
+                day.classList.add('day');
+                day.textContent = 'Субота, Лютий 25';
+                div.appendChild(day);
+
+                // Создаем элемент div для временных интервалов
+                const timeSpanRow1 = document.createElement('div');
+                timeSpanRow1.classList.add('time-span-row');
+
+                // Создаем элементы div для временных блоков и добавляем их в timeSpanRow1
+                for (let i = 0; i < 16; i++) {
+                    const timeBlock = document.createElement('div');
+                    timeBlock.classList.add('time-block');
+                    timeSpanRow1.appendChild(timeBlock);
+                }
+
+                // Создаем элемент div для временных блоков с возможностью изменения времени и добавляем его в timeSpanRow1
+                const timeChangeBlock = document.createElement('div');
+                timeChangeBlock.classList.add('time-change-block');
+                timeSpanRow1.insertBefore(timeChangeBlock, timeSpanRow1.firstChild);
+
+                // Создаем элементы div для второго ряда временных блоков и добавляем их в div
+                const timeSpanRow2 = document.createElement('div');
+                timeSpanRow2.classList.add('time-span-row', 'time-blocks');
+
+                for (let i = 0; i < 16; i++) {
+                    const timeBlock = document.createElement('div');
+                    timeBlock.classList.add('time-block');
+                    timeSpanRow2.appendChild(timeBlock);
+                }
+
+                div.appendChild(timeSpanRow1);
+                div.appendChild(timeSpanRow2);
+
+                // Создаем элемент div для третьего ряда временных блоков и добавляем его в div
+                const timeSpanRow3 = document.createElement('div');
+                timeSpanRow3.classList.add('time-span-row');
+
+                for (let i = 0; i < 16; i++) {
+                    const emptyBlock = document.createElement('div');
+                    timeSpanRow3.appendChild(emptyBlock);
+                }
+                div.appendChild(timeSpanRow3);
+
+
+
 
                 $(".mainBox").css("display", "none");
 
-                //count++;
+                
             });
 
             $('#CheckAllDay').click(function () {
@@ -676,10 +752,9 @@
         });
 
 
-        function myFunction() {
-            //toggleElements('element-time');
-            toggleElements('.time1'); toggleElements('.time2');
-            updateDates();
+        function myFunction() 
+        {
+            
         }
 
         var dateInput = document.getElementById("date1");

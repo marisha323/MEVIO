@@ -19,7 +19,7 @@ namespace MEVIO.Controllers
         {
             User user = null;
             string UserLoggedIn = HttpContext.Request.Cookies["UserLoggedIn"];
-
+            ViewBag.CurrentDate = DateTime.Now;
             if (UserLoggedIn != null && UserLoggedIn != "")
             {
                 user = JsonSerializer.Deserialize<User>(UserLoggedIn);

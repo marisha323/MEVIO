@@ -1,6 +1,7 @@
 ﻿using MEVIO.Models;
 using MEVIO.Models.BackendClasses;
 using MEVIO.Views.Calendar;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

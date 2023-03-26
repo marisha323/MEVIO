@@ -570,10 +570,28 @@
                 $('#date2').val(dateValue);
             });
         });
+
+
+        // Получаем значения элементов управления ввода даты и времени
+        const dateValue1 = document.getElementById("#date1").val();
+        const timeValue1 = document.getElementById("#time1").val();
+
+        const dateValue2 = document.getElementById("#date2").val();
+        const timeValue2 = document.getElementById("#time2").val();
+
+        //// Объединяем значения даты и времени в строку формата ISO 8601
+        const dateTimeString1 = dateValue1 + "T" + timeValue1 + ":00";
+        const dateTimeString2 = dateValue2 + "T" + timeValue2 + ":00";
+
+        //// Создаем объект DateTime из строки
+        const dateTime1 = new Date(dateTimeString1);
+        const dateTime2 = new Date(dateTimeString2);
+
+
         $.ajax({
-            url: "/Meassure/Index",
+            url: "/Meassure/AddMeasure",
             type: "POST",
-            data: { param1: "value1", param2: "value2" },
+            data: { dateStart1: dateTime1, dateEnd2: dateTime2 },
             success: function (result) {
                 // обработка ответа от сервера
             },
@@ -581,20 +599,7 @@
                 // обработка ошибок
             }
         });
-               // Получаем значения элементов управления ввода даты и времени
-                //const dateValue1 = document.getElementById("#date1").value;
-                //const timeValue2 = document.getElementById("#time1").value;
-
-                //const dateValue1 = document.getElementById("#date2").value;
-                //const timeValue2 = document.getElementById("#time2").value;
-
-                //// Объединяем значения даты и времени в строку формата ISO 8601
-                //const dateTimeString1 = dateValue + "T" + timeValue + ":00";
-                //const dateTimeString2 = dateValue + "T" + timeValue + ":00";
-
-                //// Создаем объект DateTime из строки
-                //const dateTime1 = new Date(dateTimeString);
-                //const dateTime2 = new Date(dateTimeString);
+          
 
 
 
