@@ -65,6 +65,8 @@ namespace MEVIO.Controllers
             return View("/MainPage/MainPage");
             // Код захищеної дії
         }
+
+        [HttpGet]
         public IActionResult Logout()
         {
             CookieOptions options = new CookieOptions();
