@@ -97,7 +97,7 @@
     }
 </style>
 @*@model Event*@
-<form enctype="multipart/form-data" asp-action="EventMini">
+<form enctype="multipart/form-data" action="Calendar">
     <input type="hidden" name="EventId" />
 
     <div class="contener">
@@ -119,11 +119,11 @@
 
         <div class="Data-Calendat-Time">
 
-            <input id="Date" onchange="updateDates()" type="date" class="conData">
-            <input type="time" value="" id="time1" min="07:00" max="22:00" class="conTime superstyle element-time">
+            <input id="Date" name="Date" onchange="updateDates()" type="date" class="conData">
+            <input type="time" name="time1" id="time1" min="07:00" max="22:00" class="conTime superstyle element-time">
             <div class="classPodcherk2"></div>
-            <input type="time" value="" id="time2" min="07:00" max="23:00" class="conTime2 superstyle element-time">
-            <input id="DateEnd" value="" type="date" class="conData2">
+            <input type="time" name="time2" id="time2" min="07:00" max="23:00" class="conTime2 superstyle element-time">
+            <input id="DateEnd" name="DateEnd" value="" type="date" class="conData2">
             <input class="checkbox2" id="checkbox" onclick="myFunction()" type="checkbox">
             <p class="checkbox">На весь день</p>
 
@@ -839,7 +839,8 @@
                     url: '/Calendar/EditEvent',
                     data: formData,
                     success: function (result) {
-                        // handle success here
+                        //closing event
+                        //closeEvent();
                     },
                     error: function (xhr, status, error) {
                         // handle error here
