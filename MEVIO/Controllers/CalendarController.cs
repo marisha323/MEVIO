@@ -42,6 +42,9 @@ namespace MEVIO.Controllers
             ViewBag.Measures = db.Measures.AsNoTracking().ToList();
             ViewBag.Monthnames = monthNames;
             ViewBag.users = db.Users.AsNoTracking().ToList();
+            ViewBag.TasksUsers = db.TasksUsers.AsNoTracking().ToList();
+            ViewBag.Responsible = db.TaskResponsiblePersons.AsNoTracking().ToList();
+            ViewBag.Observers = db.TasksWatchingPersons.AsNoTracking().ToList();
 
             CultureInfo culture = CultureInfo.GetCultureInfo("uk-UA");
             int monthNow = DateTime.Now.Month;
