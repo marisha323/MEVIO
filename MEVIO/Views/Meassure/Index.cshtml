@@ -3,11 +3,13 @@
 *@
 @{
 }
+<link type="text/css" rel="stylesheet" href="/css/NewMeasure.css">
 @model Measure
 
-<link type="text/css" rel="stylesheet" href="/css/NewMeasure.css">
 
 <style>
+
+
     input[type="checkbox"] {
         margin-top: auto;
         margin-bottom: auto;
@@ -21,7 +23,7 @@
         height: 20px;
         border: 1px solid #52a7e3;
         /* margin-top: auto;
-            margin-bottom: auto;*/
+                margin-bottom: auto;*/
         border-radius: 3px;
         outline: none;
         cursor: pointer;
@@ -34,7 +36,7 @@
         }
 
     .mainDiv {
-        width: 90%;
+        width: 85%;
         background-color: #52a7e4;
         padding-bottom: 1rem;
         margin: auto;
@@ -117,12 +119,12 @@
             border: none;
         }
     /*
-            ---------------------window with users*/
+                ---------------------window with users*/
     .membersWindow {
         width: 7.6rem;
         height: 2.1rem;
         /* left: 44.5rem;
-                top: 36.8rem;*/
+                    top: 36.8rem;*/
         border: none;
         cursor: pointer;
         background: #52a7e4;
@@ -314,6 +316,24 @@
         /*    justify-content: center;*/
     }
 
+
+    .checkAllDay span {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.5rem;
+        line-height: 2.1rem;
+        color: #52a7e4;
+    }
+
+    #parent_Shedules {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        justify-content: stretch;
+    }
+
+
 </style>
 
 
@@ -354,7 +374,7 @@
 
                     <div class="checkAllDay">
                         <input type="checkbox" class="checkbox-style" id="CheckAllDayBox" />
-                        <label>Весь день</label>
+                        <span>Весь день</span>
                     </div>
                 </div>
                 <hr />
@@ -399,7 +419,8 @@
                         </div>
 
                         <div id="addMembers">+ Додати</div>
-                        <div class="mainBox" @*style="display: none"*@>
+
+                        <div class="mainBox">
                             @*<div class="membersWindow">учасники</div>*@
 
                             <div class="box2">
@@ -420,7 +441,8 @@
                                         <div class="inBox">
                                             <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
                                             @* <img src="~/Imeg2/Jamala/Jamala_1944_cover.jpg" />*@
-                                            <p>@itemUsers.UserName</p>
+                                            <p class="userName">@itemUsers.UserName</p>
+                                            <span class="userId" hidden>@itemUsers.Id</span>
                                             <div class="bird">&#10004;</div>
                                         </div>
                                     }
@@ -436,76 +458,79 @@
                 <div class="hard">
                     <div class="coWorkers">
                         <div class="people">
-                            <img src="./Img/Indian-Girl-Images-042202.jpg" />
-                            <p class="peopleP styleP">Михайло Фома</p>
+                            <img src="@ViewBag.ImgPath" />
+                            <p class="peopleP styleP">@ViewBag.NameUser</p>
                         </div>
                     </div>
 
-                    <div class="shedule">
-                        <div class="day">Субота, Лютий 25</div>
 
-                        <div class="time-span-row">
-                            <div>7-00</div>
-                            <div>8-00</div>
-                            <div>9-00</div>
-                            <div>10-00</div>
-                            <div>11-00</div>
-                            <div>12-00</div>
-                            <div>13-00</div>
-                            <div>14-00</div>
-                            <div>15-00</div>
-                            <div>16-00</div>
-                            <div>17-00</div>
-                            <div>18-00</div>
-                            <div>19-00</div>
-                            <div>20-00</div>
-                            <div>21-00</div>
-                            <div>22-00</div>
-                            <div>23-00</div>
-                            <div>00-00</div>
-                        </div>
+                    <div id="parent_Shedules">
+                        <div class="shedule">
+                            <div class="day">@ViewBag.CurrentDate</div>
 
-                        <div class="time-span-row time-blocks">
-                            <div class="time-change-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                        </div>
+                            <div class="time-span-row">
+                                <div>7-00</div>
+                                <div>8-00</div>
+                                <div>9-00</div>
+                                <div>10-00</div>
+                                <div>11-00</div>
+                                <div>12-00</div>
+                                <div>13-00</div>
+                                <div>14-00</div>
+                                <div>15-00</div>
+                                <div>16-00</div>
+                                <div>17-00</div>
+                                <div>18-00</div>
+                                <div>19-00</div>
+                                <div>20-00</div>
+                                <div>21-00</div>
+                                <div>22-00</div>
+                                <div>23-00</div>
+                                <div>00-00</div>
+                            </div>
 
-                        <div class="time-span-row">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
+                            <div class="time-span-row time-blocks">
+                                <div class="time-change-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                            </div>
+
+                            <div class="time-span-row">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -554,9 +579,9 @@
 
             });
 
-            $('.inBox').click(function () {
-                $(".mainBox").css("display", "none");
-            });
+            //$('.inBox').click(function () {
+            //    $(".mainBox").css("display", "none");
+            //});
 
             $('#CheckAllDayBox').click(function () {
                 $('#time1').fadeToggle(200);
@@ -568,6 +593,60 @@
 
                 var dateValue = $('#date1').val();
                 $('#date2').val(dateValue);
+
+
+
+                //при натисканні на блок з учасником,інфо-бокс додається поруч організатором події
+                $('.inBox').click(function (e) {
+
+                    const imgSrc = $(this).find('img').attr('src');
+                    const userId = $(this).find(".userId").text();
+                    const userName = $(this).find('.userName').text();
+
+                    console.log(userId);
+                    console.log(userName);
+                    console.log(imgSrc);
+
+
+                    const parent = document.getElementById("parent");
+
+                    const div = document.createElement("div");
+                    div.className = "memb";
+                    div.id = userId;
+
+                    const img = document.createElement("img");
+                    img.setAttribute("src", imgSrc);
+
+                    const p = document.createElement("p");
+                    p.className = "name";
+                    p.innerText = userName;
+
+                    div.appendChild(img);
+                    div.appendChild(p);
+
+                    parent.appendChild(div);
+
+
+                    const list = document.querySelectorAll(".memb");
+                    console.log(list);
+
+                    const form = document.getElementById("eventForm");
+
+                    const input = document.createElement("input");
+                    input.hidden = true;
+                    input.name = "userId";
+                    input.setAttribute("value", userId);
+
+                    form.appendChild(input);
+
+
+
+
+
+                });
+
+
+
             });
         });
 
@@ -599,17 +678,17 @@
                 // обработка ошибок
             }
         });
-          
 
 
 
 
 
 
-                        //var dateStart= document.getElementById("#date1");
-                //dateInput.value = "@ViewBag?.Date";
-                //var dateEnd = document.getElementById("#date2");
-                //dateEnd.value = "@ViewBag?.DateEnd";
+
+                                //var dateStart= document.getElementById("#date1");
+                        //dateInput.value = "@ViewBag?.Date";
+                        //var dateEnd = document.getElementById("#date2");
+                        //dateEnd.value = "@ViewBag?.DateEnd";
 
 
     </script>

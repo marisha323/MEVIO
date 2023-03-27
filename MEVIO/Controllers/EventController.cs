@@ -29,7 +29,7 @@ namespace MEVIO.Controllers
                 user = JsonSerializer.Deserialize<User>(UserLoggedIn);
                 ViewBag.NameUser=user.UserName;
                 //ViewBag.User = user;
-                //ViewBag.Id = user.Id;
+                ViewBag.Id = user.Id;
                 //ViewBag.Role = user.UserRoleId;
                 //ViewBag.NameUser = user.UserName;
                 ViewBag.ImgPath = user.PathImgAVA;
