@@ -1,9 +1,11 @@
 ﻿using MEVIO.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 
 namespace MEVIO.Controllers
 {
+    //[Authorize]
     public class EventController : Controller
     {
         MEVIOContext context;
@@ -19,13 +21,15 @@ namespace MEVIO.Controllers
         {
             User user = null;
             string UserLoggedIn = HttpContext.Request.Cookies["UserLoggedIn"];
-            
+
+            ViewBag.CurrentDate = DateTime.Now;
+
             if (UserLoggedIn != null && UserLoggedIn != "")
             {
                 user = JsonSerializer.Deserialize<User>(UserLoggedIn);
                 ViewBag.NameUser=user.UserName;
                 //ViewBag.User = user;
-                //ViewBag.Id = user.Id;
+                ViewBag.Id = user.Id;
                 //ViewBag.Role = user.UserRoleId;
                 //ViewBag.NameUser = user.UserName;
                 ViewBag.ImgPath = user.PathImgAVA;
@@ -59,24 +63,25 @@ namespace MEVIO.Controllers
         public async Task<ActionResult> AddEvent([Bind("Id,EventName,Description,UserId,Begin,End")] Event event1)
        // public async Task<ActionResult> AddEvent(string title)
         {
-            //var data = context.Events.FirstOrDefault().Begin;
-            //ViewBag.Date = data.ToString("yyyy-MM-dd");
-            //var dataEnd = context.Events.FirstOrDefault().Begin;
-            //ViewBag.DateEnd = dataEnd.ToString("yyyy-MM-dd");
-
-            
+            //DateTime begin = event1.Begin;
+            //DateTime end = event1.End;
 
             //Sasha Alex
             //var ids = Request.Form["userId"];
 
-
+            //DateTime begin = DateTime.Parse(event1.Begin);
+            //DateTime end = DateTime.Parse(event1.End);
 
             if (event1 != null)
             {
+               
                 context.Events.Add(event1);
                 context.SaveChanges();
 
             }
+
+
+
 
             return Redirect("/Home/Index");
         }
