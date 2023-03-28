@@ -375,11 +375,15 @@ input[type="checkbox"] {
     margin-right: 1rem;
 }
 
+
 .shedule {
     border-left: 1px solid #52a7e4;
     border-bottom: 1px solid #52a7e4;
     margin-left: 1rem;
-    width: 100%;
+   
+
+    flex: 1;
+    justify-content: stretch;
 }
 
 .box {
@@ -397,11 +401,12 @@ input[type="checkbox"] {
     font-weight: 400;
     font-size: 1.2rem;
     color: #52a7e4;
+    margin-bottom:2rem;
 }
 
 .time-span-row {
     display: grid;
-    grid-template-columns: repeat(16, 1fr);
+    grid-template-columns: repeat(18, 1fr);
     width: 100%;
 }
 
@@ -409,6 +414,7 @@ input[type="checkbox"] {
         border-right: 1px solid #52a7e4;
         color: white;
         padding: 0.3rem;
+        font-size: 0.8rem;
         /* align-self: center; */
         /* width: 100%; */
     }
@@ -432,7 +438,5 @@ input[type="checkbox"] {
     opacity: 0.8;
     cursor: move;
 }
-
-
 /*---------------------------------------------------window*/
 

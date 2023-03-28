@@ -11,6 +11,51 @@
 
 
 <style>
+    /* .time-span-row {
+            display: grid;
+            grid-template-columns: repeat(18, 1fr);
+            width: 100%;
+        }
+
+            .time-span-row > div {
+                border-right: 1px solid #52a7e4;
+                color: white;
+                padding: 0.3rem;
+                font-size: 0.8rem;
+                /* align-self: center; */
+    /* width: 100%; */
+    }
+
+    .time-block {
+        width: 100%;
+        height: 1.5rem;
+        background-color: #a09595;
+    }
+
+    .time-blocks {
+        position: relative;
+    }
+
+    .time-change-block {
+        position: absolute;
+        top: -0.25rem;
+        background-color: #52a7e4;
+        height: 2rem;
+        width: 3rem;
+        opacity: 0.8;
+        cursor: move;
+    }
+
+    
+    /*/  /*/
+    #parent_Shedules {
+        display: flex;
+        flex-direction: column;
+        
+
+        flex: 1;
+    justify-content: stretch;
+    }
 
     input[type="checkbox"] {
         margin-top: auto;
@@ -25,7 +70,7 @@
         height: 20px;
         border: 1px solid #52a7e3;
         /* margin-top: auto;
-                margin-bottom: auto;*/
+                            margin-bottom: auto;*/
         border-radius: 3px;
         outline: none;
         cursor: pointer;
@@ -38,7 +83,7 @@
         }
 
     .mainDiv {
-        width: 80%;
+        width: 90%;
         background-color: #52a7e4;
         padding-bottom: 1rem;
         margin: auto;
@@ -52,7 +97,7 @@
         align-items: center;
         padding: 0.313rem 0.813rem;
         gap: 0.438rem;
-        width: 15.625rem;  /*changed for new datetime from 10.625*/
+        width: 15.625rem; /*changed for new datetime from 10.625*/
         height: 2.313rem;
         left: 0.5rem;
         top: 9.313rem;
@@ -86,15 +131,15 @@
         -webkit-appearance: none;
     }
 
-  
+
     input[type="datetime-local"]::-webkit-calendar-picker-indicator {
-       /* display: none;*/
-       
+        /* display: none;*/
+
         position: relative;
         z-index: 1;
         opacity: 0;
     }
-    
+
 
     input[type="time"] {
         box-sizing: border-box;
@@ -157,15 +202,16 @@
         margin-right: 1rem;
     }
     /*/////////////////////////////////////*window*/
-    .parent{
-        display:grid;
-        grid-template-columns:1fr 1fr 1fr;
+    .parent {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
     }
+
     .membersWindow {
         width: 7.6rem;
         height: 2.1rem;
         /* left: 44.5rem;
-            top: 36.8rem;*/
+                        top: 36.8rem;*/
         border: none;
         cursor: pointer;
         background: #52a7e4;
@@ -362,7 +408,7 @@
                     <label class="labelF">Нова подія </label>
                     <input type="text" class="inputF" asp-for="@Model.EventName" />
                 </div>
-               
+
 
                 <div class="description">
                     <div class="divDescr">
@@ -390,14 +436,14 @@
                     </div>
 
                     <div class="divDate">
-                     @*   <input type="date" id="date1" asp-for="@Model.Begin" />
+                        @*   <input type="date" id="date1" asp-for="@Model.Begin" />
                         <input type="time" class="superstyle" id="time1" asp-for="@Model.Begin" />
                         <div class="ture"></div>
                         <input type="date" id="date2" asp-for="@Model.End" />
                         <input type="time" class="superstyle" id="time2" asp-for="@Model.End" />*@
 
                         <input type="datetime-local" class="date11" id="date1" asp-for="@Model.Begin" />
-                          <div class="ture"></div>
+                        <div class="ture"></div>
                         <input type="datetime-local" class="date11" id="date2" asp-for="@Model.End" />
 
                     </div>
@@ -414,75 +460,75 @@
                     <div class="coWorkers">
                         <div class="people">
                             <img src="~/Imeg1/@ViewBag.NameUser/@ViewBag.ImgPath" />
-                            <p class="peopleP">@ViewBag.NameUser</p>
+                            <p class="peopleP"> @ViewBag.NameUser</p>
                         </div>
                     </div>
 
-                    <div class="shedule">
-                        <div class="day">@ViewBag.CurrentDate</div>
+                    <div id="parent_Shedules">
+                        <div class="shedule">
+                            <div class="day">@ViewBag.CurrentDate</div>
 
-                        <div class="time-span-row">
-                            <div>7-00</div>
-                            <div>8-00</div>
-                            <div>9-00</div>
-                            <div>10-00</div>
-                            <div>11-00</div>
-                            <div>12-00</div>
-                            <div>13-00</div>
-                            <div>14-00</div>
-                            <div>15-00</div>
-                            <div>16-00</div>
-                            <div>17-00</div>
-                            <div>18-00</div>
-                            <div>19-00</div>
-                            <div>20-00</div>
-                            <div>21-00</div>
-                            <div>22-00</div>
-                        </div>
+                            <div class="time-span-row">
+                                <div>7-00</div>
+                                <div>8-00</div>
+                                <div>9-00</div>
+                                <div>10-00</div>
+                                <div>11-00</div>
+                                <div>12-00</div>
+                                <div>13-00</div>
+                                <div>14-00</div>
+                                <div>15-00</div>
+                                <div>16-00</div>
+                                <div>17-00</div>
+                                <div>18-00</div>
+                                <div>19-00</div>
+                                <div>20-00</div>
+                                <div>21-00</div>
+                                <div>22-00</div>
+                            </div>
 
-                        <div class="time-span-row time-blocks">
-                            <div class="time-change-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                            <div class="time-block"></div>
-                        </div>
+                            <div class="time-span-row time-blocks">
+                                <div class="time-change-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                                <div class="time-block"></div>
+                            </div>
 
-                        <div class="time-span-row">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
+                            <div class="time-span-row">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-
-               
                 <hr />
 
 
@@ -492,7 +538,7 @@
                     </div>
 
                     <div class="members">
-                                               
+
                         <div id="parent" class="parent">
                             <div class="memb">
                                 <img src="~/Imeg1/@ViewBag.NameUser/@ViewBag.ImgPath" />
@@ -537,7 +583,7 @@
                 </div>
                 <hr />
 
-            
+
 
                 <div class="checkConfirm">
                     <label class="textCenter">
@@ -575,49 +621,18 @@
         //EVENT
         $(function () {
 
-            var dateStart = $('#date1').val();
-
-            //var dateEnd = $('#date2').value();
+            var dateStart = $('#date1').val();// 
+            var dateEnd = $('#date2').val();
 
             $('#addMembers').click(function () {
                 $(".mainBox").fadeToggle(100);
 
             });
 
-            //$('#sub').click(function(){
+            
+            $('.inBox').click(function (e) 
+            {
 
-            //    // Получаем значения элементов управления ввода даты и времени
-            //    const dateValue1 = document.getElementById("#date1").val();
-            //    const timeValue1 = document.getElementById("#time1").val();
-
-            //    const dateValue2 = document.getElementById("#date2").val();
-            //    const timeValue2 = document.getElementById("#time2").val();
-
-            //    //// Объединяем значения даты и времени в строку формата ISO 8601
-            //    const dateTimeString1 = dateValue1 + "T" + timeValue1 + ":00";
-            //    const dateTimeString2 = dateValue2 + "T" + timeValue2 + ":00";
-
-            //    //// Создаем объект DateTime из строки
-            //    const dateTime1 = new Date(dateTimeString1);
-            //    const dateTime2 = new Date(dateTimeString2);
-
-
-            //    $.ajax({
-            //        url: "/Meassure/AddMeasure",
-            //        type: "POST",
-            //        data: { dateStart1: dateTime1, dateEnd2: dateTime2 },
-            //        success: function (result) {
-            //            // обработка ответа от сервера
-            //        },
-            //        error: function (xhr, status, error) {
-            //            // обработка ошибок
-            //        }
-            //    });
-
-            //});
-
-            $('.inBox').click(function (e) {
-                           
 
                 //// Получаем ссылки на элементы, которые нужно перенести
                 //var userImg = document.querySelector('.inBox img');
@@ -626,7 +641,7 @@
                 //// Получаем ссылки на элементы, в которые нужно перенести данные
                 //var memImg = document.querySelector('.memb img');
                 //var memName=document.querySelector('.memb p');
-                             
+
 
                 //const userName=text.Split("/")[1];
 
@@ -641,7 +656,7 @@
                 //Sasha
 
                 const imgSrc = $(this).find('img').attr('src');
-                const userId=$(this).find(".userId").text();
+                const userId = $(this).find(".userId").text();
                 const userName = $(this).find('.userName').text();
 
                 console.log(userId);
@@ -649,18 +664,18 @@
                 console.log(imgSrc);
 
 
-                const parent=document.getElementById("parent");
+                const parent = document.getElementById("parent");
 
-                const div=document.createElement("div");
-                div.className="memb";
-                div.id=userId;
+                const div = document.createElement("div");
+                div.className = "memb";
+                div.id = userId;
 
-                const img=document.createElement("img");
-                img.setAttribute("src",imgSrc);
+                const img = document.createElement("img");
+                img.setAttribute("src", imgSrc);
 
-                const p=document.createElement("p");
-                p.className="name";
-                p.innerText=userName;
+                const p = document.createElement("p");
+                p.className = "name";
+                p.innerText = userName;
 
                 div.appendChild(img);
                 div.appendChild(p);
@@ -671,72 +686,79 @@
                 const list = document.querySelectorAll(".memb");
                 console.log(list);
 
-                const form=document.getElementById("eventForm");
+                const form = document.getElementById("eventForm");
 
-                const input=document.createElement("input");
-                input.hidden=true;
-                input.name="userId";
-                input.setAttribute("value",userId);
+                const input = document.createElement("input");
+                input.hidden = true;
+                input.name = "userId";
+                input.setAttribute("value", userId);
 
                 form.appendChild(input);
 
 
-                //CREATE Shedule Block
+                //CREATE Shedule Block для учасників події
 
-                const div = document.createElement('div');
-                div.classList.add('shedule');
+                // создаем родительский элемент
+                const parent2 = document.getElementById("parent_Shedules");
 
-                // Создаем элемент div для дня и добавляем текстовое содержимое "Субота, Лютий 25"
-                const day = document.createElement('div');
-                day.classList.add('day');
-                day.textContent = 'Субота, Лютий 25';
-                div.appendChild(day);
+                // создаем дочерний элемент "div" и добавляем ему класс "shedule"
+                const schedule = document.createElement("div");
+                schedule.classList.add("shedule");
 
-                // Создаем элемент div для временных интервалов
-                const timeSpanRow1 = document.createElement('div');
-                timeSpanRow1.classList.add('time-span-row');
+                // создаем элемент "div" и добавляем ему класс "day"
+                const day = document.createElement("div");
+                day.classList.add("day");
+                day.textContent = dateStart; // добавляем текст в элемент
 
-                // Создаем элементы div для временных блоков и добавляем их в timeSpanRow1
-                for (let i = 0; i < 16; i++) {
-                    const timeBlock = document.createElement('div');
-                    timeBlock.classList.add('time-block');
-                    timeSpanRow1.appendChild(timeBlock);
+                // создаем первую строку времени
+                const timeSpanRow1 = document.createElement("div");
+                timeSpanRow1.classList.add("time-span-row");
+
+                // создаем элементы времени и добавляем их в первую строку времени
+                for (let i = 7; i <= 22; i++) {
+                    const time = document.createElement("div");
+                    time.textContent = i + "-00";
+                    timeSpanRow1.appendChild(time);
                 }
 
-                // Создаем элемент div для временных блоков с возможностью изменения времени и добавляем его в timeSpanRow1
-                const timeChangeBlock = document.createElement('div');
-                timeChangeBlock.classList.add('time-change-block');
-                timeSpanRow1.insertBefore(timeChangeBlock, timeSpanRow1.firstChild);
+                // создаем 
+                const timeSpanRow2 = document.createElement("div");
+                timeSpanRow2.classList.add("time-span-row", "time-blocks");
 
-                // Создаем элементы div для второго ряда временных блоков и добавляем их в div
-                const timeSpanRow2 = document.createElement('div');
-                timeSpanRow2.classList.add('time-span-row', 'time-blocks');
+                //block c классом "time-change-block"
+                const timeChange_Block = document.createElement("div");
+                timeChange_Block.classList.add("time-change-block");
+                timeSpanRow2.appendChild(timeChange_Block);
 
+
+                // создаем элементы для блоков времени и добавляем их во вторую строку времени
                 for (let i = 0; i < 16; i++) {
-                    const timeBlock = document.createElement('div');
-                    timeBlock.classList.add('time-block');
+                    const timeBlock = document.createElement("div");
+                    timeBlock.classList.add("time-block");
                     timeSpanRow2.appendChild(timeBlock);
                 }
 
-                div.appendChild(timeSpanRow1);
-                div.appendChild(timeSpanRow2);
+                // создаем третью строку времени
+                const timeSpanRow3 = document.createElement("div");
+                timeSpanRow3.classList.add("time-span-row");
 
-                // Создаем элемент div для третьего ряда временных блоков и добавляем его в div
-                const timeSpanRow3 = document.createElement('div');
-                timeSpanRow3.classList.add('time-span-row');
-
-                for (let i = 0; i < 16; i++) {
-                    const emptyBlock = document.createElement('div');
-                    timeSpanRow3.appendChild(emptyBlock);
+                // создаем 17 элементов и добавляем их в третью строку времени
+                for (let i = 0; i < 17; i++) {
+                    const empty = document.createElement("div");
+                    timeSpanRow3.appendChild(empty);
                 }
-                div.appendChild(timeSpanRow3);
+
+                // добавляем элементы в родительский элемент
+                schedule.appendChild(day);
+                schedule.appendChild(timeSpanRow1);
+                schedule.appendChild(timeSpanRow2);
+                schedule.appendChild(timeSpanRow3);
+                parent2.appendChild(schedule);
 
 
+                $(".mainBox").css("display", "none");// закриваємо блок з users 
 
 
-                $(".mainBox").css("display", "none");
-
-                
             });
 
             $('#CheckAllDay').click(function () {
@@ -752,9 +774,8 @@
         });
 
 
-        function myFunction() 
-        {
-            
+        function myFunction() {
+
         }
 
         var dateInput = document.getElementById("date1");
