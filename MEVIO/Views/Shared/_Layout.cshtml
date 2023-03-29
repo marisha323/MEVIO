@@ -35,14 +35,24 @@
             </a>
 
 
+            <a asp-controller="ZapStudent" asp-action="Index">
+                <img class="left-menu-img" src="/img/contact.png" alt="">
+            </a>
 
-
-            <img class="left-menu-img" src="/img/free-icon-percentage-1390317.png" alt="">
-            <img class="left-menu-img" src="/img/free-icon-smile-3337247.png" alt="">
-            <img class="left-menu-img" src="/img/free-icon-user-5807924.png" alt="">
+            <a asp-controller="Task" asp-action="Index">
+                <img class="left-menu-img" src="/img/free-icon-smile-3337247.png" alt="">
+            </a>
+            
+            <a asp-controller="TableUsers" asp-action="Index">
+                <img class="left-menu-img" src="/img/teamwork.png" alt="">
+            </a>
         </div>
 
-        <img class="left-menu-img" asp-controller="Home" asp-action="Logout" src="/img/free-icon-exit-1286907.png" alt="">
+        @* <img asp-controller="Registry" asp-action="Logout" class="left-menu-img" src="/img/free-icon-exit-1286907.png" alt="">*@
+
+        <a asp-controller="Registry" asp-action="Logout">
+            <img class="left-menu-img" src="/img/free-icon-exit-1286907.png" alt="">
+        </a>
     </div>
 
     <div class="right-menu">
@@ -52,11 +62,14 @@
         <img class="right-menu-img" src="/img/free-icon-ringing-bell-6816519.png" alt="">
         <hr class="_hr">
 
-        <a asp-controller="Home" asp-action="Chat">
+
+        <a asp-controller="Chat" asp-action="Index">
             <img class="right-menu-img" src="/img/free-icon-chat-892177.png" alt="">
         </a>
         <hr class="_hr">
 
+
+        
         <img class="right-menu-img" src="/img/free-icon-user-5807924.png" alt="">
         <hr class="_hr">
 

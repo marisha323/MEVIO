@@ -9,7 +9,7 @@
 
         public int? StudentId { get; set; }
         public virtual Student Student { get; set; }
-
+        public string Payment_Form { get; set; }
         public DateTime DateStamp { get; set; }
 
         public int? EducationFormId { get; set; }
