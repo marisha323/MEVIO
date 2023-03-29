@@ -15,6 +15,13 @@ namespace MEVIO.Controllers
         }
 
 
+
+        public async Task<IActionResult> Info()
+        {
+            return View();
+        }
+
+
         public IActionResult Index()
         {
             User user = null;
