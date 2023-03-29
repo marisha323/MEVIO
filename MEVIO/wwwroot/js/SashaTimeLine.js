@@ -1,40 +1,40 @@
 
-//Ira
-//var dateTimeInput = document.querySelector('#date1');
-//var dateTimeValue = dateTimeInput.value;
-//var dateTime = new Date(dateTimeValue);
-//const time1 = dateTime.toLocaleTimeString();
+////Ira
+////var dateTimeInput = document.querySelector('#date1');
+////var dateTimeValue = dateTimeInput.value;
+////var dateTime = new Date(dateTimeValue);
+////const time1 = dateTime.toLocaleTimeString();
+////console.log(time1);
+
+////var dateTimeInput = document.querySelector('#date2');
+////var dateTimeValue = dateTimeInput.value;
+////var dateTime = new Date(dateTimeValue);
+////const time2 = dateTime.toLocaleTimeString();
+////console.log(time2);
+
+
+//const date1 = document.getElementById('date1').value; //
+//console.log(date1);
+
+//const date2 = document.getElementById('date2').value;
+//console.log(date2);
+
+////const date1 = document.querySelector('#date1'); //
+////const date2 = document.querySelector('#date2');
+
+//var dateTime1 = new Date(date1);
+//var dateTime2 = new Date(date2);
+
+//const time1 = dateTime1.getHours();
 //console.log(time1);
-
-//var dateTimeInput = document.querySelector('#date2');
-//var dateTimeValue = dateTimeInput.value;
-//var dateTime = new Date(dateTimeValue);
-//const time2 = dateTime.toLocaleTimeString();
+//const time2 = dateTime2.getHours();
 //console.log(time2);
-
-
-const date1 = document.getElementById('date1').value; //
-console.log(date1);
-
-const date2 = document.getElementById('date2').value;
-console.log(date2);
-
-//const date1 = document.querySelector('#date1'); //
-//const date2 = document.querySelector('#date2');
-
-var dateTime1 = new Date(date1);
-var dateTime2 = new Date(date2);
-
-const time1 = dateTime1.getHours();
-console.log(time1);
-const time2 = dateTime2.getHours();
-console.log(time2);
 
 
 //--------------------------------------------------------
 
-//const time1 = document.querySelector('#time1');
-//const time2 = document.querySelector('#time2');
+const time1 = document.querySelector('#time1');
+const time2 = document.querySelector('#time2');
 const timeChangeBlock = document.querySelector(".time-change-block");
 
 //const beginOfDay = 25200000;

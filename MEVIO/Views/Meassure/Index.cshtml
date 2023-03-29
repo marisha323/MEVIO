@@ -23,7 +23,7 @@
         height: 20px;
         border: 1px solid #52a7e3;
         /* margin-top: auto;
-                margin-bottom: auto;*/
+                                    margin-bottom: auto;*/
         border-radius: 3px;
         outline: none;
         cursor: pointer;
@@ -119,12 +119,12 @@
             border: none;
         }
     /*
-                ---------------------window with users*/
+                                    ---------------------window with users*/
     .membersWindow {
         width: 7.6rem;
         height: 2.1rem;
         /* left: 44.5rem;
-                    top: 36.8rem;*/
+                                        top: 36.8rem;*/
         border: none;
         cursor: pointer;
         background: #52a7e4;
@@ -333,7 +333,10 @@
         justify-content: stretch;
     }
 
-
+    .parent {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 </style>
 
 
@@ -343,7 +346,7 @@
         <p class="pNew">Захід</p>
 
         <div class="insideDiv">
-            <form asp-controller="Meassure" asp-action="AddMeasure" method="post">
+            <form id="eventForm" asp-controller="Meassure" asp-action="AddMeasure" method="POST">
                 <div>
                     <label class="labelF">Новий захід</label>
                     <input type="text" class="inputF" asp-for="@Model.MeasureName" />
@@ -365,11 +368,11 @@
                     </div>
 
                     <div class="divDate">
-                        <input type="date" asp-for="@Model.Begin" id="date1" />
-                        <input type="time" class="superstyle" id="time1" @* name="time1"*@ />
+                        <input type="date" name="dateField1" id="date1" />
+                        <input type="time" class="superstyle" id="time1" name="timeField1" />
                         <div class="ture"></div>
-                        <input type="date" asp-for="@Model.End" id="date2" />
-                        <input type="time" class="superstyle" id="time2" @* name="time2"*@ />
+                        <input type="date" name="dateField2" id="date2" />
+                        <input type="time" class="superstyle" id="time2" name="timeField2" />
                     </div>
 
                     <div class="checkAllDay">
@@ -413,9 +416,11 @@
 
                     <div class="members">
 
-                        <div class="memb">
-                            <img src="@ViewBag.ImgPath" />
-                            <p class="name"> @ViewBag.NameUser</p>
+                        <div id="parent" class="parent">
+                            <div class="memb">
+                                <img src="~/Imeg1/@ViewBag.NameUser/@ViewBag.ImgPath" />
+                                <p class="name"> @ViewBag.NameUser</p>
+                            </div>
                         </div>
 
                         <div id="addMembers">+ Додати</div>
@@ -440,7 +445,6 @@
                                     {
                                         <div class="inBox">
                                             <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
-                                            @* <img src="~/Imeg2/Jamala/Jamala_1944_cover.jpg" />*@
                                             <p class="userName">@itemUsers.UserName</p>
                                             <span class="userId" hidden>@itemUsers.Id</span>
                                             <div class="bird">&#10004;</div>
@@ -456,7 +460,7 @@
                 <hr />
 
                 <div class="hard">
-                    <div class="coWorkers">
+                    <div class="coWorkers" id="coWorkers">
                         <div class="people">
                             <img src="@ViewBag.ImgPath" />
                             <p class="peopleP styleP">@ViewBag.NameUser</p>
@@ -465,8 +469,9 @@
 
 
                     <div id="parent_Shedules">
+
                         <div class="shedule">
-                            <div class="day">@ViewBag.CurrentDate</div>
+                            <div class="day">@ViewBag.Date</div>
 
                             <div class="time-span-row">
                                 <div>7-00</div>
@@ -485,8 +490,7 @@
                                 <div>20-00</div>
                                 <div>21-00</div>
                                 <div>22-00</div>
-                                <div>23-00</div>
-                                <div>00-00</div>
+
                             </div>
 
                             <div class="time-span-row time-blocks">
@@ -507,8 +511,7 @@
                                 <div class="time-block"></div>
                                 <div class="time-block"></div>
                                 <div class="time-block"></div>
-                                <div class="time-block"></div>
-                                <div class="time-block"></div>
+
                             </div>
 
                             <div class="time-span-row">
@@ -528,8 +531,7 @@
                                 <div></div>
                                 <div></div>
                                 <div></div>
-                                <div></div>
-                                <div></div>
+
                             </div>
                         </div>
                     </div>
@@ -559,29 +561,24 @@
     </div>
 
     <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
+    <script src="~/js/SashaTimeLine.js" asp-append-version="true"></script>
     <script src="~/js/file.js" asp-append-version="true"></script>
 
 
     <script>
         //MEASURE;
-        //
-
-
 
         $(function () {
 
-            var dateStart = $('#date1').val();
-
-            //var dateEnd = $('#date2').value();
+            var dateStart = $('#date1').val();//
+            var dateEnd = $('#date2').val();
 
             $('#addMembers').click(function () {
                 $(".mainBox").fadeToggle(100);
 
             });
 
-            //$('.inBox').click(function () {
-            //    $(".mainBox").css("display", "none");
-            //});
+
 
             $('#CheckAllDayBox').click(function () {
                 $('#time1').fadeToggle(200);
@@ -594,89 +591,156 @@
                 var dateValue = $('#date1').val();
                 $('#date2').val(dateValue);
 
-
-
-                //при натисканні на блок з учасником,інфо-бокс додається поруч організатором події
-                $('.inBox').click(function (e) {
-
-                    const imgSrc = $(this).find('img').attr('src');
-                    const userId = $(this).find(".userId").text();
-                    const userName = $(this).find('.userName').text();
-
-                    console.log(userId);
-                    console.log(userName);
-                    console.log(imgSrc);
-
-
-                    const parent = document.getElementById("parent");
-
-                    const div = document.createElement("div");
-                    div.className = "memb";
-                    div.id = userId;
-
-                    const img = document.createElement("img");
-                    img.setAttribute("src", imgSrc);
-
-                    const p = document.createElement("p");
-                    p.className = "name";
-                    p.innerText = userName;
-
-                    div.appendChild(img);
-                    div.appendChild(p);
-
-                    parent.appendChild(div);
-
-
-                    const list = document.querySelectorAll(".memb");
-                    console.log(list);
-
-                    const form = document.getElementById("eventForm");
-
-                    const input = document.createElement("input");
-                    input.hidden = true;
-                    input.name = "userId";
-                    input.setAttribute("value", userId);
-
-                    form.appendChild(input);
+            });
 
 
 
+            //при натисканні на блок з учасником,інфо-бокс про учасника  додається поруч з організатором подіїю Також створюється шкала з часом
+            $('.inBox').click(function (e) {
+
+                const imgSrc = $(this).find('img').attr('src');
+                const userId = $(this).find(".userId").text();
+                const userName = $(this).find('.userName').text();
+
+                console.log(userId);
+                console.log(userName);
+                console.log(imgSrc);
+
+                // create block with users-info
+                const parent = document.getElementById("parent");
+
+                const div = document.createElement("div");
+                div.className = "memb";
+                div.id = userId;
 
 
-                });
+
+                const img = document.createElement("img");
+                img.setAttribute("src", imgSrc);
+
+                const p = document.createElement("p");
+                p.className = "name";
+                p.innerText = userName;
+
+                div.appendChild(img);
+                div.appendChild(p);
+
+                parent.appendChild(div);
 
 
+                const list = document.querySelectorAll(".memb");
+                console.log(list);
+
+                const form = document.getElementById("eventForm");
+
+                const input = document.createElement("input");
+                input.hidden = true;
+                input.name = "userId";
+                input.setAttribute("value", userId);
+
+                form.appendChild(input);
+
+
+                //////////////////////////////////////////////////////////
+
+                //CREATE Shedule Block для учасників події
+
+                // создаем родительский элемент
+                const parent2 = document.getElementById("parent_Shedules");
+
+                // создаем дочерний элемент "div" и добавляем ему класс "shedule"
+                const schedule = document.createElement("div");
+                schedule.classList.add("shedule");
+
+                // создаем элемент "div" и добавляем ему класс "day"
+                const day = document.createElement("div");
+                day.classList.add("day");
+                day.textContent = dateStart; // добавляем текст в элемент
+
+                // создаем первую строку времени
+                const timeSpanRow1 = document.createElement("div");
+                timeSpanRow1.classList.add("time-span-row");
+
+                // создаем элементы времени и добавляем их в первую строку времени
+                for (let i = 7; i <= 22; i++) {
+                    const time = document.createElement("div");
+                    time.textContent = i + "-00";
+                    timeSpanRow1.appendChild(time);
+                }
+
+                // создаем
+                const timeSpanRow2 = document.createElement("div");
+                timeSpanRow2.classList.add("time-span-row", "time-blocks");
+
+                //block c классом "time-change-block"
+                const timeChange_Block = document.createElement("div");
+                timeChange_Block.classList.add("time-change-block");
+                timeSpanRow2.appendChild(timeChange_Block);
+
+
+                // создаем элементы для блоков времени и добавляем их во вторую строку времени
+                for (let i = 0; i < 16; i++) {
+                    const timeBlock = document.createElement("div");
+                    timeBlock.classList.add("time-block");
+                    timeSpanRow2.appendChild(timeBlock);
+                }
+
+                // создаем третью строку времени
+                const timeSpanRow3 = document.createElement("div");
+                timeSpanRow3.classList.add("time-span-row");
+
+                // создаем 17 элементов и добавляем их в третью строку времени
+                for (let i = 0; i < 17; i++) {
+                    const empty = document.createElement("div");
+                    timeSpanRow3.appendChild(empty);
+                }
+
+                // добавляем элементы в родительский элемент
+                schedule.appendChild(day);
+                schedule.appendChild(timeSpanRow1);
+                schedule.appendChild(timeSpanRow2);
+                schedule.appendChild(timeSpanRow3);
+                parent2.appendChild(schedule);
+
+
+
+                //ADD USER for Shedule
+                //<div class="coWorkers" >
+                //    <div class="people" >
+                //        <img src="@ViewBag.ImgPath" />
+                //            <p class="peopleP styleP" > @ViewBag.NameUser</p>
+                //                </div>
+                //                </div>
+
+
+                const parent3 = document.getElementById("coWorkers");
+
+                const div2 = document.createElement("div");
+                div2.className = "people";
+                //div2.id = userId;
+
+                const img2 = document.createElement("img");
+                img2.setAttribute("src", imgSrc);
+
+                const p2 = document.createElement("p");
+                p2.className = "peopleP";
+                p2.innerText = userName;
+
+                div2.appendChild(img2);
+                div2.appendChild(p2);
+
+                parent3.appendChild(div2)
+
+
+                $(".mainBox").css("display","none");// закриваємо блок з users
+                console.log("DonE!");
 
             });
-        });
 
+            //$('.inBox').click(function () {
+            //    $(".mainBox").css("display", "none");
+            //});
 
-        // Получаем значения элементов управления ввода даты и времени
-        const dateValue1 = document.getElementById("#date1").val();
-        const timeValue1 = document.getElementById("#time1").val();
-
-        const dateValue2 = document.getElementById("#date2").val();
-        const timeValue2 = document.getElementById("#time2").val();
-
-        //// Объединяем значения даты и времени в строку формата ISO 8601
-        const dateTimeString1 = dateValue1 + "T" + timeValue1 + ":00";
-        const dateTimeString2 = dateValue2 + "T" + timeValue2 + ":00";
-
-        //// Создаем объект DateTime из строки
-        const dateTime1 = new Date(dateTimeString1);
-        const dateTime2 = new Date(dateTimeString2);
-
-
-        $.ajax({
-            url: "/Meassure/AddMeasure",
-            type: "POST",
-            data: { dateStart1: dateTime1, dateEnd2: dateTime2 },
-            success: function (result) {
-                // обработка ответа от сервера
-            },
-            error: function (xhr, status, error) {
-                // обработка ошибок
-            }
         });
 
 
@@ -685,10 +749,12 @@
 
 
 
-                                //var dateStart= document.getElementById("#date1");
-                        //dateInput.value = "@ViewBag?.Date";
-                        //var dateEnd = document.getElementById("#date2");
-                        //dateEnd.value = "@ViewBag?.DateEnd";
+
+
+          //var dateStart= document.getElementById("date1");
+             //dateInput.value = "@ViewBag?.Date";
+            //var dateEnd = document.getElementById("date2");
+           //dateEnd.value = "@ViewBag?.DateEnd";
 
 
     </script>
