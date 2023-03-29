@@ -53,7 +53,11 @@
 
                     <div class="div-p-input">
                         <p class="divStrockZap" style="top: 487px;">PersonDocumentNumber:</p>
-                        <input type="text" class="divStrockZap2" name="DocumentNumber" style="top: 485px;  left: 400px;" placeholder="533535">
+                        <input type="text" class="divStrockZap2" name="PassportNumber" style="top: 485px;  left: 400px;" placeholder="533535">
+                    </div>
+                    <div class="div-p-input">
+                        <p class="divStrockZap" style="top: 487px;">DateOfPassportIssue:</p>
+                        <input type="date" class="divStrockZap2 conData" name="DateOfPassportIssue" style="top: 485px;  left: 400px;" placeholder="">
                     </div>
 
                     <div class="classPodcherk"> </div>
@@ -169,7 +173,7 @@
 
 
                     <div class="div-buttons2">
-                        <input class="buttonstyleStudent2 input-button" type="button" value="Заповнити договір">
+                        @*<input asp-action="ZapContract" asp-controller="ZapStudent" class="buttonstyleStudent2 input-button" type="button" value="Заповнити договір">*@
                         <input class="buttonstyleTeaher2 input-button" type="submit" value="Зберегти">
                     </div>
                 </div>
@@ -187,7 +191,7 @@
                             <option selected>Name...</option>
                             @foreach (var item in ViewBag.ClientID)
                             {
-                                <option value="@item.ClientName">@item.ClientName</option>
+                                <option value="@item.Id">@item.ClientName</option>
                             }
                         </select>
                     </div>
@@ -200,9 +204,15 @@
                             <option selected>Student...</option>
                             @foreach (var student in ViewBag.Students)
                             {
-                                <option asp-for="@student.Id">@student.StudentName</option>
+                                <option value="@student.Id">@student.StudentName</option>
                             }
                         </select>
+                    </div>
+
+             
+                    <div class="div-p-input">
+                        <p class="divStrockZap" style="top: 91px; ">Payment Form:</p>
+                        <input type="text" class="divStrockZap2" name="Payment_Form" style="top: 95px;  left: 400px;" placeholder="Частинами">
                     </div>
 
                     <div class="div-p-input">
@@ -217,7 +227,7 @@
                             <option selected>Education Form...</option>
                             @foreach (var item in ViewBag.EducationFormId)
                             {
-                                <option value="@item.EducationFormName">@item.EducationFormName</option>
+                                <option value="@item.Id">@item.EducationFormName</option>
                             }
                         </select>
                     </div>
@@ -229,7 +239,7 @@
                             <option selected>Academy Name...</option>
                             @foreach (var item in ViewBag.AcademiID)
                             {
-                                <option value="@item.AcademyName">@item.AcademyName</option>
+                                <option value="@item.Id">@item.AcademyName</option>
                             }
                         </select>
                     </div>
@@ -241,7 +251,7 @@
                             <option selected>Season...</option>
                             @foreach (var item in ViewBag.SeasonID)
                             {
-                                <option value="@item.SeasonName">@item.SeasonName</option>
+                                <option value="@item.Id">@item.SeasonName</option>
                             }
                         </select>
                     </div>
@@ -251,7 +261,7 @@
 
                     <div class="div-buttons2">
                         @* <input class="buttonstyleStudent2" type="button" value="Заповнити договір">*@
-                        <input class="buttonstyleTeaher2 input-button" type="submit" value="Зберегти">
+                        <input class="buttonstyleTeaher2 input-button" type="submit" value="Зберегти та Заповнити договір">
                     </div>
                 </div>
             </form>

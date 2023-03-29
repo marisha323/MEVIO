@@ -1,40 +1,65 @@
 
-////Ira
-////var dateTimeInput = document.querySelector('#date1');
-////var dateTimeValue = dateTimeInput.value;
-////var dateTime = new Date(dateTimeValue);
-////const time1 = dateTime.toLocaleTimeString();
-////console.log(time1);
+//Ira
+//var dateTimeInput = document.querySelector('#date1');
+//var dateTimeValue = dateTimeInput.value;
+//var dateTime = new Date(dateTimeValue);
+//const time1 = dateTime.toLocaleTimeString();
+//console.log(time1);
 
-////var dateTimeInput = document.querySelector('#date2');
-////var dateTimeValue = dateTimeInput.value;
-////var dateTime = new Date(dateTimeValue);
-////const time2 = dateTime.toLocaleTimeString();
-////console.log(time2);
+//var dateTimeInput = document.querySelector('#date2');
+//var dateTimeValue = dateTimeInput.value;
+//var dateTime = new Date(dateTimeValue);
+//const time2 = dateTime.toLocaleTimeString();
+//console.log(time2);
 
 
-//const date1 = document.getElementById('date1').value; //
+const dateBegin = document.getElementById('date1');
+const dateEnd = document.getElementById('date2');
+
+
+
+
+dateBegin.addEventListener("change", ChangeTimeInputNew);
+
+
+dateEnd.addEventListener("change", ChangeTimeInputNew);
+
+
+function ChangeTimeInputNew() {
+	const value1 = dateBegin.value;
+	const value2 = dateEnd.value;
+
+	let date1 = new Date(value1);
+	//console.log(date1.toLocaleTimeString());
+	console.log(date1.getTime());
+
+	let date2 = new Date(value2);
+	//console.log(date2.toLocaleTimeString());
+	console.log(date2.getSeconds());
+}
+
+
+
 //console.log(date1);
 
-//const date2 = document.getElementById('date2').value;
 //console.log(date2);
 
-////const date1 = document.querySelector('#date1'); //
-////const date2 = document.querySelector('#date2');
+//const date1 = document.querySelector('#date1'); //
+//const date2 = document.querySelector('#date2');
 
-//var dateTime1 = new Date(date1);
-//var dateTime2 = new Date(date2);
+var dateTime1 = new Date(date1);
+var dateTime2 = new Date(date2);
 
-//const time1 = dateTime1.getHours();
+const time1 = dateTime1.getHours();
 //console.log(time1);
-//const time2 = dateTime2.getHours();
+const time2 = dateTime2.getHours();
 //console.log(time2);
 
 
 //--------------------------------------------------------
 
-const time1 = document.querySelector('#time1');
-const time2 = document.querySelector('#time2');
+//const time1 = document.querySelector('#time1');
+//const time2 = document.querySelector('#time2');
 const timeChangeBlock = document.querySelector(".time-change-block");
 
 //const beginOfDay = 25200000;
@@ -126,8 +151,8 @@ function ChangeTimeInput() {
 
 
 
-time1.addEventListener("change", ChangeTimeInput);
-time2.addEventListener("change", ChangeTimeInput);
+//time1.addEventListener("change", ChangeTimeInput);
+//time2.addEventListener("change", ChangeTimeInput);
 
 
 
