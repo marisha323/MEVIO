@@ -15,11 +15,18 @@ namespace MEVIO.Controllers
         }
 
 
+
+        public async Task<IActionResult> Info()
+        {
+            return View();
+        }
+
+
         public IActionResult Index()
         {
             User user = null;
             string UserLoggedIn = HttpContext.Request.Cookies["UserLoggedIn"];
-            ViewBag.CurrentDate = DateTime.Now;
+            ViewBag.CurrentDate = DateTime.Now.Date;
             if (UserLoggedIn != null && UserLoggedIn != "")
             {
                 user = JsonSerializer.Deserialize<User>(UserLoggedIn);

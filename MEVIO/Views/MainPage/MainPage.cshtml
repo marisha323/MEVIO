@@ -74,11 +74,16 @@
      display:block;
  }
 
+
 </style>
 <body>
+
     <div class="bodyDiv">
 
-       
+
+        
+        @*<iframe title="Report Section" width="1680" height="720" src="https://app.powerbi.com/view?r=eyJrIjoiNmEyMDBkY2QtNDBlMS00YTkxLTg4OTQtMjMzY2NmYTA5MmJhIiwidCI6IjFjMmFhNDFlLTViOTItNDkwNi04MjdlLTBjMTBmOWQ3Mzg1OSIsImMiOjl9" frameborder="0" allowFullScreen="true"></iframe>*@
+        <iframe title="PowerBiFinal" width="1680" height="620" src="https://app.powerbi.com/view?r=eyJrIjoiNmEyMDBkY2QtNDBlMS00YTkxLTg4OTQtMjMzY2NmYTA5MmJhIiwidCI6IjFjMmFhNDFlLTViOTItNDkwNi04MjdlLTBjMTBmOWQ3Mzg1OSIsImMiOjl9" frameborder="0" allowFullScreen="true"></iframe>
         <div class="button-cont">
             @*<input id="btnMeasure" type="button" class="button-Zahod" value="Заходи">*@
             <input id="btnEvent" onclick="changeStyle()" type="button" class="button-Podii " value="Події">
@@ -93,11 +98,12 @@
         {
             @foreach (var itemEvents in ViewBag.Eventes) @*Витягуємо список подій*@
             {
-                
-                    @if (itemUsers.Id == itemEvents.UserId) @*Робимо перевірку всередині таблиці подій, на те щоб саме наш користувач був прив'язаний до цієї події*@
+                @foreach (var ItemsEventUsers1 in ViewBag.EventsUsers)
+                                        {
+              @if (itemUsers.Id == itemEvents.UserId) @*Робимо перевірку всередині таблиці подій, на те щоб саме наш користувач був прив'язаний до цієї події*@
                     {
-                        @if(ViewBag.UsersId == itemEvents.UserId)
-                        { 
+                       @if (ItemsEventUsers1.EventId == itemEvents.Id && ItemsEventUsers1.UserId == ViewBag.UsersId )@*Перевірка в середині зв'язуючої таблиці на прив'язку користувача який відповідальний за цю подію *@
+                                {
                             
                           <div class="div-obj-News">
                             <div class="div-obj-News-cont">
@@ -116,7 +122,7 @@
                                 {
                                         @foreach (var ItemsEventUsers in ViewBag.EventsUsers)
                                         {
-                                            @if (ItemsEventUsers.EventId == itemEvents.Id && ItemsEventUsers.UserId == item.Id && ItemsEventUsers.UserId == ViewBag.UserId)@*Перевірка в середині зв'язуючої таблиці на прив'язку користувача який відповідальний за цю подію *@
+                                            @if (ItemsEventUsers.EventId == itemEvents.Id && ItemsEventUsers.UserId == item.Id)@*Перевірка в середині зв'язуючої таблиці на прив'язку користувача який відповідальний за цю подію *@
                                             {
                                                 <p class="Sotrydniki">@item.UserName</p>
                                             }
@@ -144,25 +150,41 @@
                                 <input type="button" value="Обговорити" class="button-Obgovor">
                             </div>
                         </div>
-                    }}}}
+                    }}}}}
         </div>@* кінець контейнера з подіями*@
         <div id="TaskDiv" class="displaynone active" >  @*контейнер з задачами*@
         @foreach (var itemUsers in ViewBag.Useres) @*Витягуємо список користувачів*@
         {
+         @if (itemUsers.Id == ViewBag.UsersId)
+         {
             @foreach (var itemTasks in ViewBag.Tasks) @*Витягуємо список задач*@
             {
+                bool isCreator = false;
+                bool isParticipant = false;
                 @foreach (var itemTaskUser in ViewBag.TaskUsers) @*Витягухємо зв'язуючу таблицю користувачів та задач*@
                 {
-                    @if (itemTaskUser.UserId == itemUsers.Id && itemTasks.Id == itemTaskUser.TaskId && itemTaskUser.IsCreator == true) @*Робимо перевірку на те щоб саме наш користувач був творцем *@
-                    {
 
+                  @*  @if (itemTaskUser.TaskId == itemTasks.Id && itemTaskUser.UserId == itemUsers.Id && itemTaskUser.IsCreator == true ) @*Робимо перевірку на відповідність користувача до задачі*@
+                        
+                   @if (itemTaskUser.TaskId == itemTasks.Id && itemTaskUser.UserId == itemUsers.Id)
+                {
 
                     <div class="div-obj-News">
                         <div class="div-obj-News-cont">
                             <div class="div-div-News">
                                         <img class="img-Ava" src=~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA>
                                 <div class="div-Img-Date">
-                                    <p class="Nick-Name">@itemUsers.UserName</p>
+                                    @foreach (var creators in ViewBag.Useres)
+                                                    {
+                                                        @foreach (var itemTaskUsers1 in ViewBag.TaskUsers)
+                                    {
+                                                        @if (creators.Id == itemTaskUsers1.UserId && itemTasks.Id == itemTaskUsers1.TaskId && itemTaskUsers1.IsCreator == true)
+                                                        {
+                                                              <p class="Nick-Name">@creators.UserName</p>
+                                                        }
+                                    }
+                                                    }
+
                                     <p class="Data-p">@itemUsers.LastTimeSignIn.ToString("yyyy-MM-dd")</p>
                                     <p class="Data-p">@itemUsers.LastTimeSignIn.ToString("hh\\:mm")</p>
 
@@ -205,23 +227,40 @@
                                 <input type="button" value="Обговорити" class="button-Obgovor">
                             </div>
                         </div>
-                    }}}}
+                    }}}}}
         </div>@* кінець контейнера з задачами*@
         <div id="MeasureDiv" class="displaynone active" > @*контейнер заходів*@
         @foreach (var itemUsers in ViewBag.Useres) @*Витягуємо список користувачів*@
         {
+            @if (itemUsers.Id == ViewBag.UsersId)
+         {
             @foreach (var itemMeasures in ViewBag.Measures)  @*Витягуємо список заходів*@
             {
                 @foreach (var itemMeasureUsers in ViewBag.MeasureUsers) @*Витягухємо зв'язуючу таблицю користувачів та заходів*@
                     {
-                    @if (itemMeasureUsers.UserId == itemUsers.Id && itemMeasureUsers.MeasureId == itemMeasures.Id && itemMeasureUsers.IsCreator == true) @*Робимо перевірку на те щоб дістануті юзер та захід  були такі самі як в зв'язуючій таблиці, і мали поле IsCreator(Це творець), якщо всі данні збігаються йдемо далі*@
-                    {
+                    @*@if (itemMeasureUsers.UserId == itemUsers.Id && itemMeasureUsers.MeasureId == itemMeasures.Id && itemMeasureUsers.IsCreator == true)*@ @*Робимо перевірку на те щоб дістануті юзер та захід  були такі самі як в зв'язуючій таблиці, і мали поле IsCreator(Це творець), якщо всі данні збігаються йдемо далі*@
+                    @*{*@
+                        @if (itemMeasureUsers.UserId == itemUsers.Id && itemMeasureUsers.MeasureId == itemMeasures.Id)
+                        {
                     <div class="div-obj-News">
                         <div class="div-obj-News-cont">
                             <div class="div-div-News">
                                         <img class="img-Ava" src=~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA>
                                 <div class="div-Img-Date">
-                                    <p class="Nick-Name">@itemUsers.UserName</p>
+                    
+                                    @foreach (var creators in ViewBag.Useres)
+                                                    {
+                                                        @foreach (var itemMeasureUsers1 in ViewBag.MeasureUsers)
+                                    {
+                                                        @if (creators.Id == itemMeasureUsers1.UserId && itemMeasures.Id == itemMeasureUsers1.MeasureId && itemMeasureUsers1.IsCreator == true)
+                                                        {
+
+                                                              <p class="Nick-Name">@creators.UserName</p>
+                                                        }
+                                    }
+                                                    }
+                                                    
+                                    
                                     <p class="Data-p">@itemUsers.LastTimeSignIn.ToString("yyyy-MM-dd")</p>
                                     <p class="Data-p">@itemUsers.LastTimeSignIn.ToString("hh\\:mm")</p>
                                 </div>
@@ -266,7 +305,7 @@
                                 <input type="button" value="Обговорити" class="button-Obgovor">
                             </div>
                         </div>
-                    }}}}
+                    }}}}}
         </div>@* кінець контейнера з заходами*@
     </div>@*MainDiv End*@
    </div>
