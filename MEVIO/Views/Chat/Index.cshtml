@@ -4,347 +4,389 @@
 @{
 }
 
+@model User
+
 <link rel="stylesheet" href="~/css/style1.css" asp-append-version="true" />
 
 
-    <div class="chat-container">
+
+
+<div class="chat-container">
 
 
 
-        <div class="chatList">
-            <div class="flex-between">
+    <div class="chatList">
+        <div id="user-name">
+            <p>@Model.UserName</p>
+        </div>
 
-                <div class="search-div">
-                    <img width="40px"
-                         src="https://cdn.discordapp.com/attachments/684475244664193242/1072976650582638632/free-icon-search-4194718.png">
-                    <h1 class="search">Поиск</h1>
+        <hr class="hr2">
 
-                </div>
-                <div>
-                    <select class="combobox">
-                        <option>Создать</option>
-                    </select>
-                </div>
+        <div class="flex-between">
+
+            <div class="search-div">
+                <img width="40px"
+                     src="https://cdn.discordapp.com/attachments/684475244664193242/1072976650582638632/free-icon-search-4194718.png">
+                <h1 class="search">Поиск</h1>
+
             </div>
-
-            <div class="users">
-                <hr class="hr2">
-
-                <div class="user">
-
-                    <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
-                    <div class="user_info">
-                        <p class="p">Name</p>
-                        <p class="label">Последнее сообщение</p>
-                    </div>
-                    <div class="user-info-time">
-                        <p style="margin-top: 5px;">27.05.2022</p>
-                    </div>
-
-                </div>
-
-                <hr class="hr2">
-
-                <div class="user">
-
-                    <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
-                    <div class="user_info">
-                        <p class="p">Name</p>
-                        <p class="label">Последнее сообщение</p>
-                    </div>
-                    <div class="user-info-time">
-                        <p style="margin-top: 5px;">27.05.2022</p>
-                    </div>
-
-                </div>
-
-                <hr class="hr2">
-
-                <div class="user">
-
-                    <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
-                    <div class="user_info">
-                        <p class="p">Name</p>
-                        <p class="label">Последнее сообщение</p>
-                    </div>
-                    <div class="user-info-time">
-                        <p style="margin-top: 5px;">27.05.2022</p>
-                    </div>
-
-                </div>
-
-                <hr class="hr2">
-
-                <div class="user">
-
-                    <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
-                    <div class="user_info">
-                        <p class="p">Name</p>
-                        <p class="label">Последнее сообщение</p>
-                    </div>
-                    <div class="user-info-time">
-                        <p style="margin-top: 5px;">27.05.2022</p>
-                    </div>
-
-                </div>
-
-                <hr class="hr2">
-
-                <div class="user">
-
-                    <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
-                    <div class="user_info">
-                        <p class="p">Name</p>
-                        <p class="label">Последнее сообщение</p>
-                    </div>
-                    <div class="user-info-time">
-                        <p style="margin-top: 5px;">27.05.2022</p>
-                    </div>
-
-                </div>
-
-                <hr class="hr2">
-
-                <div class="user">
-
-                    <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
-                    <div class="user_info">
-                        <p class="p">Name</p>
-                        <p class="label">Последнее сообщение</p>
-                    </div>
-                    <div class="user-info-time">
-                        <p style="margin-top: 5px;">27.05.2022</p>
-                    </div>
-
-                </div>
-
-                <hr class="hr2">
-
-                <div class="user">
-
-                    <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
-                    <div class="user_info">
-                        <p class="p">Name</p>
-                        <p class="label">Последнее сообщение</p>
-                    </div>
-                    <div class="user-info-time">
-                        <p style="margin-top: 5px;">27.05.2022</p>
-                    </div>
-
-                </div>
-
-                <hr class="hr2">
-
-                <div class="user">
-
-                    <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
-                    <div class="user_info">
-                        <p class="p">Name</p>
-                        <p class="label">Последнее сообщение</p>
-                    </div>
-                    <div class="user-info-time">
-                        <p style="margin-top: 5px;">27.05.2022</p>
-                    </div>
-
-                </div>
-
-                <hr class="hr2">
-
-                <div class="user">
-
-                    <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
-                    <div class="user_info">
-                        <p class="p">Name</p>
-                        <p class="label">Последнее сообщение</p>
-                    </div>
-                    <div class="user-info-time">
-                        <p style="margin-top: 5px;">27.05.2022</p>
-                    </div>
-
-                </div>
-
-                <hr class="hr2">
-
-                <div class="user">
-
-                    <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
-                    <div class="user_info">
-                        <p class="p">Name</p>
-                        <p class="label">Последнее сообщение</p>
-                    </div>
-                    <div class="user-info-time">
-                        <p style="margin-top: 5px;">27.05.2022</p>
-                    </div>
-
-                </div>
-
-                <hr class="hr2">
-
-                <div class="user">
-
-                    <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
-                    <div class="user_info">
-                        <p class="p">Name</p>
-                        <p class="label">Последнее сообщение</p>
-                    </div>
-                    <div class="user-info-time">
-                        <p style="margin-top: 5px;">27.05.2022</p>
-                    </div>
-
-                </div>
-
-                <hr class="hr2">
-
-                <div class="user">
-
-                    <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
-                    <div class="user_info">
-                        <p class="p">Name</p>
-                        <p class="label">Последнее сообщение</p>
-                    </div>
-                    <div class="user-info-time">
-                        <p style="margin-top: 5px;">27.05.2022</p>
-                    </div>
-
-                </div>
-
-                <hr class="hr2">
-
-                <div class="user">
-
-                    <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
-                    <div class="user_info">
-                        <p class="p">Name</p>
-                        <p class="label">Последнее сообщение</p>
-                    </div>
-                    <div class="user-info-time">
-                        <p style="margin-top: 5px;">27.05.2022</p>
-                    </div>
-
-                </div>
-
-                <hr class="hr2">
-
-                <div class="user">
-
-                    <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
-                    <div class="user_info">
-                        <p class="p">Name</p>
-                        <p class="label">Последнее сообщение</p>
-                    </div>
-                    <div class="user-info-time">
-                        <p style="margin-top: 5px;">27.05.2022</p>
-                    </div>
-
-                </div>
-
-                <hr class="hr2">
-
-                <div class="user">
-
-                    <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
-                    <div class="user_info">
-                        <p class="p">Name</p>
-                        <p class="label">Последнее сообщение</p>
-                    </div>
-                    <div class="user-info-time">
-                        <p style="margin-top: 5px;">27.05.2022</p>
-                    </div>
-
-                </div>
-
-                <hr class="hr2">
-
-
+            <div>
+                <select class="combobox">
+                    <option>Создать</option>
+                </select>
             </div>
         </div>
 
+        <div class="users">
+            <hr class="hr2">
 
+            <div class="user">
 
-        <div>
-
-            <div class="messages-div">
-
-
-                <div class="user-message">
-                    <div class="userIcon">
-                        <img class="img" src="https://i.pinimg.com/236x/49/0d/61/490d614795d93dcdf536a34c0e2f6e78.jpg">
-                        <div>
-                            <h2 class="user-name">Admin</h2>
-                        </div>
-                        <div class="sentTime">14.01.2023</div>
-                    </div>
-                    <p class="message">Привет, Аня хоть извинилась? Привет, Аня хоть извинилась?</p>
+                <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
+                <div class="user_info">
+                    <p class="p">Name</p>
+                    <p class="label">Последнее сообщение</p>
                 </div>
-
-
-
-
-
-                <div class="user-message">
-                    <div class="userIcon right">
-                        <img class="img" src="https://i.pinimg.com/236x/49/0d/61/490d614795d93dcdf536a34c0e2f6e78.jpg">
-                        <div>
-                            <h2 class="user-name">Admin</h2>
-                        </div>
-                        <div class="sentTime">14.01.2023</div>
-                    </div>
-                    <p class="message my-message">Привет, Аня хоть извинилась? Привет, Аня хоть извинилась?</p>
+                <div class="user-info-time">
+                    <p style="margin-top: 5px;">27.05.2022</p>
                 </div>
-
-                <div class="user-message">
-                    <div class="userIcon right">
-                        <img class="img" src="https://i.pinimg.com/236x/49/0d/61/490d614795d93dcdf536a34c0e2f6e78.jpg">
-                        <div>
-                            <h2 class="user-name">Admin</h2>
-                        </div>
-                        <div class="sentTime">14.01.2023</div>
-                    </div>
-                    <p class="message my-message">Привет, Аня хоть извинилась? Привет, Аня хоть извинилась?</p>
-                </div>
-
-
-
-
-                <div class="user-message">
-                    <div class="userIcon">
-                        <img class="img" src="https://i.pinimg.com/236x/49/0d/61/490d614795d93dcdf536a34c0e2f6e78.jpg">
-                        <div>
-                            <h2 class="user-name">Admin</h2>
-                        </div>
-                        <div class="sentTime">14.01.2023</div>
-                    </div>
-                    <p class="message">Привет, Аня хоть извинилась? Привет, Аня хоть извинилась?</p>
-                </div>
-
-                <div class="user-message">
-                    <div class="userIcon">
-                        <img class="img" src="https://i.pinimg.com/236x/49/0d/61/490d614795d93dcdf536a34c0e2f6e78.jpg">
-                        <div>
-                            <h2 class="user-name">Admin</h2>
-                        </div>
-                        <div class="sentTime">14.01.2023</div>
-                    </div>
-                    <p class="message">Привет, Аня хоть извинилась? Привет, Аня хоть извинилась?</p>
-                </div>
-
-
-
 
             </div>
 
+            <hr class="hr2">
 
+            <div class="user">
 
-            <div class="send_msg">
-                <textarea class="txt"  autofocus></textarea>
-                <img class="icon send"
-                     src="https://cdn.discordapp.com/attachments/684475244664193242/1073126252501815367/free-icon-send-736110.png">
+                <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
+                <div class="user_info">
+                    <p class="p">Name</p>
+                    <p class="label">Последнее сообщение</p>
+                </div>
+                <div class="user-info-time">
+                    <p style="margin-top: 5px;">27.05.2022</p>
+                </div>
+
             </div>
+
+            <hr class="hr2">
+
+            <div class="user">
+
+                <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
+                <div class="user_info">
+                    <p class="p">Name</p>
+                    <p class="label">Последнее сообщение</p>
+                </div>
+                <div class="user-info-time">
+                    <p style="margin-top: 5px;">27.05.2022</p>
+                </div>
+
+            </div>
+
+            <hr class="hr2">
+
+            <div class="user">
+
+                <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
+                <div class="user_info">
+                    <p class="p">Name</p>
+                    <p class="label">Последнее сообщение</p>
+                </div>
+                <div class="user-info-time">
+                    <p style="margin-top: 5px;">27.05.2022</p>
+                </div>
+
+            </div>
+
+            <hr class="hr2">
+
+            <div class="user">
+
+                <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
+                <div class="user_info">
+                    <p class="p">Name</p>
+                    <p class="label">Последнее сообщение</p>
+                </div>
+                <div class="user-info-time">
+                    <p style="margin-top: 5px;">27.05.2022</p>
+                </div>
+
+            </div>
+
+            <hr class="hr2">
+
+            <div class="user">
+
+                <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
+                <div class="user_info">
+                    <p class="p">Name</p>
+                    <p class="label">Последнее сообщение</p>
+                </div>
+                <div class="user-info-time">
+                    <p style="margin-top: 5px;">27.05.2022</p>
+                </div>
+
+            </div>
+
+            <hr class="hr2">
+
+            <div class="user">
+
+                <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
+                <div class="user_info">
+                    <p class="p">Name</p>
+                    <p class="label">Последнее сообщение</p>
+                </div>
+                <div class="user-info-time">
+                    <p style="margin-top: 5px;">27.05.2022</p>
+                </div>
+
+            </div>
+
+            <hr class="hr2">
+
+            <div class="user">
+
+                <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
+                <div class="user_info">
+                    <p class="p">Name</p>
+                    <p class="label">Последнее сообщение</p>
+                </div>
+                <div class="user-info-time">
+                    <p style="margin-top: 5px;">27.05.2022</p>
+                </div>
+
+            </div>
+
+            <hr class="hr2">
+
+            <div class="user">
+
+                <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
+                <div class="user_info">
+                    <p class="p">Name</p>
+                    <p class="label">Последнее сообщение</p>
+                </div>
+                <div class="user-info-time">
+                    <p style="margin-top: 5px;">27.05.2022</p>
+                </div>
+
+            </div>
+
+            <hr class="hr2">
+
+            <div class="user">
+
+                <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
+                <div class="user_info">
+                    <p class="p">Name</p>
+                    <p class="label">Последнее сообщение</p>
+                </div>
+                <div class="user-info-time">
+                    <p style="margin-top: 5px;">27.05.2022</p>
+                </div>
+
+            </div>
+
+            <hr class="hr2">
+
+            <div class="user">
+
+                <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
+                <div class="user_info">
+                    <p class="p">Name</p>
+                    <p class="label">Последнее сообщение</p>
+                </div>
+                <div class="user-info-time">
+                    <p style="margin-top: 5px;">27.05.2022</p>
+                </div>
+
+            </div>
+
+            <hr class="hr2">
+
+            <div class="user">
+
+                <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
+                <div class="user_info">
+                    <p class="p">Name</p>
+                    <p class="label">Последнее сообщение</p>
+                </div>
+                <div class="user-info-time">
+                    <p style="margin-top: 5px;">27.05.2022</p>
+                </div>
+
+            </div>
+
+            <hr class="hr2">
+
+            <div class="user">
+
+                <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
+                <div class="user_info">
+                    <p class="p">Name</p>
+                    <p class="label">Последнее сообщение</p>
+                </div>
+                <div class="user-info-time">
+                    <p style="margin-top: 5px;">27.05.2022</p>
+                </div>
+
+            </div>
+
+            <hr class="hr2">
+
+            <div class="user">
+
+                <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
+                <div class="user_info">
+                    <p class="p">Name</p>
+                    <p class="label">Последнее сообщение</p>
+                </div>
+                <div class="user-info-time">
+                    <p style="margin-top: 5px;">27.05.2022</p>
+                </div>
+
+            </div>
+
+            <hr class="hr2">
+
+            <div class="user">
+
+                <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
+                <div class="user_info">
+                    <p class="p">Name</p>
+                    <p class="label">Последнее сообщение</p>
+                </div>
+                <div class="user-info-time">
+                    <p style="margin-top: 5px;">27.05.2022</p>
+                </div>
+
+            </div>
+
+            <hr class="hr2">
+
+
         </div>
-
-
-
     </div>
+
+
+
+    <div>
+
+        <div class="chat-name-div">
+            <p class="chat-name">@ViewBag.Chat.EventChatName</p>
+
+            <div class="chat-members">
+
+                <p class="show-members-button">Учасники</p>
+
+                <div class="chat-members-list hide">
+                    @foreach (var user in ViewBag?.ChatUsers)
+                    {
+                        <p>@user.UserName</p>
+                    }
+                    
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="messages-div">
+
+
+            <div class="user-message">
+                <div class="userIcon">
+                    <img class="img" src="https://i.pinimg.com/236x/49/0d/61/490d614795d93dcdf536a34c0e2f6e78.jpg">
+                    <div>
+                        <h2 class="user-name">Admin</h2>
+                    </div>
+                    <div class="sentTime">14.01.2023</div>
+                </div>
+                <p class="message">Привет, Аня хоть извинилась? Привет, Аня хоть извинилась?</p>
+            </div>
+
+
+
+
+
+            <div class="user-message">
+                <div class="userIcon right">
+                    <img class="img" src="https://i.pinimg.com/236x/49/0d/61/490d614795d93dcdf536a34c0e2f6e78.jpg">
+                    <div>
+                        <h2 class="user-name">Admin</h2>
+                    </div>
+                    <div class="sentTime">14.01.2023</div>
+                </div>
+                <p class="message my-message">Привет, Аня хоть извинилась? Привет, Аня хоть извинилась?</p>
+            </div>
+
+            <div class="user-message">
+                <div class="userIcon right">
+                    <img class="img" src="https://i.pinimg.com/236x/49/0d/61/490d614795d93dcdf536a34c0e2f6e78.jpg">
+                    <div>
+                        <h2 class="user-name">Admin</h2>
+                    </div>
+                    <div class="sentTime">14.01.2023</div>
+                </div>
+                <p class="message my-message">Привет, Аня хоть извинилась? Привет, Аня хоть извинилась?</p>
+            </div>
+
+
+
+
+            <div class="user-message">
+                <div class="userIcon">
+                    <img class="img" src="https://i.pinimg.com/236x/49/0d/61/490d614795d93dcdf536a34c0e2f6e78.jpg">
+                    <div>
+                        <h2 class="user-name">Admin</h2>
+                    </div>
+                    <div class="sentTime">14.01.2023</div>
+                </div>
+                <p class="message">Привет, Аня хоть извинилась? Привет, Аня хоть извинилась?</p>
+            </div>
+
+            <div class="user-message">
+                <div class="userIcon">
+                    <img class="img" src="https://i.pinimg.com/236x/49/0d/61/490d614795d93dcdf536a34c0e2f6e78.jpg">
+                    <div>
+                        <h2 class="user-name">Admin</h2>
+                    </div>
+                    <div class="sentTime">14.01.2023</div>
+                </div>
+                <p class="message">Привет, Аня хоть извинилась? Привет, Аня хоть извинилась?</p>
+            </div>
+
+
+
+
+        </div>
+
+
+
+        <div class="send_msg">
+            <textarea class="txt" autofocus></textarea>
+            <img class="icon send"
+                 src="https://cdn.discordapp.com/attachments/684475244664193242/1073126252501815367/free-icon-send-736110.png">
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script>
+
+    $(".show-members-button").on("click",function(e){
+        $(e.target).toggleClass("active");
+
+        $(".chat-members-list").toggleClass("hide");
+    });
+
+</script>
 
 
 

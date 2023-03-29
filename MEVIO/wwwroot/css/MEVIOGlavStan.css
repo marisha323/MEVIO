@@ -191,22 +191,27 @@ div-p-Ychas
 }
 
 .button-Obgovor {
-
     background: #52A7E4;
     border-radius: 15px;
     margin-left: 5rem;
     margin-top: 1rem;
     padding:0.5rem;
     cursor:pointer;
+    transition:0.1s;
+}
+
+.button-Obgovor:hover{
+    transform:scale(1.1);
+    color:white;
 }
 
 
-.users-members{
-    display:flex;
-    justify-content:flex-start;
-    align-items:center;
-    column-gap:1rem;
-    margin-left:1rem;
+.users-members {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 1rem;
+    margin-left: 1rem;
 }
 
 .div-div-News {
