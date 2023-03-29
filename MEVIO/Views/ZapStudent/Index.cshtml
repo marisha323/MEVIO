@@ -204,7 +204,7 @@
                             <option selected>Student...</option>
                             @foreach (var student in ViewBag.Students)
                             {
-                                <option asp-for="@student.Id">@student.StudentName</option>
+                                <option value="@student.StudentName">@student.StudentName</option>
                             }
                         </select>
                     </div>
