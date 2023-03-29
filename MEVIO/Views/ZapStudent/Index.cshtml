@@ -191,7 +191,7 @@
                             <option selected>Name...</option>
                             @foreach (var item in ViewBag.ClientID)
                             {
-                                <option value="@item.ClientName">@item.ClientName</option>
+                                <option value="@item.Id">@item.ClientName</option>
                             }
                         </select>
                     </div>
@@ -204,7 +204,7 @@
                             <option selected>Student...</option>
                             @foreach (var student in ViewBag.Students)
                             {
-                                <option asp-for="@student.Id">@student.StudentName</option>
+                                <option value="@student.Id">@student.StudentName</option>
                             }
                         </select>
                     </div>
@@ -227,7 +227,7 @@
                             <option selected>Education Form...</option>
                             @foreach (var item in ViewBag.EducationFormId)
                             {
-                                <option value="@item.EducationFormName">@item.EducationFormName</option>
+                                <option value="@item.Id">@item.EducationFormName</option>
                             }
                         </select>
                     </div>
@@ -239,7 +239,7 @@
                             <option selected>Academy Name...</option>
                             @foreach (var item in ViewBag.AcademiID)
                             {
-                                <option value="@item.AcademyName">@item.AcademyName</option>
+                                <option value="@item.Id">@item.AcademyName</option>
                             }
                         </select>
                     </div>
@@ -251,7 +251,7 @@
                             <option selected>Season...</option>
                             @foreach (var item in ViewBag.SeasonID)
                             {
-                                <option value="@item.SeasonName">@item.SeasonName</option>
+                                <option value="@item.Id">@item.SeasonName</option>
                             }
                         </select>
                     </div>
