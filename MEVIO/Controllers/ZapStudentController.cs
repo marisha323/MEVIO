@@ -44,72 +44,31 @@ namespace MEVIO.Controllers
         }
         public IActionResult ZapContract(DateTime DateStamp, string Payment_Form)
         {
-            var clientId = Request.Form["ClientId"];
-            var Clid = context?.Clients.FirstOrDefault(o => o.ClientName.Equals(clientId))?.Id;
+            var clientId = int.Parse(Request.Form["ClientId"]);
+            
+            var Clid = context?.Clients.FirstOrDefault(o => o.Id.Equals(clientId))?.Id;
 
-            var studId = Request.Form["Studentsid"];
-            var Stid = context?.Students.FirstOrDefault(o => o.StudentName.Equals(studId))?.Id;
+            var studId = int.Parse(Request.Form["Studentsid"]);
+            var Stid = context?.Students.FirstOrDefault(o => o.Id.Equals(studId))?.Id;
 
-            var EducForm = Request.Form["EducationForm"];
-            var EducId = context?.EducationForms.FirstOrDefault(o => o.EducationFormName.Equals(EducForm))?.Id;
+            var EducForm = int.Parse(Request.Form["EducationForm"]);
+            var EducId = context?.EducationForms.FirstOrDefault(o => o.Id.Equals(EducForm))?.Id;
 
-            var Acadid = Request.Form["Academyid"];
-            var AcId = context?.Academys.FirstOrDefault(o => o.AcademyName.Equals(Acadid))?.Id;
+            var Acadid = int.Parse(Request.Form["Academyid"]);
+            var AcId = context?.Academys.FirstOrDefault(o => o.Id.Equals(Acadid))?.Id;
 
-            var Seasonid = Request.Form["Seasonid"];
-            var SeaId = context?.SeasonOfBeginning.FirstOrDefault(o => o.SeasonName.Equals(Seasonid))?.Id;
+            var Seasonid = int.Parse(Request.Form["Seasonid"]);
+            var SeaId = context?.SeasonOfBeginning.FirstOrDefault(o => o.Id.Equals(Seasonid))?.Id;
 
             context.Add(new Contract() { ClientId = Clid, StudentId = Stid, DateStamp = DateStamp, EducationFormId = EducId, AcademyId = AcId, SeasonOfBeginningId = SeaId, Payment_Form = Payment_Form });
             context.SaveChanges();
             ViewBag.Contractik = context.Academys.AsNoTrackingWithIdentityResolution().ToList();
-            //var passrom2 = $@"{Directory.GetCurrentDirectory()}\wwwroot\Contract\{studId}\Contract_{studId}.docx";
-            //Directory.CreateDirectory(Path.GetDirectoryName(passrom2));
-            //System.IO.File.Create(passrom2).Close();
-            //// Отримання даних з бази даних
-            //// Відкриття існуючого документа Word
-            //using (var document2 = WordprocessingDocument.Open($@"{Directory.GetCurrentDirectory()}/wwwroot/document/Contract.docx", true))
-            //{
-            //    // Створіть копію документа
-            //    var sourceFilePath = $@"{Directory.GetCurrentDirectory()}/wwwroot/document/Contract.docx";
-            //    var destFilePath = $@"{Directory.GetCurrentDirectory()}\wwwroot\Contract\{studId}\Contract_{studId}.docx";
-            //    System.IO.File.Copy(sourceFilePath, destFilePath, true);
-
-            //    // Закрийте основний документ
-            //    document2.Close();
-            //}
-
-            //using (var document = WordprocessingDocument.Open($@"{Directory.GetCurrentDirectory()}\wwwroot\Contract\{studId}\Contract_{studId}.docx", true))
-            //{
-            //    var body = document.MainDocumentPart.Document.Body;
-
-
-            //    // Відкрийте основний документ
-
-            //    // Знайдіть всі поля в документі і замініть їх значеннями з бази даних
-            //    foreach (var text in body.Descendants<Text>())
-            //    {
-            //        var name = context.Academys.FirstOrDefault().AcademyName;
-
-            //        // Заміна тексту в документі
-            //        if (text.Text.Contains("AcademyName"))
-            //        {
-            //            text.Text = text.Text.Replace("AcademyName", name);
-            //        }
-
-
-            //        // Збереження змін в документі
-            //        document.Save();
-            //    }
-
-            //var passrom2 = $@"{Directory.GetCurrentDirectory()}\wwwroot\Contract\{studId}\Contract_{studId}.docx";
-
-            //// Создание директории, если ее нет
-            //Directory.CreateDirectory(Path.GetDirectoryName(passrom2));
-
+            
             //// Создание файла
             //System.IO.File.Create(passrom2).Close();
+            var Stname = context?.Students.FirstOrDefault(o => o.Id.Equals(studId))?.StudentName;
 
-            var passrom2 = $@"{Directory.GetCurrentDirectory()}\wwwroot\Contract\{studId}\Contract_{studId}.docx";
+            var passrom2 = $@"{Directory.GetCurrentDirectory()}\wwwroot\Contract\{Stname}\{Stid}\Contract_{Stname}.docx";
 
             // Создание директории, если ее нет
             Directory.CreateDirectory(Path.GetDirectoryName(passrom2));
@@ -119,7 +78,7 @@ namespace MEVIO.Controllers
 
 
             var sourceFilePath = $@"{Directory.GetCurrentDirectory()}/wwwroot/document/Contract.docx";
-            var destFilePath = $@"{Directory.GetCurrentDirectory()}/wwwroot/Contract/{studId}/Contract_{studId}.docx";
+            var destFilePath = $@"{Directory.GetCurrentDirectory()}/wwwroot/Contract/{Stname}/{Stid}/Contract_{Stname}.docx";
 
             // Создание директории, если её ещё нет
 
@@ -140,20 +99,21 @@ namespace MEVIO.Controllers
             //}
 
             // Открытие созданного документа Word
-            using (var document = WordprocessingDocument.Open($@"{Directory.GetCurrentDirectory()}\wwwroot\Contract\{studId}\Contract_{studId}.docx", true))
+            using (var document = WordprocessingDocument.Open($@"{Directory.GetCurrentDirectory()}\wwwroot\Contract\{Stname}\{Stid}\Contract_{Stname}.docx", true))
             {
                 var body = document.MainDocumentPart.Document.Body;
 
+                
                 // Замена текста в документе
                 foreach (var text in body.Descendants<Text>())
                 {
                     var nameAcad = context.Academys.Where(o=>o.Id== AcId).FirstOrDefault().AcademyName;
                     var AdresAcad = context.Academys.Where(o => o.Id == AcId).FirstOrDefault().Address;
-                    var OKPOid = context.Academys.Where(o => o.Id == AcId).FirstOrDefault().RequisitesId;
-                    var OKPO=context.Requisites.Where(o => o.Id == OKPOid).FirstOrDefault().OKPO;
-                    var CheckingAccount = context.Requisites.Where(o => o.Id == OKPOid).FirstOrDefault().CheckingAccount;
-                    var BankName = context.Requisites.Where(o => o.Id == OKPOid).FirstOrDefault().BankName;
-                    var MFO = context.Requisites.Where(o => o.Id == OKPOid).FirstOrDefault().MFO;
+                    var RequisitesId = context.Academys.Where(o => o.Id == AcId).FirstOrDefault().RequisitesId;
+                    var OKPO=context.Requisites.Where(o => o.Id == RequisitesId).FirstOrDefault().OKPO;
+                    var CheckingAccount = context.Requisites.Where(o => o.Id == RequisitesId).FirstOrDefault().CheckingAccount;
+                    var BankName = context.Requisites.Where(o => o.Id == RequisitesId).FirstOrDefault().BankName;
+                    var MFO = context.Requisites.Where(o => o.Id == RequisitesId).FirstOrDefault().MFO;
 
 
                     var ClientName = context.Clients.Where(o=>o.Id== Clid).FirstOrDefault().ClientName;
@@ -161,11 +121,20 @@ namespace MEVIO.Controllers
                     var DateOfPassportIssue = context.Clients.Where(o => o.Id == Clid).FirstOrDefault().DateOfPassportIssue.ToString();
                     var TIN = context.Clients.Where(o => o.Id == Clid).FirstOrDefault().TIN;
 
-                    var roleDirector = context.UserRoles.Where(o => o.Id == 2).FirstOrDefault().Id;
-                    var UserName = context.Users.Where(a=>a.UserRoleId==roleDirector).FirstOrDefault().UserName;
+
+                    //var direc = context.Academys.Where(o => o.Id == AcId).FirstOrDefault().UserId;
+                    //var roleDirector = context.UserRoles.Where(o => o.Id == 2).FirstOrDefault().Id;
+                    //var UserName2 = context.Users.Where(a=>a.UserRoleId==roleDirector).FirstOrDefault().Id;
+                    //var UserName = context.Users.Where(o => o.Id == UserName2).FirstOrDefault().UserName;
 
 
+                    var userId = context.Academys.Where(o => o.Id == AcId).FirstOrDefault().UserId;
 
+                    // Получить идентификатор роли "Директор"
+                    var roleId = context.UserRoles.Where(o => o.Id == 2).FirstOrDefault().Id;
+
+                    // Получить имя пользователя-директора с указанным идентификатором роли
+                    var UserName = context.Users.Where(u => u.Id == userId && u.UserRoleId == roleId).Select(u => u.UserName).FirstOrDefault();
 
                     var DateStamp2 = context.Contracts.FirstOrDefault().DateStamp.ToString();
                     var PaymentForm = context.Contracts.FirstOrDefault().Payment_Form;
@@ -266,7 +235,7 @@ namespace MEVIO.Controllers
                 }
 
                 // Возвращение файла в ответе
-                return File($"~/Contract/{studId}/Contract_{studId}.docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", $"Contract_{studId}.docx");
+                return File($"~/Contract/{Stname}/{Stid}/Contract_{Stname}.docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", $"Contract_{Stname}.docx");
             }
 
             //return File($"~/Contract/{studId}/Contract_{studId}.docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", $"Contract_{studId}.docx");
