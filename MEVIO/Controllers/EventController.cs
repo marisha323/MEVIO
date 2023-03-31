@@ -16,7 +16,7 @@ namespace MEVIO.Controllers
             this.context = context;
         }
 
-    [Authorize]
+    //[Authorize]
         public IActionResult Index()
         {
             User user = null;

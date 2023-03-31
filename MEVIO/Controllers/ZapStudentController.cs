@@ -26,7 +26,7 @@ namespace MEVIO.Controllers
         {
             this.context = db;
         }
-        public IActionResult ZapClient(string ClientName, string PassportNumber, DateTime DateOfPassportIssue)
+        public IActionResult ZapClient(string ClientName, string PassportNumber, DateTime DateOfPassportIssue,string TIN)
         {
 
             var clietStatus = Request.Form["StatusName"];
@@ -60,10 +60,16 @@ namespace MEVIO.Controllers
             var Seasonid = int.Parse(Request.Form["Seasonid"]);
             var SeaId = context?.SeasonOfBeginning.FirstOrDefault(o => o.Id.Equals(Seasonid))?.Id;
 
+            var Measureid = int.Parse(Request.Form["Measureid"]);
+            var Msid = context?.Measures.FirstOrDefault(o => o.Id.Equals(Measureid))?.Id;
+
             context.Add(new Contract() { ClientId = Clid, StudentId = Stid, DateStamp = DateStamp, EducationFormId = EducId, AcademyId = AcId, SeasonOfBeginningId = SeaId, Payment_Form = Payment_Form });
             context.SaveChanges();
-            ViewBag.Contractik = context.Academys.AsNoTrackingWithIdentityResolution().ToList();
+           
+           
+            int countConract = 0;
 
+            context.Add(new MeasurePowerBi() { MeasureId=Msid,ContractsCount=countConract });
             //// Создание файла
             //System.IO.File.Create(passrom2).Close();
             var Stname = context?.Students.FirstOrDefault(o => o.Id.Equals(studId))?.StudentName;
@@ -398,6 +404,8 @@ namespace MEVIO.Controllers
             //ViewBag.Students = context.Students.AsNoTracking().ToList();
             ViewBag.RoleId = context.UserRoles.AsNoTrackingWithIdentityResolution().ToList();
             ViewBag.Students = context.Students.AsNoTrackingWithIdentityResolution().ToList();
+            ViewBag.Measure = context.Measures.AsNoTrackingWithIdentityResolution().ToList();
+
             //ViewBag.Students = context.Students.FirstOrDefault().StudentName;
             //ViewBag.Students=context.Students.AsNoTracking().Where(s => s.StudentName != null).ToList();
             // ViewBag.StudentID = context.Students
