@@ -33,7 +33,7 @@ namespace MEVIO.Controllers
             if (user != null)
             {
                 CookieOptions options = new CookieOptions();
-                options.Expires = DateTime.Now.AddMinutes(45);
+                options.Expires = DateTime.Now.AddDays(6);
                 options.IsEssential = true;
                 options.Path = "/";
 
@@ -43,7 +43,7 @@ namespace MEVIO.Controllers
 
                
                  return Redirect("/MainPage/MainPage");
-                //return RedirectToAction("Index", "Main");
+               
             }
             else
             {

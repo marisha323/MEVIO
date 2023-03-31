@@ -17,5 +17,7 @@
         public int? UserChatId { get; set; }
         public virtual UserChat UserChat { get; set; }
 
+
+
     }
 }

@@ -74,7 +74,16 @@ namespace Mevio2Test.Controllers
 
             var tokenResult = GoogleOAuthService.ExchangeCodeOnTokenAsync(code, codeVerifier, redirectUrl);
 
+            //// Получение информации о профиле пользователя
+            //var userInfoUrl = "https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token="+tokenResult.AccessToken;
+            //var httpClient = new HttpClient();
+            //var response = await httpClient.GetAsync(userInfoUrl);
+            //response.EnsureSuccessStatusCode();
 
+            //// Извлечение электронной почты из ответа API
+            //var userInfoJson = await response.Content.ReadAsStringAsync();
+            //dynamic userInfo = JsonConvert.DeserializeObject(userInfoJson);
+            //string email = userInfo.email;
 
             // Почекаємо 3600 секунд
             // (саме стільки можна використовувати AccessToken, поки його термін придатності не спливе).

@@ -16,13 +16,13 @@ namespace MEVIO.Controllers
             this.context = context;
         }
 
-    [Authorize]
+    ////[Authorize]
         public IActionResult Index()
         {
             User user = null;
             string UserLoggedIn = HttpContext.Request.Cookies["UserLoggedIn"];
 
-            ViewBag.CurrentDate =DateOnly.MinValue;
+            ViewBag.CurrentDate =DateTime.Now.ToShortDateString();
 
             if (UserLoggedIn != null && UserLoggedIn != "")
             {
@@ -83,7 +83,7 @@ namespace MEVIO.Controllers
             };
             
 
-            //Sasha Alex
+            //All id of users
             var ids = Request.Form["userId"];
 
             
