@@ -24,6 +24,10 @@
                 font-size: 0.8rem;
                 /* align-self: center; */
     /* width: 100%; */
+    .people {
+        display: flex;
+        margin-top: 4.9rem;
+        font-size: 1.3rem;
     }
 
     .time-block {
@@ -51,10 +55,9 @@
     #parent_Shedules {
         display: flex;
         flex-direction: column;
-        
-
+        width:100%;
         flex: 1;
-    justify-content: stretch;
+    /*justify-content: stretch;*/
     }
 
     input[type="checkbox"] {
@@ -436,16 +439,16 @@
                     </div>
 
                     <div class="divDate">
-                        @*   <input type="date" id="date1" asp-for="@Model.Begin" />
-                        <input type="time" class="superstyle" id="time1" asp-for="@Model.Begin" />
+                        <input type="date" id="date1" name="dateField1" @*asp-for="@Model.Begin.Date"*@ />
+                        <input type="time" class="superstyle" id="time1" name="timeField1" @* asp-for="@Model.Begin.TimeOfDay"*@ />
                         <div class="ture"></div>
-                        <input type="date" id="date2" asp-for="@Model.End" />
-                        <input type="time" class="superstyle" id="time2" asp-for="@Model.End" />*@
-
+                        <input type="date" id="date2" name="dateField2" @*asp-for="@Model.End.Date" *@ />
+                        <input type="time" class="superstyle" id="time2" name="timeField2" @*asp-for="@Model.End.TimeOfDay"*@ />
+@*
                         <input type="datetime-local" class="date11" id="date1" asp-for="@Model.Begin" />
                         <div class="ture"></div>
                         <input type="datetime-local" class="date11" id="date2" asp-for="@Model.End" />
-
+*@
                     </div>
 
                     <div class="checkAllDay">
@@ -457,9 +460,10 @@
                 <p class="co">Співробітники</p>
 
                 <div class="hard">
-                    <div class="coWorkers">
+                    <div class="coWorkers" id="coWorkers">
                         <div class="people">
                             <img src="~/Imeg1/@ViewBag.NameUser/@ViewBag.ImgPath" />
+                            @*<span class="userId" hidden>@itemUsers.Id</span>*@
                             <p class="peopleP"> @ViewBag.NameUser</p>
                         </div>
                     </div>
@@ -632,28 +636,7 @@
             
             $('.inBox').click(function (e) 
             {
-
-
-                //// Получаем ссылки на элементы, которые нужно перенести
-                //var userImg = document.querySelector('.inBox img');
-                //var userName = document.querySelector('.inBox p');
-
-                //// Получаем ссылки на элементы, в которые нужно перенести данные
-                //var memImg = document.querySelector('.memb img');
-                //var memName=document.querySelector('.memb p');
-
-
-                //const userName=text.Split("/")[1];
-
-                //$('.memb img').attr('src', imgSrc);
-                //$('.memb .name').text(userName);
-
-                //var UserId= $('.inBox span').text();
-
-                //var block = '<div class="memb"><img src="" />' + '<p class="name"></p>'+'</div>';
-                //$('.parent').append(block);
-
-                //Sasha
+                 //Sasha
 
                 const imgSrc = $(this).find('img').attr('src');
                 const userId = $(this).find(".userId").text();
@@ -756,12 +739,43 @@
                 parent2.appendChild(schedule);
 
 
-                $(".mainBox").css("display", "none");// закриваємо блок з users 
+                //ADD USER for Shedule
+                 //<div class="coWorkers">
+                 //       <div class="people">
+                 //           <img src="~/Imeg1/@ViewBag.NameUser/@ViewBag.ImgPath" />
+                 //           <p class="peopleP"> @ViewBag.NameUser</p>
+                 //       </div>
+                 //   </div>
+
+                const parent3 = document.getElementById("coWorkers");
+
+                const div2 = document.createElement("div");
+                div2.className = "people";
+                //div2.id = userId;
+
+                const img2 = document.createElement("img");
+                img2.setAttribute("src", imgSrc);
+
+                const p2 = document.createElement("p");
+                p2.className = "peopleP";
+                p2.innerText = userName;
+
+                div2.appendChild(img2);
+                div2.appendChild(p2);
+
+                parent3.appendChild(div2)
+
+
+
+
+
+                $(".mainBox").css("display","none");// закриваємо блок з users 
 
 
             });
 
-            $('#CheckAllDay').click(function () {
+            $('#CheckAllDay').click(function ()
+            {
                 $('#time1').fadeToggle(200);
                 $('#time2').fadeToggle(200);
 

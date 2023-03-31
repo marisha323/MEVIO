@@ -14,8 +14,11 @@
         public virtual TaskChat TaskChat { get; set; }
         public int? EventChatId { get; set; }
         public virtual EventChat EventChat { get; set; }
+
         public int? UserChatId { get; set; }
         public virtual UserChat UserChat { get; set; }
+        public int? MeasureChatId { get; set; }
+        public virtual MeasureChat MeasureChat { get; set; }
 
     }
 }
