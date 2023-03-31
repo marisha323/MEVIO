@@ -357,7 +357,7 @@ textarea {
 
 .people {
     display: flex;
-    margin: 1.5rem;
+    margin-top: 4.9rem;
     font-size: 1.3rem;
 }
 
@@ -440,7 +440,7 @@ textarea {
 
 .time-span-row {
     display: grid;
-    grid-template-columns: repeat(18, 1fr);
+    grid-template-columns: repeat(16, 1fr);
     width: 100%;
 }
 

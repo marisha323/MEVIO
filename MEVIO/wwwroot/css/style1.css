@@ -281,3 +281,97 @@ body {
 .send:hover{
     transform:scale(1.2);
 }
+
+#user-name {
+    color: #52A7E4;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:3rem;
+}
+
+
+.chat-name-div {
+    background: #09122C;
+    border: 1px solid #52A7E4;
+    display:flex;
+    align-items:center;
+    padding:0.5rem;
+}
+
+.chat-name {
+    color: #52A7E4;
+    font-size: 1.5rem;
+    border-right: 1px solid #52A7E4;
+    padding-right: 0.5rem;
+    line-height: 30px;
+}
+
+.chat-members {
+    /*border-right: 1px solid #52A7E4;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    color: #52A7E4;
+    font-size: 1rem;
+    line-height:30px;
+    cursor:pointer;*/
+    position:relative;
+}
+
+.show-members-button:hover {
+    background: #52A7E4;
+    color: #09122C;
+}
+
+
+.show-members-button {
+    border-right: 1px solid #52A7E4;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    color: #52A7E4;
+    font-size: 1rem;
+    line-height: 30px;
+    cursor: pointer;
+
+    transition:0.1s;
+}
+
+.chat-members-list {
+    z-index:11;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background: #09122C;
+    border: 1px solid #52A7E4;
+    
+    width:15rem;
+
+    display:flex;
+    flex-direction:column;
+    padding:1rem;
+
+    transition:0.1s;
+}
+
+.chat-members-list > p {
+    width: 100%;
+    color: #52A7E4;
+    cursor:pointer;
+    padding:1rem 2rem 2rem;
+    padding-bottom:2rem;
+}
+
+    .chat-members-list > p:hover {
+        background: #52A7E4;
+        color: #09122C;
+    }
+
+.hide {
+    display: none;
+    transition: 0.1s;
+}
+
+.active {
+    background: #52A7E4;
+    color: #09122C;
+}
