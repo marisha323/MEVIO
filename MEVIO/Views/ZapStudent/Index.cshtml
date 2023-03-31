@@ -36,7 +36,7 @@
                         <p class="divStrockZap" style="top: 91px; ">Name:</p>
                         <input type="text" class="divStrockZap2" name="ClientName" style="top: 95px;  left: 400px;" placeholder="Oleg">
                     </div>
-
+                    
 
 
                     <div class="div-p-input">
@@ -59,7 +59,10 @@
                         <p class="divStrockZap" style="top: 487px;">DateOfPassportIssue:</p>
                         <input type="date" class="divStrockZap2 conData" name="DateOfPassportIssue" style="top: 485px;  left: 400px;" placeholder="">
                     </div>
-
+                    <div class="div-p-input">
+                        <p class="divStrockZap" style="top: 91px; ">TIN:</p>
+                        <input type="text" class="divStrockZap2" name="TIN" style="top: 95px;  left: 400px;" placeholder="4543665734525">
+                    </div>
                     <div class="classPodcherk"> </div>
 
 
@@ -252,6 +255,18 @@
                             @foreach (var item in ViewBag.SeasonID)
                             {
                                 <option value="@item.Id">@item.SeasonName</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="div-p-input">
+                        <p class="divStrockZap" style="top: 949px;">Season</p>
+                        <select name="Measureid" class="divStrockZap2">
+
+                            <option selected>Measure...</option>
+                            @foreach (var item in ViewBag.Measure)
+                            {
+                                <option value="@item.Id">@item.MeasureName</option>
                             }
                         </select>
                     </div>
