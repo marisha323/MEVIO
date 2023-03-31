@@ -66,7 +66,7 @@ namespace MEVIO.Controllers
             context.Add(new Contract() { ClientId = Clid, StudentId = Stid, DateStamp = DateStamp, EducationFormId = EducId, AcademyId = AcId, SeasonOfBeginningId = SeaId, Payment_Form = Payment_Form });
             context.SaveChanges();
            
-           
+            
             int countConract = 0;
 
             context.Add(new MeasurePowerBi() { MeasureId=Msid,ContractsCount=countConract });
