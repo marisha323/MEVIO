@@ -20,6 +20,7 @@ namespace MEVIO.Controllers
         {
             Console.WriteLine(eventId.ToString());
             Console.WriteLine(userId.ToString());
+
             User user = null;
             string UserLoggedIn = HttpContext.Request.Cookies["UserLoggedIn"];
 
@@ -53,7 +54,28 @@ namespace MEVIO.Controllers
 
             ViewBag.ChatUsers = eventChat.Users;
 
+            Event Event = await context.Events.FirstOrDefaultAsync(e => e.Id.Equals(eventChat.EventId));
+
+            string date = $"{Event.Begin.ToShortDateString()} {Event.Begin.ToShortTimeString()} - {Event.End.ToShortDateString()} {Event.End.ToShortTimeString()}";
+
+            ViewBag.EventDate = date;
+
+            ViewBag.ChatType = "EventChat";
+
+            
+
             return View(user);
+        }
+
+
+
+
+        public async Task<IActionResult> SendMessage()
+        {
+
+
+
+            return View("Index");
         }
     }
 }
