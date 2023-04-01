@@ -279,10 +279,7 @@
     cursor: pointer;
 }
 
-.logo-img {
-    width: 3rem;
-    border-radius: 50%;
-}
+
 
 .logo-div > span {
     line-height: 22px;
