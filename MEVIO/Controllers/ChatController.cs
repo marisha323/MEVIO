@@ -17,77 +17,30 @@ namespace MEVIO.Controllers
 
 
 
-        public async Task<IActionResult> Index(Object obj)
+        private async Task<User> GetAuthorizedUserAsync()
         {
-
-
-
             string UserLoggedIn = HttpContext.Request.Cookies["UserLoggedIn"];
 
 
             if (UserLoggedIn == null && UserLoggedIn == "")
             {
-                return RedirectToAction("Registry/Index");
+                return null;
             }
-
-
-
 
             User user = JsonSerializer.Deserialize<User>(UserLoggedIn);
-            ViewBag.NameUser = user.UserName;
-            //ViewBag.User = user;
-            ViewBag.Id = user.Id;
-            //ViewBag.Role = user.UserRoleId;
-            //ViewBag.NameUser = user.UserName;
-            //ViewBag.ImgPath = user.PathImgAVA;
 
 
 
-
-
-            if (obj.GetType() == typeof(Event))
-            {
-                Event Event = obj as Event;
-
-                var eventChat = await context.EventsChat.FirstOrDefaultAsync(c => c.EventId.Equals(Event.Id));
-                var users = await context.EventsUsers.Where(e => e.EventId.Equals(eventChat.EventId)).ToListAsync();
-
-                foreach (var item in users)
-                {
-                    var tmpUser = await context.Users.FirstOrDefaultAsync(u => u.Id.Equals(item.UserId));
-
-                    eventChat.Users.Add(tmpUser);
-
-
-                }
-
-
-                ViewBag.ChatName = eventChat.EventChatName;
-
-                ViewBag.ChatUsers = eventChat.Users;
-
-                string date = $"{Event.Begin.ToShortDateString()} {Event.Begin.ToShortTimeString()} - {Event.End.ToShortDateString()} {Event.End.ToShortTimeString()}";
-
-                ViewBag.Date = date;
-
-                ViewBag.ChatType = "EventChat";
-            }
+            return user;
+        }
 
 
 
+        public async Task<IActionResult> Index()
+        {
 
 
-
-
-
-
-            //Event Event = await context.Events.FirstOrDefaultAsync(e => e.Id.Equals(eventChat.EventId));
-
-
-
-
-
-            return View(user);
+            return Redirect("Registry/Index");
         }
 
 
@@ -95,9 +48,45 @@ namespace MEVIO.Controllers
 
         public async Task<IActionResult> GetEventChat(int eventId)
         {
+            User user = await GetAuthorizedUserAsync();
+
+            if (user == null)
+            {
+                return Redirect("Registry/Index");
+            }
+
+
+
             Event Event = await context.Events.FirstOrDefaultAsync(e => e.Id.Equals(eventId));
 
-            return RedirectToAction("Index", new { obj = Event });
+            var eventChat = await context.EventsChat.FirstOrDefaultAsync(c => c.EventId.Equals(eventId));
+            var users = await context.EventsUsers.Where(e => e.EventId.Equals(eventChat.EventId)).ToListAsync();
+
+            foreach (var item in users)
+            {
+                var tmpUser = await context.Users.FirstOrDefaultAsync(u => u.Id.Equals(item.UserId));
+
+                eventChat.Users.Add(tmpUser);
+
+
+            }
+
+
+            ViewBag.ChatName = eventChat.EventChatName;
+
+            ViewBag.ChatId = eventChat.Id;
+
+            ViewBag.ChatUsers = eventChat.Users;
+
+            string date = $"{Event.Begin.ToShortDateString()} {Event.Begin.ToShortTimeString()} - {Event.End.ToShortDateString()} {Event.End.ToShortTimeString()}";
+
+            ViewBag.Date = date;
+
+            ViewBag.ChatType = "EventChat";
+
+
+
+            return View("Index",user);
         }
 
 
@@ -108,7 +97,14 @@ namespace MEVIO.Controllers
         {
             ChatMessage message = await Request.ReadFromJsonAsync<ChatMessage>();
 
-            return Json(new { data = "ok" });
+            message.TimeStamp = DateTime.Now;
+
+            context.ChatMessages.Add(message);
+
+            await context.SaveChangesAsync();
+
+            return Json(message);
+
         }
 
 

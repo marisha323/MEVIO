@@ -369,7 +369,7 @@
 
         <div class="send_msg">
             <input hidden id="currentUserId" value=@Model.Id />
-            <input hidden id="currentChatId" value=@ViewBag.Chat.Id />
+            <input hidden id="currentChatId" value=@ViewBag.ChatId />
             <input hidden id="chatType" value=@ViewBag.ChatType />
             <textarea id="messageInput" class="txt" autofocus></textarea>
             <img onclick="SendMessageClick()" class="icon send"
@@ -387,6 +387,7 @@
 <script>
 
     $(".show-members-button").on("click",function(e){
+
         $(e.target).toggleClass("active");
 
         $(".chat-members-list").toggleClass("hide");
@@ -429,28 +430,28 @@
         console.log(currentChatId.value);
         console.log(currentUserId.value);
 
-        const chatmessage={
+        const chatmessage= {
             UserId:currentUserId.value,
-            Text:message
+            Text: text
         };
 
-        if(chatType==="EventChat"){
-            chatmessage.EventChatId:currentChatId.value;
+        if(chatType.value==="EventChat"){
+            chatmessage.EventChatId=currentChatId.value;
         }
-        else if(chatType==="TaskChat"){
-            chatmessage.TaskChatId: currentChatId.value;
+        else if(chatType.value==="TaskChat"){
+            chatmessage.TaskChatId=currentChatId.value;
         }
-        else  if(chatType==="MeasureChat"){
-            chatmessage.MeasureChatId: currentChatId.value;
+        else  if(chatType.value==="MeasureChat"){
+            chatmessage.MeasureChatId=currentChatId.value;
         }
         else{
-            chatmessage.UserChatId: currentChatId.value;
+            chatmessage.UserChatId=currentChatId.value;
         }
 
-        const response=await fetch("Chat/AddNewMessage",{
+        const response=await fetch("/Chat/AddNewMessage",{
             method:"POST",
             headers: { "Accept": "application/json", "Content-Type": "application/json" },
-            body:JSON.stringify(chatMessage)
+            body:JSON.stringify(chatmessage)
         });
 
         if(response.ok){
