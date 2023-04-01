@@ -147,7 +147,12 @@
                                         <p class="p2-Pod2" id="DateKEnd">@itemEvents.End.ToString("hh\\:mm") @*@ViewBag.EndD*@</p>
                                     </div>
                                 </div>
-                                <input type="button" value="Обговорити" class="button-Obgovor">
+                                        <a asp-controller="Chat" asp-action="GetEventChat"
+                                            asp-route-eventId=@itemEvents.Id
+                                            asp-route-chatType="EventChat">
+                                            <input type="button" value="Обговорити" class="button-Obgovor">
+                                        </a>
+                                
                             </div>
                         </div>
                     }}}}}
