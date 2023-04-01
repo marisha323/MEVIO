@@ -41,6 +41,9 @@ namespace MEVIO.Controllers
             ViewBag.Events = db.Events.AsNoTracking().ToList();
             ViewBag.Tasks = db.Tasks.AsNoTracking().ToList();
             ViewBag.Measures = db.Measures.AsNoTracking().ToList();
+            ViewBag.PlaceForMeasures = db.PlaceForMeasures.AsNoTracking().ToList();
+            ViewBag.Clients = db.Clients.AsNoTracking().ToList();
+            //s
             ViewBag.Monthnames = monthNames;
             ViewBag.users = db.Users.AsNoTracking().ToList();
             ViewBag.TasksUsers = db.TasksUsers.AsNoTracking().ToList();

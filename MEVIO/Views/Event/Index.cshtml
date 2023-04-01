@@ -636,8 +636,7 @@
             
             $('.inBox').click(function (e) 
             {
-                 //Sasha
-
+                 //
                 const imgSrc = $(this).find('img').attr('src');
                 const userId = $(this).find(".userId").text();
                 const userName = $(this).find('.userName').text();
@@ -646,7 +645,7 @@
                 console.log(userName);
                 console.log(imgSrc);
 
-
+                //
                 const parent = document.getElementById("parent");
 
                 const div = document.createElement("div");
@@ -665,7 +664,7 @@
 
                 parent.appendChild(div);
 
-
+                //All users on this Event
                 const list = document.querySelectorAll(".memb");
                 console.log(list);
 
@@ -675,7 +674,7 @@
                 input.hidden = true;
                 input.name = "userId";
                 input.setAttribute("value", userId);
-
+                console.log("OK1")
                 form.appendChild(input);
 
 
@@ -762,7 +761,8 @@
 
                 div2.appendChild(img2);
                 div2.appendChild(p2);
-
+              
+                console.log("OK");
                 parent3.appendChild(div2)
 
 
@@ -792,10 +792,10 @@
 
         }
 
-        var dateInput = document.getElementById("date1");
-        dateInput.value = "@ViewBag?.Date";
-        var dateEnd = document.getElementById("date2");
-        dateEnd.value = "@ViewBag?.DateEnd";
+        //var dateInput = document.getElementById("date1");
+        //dateInput.value = "@ViewBag?.Date";
+        //var dateEnd = document.getElementById("date2");
+        //dateEnd.value = "@ViewBag?.DateEnd";
 
 
         function toggleElements(className) {
