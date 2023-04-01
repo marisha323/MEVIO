@@ -5,7 +5,6 @@ using System.Text.Json;
 
 namespace MEVIO.Controllers
 {
-    //[Authorize]
     public class EventController : Controller
     {
         MEVIOContext context;
@@ -17,12 +16,13 @@ namespace MEVIO.Controllers
             this.context = context;
         }
 
+    ////[Authorize]
         public IActionResult Index()
         {
             User user = null;
             string UserLoggedIn = HttpContext.Request.Cookies["UserLoggedIn"];
 
-            ViewBag.CurrentDate = DateTime.Now;
+            ViewBag.CurrentDate =DateTime.Now.ToShortDateString();
 
             if (UserLoggedIn != null && UserLoggedIn != "")
             {
@@ -60,17 +60,33 @@ namespace MEVIO.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult> AddEvent([Bind("Id,EventName,Description,UserId,Begin,End")] Event event1)
-       // public async Task<ActionResult> AddEvent(string title)
+       // public async Task<ActionResult> AddEvent([Bind("Id,EventName,Description,UserId,Begin,End")] Event event1)
+        public async Task<ActionResult> AddEvent(string EventName, string Description, int UserId)
         {
-            //DateTime begin = event1.Begin;
-            //DateTime end = event1.End;
+            string dateField1 = Request.Form["dateField1"];
+            string timeField1 = Request.Form["timeField1"];
 
-            //Sasha Alex
-            //var ids = Request.Form["userId"];
+            DateTime dateTime1 = DateTime.Parse(dateField1 + " " + timeField1);
 
-            //DateTime begin = DateTime.Parse(event1.Begin);
-            //DateTime end = DateTime.Parse(event1.End);
+            string dateField2 = Request.Form["dateField2"];
+            string timeField2 = Request.Form["timeField2"];
+
+            DateTime dateTime2 = DateTime.Parse(dateField2 + " " + timeField2);
+
+            Event event1 = new Event
+            {
+                EventName = EventName,
+                Description = Description,
+                UserId = UserId,
+                Begin = dateTime1,
+                End = dateTime2
+            };
+            
+
+            //All id of users
+            var ids = Request.Form["userId"];
+
+            
 
             if (event1 != null)
             {
@@ -79,9 +95,6 @@ namespace MEVIO.Controllers
                 context.SaveChanges();
 
             }
-
-
-
 
             return Redirect("/Home/Index");
         }

@@ -51,18 +51,32 @@ namespace MEVIO.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddMeasure([Bind("Id,MeasureName,Description,UserId,Begin,End")] Measure measure)
+        // public async Task<ActionResult> AddMeasure([Bind("Id,MeasureName,Description,UserId,Begin,End,FreePlaces")] Measure measure)
+        public async Task<ActionResult> AddMeasure(string MeasureName,  int UserId,int FreePlaces )
         {
-            //var data = context.Events.FirstOrDefault().Begin;
-            //ViewBag.Date = data.ToString("yyyy-MM-dd");
-            //var dataEnd = context.Events.FirstOrDefault().Begin;
-            //ViewBag.DateEnd = dataEnd.ToString("yyyy-MM-dd");
-            if (measure != null)
+            string dateField1 = Request.Form["dateField1"];
+            string timeField1 = Request.Form["timeField1"];
+
+            DateTime dateTime1 = DateTime.Parse(dateField1 + " " + timeField1);
+
+            string dateField2 = Request.Form["dateField2"];
+            string timeField2 = Request.Form["timeField2"];
+
+            DateTime dateTime2 = DateTime.Parse(dateField2 + " " + timeField2);
+
+            Measure measure = new Measure
             {
-                context.Measures.Add(measure);
+                MeasureName = MeasureName,
+                FreePlaces=FreePlaces,
+                UserId = UserId,
+                Begin = dateTime1,
+                End = dateTime2
+            };
+
+            context.Measures.Add(measure);
                 context.SaveChanges();
 
-            }
+            
 
 
             return Redirect("/Home/Index");
