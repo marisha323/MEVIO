@@ -13,30 +13,27 @@
 //console.log(time2);
 
 
-const dateBegin = document.getElementById('date1');
-const dateEnd = document.getElementById('date2');
+//const dateBegin = document.getElementById('date1');
+//const dateEnd = document.getElementById('date2');
+
+//dateBegin.addEventListener("change", ChangeTimeInputNew);
 
 
+//dateEnd.addEventListener("change", ChangeTimeInputNew);
 
 
-dateBegin.addEventListener("change", ChangeTimeInputNew);
+//function ChangeTimeInputNew() {
+//	const value1 = dateBegin.value;
+//	const value2 = dateEnd.value;
 
+//	let date1 = new Date(value1);
+//	//console.log(date1.toLocaleTimeString());
+//	console.log(date1.getTime());
 
-dateEnd.addEventListener("change", ChangeTimeInputNew);
-
-
-function ChangeTimeInputNew() {
-	const value1 = dateBegin.value;
-	const value2 = dateEnd.value;
-
-	let date1 = new Date(value1);
-	//console.log(date1.toLocaleTimeString());
-	console.log(date1.getTime());
-
-	let date2 = new Date(value2);
-	//console.log(date2.toLocaleTimeString());
-	console.log(date2.getSeconds());
-}
+//	let date2 = new Date(value2);
+//	//console.log(date2.toLocaleTimeString());
+//	console.log(date2.getSeconds());
+//}
 
 
 
@@ -47,19 +44,19 @@ function ChangeTimeInputNew() {
 //const date1 = document.querySelector('#date1'); //
 //const date2 = document.querySelector('#date2');
 
-var dateTime1 = new Date(date1);
-var dateTime2 = new Date(date2);
+//var dateTime1 = new Date(date1);
+//var dateTime2 = new Date(date2);
 
-const time1 = dateTime1.getHours();
-//console.log(time1);
-const time2 = dateTime2.getHours();
+//const time1 = dateTime1.getHours();
+////console.log(time1);
+//const time2 = dateTime2.getHours();
 //console.log(time2);
 
 
 //--------------------------------------------------------
 
-//const time1 = document.querySelector('#time1');
-//const time2 = document.querySelector('#time2');
+const time1 = document.querySelector('#time1');
+const time2 = document.querySelector('#time2');
 const timeChangeBlock = document.querySelector(".time-change-block");
 
 //const beginOfDay = 25200000;
@@ -78,14 +75,8 @@ const timeSpanDivWidth = document.querySelector(".time-span-row").getBoundingCli
 const milisecByPixel = Math.round(totalDay / timeSpanDivWidth);
 
 
-
-
-
-
 time1.value = new Date(beginOfDay).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 time2.value = new Date(beginOfDay + 3600000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
-
 
 timeChangeBlock.addEventListener("mousemove", function (e) {
 

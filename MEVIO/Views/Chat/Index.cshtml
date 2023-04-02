@@ -271,10 +271,13 @@
 
 
 
-    <div>
+    <div class="right-chat-block">
 
         <div class="chat-name-div">
-            <p class="chat-name">@ViewBag.Chat.EventChatName</p>
+            <div>
+                <p class="chat-name">@ViewBag.ChatName</p>
+                <p class="event-date">@ViewBag.Date</p>
+            </div>
 
             <div class="chat-members">
 
@@ -365,8 +368,11 @@
 
 
         <div class="send_msg">
-            <textarea class="txt" autofocus></textarea>
-            <img class="icon send"
+            <input hidden id="currentUserId" value=@Model.Id />
+            <input hidden id="currentChatId" value=@ViewBag.ChatId />
+            <input hidden id="chatType" value=@ViewBag.ChatType />
+            <textarea id="messageInput" class="txt" autofocus></textarea>
+            <img onclick="SendMessageClick()" class="icon send"
                  src="https://cdn.discordapp.com/attachments/684475244664193242/1073126252501815367/free-icon-send-736110.png">
         </div>
     </div>
@@ -381,10 +387,79 @@
 <script>
 
     $(".show-members-button").on("click",function(e){
+
         $(e.target).toggleClass("active");
 
         $(".chat-members-list").toggleClass("hide");
     });
+
+
+    const messageInput=document.querySelector("#messageInput");
+
+    
+
+    messageInput.addEventListener("keydown",function(e){
+        if(e.key==="Enter"&&e.ctrlKey){
+            messageInput.value+="\n";
+        }
+        else if(e.key==="Enter"){
+            e.preventDefault();
+
+            SendMessageClick();
+        }
+    });
+
+
+    function SendMessageClick(){
+        const text = messageInput.value;
+        SendMessage(text);
+
+        messageInput.value = null;
+        messageInput.selectionStart = 0;
+        messageInput.selectionEnd = 0;
+    }
+
+
+    async function SendMessage(text){
+
+        const chatType = document.getElementById("chatType");
+        const currentChatId = document.getElementById("currentChatId");
+        const currentUserId = document.getElementById("currentUserId");
+
+        console.log(chatType.value);
+        console.log(currentChatId.value);
+        console.log(currentUserId.value);
+
+        const chatmessage= {
+            UserId:currentUserId.value,
+            Text: text
+        };
+
+        if(chatType.value==="EventChat"){
+            chatmessage.EventChatId=currentChatId.value;
+        }
+        else if(chatType.value==="TaskChat"){
+            chatmessage.TaskChatId=currentChatId.value;
+        }
+        else  if(chatType.value==="MeasureChat"){
+            chatmessage.MeasureChatId=currentChatId.value;
+        }
+        else{
+            chatmessage.UserChatId=currentChatId.value;
+        }
+
+        const response=await fetch("/Chat/AddNewMessage",{
+            method:"POST",
+            headers: { "Accept": "application/json", "Content-Type": "application/json" },
+            body:JSON.stringify(chatmessage)
+        });
+
+        if(response.ok){
+            const result=await response.json();
+
+            console.log(result);
+        }
+    }
 
 </script>
 
