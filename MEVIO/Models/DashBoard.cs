@@ -8,14 +8,14 @@
         public virtual User User { get; set; }
 
         public ICollection<Event> Events { get; set; }
-        public ICollection<Task> Tasks { get; set; }
+        public ICollection<Tasks> Tasks { get; set; }
         public ICollection<Measure> Measures { get; set; }
 
         public DashBoard()
         {
 
             Events = new List<Event>();
-            Tasks = new List<Task>();
+            Tasks = new List<Tasks>();
             Measures = new List<Measure>();
         }
 

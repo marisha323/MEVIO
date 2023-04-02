@@ -3,22 +3,53 @@
 *@
 @{
 }
-
+@model Tasks
 <link type="text/css" rel="stylesheet" href="/css/TaskStyle.css">
-
+<style>
+    .head-button {
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: 0.1s;
+    border-radius: 14px;
+    width: 10rem;
+    background-color: #52A7E4;
+    color: #111624;
+}
+.head-button2 {
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: 0.1s;
+    border-radius: 14px;
+    width: 10rem;
+   
+}
+.head-button2:hover {
+    background-color: #52A7E4;
+    color: #111624;
+}
+</style>
 <body id="body">
     <div class="container">
         <div class="head-flex">
             <div class="head-button">Завдання</div>
-            <div class="head-button">Події</div>
-            <div class="head-button">Заходи</div>
+            <div class="head-button2">Події</div>
+            <div class="head-button2">Заходи</div>
         </div>
+        <form id="taskForm" asp-controller="Task" asp-action="AddTask" method="post">
         <div>
-            <input type="text" on class="head-input" placeholder="Ввести назву завдання">
+            <input type="text" asp-for="@Model.TaskName" on class="head-input" placeholder="Ввести назву завдання">
         </div>
 
         <div>
-            <textarea class="textarea" placeholder="Опис"></textarea>
+            <textarea class="textarea" asp-for="@Model.Description" placeholder="Опис"></textarea>
         </div>
 
         <div class="check-list-flex">
@@ -51,12 +82,12 @@
 
         <hr class="hr">
 
-        <div class="response-block">
+        <div id="responseBlock" class="response-block">
             <div class="response-div">Крайній термін</div>
             <div class="response-div">
                 <input class="conData" type="date" id="date" name="date">
             </div>
-            <div class="response-div">Планування термінів</div>
+            <div id="planTerm" class="response-div">Планування термінів</div>
         </div>
 
         <hr class="hr">
@@ -72,14 +103,22 @@
         </div>
 
         <div class="submit-block">
-            <div class="form-button">Зберегти</div>
+            <button type="submit" class="form-button">Зберегти</button>
             <div class="form-button">Відмінити</div>
         </div>
 
-
+        </form>
     </div>
 
-
+    <script>
+        var dob=document.getElementById("responseBlock")
+        document.getElementById("planTerm").addEventListener("click", function() {
+     var input = document.createElement("input");
+     input.type = "date";
+     input.classList="response-div";
+     dob.appendChild(input);
+});
+    </script>
 
 
 </body>

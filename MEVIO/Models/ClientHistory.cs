@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
         public ICollection<Event> Events { get; set; }
-        public ICollection<Task> Tasks { get; set; }
+        public ICollection<Tasks> Tasks { get; set; }
         public ICollection<Measure> Measures { get; set; }
         public bool IsAgreement { get; set; }
         public int? ClientId { get; set; }
@@ -13,7 +13,7 @@
         public ClientHistory()
         {
             Events = new List<Event>();
-            Tasks = new List<Task>();
+            Tasks = new List<Tasks>();
             Measures = new List<Measure>();
         }
     }
