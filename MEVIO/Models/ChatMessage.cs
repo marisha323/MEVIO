@@ -2,7 +2,7 @@
 {
     public class ChatMessage
     {
-        public decimal Id { get; set; }
+        public uint Id { get; set; }
 
         public int UserId { get; set; }
         public virtual User User { get; set; }
@@ -19,6 +19,8 @@
         public virtual UserChat UserChat { get; set; }
         public int? MeasureChatId { get; set; }
         public virtual MeasureChat MeasureChat { get; set; }
+
+
 
     }
 }

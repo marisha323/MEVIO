@@ -141,13 +141,17 @@
                                         <p class="p2-Pod2" id="DateKBegin">@itemEvents.Begin.ToString("yyyy-MM-dd") @*@ViewBag.BeginD*@</p>
                                         <p class="p2-Pod2" id="DateKBegin">@itemEvents.Begin.ToString("hh\\:mm") </p>
                                     </div>
-                                    <div class="div-Poch-Pod" >
+                                    <div class="div-Poch-Pod">
                                         <p class="p1-Pod">Кінець:</p>
                                         <p class="p2-Pod2" id="DateKEnd">@itemEvents.End.ToString("yyyy-MM-dd") @*@ViewBag.EndD*@</p>
                                         <p class="p2-Pod2" id="DateKEnd">@itemEvents.End.ToString("hh\\:mm") @*@ViewBag.EndD*@</p>
                                     </div>
                                 </div>
-                                <input type="button" value="Обговорити" class="button-Obgovor">
+                                        <a asp-controller="Chat" asp-action="GetEventChat"
+                                            asp-route-eventId=@itemEvents.Id>
+                                            <input type="button" value="Обговорити" class="button-Obgovor">
+                                        </a>
+                                
                             </div>
                         </div>
                     }}}}}
