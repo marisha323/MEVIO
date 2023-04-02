@@ -44,7 +44,7 @@ namespace MEVIO.Controllers
 
         public IActionResult Index()
         {
-
+            //var init=new 
 
             return View();
         }

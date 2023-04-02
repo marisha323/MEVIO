@@ -1,6 +1,7 @@
 ﻿using MEVIO.Models;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace MEVIO.Controllers
 {
     public class TaskController : Controller
@@ -15,26 +16,39 @@ namespace MEVIO.Controllers
         {
             return View();
         }
+
+
+
         [HttpPost]
         public async Task<ActionResult> AddTask(string TaskName, string Description)
         {
-           
+            //MEVIO.Models.Tasks task = new()
+            //{
+            //     TaskName = TaskName,
+            //     Description = Description,
 
-           Tasks task = new Tasks
+
+            //};
+
+            // if (task != null)
+            // {
+
+            //     context.Tasks.Add(task);
+            //     context.SaveChanges();
+
+            // }
+
+
+
+            //Sasha
+
+            context.Tasks.Add(new()
             {
-                TaskName = TaskName,
                 Description = Description,
-               
-                
-            };
+                TaskName = TaskName
+            });
 
-            if (task != null)
-            {
-
-                context.Tasks.Add(task);
-                context.SaveChanges();
-
-            }
+            await context.SaveChangesAsync();
 
             return Redirect("/Home/Index");
         }

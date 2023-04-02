@@ -9,7 +9,7 @@
         public ICollection<TaskResponsiblePersons> TaskResponsiblePersons { get; set; }
         public ICollection<TasksWatchingPersons> TasksWatchingPersons { get; set; }
         public int? TaskId { get; set; }
-        public virtual Tasks Task { get; set; }
+        public virtual Task Tasks { get; set; }
 
         public UnderTask()
         {

@@ -2,7 +2,7 @@
 
 namespace MEVIO.Models
 {
-    public class Tasks
+    public class Task
     {
         public int Id { get; set; }
         public string TaskName { get; set; }
@@ -24,7 +24,7 @@ namespace MEVIO.Models
         //public int? UserCalendarId { get; set; }
         //public virtual UserCalendar UserCalendar { get; set; }
         public ICollection<UserTaskAcceptStatus> UserTaskAcceptStatuses { get; set; }
-        public Tasks()
+        public Task()
         {
             ResponsiblePersons = new List<ResponsiblePerson>();
             WatchingPersons = new List<WatchingPerson>();
