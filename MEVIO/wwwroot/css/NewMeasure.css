@@ -12,9 +12,9 @@ p {
 
 /*.mainDiv {
     position: absolute;*/
-    /* width: 100vw; */
-    /* height: 100vh; */
-    /*background-color: #52a7e4;
+/* width: 100vw; */
+/* height: 100vh; */
+/*background-color: #52a7e4;
     padding-bottom: 1rem;
 }*/
 
@@ -201,17 +201,7 @@ input[type="date"] {
     color: #52a7e4;
     white-space: nowrap;
 }
-p {
-    width: 5rem;
-    height: 2.5rem;
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 1.8rem;
-    line-height: 2.5rem;
-    white-space: nowrap;
-    color: #52a7e4;
-}
+
 .checkAllDay {
     display: flex;
     grid-column-start: 3;
@@ -260,7 +250,7 @@ input[type="checkbox"] {
 }
 
 .styleP {
-    width: 5rem;
+    /*width: 5rem;*/
     height: 2.5rem;
     font-size: 1.3rem;
     font-family: "Inter";
@@ -316,24 +306,13 @@ textarea {
 }
 
 
-    .memb img {
-        width: 2rem;
-        height: 2rem;
-        border-radius: 50%;
-        border: 1px solid #52a7e4;
-    }
-
-.name {
-    width: 10rem;
-    height: 30px;
-    font-weight: bold;
-    font-family: "Inter";
-    font-style: normal;
-    font-size: 1.5rem;
-    line-height: 30px;
-    margin: 1rem;
-    color: #111624;
+.memb img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 1px solid #52a7e4;
 }
+
 
 .members button {
     width: 8.4rem;
@@ -376,7 +355,7 @@ textarea {
 .checkConfirm {
     display: flex;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     width: 30rem;
     height: 2.8rem;
     color: #52a7e4;
@@ -386,8 +365,8 @@ textarea {
     font-weight: 400;
     font-size: 1rem;
     margin-left: 2rem;
-    margin-top:1rem;
-    text-align:center;
+    margin-top: 1rem;
+    text-align: center;
 }
 
     .checkConfirm label {
@@ -395,9 +374,9 @@ textarea {
         margin-bottom: auto;
     }
 
-.usefullClass{
-    display:flex;
-    justify-content:space-between;
+.usefullClass {
+    display: flex;
+    justify-content: space-between;
 }
 
 
@@ -435,7 +414,7 @@ textarea {
     font-weight: 400;
     font-size: 1.2rem;
     color: #52a7e4;
-    margin-bottom:2rem;
+    margin-bottom: 2rem;
 }
 
 .time-span-row {

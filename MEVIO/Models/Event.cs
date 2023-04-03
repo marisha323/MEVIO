@@ -14,7 +14,6 @@ namespace MEVIO.Models
 
         public ICollection<EventsClients> EventsClients { get; set; }//ClientTargetId
         
-
         public DateTime Begin { get; set; }
         public DateTime End { get; set; }
         public int? EventChatId { get; set; }

@@ -48,17 +48,17 @@
         color: #FFFFFF;
     }
     /*#EventDiv
-    {
-        display:none;
-    }
-    #TaskDiv
-    {
-        display:none;
-    }
-    #MeasureDiv
-    {
-        display:none;
-    }*/
+        {
+            display:none;
+        }
+        #TaskDiv
+        {
+            display:none;
+        }
+        #MeasureDiv
+        {
+            display:none;
+        }*/
     .displaynone {
         display: none;
     }
@@ -96,27 +96,28 @@
             <button id="btnAll" onclick="changeStyle()" class="button-Zahod">Все</button>
         </div>
 
- 
-       <div id="EventDiv" class="displaynone active"> @*контейнер з подіями*@
-        @foreach (var itemUsers in ViewBag.Useres) @*Витягуємо список користувачів*@
-        {
-            @foreach (var itemEvents in ViewBag.Eventes) @*Витягуємо список подій*@
+
+        <div id="EventDiv" class="displaynone active">
+            @*контейнер з подіями*@
+            @foreach (var itemUsers in ViewBag.Useres) @*Витягуємо список користувачів*@
             {
-                @foreach (var ItemsEventUsers1 in ViewBag.EventsUsers)
-                                        {
-              @if (itemUsers.Id == itemEvents.UserId) @*Робимо перевірку всередині таблиці подій, на те щоб саме наш користувач був прив'язаний до цієї події*@
+                @foreach (var itemEvents in ViewBag.Eventes) @*Витягуємо список подій*@
+                {
+                    @foreach (var ItemsEventUsers1 in ViewBag.EventsUsers)
                     {
-                       @if (ItemsEventUsers1.EventId == itemEvents.Id && ItemsEventUsers1.UserId == ViewBag.UsersId )@*Перевірка в середині зв'язуючої таблиці на прив'язку користувача який відповідальний за цю подію *@
-                                {
-                            
-                          <div class="div-obj-News">
-                            <div class="div-obj-News-cont">
-                                <div class="div-div-News">
-                                    <img class="img-Ava" src=~/Imeg1/@itemUsers.UserName/@itemUsers.Email/@itemUsers.PathImgAVA>
-                                    <div class="div-Img-Date">
-                                        <p class="Nick-Name">@itemUsers.UserName</p>
-                                        <p class="Data-p">@itemUsers.LastTimeSignIn?.ToString("yyyy-MM-dd")</p>
-                                        <p class="Data-p">@itemUsers.LastTimeSignIn?.ToString("hh\\:mm")</p>
+                        @if (itemUsers.Id == itemEvents.UserId) @*Робимо перевірку всередині таблиці подій, на те щоб саме наш користувач був прив'язаний до цієї події*@
+                        {
+                            @if (ItemsEventUsers1.EventId == itemEvents.Id && ItemsEventUsers1.UserId == ViewBag.UsersId)@*Перевірка в середині зв'язуючої таблиці на прив'язку користувача який відповідальний за цю подію *@
+                            {
+
+                                <div class="div-obj-News">
+                                    <div class="div-obj-News-cont">
+                                        <div class="div-div-News">
+                                            <img class="img-Ava" src=~/Imeg1/@itemUsers.UserName.Replace(" ", "-")/@itemUsers.Email/@itemUsers.PathImgAVA.Replace(" ", "-")>
+                                            <div class="div-Img-Date">
+                                                <p class="Nick-Name">@itemUsers.UserName</p>
+                                                <p class="Data-p">@itemUsers.LastTimeSignIn?.ToString("yyyy-MM-dd")</p>
+                                                <p class="Data-p">@itemUsers.LastTimeSignIn?.ToString("hh\\:mm")</p>
 
                                             </div>
                                         </div>

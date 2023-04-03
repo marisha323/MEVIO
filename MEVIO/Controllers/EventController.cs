@@ -8,8 +8,8 @@ namespace MEVIO.Controllers
     public class EventController : Controller
     {
         MEVIOContext context;
+        User user = null;
 
-        
 
         public EventController(MEVIOContext context)
         {
@@ -19,10 +19,13 @@ namespace MEVIO.Controllers
     ////[Authorize]
         public IActionResult Index()
         {
-            User user = null;
+            //Current date
+            ViewBag.CurrentDate =DateTime.Now.ToShortDateString();
+
+            //create user from cookie
+           
             string UserLoggedIn = HttpContext.Request.Cookies["UserLoggedIn"];
 
-            ViewBag.CurrentDate =DateTime.Now.ToShortDateString();
 
             if (UserLoggedIn != null && UserLoggedIn != "")
             {
@@ -51,7 +54,7 @@ namespace MEVIO.Controllers
             ViewBag.Users = context.Users.ToList();
             ViewBag.Events = context.Events.ToList();
             ViewBag.EventsUsers = context.EventsUsers.ToList();
-                 
+            ViewBag.Clients = context.Clients.ToList();   
                        
             ViewBag.UserAccept = context.UserAcceptStatuses.ToList();
                      
@@ -61,7 +64,7 @@ namespace MEVIO.Controllers
 
         [HttpPost]
        // public async Task<ActionResult> AddEvent([Bind("Id,EventName,Description,UserId,Begin,End")] Event event1)
-        public async Task<ActionResult> AddEvent(string EventName, string Description, int UserId)
+        public async Task<ActionResult> AddEvent(int eventId,string EventName, string Description)
         {
             string dateField1 = Request.Form["dateField1"];
             string timeField1 = Request.Form["timeField1"];
@@ -73,28 +76,49 @@ namespace MEVIO.Controllers
 
             DateTime dateTime2 = DateTime.Parse(dateField2 + " " + timeField2);
 
-            Event event1 = new Event
+
+            //Get Id of create User
+            string UserLoggedIn = HttpContext.Request.Cookies["UserLoggedIn"];
+
+            user = JsonSerializer.Deserialize<User>(UserLoggedIn);
+                
+            int userId= user.Id;
+                         
+            //Fill Event
+            Event event1 = new Event()
             {
+                Id= eventId,
+                UserId= userId,
                 EventName = EventName,
                 Description = Description,
-                UserId = UserId,
                 Begin = dateTime1,
                 End = dateTime2
             };
-            
-
-            //All id of users
-            var ids = Request.Form["userId"];
-
-            
-
+           
             if (event1 != null)
             {
-               
                 context.Events.Add(event1);
                 context.SaveChanges();
-
             }
+
+            //All id of users
+            var idsUser = Request.Form["userId"];
+            //All id of clients
+            var idsClient = Request.Form["clientId"];
+
+
+            foreach (var usersId in idsUser)
+            {
+                var eventsUsers = new EventsUsers
+                {
+                    EventId = eventId,
+                    UserId = int.Parse(usersId),
+                    IsCreator = false //устанавливаем false, поскольку это не создатель события
+                };
+                context.EventsUsers.Add(eventsUsers); //добавляем экземпляр EventsUsers в контекст базы данных
+            }
+
+           context.SaveChanges(); //сохраняем изменения в базе данных
 
             return Redirect("/Home/Index");
         }
