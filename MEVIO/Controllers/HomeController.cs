@@ -18,6 +18,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNet.Identity;
+using MEVIO.Models.StartInitial;
 
 namespace MEVIO.Controllers
 {
@@ -44,7 +45,12 @@ namespace MEVIO.Controllers
 
         public IActionResult Index()
         {
-            //var init=new 
+            var init = new MyInitial(context);
+
+            //init.InitClients();
+            //init.InitUsers();
+            //init.InitEvents();
+
 
             return View();
         }
