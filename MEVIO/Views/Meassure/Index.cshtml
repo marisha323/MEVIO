@@ -340,6 +340,7 @@
     .close {
         color: #111624;
         cursor: pointer;
+        margin-left:1rem;
     }
 
     p {
@@ -366,8 +367,6 @@
         color: #111624;
     }
 </style>
-
-
 
 <body>
     <div class="mainDiv">
@@ -740,6 +739,7 @@
                 });
 
                 $(".mainBoxClient").css("display", "none");// закриваємо блок з users
+                 $(this).hide();
             });
 
 
@@ -896,8 +896,8 @@
                 });
 
                 $(".mainBox").css("display","none");// закриваємо блок з users
-              
 
+                $(this).hide();
 
             });
 

@@ -404,8 +404,20 @@
     .close{
       color: #111624;
       cursor:pointer;
+      margin-left:1rem;
     }
 
+    .memb, .membClient {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 15rem;
+        margin-left: 1rem;
+        height: 2.5rem;
+        background: #a0d7ff;
+        border: 1px solid #52a7e4;
+        margin: 0.5rem;
+    }
 </style>
 
 <body>
@@ -582,7 +594,7 @@
                                     {
                                         <div class="inBox">
                                             <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
-                                            <p class="userName">@itemUsers.UserName</p>
+                                            <p class="userName" name="userName">@itemUsers.UserName</p>
                                             <span class="userId" hidden>@itemUsers.Id</span>
                                             <div class="bird">&#10004;</div>
                                         </div>
@@ -634,8 +646,8 @@
                                     @foreach (var itemUsers in ViewBag.Clients)
                                     {
                                         <div class="inBoxClient">
-                                            
-                                            <p class="clientName">@itemUsers.ClientName</p>
+
+                                            <p class="clientName" name="clientName">@itemUsers.ClientName</p>
                                             <span class="clientId" hidden>@itemUsers.Id</span>
                                             <div class="bird">&#10004;</div>
                                         </div>
@@ -705,7 +717,6 @@
             //ADD CLIENTS
             $('.inBoxClient').click(function (e) 
             {
-                 //
                 //const imgSrcClient = $(this).find('img').attr('src');
                 const clientId = $(this).find(".clientId").text();
                 const clientName = $(this).find('.clientName').text();
@@ -722,7 +733,7 @@
 
                 const inputClient = document.createElement("input");
                 inputClient.hidden = true;
-                inputClient.name = "userId";
+                inputClient.name = "clientId";
                 inputClient.setAttribute("value", clientId);
                 console.log("ClientOk")
                 formClient.appendChild(inputClient);
@@ -759,7 +770,10 @@
                                       
                 });
 
+               
                 $(".mainBoxClient").css("display", "none");// закриваємо блок з users
+
+                $(this).hide();
             });
             
             $('.inBox').click(function (e) 
@@ -910,8 +924,8 @@
                     coWorkers.removeChild(div2);
                 });
 
-                $(".mainBox").css("display","none");// закриваємо блок з users 
-
+                $(".mainBox").css("display","none");// закриваємо блок з users
+                $(this).hide();
 
             });
 

@@ -1,4 +1,5 @@
-﻿using MEVIO.Models;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using MEVIO.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
@@ -64,7 +65,7 @@ namespace MEVIO.Controllers
 
         [HttpPost]
        // public async Task<ActionResult> AddEvent([Bind("Id,EventName,Description,UserId,Begin,End")] Event event1)
-        public async Task<ActionResult> AddEvent(int eventId,string EventName, string Description)
+        public async Task<ActionResult> AddEvent(/*int eventId,*/string EventName, string Description)
         {
             string dateField1 = Request.Form["dateField1"];
             string timeField1 = Request.Form["timeField1"];
@@ -87,7 +88,7 @@ namespace MEVIO.Controllers
             //Fill Event
             Event event1 = new Event()
             {
-                Id= eventId,
+                //Id= eventId,
                 UserId= userId,
                 EventName = EventName,
                 Description = Description,
@@ -100,18 +101,20 @@ namespace MEVIO.Controllers
                 context.Events.Add(event1);
                 context.SaveChanges();
             }
+            // Last ID of Event
+            var lastIdEvent = context.Events.ToList().LastOrDefault().Id;
 
             //All id of users
             var idsUser = Request.Form["userId"];
-            //All id of clients
-            var idsClient = Request.Form["clientId"];
+            
 
+            //var UserCheck = context.Users.Where(o => o.Id == idsUser).Select(p=>p.Id);
 
             foreach (var usersId in idsUser)
             {
                 var eventsUsers = new EventsUsers
                 {
-                    EventId = eventId,
+                    EventId = lastIdEvent,
                     UserId = int.Parse(usersId),
                     IsCreator = false //устанавливаем false, поскольку это не создатель события
                 };
@@ -119,6 +122,26 @@ namespace MEVIO.Controllers
             }
 
            context.SaveChanges(); //сохраняем изменения в базе данных
+
+
+            //Fill EventClients
+
+            //All id of clients
+            var idsClient = Request.Form["clientName"];
+
+            foreach (var clientsId in idsClient)
+            {
+                var eventsClients = new EventsClients
+                {
+                    EventId = lastIdEvent,
+                    ClientId = int.Parse(clientsId),
+                   // IsCreator = false //устанавливаем false, поскольку это не создатель события
+                };
+                context.EventsClients.Add(eventsClients); //добавляем экземпляр EventsUsers в контекст базы данных
+            }
+
+            context.SaveChanges(); //сохраняем изменения в базе данных
+
 
             return Redirect("/Home/Index");
         }
