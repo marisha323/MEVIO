@@ -32,7 +32,7 @@ namespace MEVIO.Models
         public DbSet<ResponsiblePerson> ResponsiblePeople { get; set; } = null!;
         public DbSet<SeasonOfBeginning> SeasonOfBeginning { get; set; } = null!;
         public DbSet<Student> Students { get; set; } = null!;
-        public DbSet<Tasks> Tasks { get; set; } = null!;//+
+        public DbSet<Task> Tasks { get; set; } = null!;//+
         public DbSet<TaskChat> TaskChats { get; set; } = null!;//+
         public DbSet<TaskResponsiblePersons> TaskResponsiblePersons { get; set; } = null!;//+
         public DbSet<TasksClients> TasksClients { get; set; } = null!;//+

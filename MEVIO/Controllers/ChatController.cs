@@ -103,7 +103,9 @@ namespace MEVIO.Controllers
 
             await context.SaveChangesAsync();
 
-            return Json(message);
+            message.User = await context.Users.FirstOrDefaultAsync(u => u.Id.Equals(message.UserId));
+
+            return Json(new { message = message, user = message.User });
 
         }
 

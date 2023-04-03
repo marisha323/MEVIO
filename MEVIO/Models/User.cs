@@ -27,7 +27,7 @@
         public int? TaskChatId { get; set; }
         public virtual TaskChat TaskChat { get; set; }
         //and same here
-        public DateTime LastTimeSignIn { get; set; }
+        public DateTime? LastTimeSignIn { get; set; }
         public DateTime Birthdate { get; set; }
         public string PassportNumber { get; set; }
         public DateTime DateOfPassportIssue { get; set; }
