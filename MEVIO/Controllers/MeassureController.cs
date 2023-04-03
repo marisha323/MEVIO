@@ -34,7 +34,7 @@ namespace MEVIO.Controllers
                 //ViewBag.User = user;
                 //ViewBag.Id = user.Id;
                 //ViewBag.Role = user.UserRoleId;
-                //ViewBag.NameUser = user.UserName;
+                
                 ViewBag.ImgPath = user.PathImgAVA;
 
             }
@@ -44,7 +44,7 @@ namespace MEVIO.Controllers
             ViewBag.Users = context.Users.ToList();
             ViewBag.Meassure = context.Measures.ToList();
             ViewBag.MeassuresUsers = context.MeasuresUsers.ToList();
-
+            ViewBag.Clients = context.Clients.ToList();
 
             ViewBag.Place=context.PlaceForMeasures.ToList();
             return View();
@@ -54,6 +54,12 @@ namespace MEVIO.Controllers
         // public async Task<ActionResult> AddMeasure([Bind("Id,MeasureName,Description,UserId,Begin,End,FreePlaces")] Measure measure)
         public async Task<ActionResult> AddMeasure(string MeasureName,  int UserId,int FreePlaces )
         {
+            //All id of users
+            var idsUser = Request.Form["userId"];
+            //All id of clients
+            var idsClient = Request.Form["clientId"];
+
+            //DATETIME
             string dateField1 = Request.Form["dateField1"];
             string timeField1 = Request.Form["timeField1"];
 
@@ -64,7 +70,7 @@ namespace MEVIO.Controllers
 
             DateTime dateTime2 = DateTime.Parse(dateField2 + " " + timeField2);
 
-            Measure measure = new Measure
+            Measure measure = new Measure()
             {
                 MeasureName = MeasureName,
                 FreePlaces=FreePlaces,

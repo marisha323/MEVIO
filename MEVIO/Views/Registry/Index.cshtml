@@ -140,25 +140,52 @@
                 <a class="refGoogle" href="/GoogleOAuth/RedirectOnOAuthServer">
                     <img class="imgGoogle" src="/img/imgGoogle.png" alt="" />
                 </a>
+
+                <button id="google-signin-btn" class="g_id_onload" data-shape="circle" data-logo_alignment="center" data-size="large" data-type="icon" data-context="signin">Вход через Google</button>
+                <div ></div>
             </div>
             </form>
         </div>
     </div>
 
 
+
+     @*private const string ClientId = "715700270542-m2iv2jqmaue49o43d969evbivc5jqj1s.apps.googleusercontent.com";
+
+     private const string ClientSecret = "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";*@
+
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script async custom-element="amp-onetap-google" src="https://cdn.ampproject.org/v0/amp-onetap-google-0.1.js"></script>
 <script>
-    function onSignIn(googleUser) {
-        // Get the Google user ID token and send it to the server for verification
-        var id_token = googleUser.getAuthResponse().id_token;
-        // Send the ID token to the server via AJAX request
-        $.ajax({
-            type: 'POST',
-            url: '/signin-with-google',
-            data: { 'id_token': id_token },
-            success: function (response) {
-                // Redirect to the main page or personalized dashboard page
-                window.location.href = '/index';
-            }
+
+    //function onSignIn(googleUser) {
+    //    var profile = googleUser.getBasicProfile();
+    //    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    //    console.log('Name: ' + profile.getName());
+    //    console.log('Image URL: ' + profile.getImageUrl());
+    //    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    //}
+
+
+    document.getElementById('google-signin-btn').addEventListener('click', function () {
+        google.accounts.id.initialize({
+            client_id: '715700270542-m2iv2jqmaue49o43d969evbivc5jqj1s.apps.googleusercontent.com',
+            callback: handleCredentialResponse
         });
+        google.accounts.id.prompt();
+    });
+
+    function handleCredentialResponse(response) {
+        var credential = response.credential;
+        var id_token = credential.id_token;
+        // Дополнительная обработка информации об аутентифицированном пользователе
     }
+
+    function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
 </script>
