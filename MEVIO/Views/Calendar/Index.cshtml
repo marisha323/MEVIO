@@ -16,9 +16,11 @@
         border-radius: 50%;
         height: 3rem;
     }
-    .remove-client{
-        cursor:pointer;
+
+    .remove-client {
+        cursor: pointer;
     }
+
     .conTime {
         box-sizing: border-box;
         display: flex;
@@ -198,14 +200,14 @@
 
 <div class="calendar-container">
     @*measure right menu*@
-    <form action="">
+   <form method="post" action="@Url.Action("EditMeasure")">
         <div id="editMeasureInfo" class="measure-info-block">
             <img onclick="closeEvent()" class="closeMenuBtn" src="https://cdn.discordapp.com/attachments/684475244664193242/1074858765746180208/free-icon-cross-mark-4225670.png">
             <div class="container">
-                <div id="MeasureName" class="task-name">Захід №1</div>
-                <div class="task-desc">
+                <div id="MeasureName" name="MeasureNameM" class="task-nameM">Захід №1</div>
+                <div class="task-descM">
                     <div class="task-right">
-                        <div class="task-head">
+                        <div class="task-headM">
                             <p id="MeasureBegin">
                                 <b>Початок:</b> 02/02/2023 12:00
                             </p>
@@ -274,6 +276,7 @@
                     </div>
                 </div>
             </div>
+            <input type="hidden" name="AddedClients" id="AddedClientsData" />
             <div class="box-shadow">
                 <button type="submit" class="footer-button save">Зберегти</button>
                 <button type="button" class="footer-button cancel">Скасувати</button>
@@ -812,7 +815,7 @@
                             string[] arr = new string[] { "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
                             foreach (var item in arr)
                             {
-                                        <div class="option-item">item</div>
+                                    <div class="option-item">item</div>
                             }
                         }
                     </div>
@@ -975,13 +978,13 @@
             }
             const editMeasureInfo = document.querySelector('#editMeasureInfo');
 
-            editMeasureInfo.classList.remove('trans');
+            editMeasureInfo.classList.remove('transM');
 
         }
         //getting all events by class .event
         const events = document.querySelectorAll('.event');
         //Measure stuff
-        const measureName = document.querySelector('#MeasureName.task-name');
+        const measureName = document.querySelector('#MeasureName.task-nameM');
         const measureBegin = document.querySelector('#MeasureBegin');
         const measureEnd = document.querySelector('#MeasureEnd');
         const measureDirImg = document.querySelector('#MeasureDirImg.logo-imgM');
@@ -1028,6 +1031,8 @@
                 const paragraph = element.querySelector('p');
                 paragraph.addEventListener('click', function () {
                     let selectedTaskId = element.querySelector("input[type=hidden]").value;
+                    //Open Event
+                            rightMenu.classList.add("trans");
 
                     tasksData.forEach(item => {
                         if (item.Id == selectedTaskId) {
@@ -1164,14 +1169,7 @@
                                     });
                                 }
                             });
-                            //Open Event
-                            if (!container.classList.contains("eventShow")) {
-                                if (!rightMenu.classList.contains("trans")) {
-                                    rightMenu.classList.add("trans");
-                                } else {
-                                    rightMenu.classList.remove("trans");
-                                }
-                            }
+                            
                         }
                     });
                 });
@@ -1272,6 +1270,9 @@
                                         measureClients.removeChild(newClient);
                                     });
                                     measureClients.appendChild(newClient);
+                                    //here we update the value of AddedClientData when removing client from list:
+                                    let clientData = document.getElementById("added-clients").innerHTML;
+                                    document.getElementById("AddedClientsData") = clientData;
                                 }
                             });
 
@@ -1296,12 +1297,16 @@
                                     });
                                     newClient.appendChild(removeButton);
                                     addedClients.appendChild(newClient);
+                                    
+                                    //here we fill the hidden input with added clients:
+                                    let clientData = document.getElementById("added-clients").innerHTML;
+                                    document.getElementById("AddedClientsData") = clientData;
                                 }
                             });
                             //end of client filling
                             //opening Measure
                             const editMeasureInfo = document.querySelector('#editMeasureInfo');
-                            editMeasureInfo.classList.add('trans');
+                            editMeasureInfo.classList.add('transM');
                         }
                     });
                 });
