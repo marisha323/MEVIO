@@ -200,7 +200,7 @@
 
 <div class="calendar-container">
     @*measure right menu*@
-   <form method="post" action="@Url.Action("EditMeasure")">
+    <form method="post" action="@Url.Action("EditMeasure")">
         <div id="editMeasureInfo" class="measure-info-block">
             <img onclick="closeEvent()" class="closeMenuBtn" src="https://cdn.discordapp.com/attachments/684475244664193242/1074858765746180208/free-icon-cross-mark-4225670.png">
             <div class="container">
@@ -276,14 +276,28 @@
                     </div>
                 </div>
             </div>
-            <input type="hidden" name="AddedClients" id="AddedClientsData" />
+            <input type="hidden" name="AddedClients" id="clientsI" />
             <div class="box-shadow">
-                <button type="submit" class="footer-button save">Зберегти</button>
+                <button type="submit" onclick="submitform()" class="footer-button save">Зберегти</button>
                 <button type="button" class="footer-button cancel">Скасувати</button>
             </div>
         </div>
     </form>
     <script>
+        function submitform() {
+            const measureName = document.querySelector('#MeasureName.task-nameM');
+            const measureBegin = document.querySelector('#MeasureBegin');
+            const measureEnd = document.querySelector('#MeasureEnd');
+            const measureDirImg = document.querySelector('#MeasureDirImg.logo-imgM');
+            const measureDirName = document.querySelector('#MeasureDirName');
+            const venue = document.querySelector('#Venue.place-select');
+            const maxSpaces = document.querySelector('#MaxSpaces');
+            const measureClients = document.querySelector('#MeasureClients.clients-list');
+            const addedClients = document.querySelector('.added-clients').innerHTML;
+
+            //here we fill the hidden input with added clients:
+            document.getElementById("clientsI") = addedClients;
+        }
 
         const button = document.querySelector(".add-client-button");
 
@@ -815,7 +829,7 @@
                             string[] arr = new string[] { "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
                             foreach (var item in arr)
                             {
-                                    <div class="option-item">item</div>
+                                <div class="option-item">item</div>
                             }
                         }
                     </div>
@@ -1032,7 +1046,7 @@
                 paragraph.addEventListener('click', function () {
                     let selectedTaskId = element.querySelector("input[type=hidden]").value;
                     //Open Event
-                            rightMenu.classList.add("trans");
+                    rightMenu.classList.add("trans");
 
                     tasksData.forEach(item => {
                         if (item.Id == selectedTaskId) {
@@ -1169,7 +1183,7 @@
                                     });
                                 }
                             });
-                            
+
                         }
                     });
                 });
@@ -1270,9 +1284,7 @@
                                         measureClients.removeChild(newClient);
                                     });
                                     measureClients.appendChild(newClient);
-                                    //here we update the value of AddedClientData when removing client from list:
-                                    let clientData = document.getElementById("added-clients").innerHTML;
-                                    document.getElementById("AddedClientsData") = clientData;
+
                                 }
                             });
 
@@ -1297,10 +1309,8 @@
                                     });
                                     newClient.appendChild(removeButton);
                                     addedClients.appendChild(newClient);
-                                    
-                                    //here we fill the hidden input with added clients:
-                                    let clientData = document.getElementById("added-clients").innerHTML;
-                                    document.getElementById("AddedClientsData") = clientData;
+
+
                                 }
                             });
                             //end of client filling
