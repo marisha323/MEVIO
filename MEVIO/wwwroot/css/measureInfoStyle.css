@@ -128,10 +128,10 @@
 }
 
 /*.right-menu*/
-.trans {
+.transM {
     /*defualt was right:0; might be errors with style*/
     /*left: 10rem;*/
-    left: 22rem;
+    left: 24rem;
     /*right: 0;*/ /* set the right property to a different fixed pixel value */
     /*transition: right 0.3s ease-in-out;*/
     /*opacity: 1;*/    /* set opacity to 1 */
@@ -154,7 +154,7 @@
         transform: translateX(-50%) scale(1.1);
     }
 /*///////////////////////////////*/
-.task-name {
+.task-nameM {
     font-size: 2rem;
     /* line-height: 54px; */
     color: #52A7E4;
@@ -163,7 +163,7 @@
 }
 
 
-.task-desc {
+.task-descM {
     width: 90%;
     margin: auto;
     display: flex;
@@ -175,7 +175,7 @@
     width: 100%;
 }
 
-.task-head {
+.task-headM {
     background-color: #52A7E4;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
