@@ -17,7 +17,7 @@
         height: 3rem;
     }
 
-    .remove-client {
+    .client-div {
         cursor: pointer;
     }
 
@@ -205,12 +205,14 @@
             <img onclick="closeEvent()" class="closeMenuBtn" src="https://cdn.discordapp.com/attachments/684475244664193242/1074858765746180208/free-icon-cross-mark-4225670.png">
             <div class="container">
                 <div id="MeasureName" name="MeasureNameM" class="task-nameM">Захід №1</div>
+                <input type="hidden" name="MeasureNameI" />
                 <div class="task-descM">
                     <div class="task-right">
                         <div class="task-headM">
                             <p id="MeasureBegin">
                                 <b>Початок:</b> 02/02/2023 12:00
                             </p>
+                            
                             <p id="MeasureEnd">
                                 <b>Кінець:</b> 02/02/2023 15:00
                             </p>
@@ -276,7 +278,7 @@
                     </div>
                 </div>
             </div>
-            <input type="hidden" name="AddedClients" id="clientsI" />
+
             @*bruh*@
             <div class="box-shadow">
                 <button type="submit" onclick="submitform()" class="footer-button save">Зберегти</button>
@@ -286,18 +288,25 @@
     </form>
     <script>
         function submitform() {
+            //name
             const measureName = document.querySelector('#MeasureName.task-nameM');
+            const measureNameInput = document.querySelector('input[name="MeasureNameI"]');
+            measureNameInput.value = measureName.innerText;
+
+            //begin date
             const measureBegin = document.querySelector('#MeasureBegin');
+            //end date
             const measureEnd = document.querySelector('#MeasureEnd');
+
             const measureDirImg = document.querySelector('#MeasureDirImg.logo-imgM');
             const measureDirName = document.querySelector('#MeasureDirName');
             const venue = document.querySelector('#Venue.place-select');
             const maxSpaces = document.querySelector('#MaxSpaces');
             const measureClients = document.querySelector('#MeasureClients.clients-list');
-            const addedClients = document.querySelector('.added-clients').innerHTML;
+            const addedClients = document.querySelector('.added-clients');
 
             //here we fill the hidden input with added clients:
-            document.getElementById("clientsI") = addedClients;
+            
         }
 
         const button = document.querySelector(".add-client-button");
@@ -830,7 +839,7 @@
                             string[] arr = new string[] { "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
                             foreach (var item in arr)
                             {
-                                <div class="option-item">item</div>
+                                    <div class="option-item">item</div>
                             }
                         }
                     </div>
@@ -1254,65 +1263,40 @@
                             measureClients.innerHTML = '';
                             addedClients.innerHTML = '';
 
-                            const existingClientIds = measureclientsData
-                                .filter(Mclient => Mclient.MeasureId == item.Id)
-                                .map(Mclient => Mclient.ClientId);
-
                             clientsData.forEach(client => {
-                                const newClient = document.createElement('p');
-                                newClient.classList.add('client-div');
-                                newClient.setAttribute('id', `client_${client.Id}`);
-                                newClient.textContent = `Клієнт №:${client.ClientName}`;
+                                let foundMatch = false;
 
-                                if (existingClientIds.includes(client.Id)) {
-                                    const removeButton = document.createElement('span');
-                                    removeButton.textContent = "X";
-                                    removeButton.classList.add('remove-client');
-                                    removeButton.addEventListener('click', () => {
-                                        newClient.removeChild(removeButton);
-                                        measureClients.appendChild(newClient);
-                                        measureclientsData = measureclientsData.filter(
-                                            Mclient => !(Mclient.MeasureId == item.Id && Mclient.ClientId == client.Id)
-                                        );
-                                    });
-                                    newClient.appendChild(removeButton);
-                                    addedClients.appendChild(newClient);
-                                } else {
-                                    newClient.addEventListener('click', () => {
-                                        const mclient = { MeasureId: item.Id, ClientId: client.Id };
-                                        measureclientsData.push(mclient);
-                                        addedClients.appendChild(newClient);
-                                        measureClients.removeChild(newClient);
-                                    });
-                                    measureClients.appendChild(newClient);
+                                measureclientsData.forEach(Mclient => {
+                                    if (client.Id == Mclient.ClientId && Mclient.MeasureId == item.Id) {
+                                        // Found a match, add client to addedClients
+                                        addedClients.innerHTML += '<div class="client-div"><p>' + client.ClientName + '</p><input type="hidden" name="AddedClients[]" value="' + client.Id + '"></div>';
+                                        foundMatch = true;
+                                    }
+                                });
 
+                                if (!foundMatch) {
+                                    // Did not find a match, add client to measureClients
+                                    measureClients.innerHTML += '<div class="client-div"><p>' + client.ClientName + '</p><input type="hidden" name="MeasureClients[]" value="' + client.Id + '"></div>';
                                 }
                             });
 
-                            measureClients.addEventListener('click', (event) => {
-                                if (event.target.tagName.toLowerCase() === 'p') {
-                                    const clientToMove = event.target;
-                                    measureClients.removeChild(clientToMove);
-                                    const clientId = clientToMove.id.replace('client_', '');
-                                    const newClient = document.createElement('p');
-                                    newClient.classList.add('client-div');
-                                    newClient.setAttribute('id', `client_${clientId}`);
-                                    newClient.textContent = `Клієнт №:${clientToMove.textContent.replace('Клієнт №:', '')}`;
-                                    const removeButton = document.createElement('span');
-                                    removeButton.textContent = "X";
-                                    removeButton.classList.add('remove-client');
-                                    removeButton.addEventListener('click', () => {
-                                        newClient.removeChild(removeButton);
-                                        measureClients.appendChild(newClient);
-                                        measureclientsData = measureclientsData.filter(
-                                            Mclient => !(Mclient.MeasureId == item.Id && Mclient.ClientId == clientId)
-                                        );
-                                    });
-                                    newClient.appendChild(removeButton);
-                                    addedClients.appendChild(newClient);
-
-
-                                }
+                            // Add click event listeners to client elements
+                            const clientDivs = document.querySelectorAll('.client-div');
+                            clientDivs.forEach(clientDiv => {
+                                clientDiv.addEventListener('click', () => {
+                                    const input = clientDiv.querySelector('input');
+                                    if (clientDiv.parentNode === addedClients) {
+                                        // Clicked on addedClient, move to measureClient
+                                        input.name = 'MeasureClients';
+                                        addedClients.removeChild(clientDiv);
+                                        measureClients.appendChild(clientDiv);
+                                    } else if (clientDiv.parentNode === measureClients) {
+                                        // Clicked on measureClient, move to addedClient
+                                        input.name = 'AddedClients';
+                                        measureClients.removeChild(clientDiv);
+                                        addedClients.appendChild(clientDiv);
+                                    }
+                                });
                             });
                             //end of client filling
                             //opening Measure
