@@ -185,7 +185,7 @@
 
                   @*  @if (itemTaskUser.TaskId == itemTasks.Id && itemTaskUser.UserId == itemUsers.Id && itemTaskUser.IsCreator == true ) @*Робимо перевірку на відповідність користувача до задачі*@
                         
-                   @if (itemTaskUser.TaskId == itemTasks.Id && itemTaskUser.UserId == itemUsers.Id)
+                   @if (itemTaskUser.TasksId == itemTasks.Id && itemTaskUser.UserId == itemUsers.Id)
                 {
 
                     <div class="div-obj-News">
@@ -197,7 +197,7 @@
                                                     {
                                                         @foreach (var itemTaskUsers1 in ViewBag.TaskUsers)
                                     {
-                                                        @if (creators.Id == itemTaskUsers1.UserId && itemTasks.Id == itemTaskUsers1.TaskId && itemTaskUsers1.IsCreator == true)
+                                                        @if (creators.Id == itemTaskUsers1.UserId && itemTasks.Id == itemTaskUsers1.TasksId && itemTaskUsers1.IsCreator == true)
                                                         {
                                                               <p class="Nick-Name">@creators.UserName</p>
                                                         }
@@ -216,7 +216,7 @@
                                     @foreach (var itemTaskUsers in ViewBag.TaskUsers)
                                     {
 
-                                        @if (itemTaskUsers.TaskId == itemTasks.Id && itemTaskUsers.UserId == item.Id) @*Робимо перевірку на відповідність користувача до задачі*@
+                                        @if (itemTaskUsers.TasksId == itemTasks.Id && itemTaskUsers.UserId == item.Id) @*Робимо перевірку на відповідність користувача до задачі*@
                                         {
                                             <p class="Sotrydniki">@item.UserName</p>
                                         }

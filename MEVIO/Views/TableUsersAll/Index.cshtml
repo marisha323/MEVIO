@@ -3,3 +3,226 @@
 *@
 @{
 }
+<link type="text/css" rel="stylesheet" href="/css/TableUsersAll.css">
+<style>
+    .namep {
+    /*margin-left: auto;
+    margin-right: auto;*/
+    
+    align-items:center;
+    text-align:center;
+    margin-top:1.7rem;
+}
+.numb {
+    margin-left: auto;
+    margin-top: 20%;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-right:1.5rem;
+}
+.namepimg {
+    /*margin-left: auto;
+    margin-right: auto;*/
+    
+    align-items:center;
+    text-align:center;
+    margin-top:0.5rem;
+}
+.imgs p {
+        color: #ffffff;
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.5rem;
+        /*margin-left: 3rem;*/
+        text-align:center;
+    }
+    .imgs {
+    grid-column-start: 2;
+    border: 1px solid #52a7e4;
+    justify-content: center;
+}
+.user-img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    margin-top: 0.2rem;
+    /*margin-left: 35%;*/
+    justify-content: center;
+}
+.name {
+    grid-column-start: 3;
+    border: 1px solid #52a7e4;
+    color: #ffffff;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    justify-content: center;
+}
+
+    .displaynone {
+        display: none;
+    }
+
+    .active {
+        display: block;
+    }
+
+
+    .div-search{
+        display:grid;
+        grid-template-columns:4fr 1fr;
+        align-items:center;
+        border-radius: 1rem;
+        border: 1px solid #52A7E4;
+        width:45%;
+        column-gap:0.5rem;
+    }
+
+    .searchImg{
+        width:2rem;
+        cursor:pointer;
+    }
+
+    .search {
+        box-sizing: border-box;
+        height: 5.375rem;
+        background: #111624;
+        font-family: 'Inter';
+        font-style: normal; 
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 24px;
+        color: #BAE2FF;
+        border:none;
+        outline:none;
+        border-right: 1px solid #52A7E4;
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        padding-left:0.5rem;
+        content-align:center;
+    }
+
+    .active-input{
+        border: 1px solid #4BFF99;
+    }
+    .rolex {
+    grid-column-start: 5;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: #ffffff;
+    border: 1px solid #52a7e4;
+}
+.box {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 2fr 2fr 2fr;
+    background: #111624;
+    box-shadow: 10px 20px 40px rgba(82, 167, 228, 0.25);
+}
+</style>
+
+
+
+
+<div class="cont">
+    <div class="button-cont">
+        @*<button id="btnUser" class="button_">
+            Користувач
+        </button>*@
+
+        <div class="div-search">
+            <input class="search" id="searchInput">
+
+            <a asp-action="Index">
+                <img class="searchImg" src="/img/free-icon-search-4194718.png">
+            </a>
+            
+        </div>
+
+        
+
+        @*<button id="btnStudent" class="button_">
+            Студент
+        </button>*@
+    </div>
+
+    <div class="ww">
+        <div class="box">
+            <div class="imgs"><p class="namep">Ім'я кліенту</p></div>
+            <div class="name "><p class="namep">Події</p></div>
+            <div class="role"><p class="namep">Задачі</p></div>
+            <div class="rolex"><p class="namep">Заходи</p></div>
+        </div>
+        <div id="UserTable" class="displaynone active">
+        @{
+            var counterUsers = 1;
+        }
+        @foreach (var itemUsers in ViewBag.Users)
+        {
+            <div class="box">
+                <p class="numb">@counterUsers</p>
+
+                <div class="imgs">
+                        <p class="namep"><a asp-controller="ZapTeacher" asp-action="Teacher" asp-route-id="@itemUsers.Id" class="namea">@itemUsers.UserName</a></p>
+                </div>
+
+                <div class="name">
+                    <p>
+                      <p class="namep"> </p>
+                    </p>
+                </div>
+
+                  <div class="role">
+                    <p class="namep"></p>
+                      </div>
+
+                      <div class="rolex">
+                    <p class="namep"></p>
+                </div>
+            </div>
+       }
+        </div>
+       
+
+    </div>
+</div>
+
+  <script>
+
+      document.getElementById("searchInput").addEventListener("focus",()=>{
+          const div=document.querySelector(".div-search");
+
+        $(div).addClass("active-input");
+      });
+
+    document.getElementById("searchInput").addEventListener("focusout", () => {
+        const div = document.querySelector(".div-search");
+
+        $(div).removeClass("active-input");
+    })
+
+       const btnuser = document.getElementById("btnUser")
+       const usertable = document.getElementById("UserTable")
+
+       const btnstudent = document.getElementById("btnStudent")
+       const studenttable = document.getElementById("StudentTable")
+
+       btnuser.addEventListener('click', () => 
+  {
+      usertable.classList.add('active');
+      studenttable.classList.remove('active');
+      
+  });
+   btnstudent.addEventListener('click', () => 
+  {
+      usertable.classList.remove('active');
+      studenttable.classList.add('active');
+      
+  });
+  </script>

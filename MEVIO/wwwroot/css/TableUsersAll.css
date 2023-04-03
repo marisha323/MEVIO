@@ -1,0 +1,123 @@
+﻿body {
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.button-cont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4rem;
+    width: 70%;
+}
+
+.cont {
+    background-image: url(./imgs/zyro-image.png);
+   
+}
+
+.button_ {
+    width: 15rem;
+    height: 3rem;
+    cursor: pointer;
+    background: #52a7e4;
+    border-radius: 25px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2rem;
+}
+
+
+
+.box {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 2fr 2fr 2fr;
+    background: #111624;
+    box-shadow: 10px 20px 40px rgba(82, 167, 228, 0.25);
+}
+
+.hr {
+    height: 3rem;
+}
+
+
+
+
+
+    
+
+
+
+
+
+.name a {
+    text-decoration: none;
+    color: #ffffff;
+    
+}
+
+.namea {
+    margin-left: 2rem;
+    margin-top: 0.7rem;
+}
+
+.role {
+    grid-column-start: 4;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: #ffffff;
+    border: 1px solid #52a7e4;
+}
+
+
+
+.ww {
+    margin-top: 1rem;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+/* .mainDivAll {
+  width: 90%;
+  background-image: url(./imgs/zyro-image.png);
+}
+
+
+.buttons{
+    display: flex;
+}
+
+
+
+.user_btn {
+    
+    background: #52A7E4;
+    border-radius: 25px;
+    margin-top: 2rem;
+    margin-left:5rem;
+   
+color: #111624;
+}
+
+.stud_btn{
+   
+
+left: 1112px;
+top: 158px;
+
+background: #52A7E4;
+border-radius: 25px;
+margin-left: 15rem;
+margin-top:2rem;
+margin-right: 2rem;
+} */
