@@ -61,11 +61,13 @@ namespace MEVIO.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> EditMeasure(string AddedClients)
+        public async Task<IActionResult> EditMeasure()
         {
-            var measureName = Request.Form["MeasureNameM"];
-            var measureBegin = Request.Form["MeasureBegin"];
-            var measureEnd = Request.Form["MeasureEnd"];
+            var addedclients = Request.Form["AddedClients"];
+            var selectedVenue = Request.Form["selectedVenue"];
+            var monthbegin = Request.Form["MeasureBeginI"];
+            var monthend = Request.Form["MeasureEndI"];
+            var measureName = Request.Form["MeasureNameI"];
 
             return Redirect("Calendar");
         }
