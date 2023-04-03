@@ -41,6 +41,9 @@ namespace MEVIO.Controllers
             ViewBag.Events = db.Events.AsNoTracking().ToList();
             ViewBag.Tasks = db.Tasks.AsNoTracking().ToList();
             ViewBag.Measures = db.Measures.AsNoTracking().ToList();
+            ViewBag.PlaceForMeasures = db.PlaceForMeasures.AsNoTracking().ToList();
+            ViewBag.MeasureClients = db.MeasuresClients.AsNoTracking().ToList();
+            ViewBag.Clients = db.Clients.AsNoTracking().ToList();
             ViewBag.Monthnames = monthNames;
             ViewBag.users = db.Users.AsNoTracking().ToList();
             ViewBag.TasksUsers = db.TasksUsers.AsNoTracking().ToList();
@@ -56,6 +59,15 @@ namespace MEVIO.Controllers
             //Jello
 
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditMeasure(string AddedClients)
+        {
+            var measureName = Request.Form["MeasureNameM"];
+            var measureBegin = Request.Form["MeasureBegin"];
+            var measureEnd = Request.Form["MeasureEnd"];
+
+            return Redirect("Calendar");
         }
         [HttpGet]
         public async Task<IActionResult> EditEvent(EventViewModel eventView)

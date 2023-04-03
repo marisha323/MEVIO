@@ -63,46 +63,42 @@ namespace MEVIO.Controllers
             var Measureid = int.Parse(Request.Form["Measureid"]);
             var Msid = context?.Measures.FirstOrDefault(o => o.Id.Equals(Measureid))?.Id;
 
+            // var countConract = context.Contracts.Count(c => c.SeasonOfBeginningId == SeaId);
+            //var countConract = 0;
+            //countConract++;
+
+
+            var measurePowerBi = context.MeasurePowerBis.FirstOrDefault(m => m.MeasureId == Msid);
+            if (measurePowerBi != null)
+            {
+                measurePowerBi.ContractsCount++;
+            }
+            else
+            {
+                context.Add(new MeasurePowerBi() { MeasureId = Msid, ContractsCount = 1 });
+            }
+
             context.Add(new Contract() { ClientId = Clid, StudentId = Stid, DateStamp = DateStamp, EducationFormId = EducId, AcademyId = AcId, SeasonOfBeginningId = SeaId, Payment_Form = Payment_Form });
             context.SaveChanges();
-           
-            
-            int countConract = 0;
 
-            context.Add(new MeasurePowerBi() { MeasureId=Msid,ContractsCount=countConract });
+         
+
             //// Создание файла
             //System.IO.File.Create(passrom2).Close();
             var Stname = context?.Students.FirstOrDefault(o => o.Id.Equals(studId))?.StudentName;
-
             var passrom2 = $@"{Directory.GetCurrentDirectory()}\wwwroot\Contract\{Stname}\{Stid}\Contract_{Stname}.docx";
-
             // Создание директории, если ее нет
             Directory.CreateDirectory(Path.GetDirectoryName(passrom2));
-
             // Создание файла
             System.IO.File.Create($"\\Contract_{studId}.docx").Close();
-
 
             var sourceFilePath = $@"{Directory.GetCurrentDirectory()}/wwwroot/document/Contract.docx";
             var destFilePath = $@"{Directory.GetCurrentDirectory()}/wwwroot/Contract/{Stname}/{Stid}/Contract_{Stname}.docx";
 
             // Создание директории, если её ещё нет
 
-
             // Копирование документа
             System.IO.File.Copy(sourceFilePath, destFilePath, true);
-
-            // Открытие документа Word
-            //using (var document2 = WordprocessingDocument.Open($@"{Directory.GetCurrentDirectory()}/wwwroot/document/Contract.docx", true))
-            //{
-            //    // Копирование документа
-            //    var sourceFilePath = $@"{Directory.GetCurrentDirectory()}/wwwroot/document/Contract.docx";
-            //    var destFilePath = $@"{Directory.GetCurrentDirectory()}\wwwroot\Contract\{studId}\Contract_{studId}.docx";
-            //    System.IO.File.Copy(sourceFilePath, destFilePath, true);
-
-            //    // Закрытие документа
-            //    document2.Close();
-            //}
 
             // Открытие созданного документа Word
             using (var document = WordprocessingDocument.Open($@"{Directory.GetCurrentDirectory()}\wwwroot\Contract\{Stname}\{Stid}\Contract_{Stname}.docx", true))
@@ -126,13 +122,6 @@ namespace MEVIO.Controllers
                     var PassportNumber = context.Clients.Where(o => o.Id == Clid).FirstOrDefault().PassportNumber;
                     var DateOfPassportIssue = context.Clients.Where(o => o.Id == Clid).FirstOrDefault().DateOfPassportIssue.ToString();
                     var TIN = context.Clients.Where(o => o.Id == Clid).FirstOrDefault().TIN;
-
-
-                    //var direc = context.Academys.Where(o => o.Id == AcId).FirstOrDefault().UserId;
-                    //var roleDirector = context.UserRoles.Where(o => o.Id == 2).FirstOrDefault().Id;
-                    //var UserName2 = context.Users.Where(a=>a.UserRoleId==roleDirector).FirstOrDefault().Id;
-                    //var UserName = context.Users.Where(o => o.Id == UserName2).FirstOrDefault().UserName;
-
 
                     var userId = context.Academys.Where(o => o.Id == AcId).FirstOrDefault().UserId;
 

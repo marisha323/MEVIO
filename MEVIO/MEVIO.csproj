@@ -42,6 +42,12 @@
     <None Include="wwwroot\js\AddNewEvent.js" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\TableUsersAll\" />
+    <Folder Include="wwwroot\MeasurePhoto\" />
+    <Folder Include="wwwroot\MeasureVideo\" />
+  </ItemGroup>
+
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>
