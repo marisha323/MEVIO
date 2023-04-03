@@ -10,85 +10,74 @@
     .bodyDiv {
         margin-left: 10rem;
     }
+
     .p-Pod {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 24px;
+        color: #FFFFFF;
+        width: 10rem;
+    }
 
-    color: #FFFFFF;
-    width: 10rem;
+    .Sotrydniki {
+        margin: 0;
+        width: fit-content;
+        height: 1.3rem;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        color: #52A7E4;
+    }
 
+    .div-Sob {
+        width: 70%;
+        height: 11rem;
+        margin: 1rem;
+        background: #6C8EED;
+        border-radius: 20px;
+        border: 3px solid #52A7E4;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 24px;
+        color: #FFFFFF;
+    }
+    /*#EventDiv
+    {
+        display:none;
+    }
+    #TaskDiv
+    {
+        display:none;
+    }
+    #MeasureDiv
+    {
+        display:none;
+    }*/
+    .displaynone {
+        display: none;
+    }
 
-}
-.Sotrydniki {
-    margin: 0;
-    width: fit-content;
-    height: 1.3rem;
+    .active {
+        display: block;
+    }
 
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
-
-    color: #52A7E4;
-}
-.div-Sob {
-    width: 70%;
-    height: 11rem;
-    margin: 1rem;
-    background: #6C8EED;
-    border-radius: 20px;
-
-    border: 3px solid #52A7E4;
-
-
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-
-    color: #FFFFFF;
-}
-/*#EventDiv
-{
-    display:none;
-}
-#TaskDiv
-{
-    display:none;
-}
-#MeasureDiv
-{
-    display:none;
-}*/
-  .displaynone
- {
-     display:none;
- }
-  .active
- {
-     display:block;
- }
- .Nick-Name {
-    margin: 0;
-
-    width: 50rem;
-    height: 1rem;
-
-
-
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
-
-    color: #52A7E4;
-}
+    .Nick-Name {
+        margin: 0;
+        width: 50rem;
+        height: 1rem;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        color: #52A7E4;
+    }
 
 </style>
 <body>
@@ -96,7 +85,7 @@
     <div class="bodyDiv">
 
 
-        
+
         @*<iframe title="Report Section" width="1680" height="720" src="https://app.powerbi.com/view?r=eyJrIjoiNmEyMDBkY2QtNDBlMS00YTkxLTg4OTQtMjMzY2NmYTA5MmJhIiwidCI6IjFjMmFhNDFlLTViOTItNDkwNi04MjdlLTBjMTBmOWQ3Mzg1OSIsImMiOjl9" frameborder="0" allowFullScreen="true"></iframe>*@
         <iframe title="PowerBiFinal" width="1680" height="620" src="https://app.powerbi.com/view?r=eyJrIjoiNmEyMDBkY2QtNDBlMS00YTkxLTg4OTQtMjMzY2NmYTA5MmJhIiwidCI6IjFjMmFhNDFlLTViOTItNDkwNi04MjdlLTBjMTBmOWQ3Mzg1OSIsImMiOjl9" frameborder="0" allowFullScreen="true"></iframe>
         <div class="button-cont">
@@ -104,275 +93,274 @@
             <input id="btnEvent" onclick="changeStyle()" type="button" class="button-Podii " value="Події">
             <input id="btnTask" onclick="changeStyle()" type="button" class="button-Zadachi" value="Задачi">
             <button id="btnMeasure" onclick="changeStyle()" class="button-Zahod">Заходи</button>
-            <button id="btnAll" onclick="changeStyle()" class="button-Zahod" >Все</button>
+            <button id="btnAll" onclick="changeStyle()" class="button-Zahod">Все</button>
         </div>
 
- 
-       <div id="EventDiv" class="displaynone active"> @*контейнер з подіями*@
-        @foreach (var itemUsers in ViewBag.Useres) @*Витягуємо список користувачів*@
-        {
-            @foreach (var itemEvents in ViewBag.Eventes) @*Витягуємо список подій*@
+
+        <div id="EventDiv" class="displaynone active">
+            @*контейнер з подіями*@
+            @foreach (var itemUsers in ViewBag.Useres) @*Витягуємо список користувачів*@
             {
-                @foreach (var ItemsEventUsers1 in ViewBag.EventsUsers)
-                                        {
-              @if (itemUsers.Id == itemEvents.UserId) @*Робимо перевірку всередині таблиці подій, на те щоб саме наш користувач був прив'язаний до цієї події*@
+                @foreach (var itemEvents in ViewBag.Eventes) @*Витягуємо список подій*@
+                {
+                    @foreach (var ItemsEventUsers1 in ViewBag.EventsUsers)
                     {
-                       @if (ItemsEventUsers1.EventId == itemEvents.Id && ItemsEventUsers1.UserId == ViewBag.UsersId )@*Перевірка в середині зв'язуючої таблиці на прив'язку користувача який відповідальний за цю подію *@
-                                {
-                            
-                          <div class="div-obj-News">
-                            <div class="div-obj-News-cont">
-                                <div class="div-div-News">
-                                    <img class="img-Ava" src=~/Imeg1/@itemUsers.UserName/@itemUsers.Email/@itemUsers.PathImgAVA>
-                                    <div class="div-Img-Date">
-                                        <p class="Nick-Name">@itemUsers.UserName</p>
-                                        <p class="Data-p">@itemUsers.LastTimeSignIn.ToString("yyyy-MM-dd")</p>
-                                        <p class="Data-p">@itemUsers.LastTimeSignIn.ToString("hh\\:mm")</p>
+                        @if (itemUsers.Id == itemEvents.UserId) @*Робимо перевірку всередині таблиці подій, на те щоб саме наш користувач був прив'язаний до цієї події*@
+                        {
+                            @if (ItemsEventUsers1.EventId == itemEvents.Id && ItemsEventUsers1.UserId == ViewBag.UsersId)@*Перевірка в середині зв'язуючої таблиці на прив'язку користувача який відповідальний за цю подію *@
+                            {
 
-                                    </div>
-                                </div>
+                                <div class="div-obj-News">
+                                    <div class="div-obj-News-cont">
+                                        <div class="div-div-News">
+                                            <img class="img-Ava" src=~/Imeg1/@itemUsers.UserName.Replace(" ", "-")/@itemUsers.Email/@itemUsers.PathImgAVA.Replace(" ", "-")>
+                                            <div class="div-Img-Date">
+                                                <p class="Nick-Name">@itemUsers.UserName</p>
+                                                <p class="Data-p">@itemUsers.LastTimeSignIn.ToString("yyyy-MM-dd")</p>
+                                                <p class="Data-p">@itemUsers.LastTimeSignIn.ToString("hh\\:mm")</p>
 
-                                <div class="users-members">
-                                @foreach (var item in ViewBag.Useres)
-                                {
-                                        @foreach (var ItemsEventUsers in ViewBag.EventsUsers)
-                                        {
-                                            @if (ItemsEventUsers.EventId == itemEvents.Id && ItemsEventUsers.UserId == item.Id)@*Перевірка в середині зв'язуючої таблиці на прив'язку користувача який відповідальний за цю подію *@
+                                            </div>
+                                        </div>
+
+                                        <div class="users-members">
+                                            @foreach (var item in ViewBag.Useres)
                                             {
-                                                <p class="Sotrydniki">@item.UserName</p>
-                                            }
-                                        }
+                                                @foreach (var ItemsEventUsers in ViewBag.EventsUsers)
+                                                {
+                                                    @if (ItemsEventUsers.EventId == itemEvents.Id && ItemsEventUsers.UserId == item.Id)@*Перевірка в середині зв'язуючої таблиці на прив'язку користувача який відповідальний за цю подію *@
+                                                    {
+                                                        <p class="Sotrydniki">@item.UserName</p>
+                                                    }
+                                                }
 
-                                }
-                                </div>
-                                <div class="div-Sob">
-                                    <h6 class="h-Pod">Подія:</h6>
-                                    <div class="div-Naz-Pod">
-                                        <p class="p-Pod">Назва події:</p>
-                                        <p class="p2-Pod">@itemEvents.EventName</p>
-                                    </div>
-                                    <div class="div-Poch-Pod">
-                                        <p class="p1-Pod">Початок:</p>
-                                        <p class="p2-Pod2" id="DateKBegin">@itemEvents.Begin.ToString("yyyy-MM-dd") @*@ViewBag.BeginD*@</p>
-                                        <p class="p2-Pod2" id="DateKBegin">@itemEvents.Begin.ToString("hh\\:mm") </p>
-                                    </div>
-                                    <div class="div-Poch-Pod">
-                                        <p class="p1-Pod">Кінець:</p>
-                                        <p class="p2-Pod2" id="DateKEnd">@itemEvents.End.ToString("yyyy-MM-dd") @*@ViewBag.EndD*@</p>
-                                        <p class="p2-Pod2" id="DateKEnd">@itemEvents.End.ToString("hh\\:mm") @*@ViewBag.EndD*@</p>
-                                    </div>
-                                </div>
+                                            }
+                                        </div>
+                                        <div class="div-Sob">
+                                            <h6 class="h-Pod">Подія:</h6>
+                                            <div class="div-Naz-Pod">
+                                                <p class="p-Pod">Назва події:</p>
+                                                <p class="p2-Pod">@itemEvents.EventName</p>
+                                            </div>
+                                            <div class="div-Poch-Pod">
+                                                <p class="p1-Pod">Початок:</p>
+                                                <p class="p2-Pod2" id="DateKBegin">@itemEvents.Begin.ToString("yyyy-MM-dd") @*@ViewBag.BeginD*@</p>
+                                                <p class="p2-Pod2" id="DateKBegin">@itemEvents.Begin.ToString("hh\\:mm") </p>
+                                            </div>
+                                            <div class="div-Poch-Pod">
+                                                <p class="p1-Pod">Кінець:</p>
+                                                <p class="p2-Pod2" id="DateKEnd">@itemEvents.End.ToString("yyyy-MM-dd") @*@ViewBag.EndD*@</p>
+                                                <p class="p2-Pod2" id="DateKEnd">@itemEvents.End.ToString("hh\\:mm") @*@ViewBag.EndD*@</p>
+                                            </div>
+                                        </div>
                                         <a asp-controller="Chat" asp-action="GetEventChat"
-                                            asp-route-eventId=@itemEvents.Id>
+                       asp-route-eventId=@itemEvents.Id>
                                             <input type="button" value="Обговорити" class="button-Obgovor">
                                         </a>
-                                
-                            </div>
-                        </div>
-                    }}}}}
+
+                                    </div>
+                                </div>
+                            }           }      } }}
         </div>@* кінець контейнера з подіями*@
-        <div id="TaskDiv" class="displaynone active" >  @*контейнер з задачами*@
-        @foreach (var itemUsers in ViewBag.Useres) @*Витягуємо список користувачів*@
-        {
-         @if (itemUsers.Id == ViewBag.UsersId)
-         {
-            @foreach (var itemTasks in ViewBag.Tasks) @*Витягуємо список задач*@
+        <div id="TaskDiv" class="displaynone active">
+            @*контейнер з задачами*@
+            @foreach (var itemUsers in ViewBag.Useres) @*Витягуємо список користувачів*@
             {
-                bool isCreator = false;
-                bool isParticipant = false;
-                @foreach (var itemTaskUser in ViewBag.TaskUsers) @*Витягухємо зв'язуючу таблицю користувачів та задач*@
+                @if (itemUsers.Id == ViewBag.UsersId)
                 {
+                    @foreach (var itemTasks in ViewBag.Tasks) @*Витягуємо список задач*@
+                    {
+                        bool isCreator = false;
+                        bool isParticipant = false;
+                        @foreach (var itemTaskUser in ViewBag.TaskUsers) @*Витягухємо зв'язуючу таблицю користувачів та задач*@
+                        {
 
-                  @*  @if (itemTaskUser.TaskId == itemTasks.Id && itemTaskUser.UserId == itemUsers.Id && itemTaskUser.IsCreator == true ) @*Робимо перевірку на відповідність користувача до задачі*@
-                        
-                   @if (itemTaskUser.TaskId == itemTasks.Id && itemTaskUser.UserId == itemUsers.Id)
-                {
+                            @*  @if (itemTaskUser.TaskId == itemTasks.Id && itemTaskUser.UserId == itemUsers.Id && itemTaskUser.IsCreator == true ) @*Робимо перевірку на відповідність користувача до задачі*@
 
-                    <div class="div-obj-News">
-                        <div class="div-obj-News-cont">
-                            <div class="div-div-News">
-                                        <img class="img-Ava" src=~/Imeg1/@itemUsers.UserName/@itemUsers.Email/@itemUsers.PathImgAVA>
-                                <div class="div-Img-Date">
-                                    @foreach (var creators in ViewBag.Useres)
+                            @if (itemTaskUser.TaskId == itemTasks.Id && itemTaskUser.UserId == itemUsers.Id)
+                            {
+
+                                <div class="div-obj-News">
+                                    <div class="div-obj-News-cont">
+                                        <div class="div-div-News">
+                                            <img class="img-Ava" src=~/Imeg1/@itemUsers.UserName.Replace(" ", "-")/@itemUsers.Email/@itemUsers.PathImgAVA.Replace(" ", "-")>
+                                            <div class="div-Img-Date">
+                                                @foreach (var creators in ViewBag.Useres)
+                                                {
+                                                    @foreach (var itemTaskUsers1 in ViewBag.TaskUsers)
                                                     {
-                                                        @foreach (var itemTaskUsers1 in ViewBag.TaskUsers)
-                                    {
                                                         @if (creators.Id == itemTaskUsers1.UserId && itemTasks.Id == itemTaskUsers1.TaskId && itemTaskUsers1.IsCreator == true)
                                                         {
-                                                              <p class="Nick-Name">@creators.UserName</p>
+                                                            <p class="Nick-Name">@creators.UserName</p>
                                                         }
-                                    }
                                                     }
+                                                }
 
-                                    <p class="Data-p">@itemUsers.LastTimeSignIn.ToString("yyyy-MM-dd")</p>
-                                    <p class="Data-p">@itemUsers.LastTimeSignIn.ToString("hh\\:mm")</p>
+                                                <p class="Data-p">@itemUsers.LastTimeSignIn.ToString("yyyy-MM-dd")</p>
+                                                <p class="Data-p">@itemUsers.LastTimeSignIn.ToString("hh\\:mm")</p>
 
-                                </div>
-                            </div>
+                                            </div>
+                                        </div>
 
-                            <div class="users-members">
-                                @foreach (var item in ViewBag.Useres)
-                                {
-                                    @foreach (var itemTaskUsers in ViewBag.TaskUsers)
-                                    {
+                                        <div class="users-members">
+                                            @foreach (var item in ViewBag.Useres)
+                                            {
+                                                @foreach (var itemTaskUsers in ViewBag.TaskUsers)
+                                                {
 
-                                        @if (itemTaskUsers.TaskId == itemTasks.Id && itemTaskUsers.UserId == item.Id) @*Робимо перевірку на відповідність користувача до задачі*@
-                                        {
-                                            <p class="Sotrydniki">@item.UserName</p>
-                                        }
-                                    }
-                                }
-
-
-                                </div>
-
-                                <div class="div-Sob">
-                                    <h6 class="h-Pod">Задача:</h6>
-                                    <div class="div-Naz-Pod">
-                                        <p class="p-Pod">Назва задачі:</p>
-                                        <p class="p2-Pod">@itemTasks.TaskName</p>
-                                    </div>
-                                    <div class="div-Poch-Pod">
-                                        <p class="p1-Pod">Початок:</p>
-                                        <p class="p2-Pod2" id="DateKBegin">@itemTasks.Begin.ToString("yyyy-MM-dd") @*@ViewBag.BeginD*@</p>
-                                        <p class="p2-Pod2" id="DateKBegin">@itemTasks.Begin.ToString("hh\\:mm") </p>
-                                    </div>
-                                    <div class="div-Poch-Pod" >
-                                        <p class="p1-Pod">Кінець:</p>
-                                        <p class="p2-Pod2" id="DateKEnd">@itemTasks.End.ToString("yyyy-MM-dd") @*@ViewBag.EndD*@</p>
-                                        <p class="p2-Pod2" id="DateKEnd">@itemTasks.End.ToString("hh\\:mm") @*@ViewBag.EndD*@</p>
-                                    </div>
-                                </div>
-                                <input type="button" value="Обговорити" class="button-Obgovor">
-                            </div>
-                        </div>
-                    }}}}}
-        </div>@* кінець контейнера з задачами*@
-        <div id="MeasureDiv" class="displaynone active" > @*контейнер заходів*@
-        @foreach (var itemUsers in ViewBag.Useres) @*Витягуємо список користувачів*@
-        {
-            @if (itemUsers.Id == ViewBag.UsersId)
-         {
-            @foreach (var itemMeasures in ViewBag.Measures)  @*Витягуємо список заходів*@
-            {
-                @foreach (var itemMeasureUsers in ViewBag.MeasureUsers) @*Витягухємо зв'язуючу таблицю користувачів та заходів*@
-                    {
-                    @*@if (itemMeasureUsers.UserId == itemUsers.Id && itemMeasureUsers.MeasureId == itemMeasures.Id && itemMeasureUsers.IsCreator == true)*@ @*Робимо перевірку на те щоб дістануті юзер та захід  були такі самі як в зв'язуючій таблиці, і мали поле IsCreator(Це творець), якщо всі данні збігаються йдемо далі*@
-                    @*{*@
-                        @if (itemMeasureUsers.UserId == itemUsers.Id && itemMeasureUsers.MeasureId == itemMeasures.Id)
-                        {
-                    <div class="div-obj-News">
-                        <div class="div-obj-News-cont">
-                            <div class="div-div-News">
-                                            <img class="img-Ava" src=~/Imeg1/@itemUsers.UserName/@itemUsers.Email/@itemUsers.PathImgAVA>
-                                <div class="div-Img-Date">
-                    
-                                    @foreach (var creators in ViewBag.Useres)
+                                                    @if (itemTaskUsers.TaskId == itemTasks.Id && itemTaskUsers.UserId == item.Id) @*Робимо перевірку на відповідність користувача до задачі*@
                                                     {
-                                                        @foreach (var itemMeasureUsers1 in ViewBag.MeasureUsers)
-                                    {
+                                                        <p class="Sotrydniki">@item.UserName</p>
+                                                    }
+                                                }
+                                            }
+
+
+                                        </div>
+
+                                        <div class="div-Sob">
+                                            <h6 class="h-Pod">Задача:</h6>
+                                            <div class="div-Naz-Pod">
+                                                <p class="p-Pod">Назва задачі:</p>
+                                                <p class="p2-Pod">@itemTasks.TaskName</p>
+                                            </div>
+                                            <div class="div-Poch-Pod">
+                                                <p class="p1-Pod">Початок:</p>
+                                                <p class="p2-Pod2" id="DateKBegin">@itemTasks.Begin.ToString("yyyy-MM-dd") @*@ViewBag.BeginD*@</p>
+                                                <p class="p2-Pod2" id="DateKBegin">@itemTasks.Begin.ToString("hh\\:mm") </p>
+                                            </div>
+                                            <div class="div-Poch-Pod">
+                                                <p class="p1-Pod">Кінець:</p>
+                                                <p class="p2-Pod2" id="DateKEnd">@itemTasks.End.ToString("yyyy-MM-dd") @*@ViewBag.EndD*@</p>
+                                                <p class="p2-Pod2" id="DateKEnd">@itemTasks.End.ToString("hh\\:mm") @*@ViewBag.EndD*@</p>
+                                            </div>
+                                        </div>
+                                        <input type="button" value="Обговорити" class="button-Obgovor">
+                                    </div>
+                                </div>
+                            }           }      } }}
+        </div>@* кінець контейнера з задачами*@
+        <div id="MeasureDiv" class="displaynone active">
+            @*контейнер заходів*@
+            @foreach (var itemUsers in ViewBag.Useres) @*Витягуємо список користувачів*@
+            {
+                @if (itemUsers.Id == ViewBag.UsersId)
+                {
+                    @foreach (var itemMeasures in ViewBag.Measures)  @*Витягуємо список заходів*@
+                    {
+                        @foreach (var itemMeasureUsers in ViewBag.MeasureUsers) @*Витягухємо зв'язуючу таблицю користувачів та заходів*@
+                        {
+                            @*@if (itemMeasureUsers.UserId == itemUsers.Id && itemMeasureUsers.MeasureId == itemMeasures.Id && itemMeasureUsers.IsCreator == true)*@ @*Робимо перевірку на те щоб дістануті юзер та захід  були такі самі як в зв'язуючій таблиці, і мали поле IsCreator(Це творець), якщо всі данні збігаються йдемо далі*@
+                            @*{*@
+                            @if (itemMeasureUsers.UserId == itemUsers.Id && itemMeasureUsers.MeasureId == itemMeasures.Id)
+                            {
+                                <div class="div-obj-News">
+                                    <div class="div-obj-News-cont">
+                                        <div class="div-div-News">
+                                            <img class="img-Ava" src=~/Imeg1/@itemUsers.UserName.Replace(" ", "-")/@itemUsers.Email/@itemUsers.PathImgAVA.Replace(" ", "-")>
+                                            <div class="div-Img-Date">
+
+                                                @foreach (var creators in ViewBag.Useres)
+                                                {
+                                                    @foreach (var itemMeasureUsers1 in ViewBag.MeasureUsers)
+                                                    {
                                                         @if (creators.Id == itemMeasureUsers1.UserId && itemMeasures.Id == itemMeasureUsers1.MeasureId && itemMeasureUsers1.IsCreator == true)
                                                         {
 
-                                                              <p class="Nick-Name">@creators.UserName</p>
+                                                            <p class="Nick-Name">@creators.UserName</p>
                                                         }
-                                    }
                                                     }
-                                                    
-                                    
-                                    <p class="Data-p">@itemUsers.LastTimeSignIn.ToString("yyyy-MM-dd")</p>
-                                    <p class="Data-p">@itemUsers.LastTimeSignIn.ToString("hh\\:mm")</p>
-                                </div>
-                            </div>
-                            <div class="users-members">
-                               
-                                            
-                                       
-                            @foreach (var itemAccept in ViewBag.UserAccept) @*Витягуємо список с таблиці яка перевіряє чи згоден користувач с поставленим заходом*@
-                             {
-                               @foreach (var item in ViewBag.Useres) @*Витягуємо список користувачів*@
-                                {
-                                   @foreach (var items in ViewBag.MeasureUsers) @*Витягухємо зв'язуючу таблицю користувачів та заходів*@
-                                        {                                               
-                                 @if(item.Id ==items.UserId && itemMeasures.Id == items.MeasureId  ) @*Перевіряємо кожного користувача та захід на збіг з  зв'язуючою таблицею*@ 
-                                  {
-                                   @if (item.Id == itemAccept.UserId &&  itemAccept.IsAccept == true && itemAccept.MeasureId == items.MeasureId  ) @*З полученної перевірки  вибираємо користувача та відповідний йому захід з урахуванням  згоди користувача на участь*@
-                                    {
-                                     <p class="Sotrydniki">@item.UserName</p>
-                                    }
-                                  }         
-                                }
-                             }}
-                                </div>
-                                <div class="div-Sob">
-                                    <h6 class="h-Pod">Захід:</h6>
-                                    <div class="div-Naz-Pod">
-                                        <p class="p-Pod">Назва заходу:</p>
-                                        <p class="p2-Pod">@itemMeasures.MeasureName</p>
+                                                }
+
+
+                                                <p class="Data-p">@itemUsers.LastTimeSignIn.ToString("yyyy-MM-dd")</p>
+                                                <p class="Data-p">@itemUsers.LastTimeSignIn.ToString("hh\\:mm")</p>
+                                            </div>
+                                        </div>
+                                        <div class="users-members">
+
+
+
+                                            @foreach (var itemAccept in ViewBag.UserAccept) @*Витягуємо список с таблиці яка перевіряє чи згоден користувач с поставленим заходом*@
+                                            {
+                                                @foreach (var item in ViewBag.Useres) @*Витягуємо список користувачів*@
+                                                {
+                                                    @foreach (var items in ViewBag.MeasureUsers) @*Витягухємо зв'язуючу таблицю користувачів та заходів*@
+                                                    {
+                                                        @if (item.Id == items.UserId && itemMeasures.Id == items.MeasureId) @*Перевіряємо кожного користувача та захід на збіг з  зв'язуючою таблицею*@
+                                                        {
+                                                            @if (item.Id == itemAccept.UserId && itemAccept.IsAccept == true && itemAccept.MeasureId == items.MeasureId) @*З полученної перевірки  вибираємо користувача та відповідний йому захід з урахуванням  згоди користувача на участь*@
+                                                            {
+                                                                <p class="Sotrydniki">@item.UserName</p>
+                                                            }
+                                                        }
+                                                    }
+                                                }       }
+                                        </div>
+                                        <div class="div-Sob">
+                                            <h6 class="h-Pod">Захід:</h6>
+                                            <div class="div-Naz-Pod">
+                                                <p class="p-Pod">Назва заходу:</p>
+                                                <p class="p2-Pod">@itemMeasures.MeasureName</p>
+                                            </div>
+                                            <div class="div-Poch-Pod">
+                                                <p class="p1-Pod">Початок:</p>
+                                                <p class="p2-Pod2" id="DateKBegin">@itemMeasures.Begin.ToString("yyyy-MM-dd") @*@ViewBag.BeginD*@</p>
+                                                <p class="p2-Pod2" id="DateKBegin">@itemMeasures.Begin.ToString("hh\\:mm") </p>
+                                            </div>
+                                            <div class="div-Poch-Pod">
+                                                <p class="p1-Pod">Кінець:</p>
+                                                <p class="p2-Pod2" id="DateKEnd">@itemMeasures.End.ToString("yyyy-MM-dd") @*@ViewBag.EndD*@</p>
+                                                <p class="p2-Pod2" id="DateKEnd">@itemMeasures.End.ToString("hh\\:mm") @*@ViewBag.EndD*@</p>
+                                            </div>
+                                        </div>
+                                        <input type="button" value="Обговорити" class="button-Obgovor">
                                     </div>
-                                    <div class="div-Poch-Pod">
-                                        <p class="p1-Pod">Початок:</p>
-                                        <p class="p2-Pod2" id="DateKBegin">@itemMeasures.Begin.ToString("yyyy-MM-dd") @*@ViewBag.BeginD*@</p>
-                                        <p class="p2-Pod2" id="DateKBegin">@itemMeasures.Begin.ToString("hh\\:mm") </p>
-                                    </div>
-                                    <div class="div-Poch-Pod" >
-                                        <p class="p1-Pod">Кінець:</p>
-                                        <p class="p2-Pod2" id="DateKEnd">@itemMeasures.End.ToString("yyyy-MM-dd") @*@ViewBag.EndD*@</p>
-                                        <p class="p2-Pod2" id="DateKEnd">@itemMeasures.End.ToString("hh\\:mm") @*@ViewBag.EndD*@</p>
-                                    </div>
                                 </div>
-                                <input type="button" value="Обговорити" class="button-Obgovor">
-                            </div>
-                        </div>
-                    }}}}}
+                            }           }      } }}
         </div>@* кінець контейнера з заходами*@
     </div>@*MainDiv End*@
-   </div>
-   
+    </div>
 
-   
+
+
 </body>
 <script>
-   const btnmeasure = document.getElementById("btnMeasure")
-   const measurediv = document.getElementById("MeasureDiv")
+    const btnmeasure = document.getElementById("btnMeasure")
+    const measurediv = document.getElementById("MeasureDiv")
 
-   const btnevent = document.getElementById("btnEvent")
-   const eventdiv = document.getElementById("EventDiv")
+    const btnevent = document.getElementById("btnEvent")
+    const eventdiv = document.getElementById("EventDiv")
 
-   const btntask = document.getElementById("btnTask")
-   const taskdiv = document.getElementById("TaskDiv")
+    const btntask = document.getElementById("btnTask")
+    const taskdiv = document.getElementById("TaskDiv")
 
-   const btnall = document.getElementById("btnAll")
- 
-
-  btnmeasure.addEventListener('click', () => 
-  {
-      measurediv.classList.add('active');
-      taskdiv.classList.remove('active');
-      eventdiv.classList.remove('active');
-  });
-  btnevent.addEventListener('click', () => 
-  {
-      measurediv.classList.remove('active');
-      taskdiv.classList.remove('active');
-      eventdiv.classList.add('active');
-  });
-  btntask.addEventListener('click', () => 
-  {
-      measurediv.classList.remove('active');
-      taskdiv.classList.add('active');
-      eventdiv.classList.remove('active');
-  });
-  btnall.addEventListener('click', () => 
-  {
-      measurediv.classList.add('active');
-      taskdiv.classList.add('active');
-      eventdiv.classList.add('active');
-  });
-   
+    const btnall = document.getElementById("btnAll")
 
 
-        
+    btnmeasure.addEventListener('click', () => {
+        measurediv.classList.add('active');
+        taskdiv.classList.remove('active');
+        eventdiv.classList.remove('active');
+    });
+    btnevent.addEventListener('click', () => {
+        measurediv.classList.remove('active');
+        taskdiv.classList.remove('active');
+        eventdiv.classList.add('active');
+    });
+    btntask.addEventListener('click', () => {
+        measurediv.classList.remove('active');
+        taskdiv.classList.add('active');
+        eventdiv.classList.remove('active');
+    });
+    btnall.addEventListener('click', () => {
+        measurediv.classList.add('active');
+        taskdiv.classList.add('active');
+        eventdiv.classList.add('active');
+    });
+
+
+
+
 
 
 </script>
