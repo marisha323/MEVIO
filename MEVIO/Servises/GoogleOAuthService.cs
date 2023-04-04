@@ -1,7 +1,7 @@
 ﻿using Mevio2Test.Helhers;
 using Microsoft.AspNetCore.WebUtilities;
 
-namespace Mevio2Test.Servises
+namespace Mevio.Servises
 {
     public class GoogleOAuthService
     {
@@ -40,8 +40,8 @@ namespace Mevio2Test.Servises
 
             var authParams = new Dictionary<string, string>
             {
-                { "client_id", ClientId },
-                { "client_secret", ClientSecret },
+                {"client_id", ClientId },
+                {"client_secret", ClientSecret },
                 {"code",code },
                 {"code_verifier", codeVerifier },
                 {"grant_type","authorization_code" },
@@ -55,6 +55,7 @@ namespace Mevio2Test.Servises
 
         public static async Task<TokenResult> RefreshTokenAsync(string refreshToken)
         {
+            var refreshEndpoint ="https://oauth2.googleapis.com/token";
             var refreshParams = new Dictionary<string, string>
             {
                 { "client_id", ClientId },
@@ -63,7 +64,7 @@ namespace Mevio2Test.Servises
                 { "refresh_token", refreshToken }
             };
 
-            var tokenResult = await HttpClientHelper.SendPostRequest<TokenResult>(TokenServerEndpoint, refreshParams);
+            var tokenResult = await HttpClientHelper.SendPostRequest<TokenResult>(refreshEndpoint, refreshParams);
 
             return tokenResult;
         }

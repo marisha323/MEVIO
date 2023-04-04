@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Mevio2Test.Servises
+namespace Mevio.Servises
 {
     public class TokenResult
     {
@@ -18,6 +18,5 @@ namespace Mevio2Test.Servises
 
         [JsonProperty("refresh_token")]
         public string RefreshToken { get; set; }
-
     }
 }

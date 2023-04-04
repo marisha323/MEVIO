@@ -48,7 +48,8 @@
         margin-bottom: auto;
     }
 
-    .mainBox {
+    .mainBox, .mainBoxClient
+    {
         position: absolute;
         display: none;
         z-index: 1;
@@ -56,7 +57,7 @@
     }
 
 
-    #addMembers {
+    #addMembers, #addMembersClient {
         width: 8rem;
         height: 2rem;
         margin: 0.8rem;
@@ -71,11 +72,11 @@
         cursor: pointer;
     }
 
-    .memb {
+    .memb, .membClient {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 12rem;
+        width: 15rem;
         margin-left: 1rem;
         height: 2.5rem;
         background: #a0d7ff;
@@ -118,13 +119,11 @@
             cursor: pointer;
             border: none;
         }
-    /*
-                                    ---------------------window with users*/
+
+    /*--------------------------------window with users*/
     .membersWindow {
         width: 7.6rem;
         height: 2.1rem;
-        /* left: 44.5rem;
-                                        top: 36.8rem;*/
         border: none;
         cursor: pointer;
         background: #52a7e4;
@@ -145,7 +144,7 @@
             color: #111624;
         }
 
-    .box2 {
+    .box2, .box2Client {
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
@@ -224,7 +223,7 @@
         outline: none;
     }
 
-    .secondBox {
+    .secondBox, .secondBoxClient {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -257,7 +256,7 @@
 
 
 
-    .inBox {
+    .inBox, .inBoxClient {
         display: flex;
         justify-items: center;
         align-items: center;
@@ -269,15 +268,15 @@
         margin-right: 1.214rem;
     }
 
-        .inBox:hover {
+        .inBox:hover, .inBoxClient:hover {
             background-color: #52a7e4;
         }
 
-        .inBox p:hover {
+        .inBox p:hover, .inBoxClient p:hover {
             color: #111624;
         }
 
-        .inBox img {
+        .inBox img, .inBoxClient img {
             width: 2rem;
             height: 2rem;
             left: 46rem;
@@ -288,7 +287,7 @@
         }
 
 
-        .inBox p {
+        .inBox p, .inBoxClient p{
             width: 7.857rem;
             height: 18px;
             left: 674px;
@@ -333,13 +332,41 @@
         justify-content: stretch;
     }
 
-    .parent {
+    .parent, .parentClient {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
     }
+
+    .close {
+        color: #111624;
+        cursor: pointer;
+        margin-left:1rem;
+    }
+
+    p {
+        height: 2.5rem;
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.8rem;
+        line-height: 2.5rem;
+        white-space: nowrap;
+        color: #52a7e4;
+    }
+
+
+    .name, .nameClient {
+        width: 15rem;
+        height: 30px;
+        font-weight: bold;
+        font-family: "Inter";
+        font-style: normal;
+        font-size: 1.5rem;
+        line-height: 30px;
+        margin: 1rem;
+        color: #111624;
+    }
 </style>
-
-
 
 <body>
     <div class="mainDiv">
@@ -347,10 +374,76 @@
 
         <div class="insideDiv">
             <form id="eventForm" asp-controller="Meassure" asp-action="AddMeasure" method="POST">
+                
                 <div>
                     <label class="labelF">Новий захід</label>
                     <input type="text" class="inputF" asp-for="@Model.MeasureName" />
                 </div>
+                <div class="description">
+                    <div class="divDescr">
+                        <p class="styleP">Місце проведення</p>
+                    </div>
+                    <select name="placeSpend">
+
+                        @foreach (PlaceForMeasure item in ViewBag.Place)
+                        {
+                            <option value="@item.Id">@item.PlaceForMeasureName</option>
+                        }
+                    </select>
+                </div>
+                <hr />
+
+                @*Add Clients--------------------------------------------------------------*@
+                <div class="description">
+                    <div class="divDescr">
+                        <p class="styleP">Слієнти</p>
+                    </div>
+
+                    <div class="members">
+
+                        <div id="parentClient" class="parentClient">
+                            @*  <div class="membClient">
+                            <img src="~/Imeg1/@ViewBag.NameUser/@ViewBag.ImgPath" />
+                            <p class="nameClient"> @ViewBag.NameUser</p>
+                            <div id="close" class="close">&#10006;</div>
+                            </div>*@
+                        </div>
+
+
+                        <div id="addMembersClient">+ Додати</div>
+
+                        <div class="mainBoxClient" @*style="display: none"*@>
+                            @*<div class="membersWindow">учасники</div>*@
+
+                            <div class="box2Client">
+                                <!-- <div class="first">
+                                  <div class="block">
+                                    <img src="./Img/photo.jpeg" />
+                                    <p>W1sh Agony</p>
+                                    <div>
+                                      <input class="inpSearch" type="search" placeholder="Пошук" />
+                                    </div>
+                                  </div>
+                                </div>  -->
+
+                                <div class="secondBoxClient">
+
+                                    @foreach (var itemUsers in ViewBag.Clients)
+                                    {
+                                        <div class="inBoxClient">
+                                            <p class="clientName">@itemUsers.ClientName</p>
+                                            <span class="clientId" hidden>@itemUsers.Id</span>
+                                            <div class="bird">&#10004;</div>
+                                        </div>
+                                    }
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
 
                 <div class="divTime">
                     <div class="timeText">
@@ -395,20 +488,8 @@
                 </div>
                 <hr /> -->
 
-                <div class="description">
-                    <div class="divDescr">
-                        <p class="styleP">Місце проведення</p>
-                    </div>
-                    <select name="placeSpend">
-
-                        @foreach (PlaceForMeasure item in ViewBag.Place)
-                        {
-                            <option value="@item.Id">@item.PlaceForMeasureName</option>
-                        }
-                    </select>
-                </div>
-                <hr />
-
+               
+                
                 <div class="description">
                     <div class="divDescr">
                         <p class="styleP">Учасники</p>
@@ -462,7 +543,7 @@
                 <div class="hard">
                     <div class="coWorkers" id="coWorkers">
                         <div class="people">
-                            <img src="@ViewBag.ImgPath" />
+                            <img src="~/Imeg1/@ViewBag.NameUser/@ViewBag.ImgPath" />
                             <p class="peopleP styleP">@ViewBag.NameUser</p>
                         </div>
                     </div>
@@ -594,6 +675,75 @@
             });
 
 
+            $('#addMembersClient').click(function ()  //FOR CLIENTS
+            {
+                $(".mainBoxClient").fadeToggle(100);
+
+            });
+
+             //ADD CLIENTS
+            $('.inBoxClient').click(function (e) 
+            {
+                 //
+                //const imgSrcClient = $(this).find('img').attr('src');
+                const clientId = $(this).find(".clientId").text();
+                const clientName = $(this).find('.clientName').text();
+
+                console.log(clientId);
+                console.log(clientName);
+
+
+                //All client on this Event
+                const listClient = document.querySelectorAll(".membClient");
+                console.log(listClient);
+
+                const formClient = document.getElementById("eventForm");
+
+                const inputClient = document.createElement("input");
+                inputClient.hidden = true;
+                inputClient.name = "userId";
+                inputClient.setAttribute("value", clientId);
+                console.log("ClientOk")
+                formClient.appendChild(inputClient);
+
+
+               
+                //Create blocks with users
+                const parentClient = document.getElementById("parentClient");
+
+                const divClient = document.createElement("div");
+                divClient.className = "membClient";
+                divClient.id = clientId;
+
+
+                const pClient = document.createElement("p");
+                pClient.className = "nameClient";
+                pClient.innerText = clientName;
+
+                //Create close button
+                const divClose = document.createElement("div");
+                divClose.className = "close";
+                divClose.innerHTML = "&#10006;";
+
+
+                //divClient.appendChild(img);
+                divClient.appendChild(pClient);
+                divClient.appendChild(divClose);
+                parentClient.appendChild(divClient);
+
+
+                // Добавить обработчик события "click" на элемент "divClose"
+                divClose.addEventListener("click", function () {
+                    parentClient.removeChild(divClient);
+                                      
+                });
+
+                $(".mainBoxClient").css("display", "none");// закриваємо блок з users
+                 $(this).hide();
+            });
+
+
+
 
             //при натисканні на блок з учасником,інфо-бокс про учасника  додається поруч з організатором подіїю Також створюється шкала з часом
             $('.inBox').click(function (e) {
@@ -622,8 +772,14 @@
                 p.className = "name";
                 p.innerText = userName;
 
+                //Create close button
+                const divClose = document.createElement("div");
+                divClose.className = "close";
+                divClose.innerHTML = "&#10006;";
+
                 div.appendChild(img);
                 div.appendChild(p);
+                div.appendChild(divClose);
 
                 parent.appendChild(div);
 
@@ -646,7 +802,7 @@
                 //CREATE Shedule Block для учасників події
 
                 // создаем родительский элемент
-                const parent2 = document.getElementById("parent_Shedules");
+                const parent_Shedules = document.getElementById("parent_Shedules");
 
                 // создаем дочерний элемент "div" и добавляем ему класс "shedule"
                 const schedule = document.createElement("div");
@@ -700,7 +856,7 @@
                 schedule.appendChild(timeSpanRow1);
                 schedule.appendChild(timeSpanRow2);
                 schedule.appendChild(timeSpanRow3);
-                parent2.appendChild(schedule);
+                parent_Shedules.appendChild(schedule);
 
 
 
@@ -731,9 +887,17 @@
 
                 parent3.appendChild(div2)
 
+                
+                // Добавить обработчик события "click" на элемент "divClose"
+                divClose.addEventListener("click", function () {
+                    parent.removeChild(div);
+                    parent_Shedules.removeChild(schedule);
+                    coWorkers.removeChild(div2);
+                });
 
                 $(".mainBox").css("display","none");// закриваємо блок з users
-                console.log("DonE!");
+
+                $(this).hide();
 
             });
 

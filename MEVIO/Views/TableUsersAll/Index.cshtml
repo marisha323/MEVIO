@@ -160,33 +160,77 @@
             <div class="rolex"><p class="namep">Заходи</p></div>
         </div>
         <div id="UserTable" class="displaynone active">
-        @{
-            var counterUsers = 1;
-        }
-        @foreach (var itemUsers in ViewBag.Users)
+            @{
+                var counterUsers = 1;
+            }
+        @foreach (var itemClients in ViewBag.Clients)
         {
-            <div class="box">
+            var counterEvents = 1;
+            var counterTasks = 1;
+            var counterMeasures = 1;
+                <div class="box">
                 <p class="numb">@counterUsers</p>
-
                 <div class="imgs">
-                        <p class="namep"><a asp-controller="ZapTeacher" asp-action="Teacher" asp-route-id="@itemUsers.Id" class="namea">@itemUsers.UserName</a></p>
+                  <p class="namep">@itemClients.ClientName</p>
                 </div>
 
                 <div class="name">
-                    <p>
-                      <p class="namep"> </p>
-                    </p>
+                  @foreach (var itemEventClients in  ViewBag.EventClient)
+                   {          
+                    @foreach (var itemEvents in ViewBag.Events)
+                     {
+                      @if (itemEventClients.ClientId == itemClients.Id && itemEventClients.EventId == itemEvents.Id)
+                       {        
+                         <p class="namep">@counterEvents. @itemEvents.EventName </p>
+                        counterEvents++;
+                       }
+                     } 
+                   }
+                   @if(counterEvents == 1)
+                    {
+                     <p class="namep">Подій немає</p>
+                    }
+                    </div>
+
+                <div class="role">
+                    @foreach (var itemTaskClients in ViewBag.TaskClient)
+                        {
+                          @foreach (var itemTasks in ViewBag.Tasks)
+                            {
+                                @if (itemTaskClients.TaskId == itemTasks.Id && itemTaskClients.ClientId == itemClients.Id)
+                                {
+                                    
+                              <p class="namep">@counterTasks. @itemTasks.TaskName</p>    
+                              counterTasks++;
+                                }
+                            }  
+                        }
+                    @if(counterTasks == 1)
+                    {
+                     <p class="namep">Задач немає</p>
+                    }
                 </div>
 
-                  <div class="role">
-                    <p class="namep"></p>
-                      </div>
-
-                      <div class="rolex">
-                    <p class="namep"></p>
+                <div class="rolex">
+                    @foreach (var itemMeasureClients in ViewBag.MeasureClient)
+                        {
+                            @foreach (var itemMeasures in ViewBag.Measures)
+                            {
+                                @if (itemMeasureClients.ClientId == itemClients.Id && itemMeasureClients.MeasureId == itemMeasures.Id)
+                                {
+                                 <p class="namep">@counterMeasures. @itemMeasures.MeasureName</p> 
+                                 counterMeasures++;
+                                }
+                            }
+                        }
+                        @if (counterMeasures == 1)
+                        {
+                             <p class="namep">Заходів немає</p> 
+                        }
                 </div>
             </div>
-       }
+            counterUsers++;
+        }
         </div>
        
 
