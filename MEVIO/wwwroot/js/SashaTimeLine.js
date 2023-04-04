@@ -142,8 +142,8 @@ function ChangeTimeInput() {
 
 
 
-//time1.addEventListener("change", ChangeTimeInput);
-//time2.addEventListener("change", ChangeTimeInput);
+time1.addEventListener("change", ChangeTimeInput);
+time2.addEventListener("change", ChangeTimeInput);
 
 
 

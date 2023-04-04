@@ -1,6 +1,6 @@
 ﻿using MEVIO.Models;
 using Mevio2Test.Helhers;
-using Mevio2Test.Servises;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -32,6 +32,9 @@ namespace MEVIO.Controllers
             User user = context.Users.Where(o => o.Email == email && o.Password == password).AsNoTracking().FirstOrDefault();
             if (user != null)
             {
+                //Sasha
+                user.LastTimeSignIn = DateTime.Now;
+
                 CookieOptions options = new CookieOptions();
                 options.Expires = DateTime.Now.AddDays(6);
                 options.IsEssential = true;
@@ -40,6 +43,7 @@ namespace MEVIO.Controllers
                 string str = JsonSerializer.Serialize(user);
 
                 HttpContext.Response.Cookies.Append("UserLoggedIn", str, options);
+
 
                
                  return Redirect("/MainPage/MainPage");
