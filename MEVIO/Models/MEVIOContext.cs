@@ -49,6 +49,10 @@ namespace MEVIO.Models
         public DbSet<UserRole> UserRoles { get; set; } = null!;
         public DbSet<UserTaskAcceptStatus> UserTaskAcceptStatuses { get; set; } = null!;//+
         public DbSet<WatchingPerson> WatchingPeople { get; set; } = null!;
+
+        public DbSet<UserTelegram> UserTelegrams { get; set; } = null!;
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //1мой
