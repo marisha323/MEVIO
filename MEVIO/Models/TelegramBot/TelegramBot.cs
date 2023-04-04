@@ -13,20 +13,14 @@
     public class TelegramBot
     {
         private readonly ITelegramBotClient _botClient;
-
-        // Adding fields to keep track of user data
         private readonly Dictionary<long, string> _usernames = new();
         private readonly Dictionary<long, string> _passwords = new();
         private readonly HashSet<long> _authenticated = new();
-        private readonly MEVIOContext db; // Add this field
+        public MEVIOContext db { get; set; }
 
         public TelegramBot(ITelegramBotClient botClient)
         {
             _botClient = botClient;
-            var optionsBuilder = new DbContextOptionsBuilder<MEVIOContext>();
-            optionsBuilder.UseSqlServer("DefaultConnection");
-
-            db = new MEVIOContext(optionsBuilder.Options);
         }
 
         public void StartReceiving()
@@ -44,6 +38,7 @@
         private async void BotOnMessageReceived(object sender, MessageEventArgs e)
         {
             // Check if message has a command
+
             if (e.Message.Type == MessageType.Text && e.Message.Text.StartsWith('/'))
             {
                 // Handle different commands
@@ -99,7 +94,7 @@
                         }
                     }
 
-                    if(!isValidUser)
+                    if (!isValidUser)
                     {
                         await _botClient.SendTextMessageAsync(
                             chatId: e.Message.Chat,
@@ -111,13 +106,30 @@
                     _passwords.Remove(e.Message.Chat.Id);
                 }
             }
-            else if (!_authenticated.Contains(e.Message.Chat.Id))
+            else
             {
-                // User is not authenticated and not entering credentials, prompt them to log in
-                await _botClient.SendTextMessageAsync(
-                    chatId: e.Message.Chat,
-                    text: "You are not logged in. Please use the /login command to authenticate.");
+                string checkChat = JsonSerializer.Serialize(e.Message.Chat);
+                UserTelegram userkey = db.UserTelegram.Where(o => o.TelegramJson == checkChat).FirstOrDefault();
+                if (userkey != null)
+                {
+                    await _botClient.SendTextMessageAsync(
+                                        chatId: e.Message.Chat,
+                                        text: "You are logged in. If you want to logout, write a command /logout");
+                }
+                else
+                {
+                    await _botClient.SendTextMessageAsync(
+                                        chatId: e.Message.Chat,
+                                        text: "You are not logged in. If you want to login, write a command /login");
+                }
             }
+            //else if (!_authenticated.Contains(e.Message.Chat.Id))
+            //{
+            //    // User is not authenticated and not entering credentials, prompt them to log in
+            //    await _botClient.SendTextMessageAsync(
+            //        chatId: e.Message.Chat,
+            //        text: "You are not logged in. Please use the /login command to authenticate.");
+            //}
         }
         private async Task Login(Chat chat)
         {
@@ -131,24 +143,35 @@
 
         private async Task Logout(Chat chat)
         {
-            var keys = db.UserTelegram.ToList();
-            foreach(var item in keys)
+            var keys = db?.UserTelegram.ToList();
+            foreach (var item in keys)
             {
-                UserTelegram userTelegram = new UserTelegram();
-                userTelegram.UserId = item.UserId;
-                userTelegram.TelegramJson = item.TelegramJson;
                 Chat key = JsonSerializer.Deserialize<Chat>(item.TelegramJson);
-                if(key == chat)
+                if (key.Id == chat.Id)
                 {
+
+                    UserTelegram userTelegram = db.UserTelegram
+                        .Where(o => o.UserId == item.UserId && o.TelegramJson == item.TelegramJson)
+                        .FirstOrDefault();
+
                     db.UserTelegram.Remove(userTelegram);
                     await db.SaveChangesAsync();
+                    // Send a message confirming the logout
+                    await _botClient.SendTextMessageAsync(chatId: chat, text: "You have been logged out.");
                 }
             }
-            // Remove the user's authentication
-            _authenticated.Remove(chat.Id);
-
-            // Send a message confirming the logout
-            await _botClient.SendTextMessageAsync(chatId: chat, text: "You have been logged out.");
+            //// Remove the user's authentication
+            //_authenticated.Remove(chat.Id);
+        }
+        public async Task SendEvent(UserTelegram userTelegram, Event event1, ITelegramBotClient bot, string creator)
+        {
+            Chat key = JsonSerializer.Deserialize<Chat>(userTelegram.TelegramJson);
+            await bot.SendTextMessageAsync(chatId: key, text: $"You got an upcomming Event!\nName: {event1.EventName}\nDescription: {event1.Description}\nBegin Time: {event1.Begin.ToString()}\nEnd Time: {event1.End.ToString()}\nCreator: {creator}");
+        }
+        public async Task SendMeasure(UserTelegram userTelegram, Measure measure, ITelegramBotClient bot, string creator)
+        {
+            Chat key = JsonSerializer.Deserialize<Chat>(userTelegram.TelegramJson);
+            await bot.SendTextMessageAsync(chatId: key, text: $"You got an upcomming Measure!\nName: {measure.MeasureName}\nPlace: {measure.PlaceForMeasure.PlaceForMeasureName}\nBegin Time: {measure.Begin.ToString()}\nEnd Time: {measure.End.ToString()}\nCreator: {creator}");
         }
     }
 }
