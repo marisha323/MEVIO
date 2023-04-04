@@ -3,39 +3,186 @@
 *@
 @{
 }
+
 @model MEVIO.Models.Task
 
 <link type="text/css" rel="stylesheet" href="/css/TaskStyle.css">
+<link type="text/css" rel="stylesheet" href="/css/MyTask.css">
+
 <style>
     .head-button {
-    font-size: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5rem;
-    cursor: pointer;
-    transition: 0.1s;
-    border-radius: 14px;
-    width: 10rem;
-    background-color: #52A7E4;
-    color: #111624;
-}
-.head-button2 {
-    font-size: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5rem;
-    cursor: pointer;
-    transition: 0.1s;
-    border-radius: 14px;
-    width: 10rem;
-   
-}
-.head-button2:hover {
-    background-color: #52A7E4;
-    color: #111624;
-}
+        font-size: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.5rem;
+        cursor: pointer;
+        transition: 0.1s;
+        border-radius: 14px;
+        width: 10rem;
+        background-color: #52A7E4;
+        color: #111624;
+    }
+
+    .head-button2 {
+        font-size: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.5rem;
+        cursor: pointer;
+        transition: 0.1s;
+        border-radius: 14px;
+        width: 10rem;
+    }
+
+        .head-button2:hover {
+            background-color: #52A7E4;
+            color: #111624;
+        }
+    /*мои стили*/
+    .podvodka {
+        width: 100%;
+        height: 40%;
+        margin-top: 1rem;
+        resize: none;
+        background-color: #111624;
+        border: 1px solid #52A7E4;
+        border-radius: 20px;
+        padding: 1rem;
+        font-size: 1.5rem;
+        color: #52A7E4;
+    }
+
+    .divStrockZap2 {
+        width: 80%;
+        height: 1.875rem;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 700;
+        line-height: 30px;
+        color: #BAE2FF;
+        padding-left: 0.7rem;
+        /* border: 1px solid #52A7E4;
+             border-radius: 15px;*/
+        border: none;
+        background: #111624;
+        font-size: 1.5rem;
+        outline: none;
+    }
+
+    .check_list_div {
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+        height: 40%;
+        margin-top: 0.5rem;
+        margin-left: 1rem;
+        resize: none;
+        background-color: #111624;
+        border: 1px solid #52A7E4;
+        border-radius: 15px;
+        padding: 0.3rem;
+        font-size: 1.5rem;
+        color: #52A7E4;
+    }
+
+    .radiob_mulaz {
+        width: 1.5rem;
+        ;
+        height: 1.5rem;
+        ;
+        margin-left: 1.5rem;
+        resize: none;
+        background-color: #A0D7FF;
+        border-radius: 25px;
+        color: #52A7E4;
+        margin-top: 0.5rem;
+    }
+
+    .check_list_name {
+        width: 20%;
+        height: 1.5rem;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 700;
+        line-height: 30px;
+        color: #BAE2FF;
+        padding-left: 0.7rem;
+        border: 1px solid #52A7E4;
+        border-radius: 15px;
+        border: none;
+        background: #111624;
+        font-size: 1.5rem;
+        /* outline:none;*/
+        margin-left: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .check_list_name_lable {
+        width: 100%;
+        height: 2.5rem;
+        color: #BAE2FF;
+        font-size: 1.5rem;
+        margin: 1rem;
+    }
+
+    .div_button {
+        display: flex;
+        flex-direction: row;
+        border: 1px solid #52A7E4;
+        width: 35%;
+        height: 2rem;
+        margin-left: 5rem;
+        margin-top: 1rem;
+        padding: 0.5rem;
+    }
+
+    .buttonWithinPerson {
+        color: #A0D7FF;
+        width: 50%;
+        height: 1rem;
+        background-color: none;
+        font-size: 1rem;
+        margin-left: 0.8rem;
+        cursor: pointer;
+    }
+
+    .buttonWithinPerson2 {
+        color: #A0D7FF;
+        width: 50%;
+        height: 1rem;
+        font-size: 1rem;
+        margin-left: 0.8rem;
+        cursor: pointer;
+    }
+
+    .button_botom_div_con {
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+        height: 40%;
+        margin-top: 0.5rem;
+        margin-left: 1rem;
+        padding: 0.3rem;
+        font-size: 1.5rem;
+    }
+
+    .add_check {
+        color: #A0D7FF;
+        cursor: pointer;
+    }
+
+    .delete_check {
+        color: #DB1A1A;
+        margin-left: 4rem;
+        cursor: pointer;
+    }
+
+    .parent, .parentClient {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 </style>
 <body id="body">
     <div class="container">
@@ -45,80 +192,245 @@
             <div class="head-button2">Заходи</div>
         </div>
         <form id="taskForm" asp-controller="Task" asp-action="AddTask" method="post">
-        <div>
-            <input type="text" asp-for="@Model.TaskName" on class="head-input" placeholder="Ввести назву завдання">
-        </div>
-
-        <div>
-            <textarea class="textarea" asp-for="@Model.Description" placeholder="Опис"></textarea>
-        </div>
-
-        <div class="check-list-flex">
-            <div class="flex">
-                <input type="file" name="file" id="file" hidden>
-                <label class="label" for="file"><img src="img/free-icon-paperclip-8774561 2.png" alt=""></label>
-                <label for="file" class="label">Файл</label>
+            <div>
+                <input type="text" asp-for="@Model.TaskName" on class="head-input" placeholder="Ввести назву завдання">
             </div>
 
             <div>
-                <label for="" class="label check-list">+ Чек лист</label>
+                <textarea class="textarea" asp-for="@Model.Description" placeholder="Опис"></textarea>
             </div>
-        </div>
 
-        <div class="response-block">
-            <div class="response-div">Відповідальний</div>
-            <div class="response-div">
-                <div class="add-response-block">
-                    <div class="user-block">
-                        W1sh
-                    </div>
-                    <div class="add-response-user">
-                        + Додати ще
-                    </div>
+            <div class="check-list-flex">
+                <div class="flex">
+                    <input type="file" name="file" id="file" hidden>
+                    <label class="label" for="file"><img src="img/free-icon-paperclip-8774561 2.png" alt=""></label>
+                    <label for="file" class="label">Файл</label>
+                </div>
+
+                <div>
+                    <label for="" class="label check-list">+ Чек лист</label>
                 </div>
 
             </div>
-            <div class="response-div">Постановник</div>
-        </div>
+            <div class="podvodka">
+                <input class="divStrockZap2" value="чек лист" />
+                <br />
+                <hr class="hr">
+                <div class="ollChek">
+                    <div class="div_button">
+                        <label class="buttonWithinPerson">+ спостерiгач</label>
+                        <label class="buttonWithinPerson">+ співвиконавець</label>
+                    </div>
+                    <div class="check_list_div">
 
-        <hr class="hr">
+                        <div class="radiob_mulaz"></div>
+                        <input type="text" class="check_list_name" />
+                        <div class="parent">
+                            <label class="check_list_name_lable">Max Voloshov</label>
+                            <label class="check_list_name_lable">Max Voloshov</label>
+                            <label class="check_list_name_lable">Max Voloshov</label>
+                            <label class="check_list_name_lable">Max Voloshov</label>
+                            <label class="check_list_name_lable">Max Voloshov</label>
+                            <label class="check_list_name_lable">Max Voloshov</label>
+                        </div>
 
-        <div id="responseBlock" class="response-block">
-            <div class="response-div">Крайній термін</div>
-            <div class="response-div">
-                <input class="conData" type="date" id="date" name="date">
+                    </div>
+                </div>
+                <div id="addCheck">
+                </div>
+                <div class="button_botom_div_con">
+                    <label id="butonaddcheck" class="add_check">+ Добавить пункт</label>
+                    <label onclick="deleteCheckList()" class="delete_check">+ Удалить чек лист</label>
+                </div>
             </div>
-            <div id="planTerm" class="response-div">Планування термінів</div>
-        </div>
+            <div class="response-block">
+                <div class="response-div">Відповідальний</div>
+                <div class="response-div">
+                    <div class="add-response-block">
+                        <div class="user-block">
+                            W1sh
+                        </div>
+                        <div class="add-response-user">
+                            + Додати ще
+                        </div>
+                    </div>
 
-        <hr class="hr">
-
-        <div class="results-block">
-            <div class="result">
-                Результати завдання
+                </div>
+                <div class="response-div">Постановник</div>
             </div>
-            <div>
-                <input class="alert-checkbox" type="checkbox" name="" id="alertMe">
-                <label class="label-alert" for="alertMe">Обов'язковий звіт при завершенні завдання</label>
-            </div>
-        </div>
 
-        <div class="submit-block">
-            <button type="submit" class="form-button">Зберегти</button>
-            <div class="form-button">Відмінити</div>
-        </div>
+            <hr class="hr">
+
+            <div id="responseBlock" class="response-block">
+                <div class="response-div">Крайній термін</div>
+                <div class="response-div">
+                    <input class="conData" type="date" id="date" name="date">
+                </div>
+                <div id="planTerm" class="response-div">Планування термінів</div>
+            </div>
+
+            <hr class="hr">
+
+            <div class="results-block">
+                <div class="result">
+                    Результати завдання
+                </div>
+                <div>
+                    <input class="alert-checkbox" type="checkbox" name="" id="alertMe">
+                    <label class="label-alert" for="alertMe">Обов'язковий звіт при завершенні завдання</label>
+                </div>
+            </div>
+
+            <div class="submit-block">
+                <button type="submit" class="form-button">Зберегти</button>
+                <div class="form-button">Відмінити</div>
+            </div>
 
         </form>
     </div>
 
     <script>
-        var dob=document.getElementById("responseBlock")
-        document.getElementById("planTerm").addEventListener("click", function() {
-     var input = document.createElement("input");
-     input.type = "date";
-     input.classList="response-div";
-     dob.appendChild(input);
-});
+        var dob = document.getElementById("responseBlock")
+        document.getElementById("planTerm").addEventListener("click", function () {
+            var input = document.createElement("input");
+            input.type = "date";
+            input.classList = "response-div";
+            dob.appendChild(input);
+        });
+
+        //мой скрипт
+        //створення addCheck
+        const buttonAddCheck = document.querySelector('#butonaddcheck');
+        const addCheck = document.querySelector('#addCheck');
+
+        buttonAddCheck.addEventListener('click', function () {
+            // Створення нових елементів
+            const ollChek = document.createElement('div');
+            ollChek.classList.add('ollChek');
+
+            const newdiv_button = document.createElement('div');
+            newdiv_button.classList.add('div_button');
+
+            const newbuttonWithinPerson = document.createElement('label');
+            newbuttonWithinPerson.classList.add('buttonWithinPerson');
+            newbuttonWithinPerson.textContent = '+ спостерiгач';
+
+            const newbuttonWithinPerson2 = document.createElement('label');
+            newbuttonWithinPerson2.classList.add('buttonWithinPerson2');
+            newbuttonWithinPerson2.textContent = '+ співвиконавець';
+
+
+
+            const newCheckList = document.createElement('div');
+            newCheckList.classList.add('check_list_div');
+
+
+
+            const newRadio = document.createElement('div');
+            newRadio.classList.add('radiob_mulaz');
+
+            const newInput = document.createElement('input');
+            newInput.type = 'text';
+            newInput.classList.add('check_list_name');
+
+            const newperent = document.createElement('div');
+            newperent.classList.add('parent');
+
+
+            const newLabel1 = document.createElement('label');
+            newLabel1.classList.add('check_list_name_lable');
+            newLabel1.textContent = 'Max Voloshov';
+
+            const newLabel2 = document.createElement('label');
+            newLabel2.classList.add('check_list_name_lable');
+            newLabel2.textContent = 'Max Voloshov';
+
+            const newLabel3 = document.createElement('label');
+            newLabel3.classList.add('check_list_name_lable');
+            newLabel3.textContent = 'Max Voloshov';
+
+            const newLabel4 = document.createElement('label');
+            newLabel4.classList.add('check_list_name_lable');
+            newLabel4.textContent = 'Max Voloshov';
+
+            // Додавання нових елементів до документу
+            addCheck.appendChild(ollChek);
+            ollChek.appendChild(newdiv_button);
+            newdiv_button.appendChild(newbuttonWithinPerson);
+            newdiv_button.appendChild(newbuttonWithinPerson2);
+
+            ollChek.appendChild(newCheckList);
+            newCheckList.appendChild(newRadio);
+            newCheckList.appendChild(newInput);
+            newCheckList.appendChild(newperent);
+            newperent.appendChild(newLabel1);
+            newperent.appendChild(newLabel2);
+            newperent.appendChild(newLabel3);
+            newperent.appendChild(newLabel4);
+        });
+
+
+        // Навішуємо обробник подій на батьківський елемент, який існує на сторінці
+        addCheck.addEventListener('click', function (event) {
+            // Перевіряємо, щоб клік був на елементі з класом .radiob_mulaz
+            if (event.target.classList.contains('radiob_mulaz')) {
+                const checkListDiv = event.target.closest('.check_list_div');
+                checkListDiv.style.backgroundColor = 'red';
+            }
+        });
+
+
+        const radioButtons = document.querySelectorAll('.radiob_mulaz');
+        radioButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                const checkListDiv = button.closest('.check_list_div');
+                checkListDiv.style.backgroundColor = 'red';
+            });
+        });
+
+        //const deleteBtn = document.querySelector('.delete_check');
+        //deleteBtn.addEventListener('click', function () {
+        //    const checkListDivs = document.querySelectorAll('.check_list_div');
+        //    if (checkListDiv.style.backgroundColor === 'red') {
+        //    checkListDivs.forEach(function (div) {
+        //        div.remove(); // або div.parentNode.removeChild(div);
+        //    });
+        //    }
+        //});
+        //function deleteCheckList() {
+        //    let checkListDiv = document.querySelector('.check_list_div');
+        //    if (checkListDiv.style.backgroundColor === 'red') {
+        //        checkListDiv.remove();
+        //    }
+        //}
+
+
+
+        //function deleteCheckList() {
+        //    const checkListDivs = document.querySelectorAll('.check_list_div');
+        //    const ollCheck = document.querySelectorAll('.check_list_div');
+
+        //    checkListDivs.forEach(checkListDiv => {
+        //        if (checkListDiv.style.backgroundColor === 'red') {
+        //            ollChek.remove();
+        //        }
+        //    });
+        //}
+
+
+
+        function deleteCheckList() {
+            const checkListDivs = document.querySelectorAll('.check_list_div');
+
+            checkListDivs.forEach(checkListDiv => {
+                if (checkListDiv.style.backgroundColor === 'red') {
+                    const ollCheck = checkListDiv.closest('.ollChek');
+                    if (ollCheck) {
+                        ollCheck.remove();
+                    }
+                }
+            });
+        }
     </script>
 
 

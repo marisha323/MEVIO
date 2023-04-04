@@ -84,6 +84,7 @@ namespace MEVIO.Controllers
 
             ViewBag.ChatType = "EventChat";
 
+            ViewBag.Messages = await context.ChatMessages.Where(m => m.EventChatId.Equals(eventChat.Id)).ToListAsync();
 
 
             return View("Index",user);
@@ -111,12 +112,47 @@ namespace MEVIO.Controllers
 
 
 
-        public async Task<IActionResult> SendMessage()
+        public async Task<IActionResult> GetAllMessages(string chatType,int chatId)
         {
 
+            List<ChatMessage> list = new List<ChatMessage>();
+            List<User> users = new List<User>();
+
+            if (chatType.Equals("EventChat"))
+            {
+                list = await context.ChatMessages.Where(m => m.EventChatId.Equals(chatId)).ToListAsync();
+
+                var userList=list.Select(m=>m.UserId).Distinct().ToList();
+
+                //var userList = await context.EventsUsers.Where(e => e.EventId.Equals(eventChat.EventId)).ToListAsync();
+
+                foreach (var item in userList)
+                {
+                    var tmpUser = await context.Users.FirstOrDefaultAsync(u => u.Id.Equals(item));
+
+                    users.Add(tmpUser!);
+
+                }
+            }
+
+            if (chatType.Equals("MeasureChat"))
+            {
+                list = await context.ChatMessages.Where(m => m.MeasureChatId.Equals(chatId)).ToListAsync();
+            }
+
+            if (chatType.Equals("TaskChat"))
+            {
+                list = await context.ChatMessages.Where(m => m.TaskChatId.Equals(chatId)).ToListAsync();
+            }
+
+            if (chatType.Equals("UserChat"))
+            {
+                list = await context.ChatMessages.Where(m => m.UserChatId.Equals(chatId)).ToListAsync();
+            }
 
 
-            return View("Index");
+
+            return Json(new { list = list, users = users });
         }
     }
 }
