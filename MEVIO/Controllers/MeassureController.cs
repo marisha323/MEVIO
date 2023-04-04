@@ -54,10 +54,10 @@ namespace MEVIO.Controllers
         // public async Task<ActionResult> AddMeasure([Bind("Id,MeasureName,Description,UserId,Begin,End,FreePlaces")] Measure measure)
         public async Task<ActionResult> AddMeasure(string MeasureName,  int UserId,int FreePlaces )
         {
-            //All id of users
-            var idsUser = Request.Form["userId"];
-            //All id of clients
-            var idsClient = Request.Form["clientId"];
+            ////All id of users
+            //var idsUser = Request.Form["userId"];
+            ////All id of clients
+            //var idsClient = Request.Form["clientId"];
 
             //DATETIME
             string dateField1 = Request.Form["dateField1"];
@@ -80,9 +80,52 @@ namespace MEVIO.Controllers
             };
 
             context.Measures.Add(measure);
-                context.SaveChanges();
+            context.SaveChanges();
 
+
+
+            // Last ID of Event
+            var lastIdMeasure = context.Measures.ToList().LastOrDefault().Id;
+
+            //All id of users
+            var idsUser = Request.Form["userId"];
+
+
+            //var UserCheck = context.Users.Where(o => o.Id == idsUser).Select(p=>p.Id);
             
+            //Fill MeasureUsers
+            foreach (var usersId in idsUser)
+            {
+                var measureUsers = new MeasureUsers
+                {
+                    MeasureId = lastIdMeasure,
+                    UserId = int.Parse(usersId),
+                    IsCreator = false //устанавливаем false, поскольку это не создатель события
+                };
+                context.MeasuresUsers.Add(measureUsers); //добавляем экземпляр EventsUsers в контекст базы данных
+            }
+
+            context.SaveChanges(); //сохраняем изменения в базе данных
+
+
+            //Fill MeasureClients
+
+            //All id of clients
+            var idsClient = Request.Form["clientName"];
+
+            foreach (var clientsId in idsClient)
+            {
+                var measureClients = new MeasuresClients
+                {
+                    MeasureId = lastIdMeasure,
+                    ClientId = int.Parse(clientsId),
+                    // IsCreator = false //устанавливаем false, поскольку это не создатель события
+                };
+                context.MeasuresClients.Add(measureClients); //добавляем экземпляр EventsUsers в контекст базы данных
+            }
+
+            context.SaveChanges(); //сохраняем изменения в базе данных
+
 
 
             return Redirect("/Home/Index");
