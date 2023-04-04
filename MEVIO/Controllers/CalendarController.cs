@@ -64,7 +64,7 @@ namespace MEVIO.Controllers
         public async Task<IActionResult> EditMeasure()
         {
             var addedclients = Request.Form["AddedClients"];
-             m,var selectedVenue = Request.Form["selectedVenue"];
+            var selectedVenue = Request.Form["selectedVenue"];
             var monthbegin = Request.Form["MeasureBeginI"];
             var monthend = Request.Form["MeasureEndI"];
             var measureName = Request.Form["MeasureNameI"];
