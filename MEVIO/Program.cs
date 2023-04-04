@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Telegram.Bot;
 using MEVIO.Models.TelegramBot;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,7 @@ builder.Services.AddDbContext<MEVIOContext>(options => options.UseSqlServer(conn
 //Add services to the container.
 //Adding a telegram bot service
 builder.Services.AddSingleton<ITelegramBotClient>(new TelegramBotClient("5898521490:AAExzqnbIo-xFBea-Ad26XSvlX8xlxzb96U"));
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSession();
@@ -47,12 +49,23 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 //builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
 builder.Services.AddAuthorization();
-
-
+builder.Services.AddSingleton<TelegramBot>(sp =>
+{
+    var botClient = sp.GetRequiredService<ITelegramBotClient>();
+    return new TelegramBot(botClient);
+});
+//builder.Services.AddSingleton<ITelegramBotClient>(new TelegramBotClient("5898521490:AAExzqnbIo-xFBea-Ad26XSvlX8xlxzb96U"));
 var app = builder.Build();
 
+
 //starting the telegram bot service
-var bot = new TelegramBot(app.Services.GetService<ITelegramBotClient>());
+//ITelegramBotClient tb = new TelegramBotClient();
+// use context }
+//adding db to the telegram bot class
+var scope = app.Services.CreateScope();
+var dbContext = scope.ServiceProvider.GetRequiredService<MEVIOContext>(); // use context }
+var bot = app.Services.GetRequiredService<TelegramBot>();
+bot.db = dbContext;
 bot.StartReceiving();
 
 app.UseSession();//Ï²ÄÊËÞ×ÅÍÍß ÑÅÑ²¯
@@ -75,6 +88,6 @@ app.UseAuthentication();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Registry}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
