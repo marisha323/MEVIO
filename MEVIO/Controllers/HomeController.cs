@@ -47,9 +47,9 @@ namespace MEVIO.Controllers
         {
             var init = new MyInitial(context);
 
-            //init.InitClients();
-            //init.InitUsers();
-            //init.InitEvents();
+            init.InitClients();
+            init.InitUsers();
+            init.InitEvents();
 
 
             return View();

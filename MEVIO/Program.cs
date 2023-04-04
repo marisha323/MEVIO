@@ -3,20 +3,12 @@ using MEVIO.Models;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Telegram.Bot;
-using MEVIO.Models.TelegramBot;
-
 var builder = WebApplication.CreateBuilder(args);
 
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<MEVIOContext>(options => options.UseSqlServer(connection));
 
 //Add services to the container.
-//Adding a telegram bot service
-builder.Services.AddSingleton<ITelegramBotClient>(new TelegramBotClient("5898521490:AAExzqnbIo-xFBea-Ad26XSvlX8xlxzb96U"));
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSession();
@@ -51,9 +43,6 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-//starting the telegram bot service
-var bot = new TelegramBot(app.Services.GetService<ITelegramBotClient>());
-bot.StartReceiving();
 
 app.UseSession();//Ï²ÄÊËÞ×ÅÍÍß ÑÅÑ²¯
 
