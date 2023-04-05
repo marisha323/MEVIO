@@ -639,9 +639,9 @@ namespace MEVIO.Models.StartInitial
             {
                 Begin = DateTime.Now,
                 End = DateTime.Now,
-                Description = "Task 1 Desc",
+                Description = "Task 4 Desc",
                 IsImportant = true,
-                TaskName = "Task 1"
+                TaskName = "Task 4"
             });
 
             context.SaveChanges();
@@ -774,6 +774,267 @@ namespace MEVIO.Models.StartInitial
 
             context.SaveChanges();
 
+
+        }
+
+
+        public async void InitMeasures()
+        {
+            context.PlaceForMeasures.Add(new()
+            {
+                PlaceForMeasureName = "PLace 1",
+                Capacity = 31,
+                IsFree = true
+            });
+
+            context.PlaceForMeasures.Add(new()
+            {
+                PlaceForMeasureName = "PLace 2",
+                Capacity = 32,
+                IsFree = true
+            });
+
+            context.PlaceForMeasures.Add(new()
+            {
+                PlaceForMeasureName = "PLace 3",
+                Capacity = 33,
+                IsFree = true
+            });
+
+            context.PlaceForMeasures.Add(new()
+            {
+                PlaceForMeasureName = "PLace 4",
+                Capacity = 34,
+                IsFree = true
+            });
+
+
+            context.SaveChanges();
+
+
+
+
+
+
+            context.Measures.Add(new()
+            {
+                Begin = DateTime.Now,
+                End = DateTime.Now,
+                FreePlaces = 1,
+                MeasureName = "Measure 1",
+                PlaceForMeasureId = 1
+            });
+
+            context.Measures.Add(new()
+            {
+                Begin = DateTime.Now,
+                End = DateTime.Now,
+                FreePlaces = 1,
+                MeasureName = "Measure 2",
+                PlaceForMeasureId = 2
+            });
+
+            context.Measures.Add(new()
+            {
+                Begin = DateTime.Now,
+                End = DateTime.Now,
+                FreePlaces = 1,
+                MeasureName = "Measure 3",
+                PlaceForMeasureId = 3
+            });
+
+            context.Measures.Add(new()
+            {
+                Begin = DateTime.Now,
+                End = DateTime.Now,
+                FreePlaces = 1,
+                MeasureName = "Measure 4",
+                PlaceForMeasureId = 4
+            });
+
+
+            context.SaveChanges();
+
+
+
+
+
+            context.MeasuresUsers.Add(new()
+            {
+                UserId = 1,
+                IsCreator = true,
+                MeasureId = 1
+            });
+
+            context.MeasuresUsers.Add(new()
+            {
+                UserId = 2,
+                IsCreator = true,
+                MeasureId = 2
+            });
+
+            context.MeasuresUsers.Add(new()
+            {
+                UserId = 3,
+                IsCreator = true,
+                MeasureId = 3
+            });
+
+            context.MeasuresUsers.Add(new()
+            {
+                UserId = 4,
+                IsCreator = true,
+                MeasureId = 4
+            });
+
+
+            context.MeasuresUsers.Add(new()
+            {
+                UserId = 2,
+                IsCreator = false,
+                MeasureId = 1
+            });
+
+            context.MeasuresUsers.Add(new()
+            {
+                UserId = 3,
+                IsCreator = false,
+                MeasureId = 1
+            });
+
+            context.MeasuresUsers.Add(new()
+            {
+                UserId = 3,
+                IsCreator = false,
+                MeasureId = 2
+            });
+
+            context.MeasuresUsers.Add(new()
+            {
+                UserId = 4,
+                IsCreator = false,
+                MeasureId = 2
+            });
+
+            context.MeasuresUsers.Add(new()
+            {
+                UserId = 4,
+                IsCreator = false,
+                MeasureId = 3
+            });
+
+            context.MeasuresUsers.Add(new()
+            {
+                UserId = 5,
+                IsCreator = false,
+                MeasureId = 3
+            });
+
+            context.MeasuresUsers.Add(new()
+            {
+                UserId = 5,
+                IsCreator = false,
+                MeasureId = 4
+            });
+
+            context.MeasuresUsers.Add(new()
+            {
+                UserId = 6,
+                IsCreator = false,
+                MeasureId = 4
+            });
+
+
+            context.SaveChanges();
+
+
+
+            context.UserAcceptStatuses.Add(new()
+            {
+                MeasureId = 1,
+                UserId=1,
+                IsAccept=true
+            });
+
+            context.UserAcceptStatuses.Add(new()
+            {
+                MeasureId = 1,
+                UserId = 2,
+                IsAccept = true
+            });
+
+            context.UserAcceptStatuses.Add(new()
+            {
+                MeasureId = 1,
+                UserId = 3,
+                IsAccept = true
+            });
+
+            context.UserAcceptStatuses.Add(new()
+            {
+                MeasureId = 2,
+                UserId = 2,
+                IsAccept = true
+            });
+
+            context.UserAcceptStatuses.Add(new()
+            {
+                MeasureId = 2,
+                UserId = 3,
+                IsAccept = true
+            });
+
+            context.UserAcceptStatuses.Add(new()
+            {
+                MeasureId = 2,
+                UserId = 4,
+                IsAccept = true
+            });
+
+            context.UserAcceptStatuses.Add(new()
+            {
+                MeasureId = 3,
+                UserId = 3,
+                IsAccept = true
+            });
+
+            context.UserAcceptStatuses.Add(new()
+            {
+                MeasureId = 3,
+                UserId = 4,
+                IsAccept = true
+            });
+
+            context.UserAcceptStatuses.Add(new()
+            {
+                MeasureId = 3,
+                UserId = 5,
+                IsAccept = true
+            });
+
+            context.UserAcceptStatuses.Add(new()
+            {
+                MeasureId = 4,
+                UserId = 4,
+                IsAccept = true
+            });
+
+            context.UserAcceptStatuses.Add(new()
+            {
+                MeasureId = 4,
+                UserId = 5,
+                IsAccept = true
+            });
+
+            context.UserAcceptStatuses.Add(new()
+            {
+                MeasureId = 4,
+                UserId = 6,
+                IsAccept = true
+            });
+
+
+            context.SaveChanges();
 
         }
 

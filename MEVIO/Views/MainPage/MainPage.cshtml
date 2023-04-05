@@ -196,8 +196,8 @@
                                                     }
                                                 }
 
-                                                <p class="Data-p">@itemUsers.LastTimeSignIn.ToString("yyyy-MM-dd")</p>
-                                                <p class="Data-p">@itemUsers.LastTimeSignIn.ToString("hh\\:mm")</p>
+                                                <p class="Data-p">@itemUsers.LastTimeSignIn?.ToString("yyyy-MM-dd")</p>
+                                                <p class="Data-p">@itemUsers.LastTimeSignIn?.ToString("hh\\:mm")</p>
 
                                             </div>
                                         </div>
@@ -235,7 +235,10 @@
                                                 <p class="p2-Pod2" id="DateKEnd">@itemTasks.End.ToString("hh\\:mm") @*@ViewBag.EndD*@</p>
                                             </div>
                                         </div>
-                                        <input type="button" value="Обговорити" class="button-Obgovor">
+                                        <a asp-controller="Chat" asp-action="GetTaskChat"
+                       asp-route-taskId=@itemTasks.Id>
+                                            <input type="button" value="Обговорити" class="button-Obgovor">
+                                        </a>
                                     </div>
                                 </div>
                             }           }      } }}
@@ -273,8 +276,8 @@
                                                 }
 
 
-                                                <p class="Data-p">@itemUsers.LastTimeSignIn.ToString("yyyy-MM-dd")</p>
-                                                <p class="Data-p">@itemUsers.LastTimeSignIn.ToString("hh\\:mm")</p>
+                                                <p class="Data-p">@itemUsers.LastTimeSignIn?.ToString("yyyy-MM-dd")</p>
+                                                <p class="Data-p">@itemUsers.LastTimeSignIn?.ToString("hh\\:mm")</p>
                                             </div>
                                         </div>
                                         <div class="users-members">
@@ -314,7 +317,10 @@
                                                 <p class="p2-Pod2" id="DateKEnd">@itemMeasures.End.ToString("hh\\:mm") @*@ViewBag.EndD*@</p>
                                             </div>
                                         </div>
-                                        <input type="button" value="Обговорити" class="button-Obgovor">
+                                        <a asp-controller="Chat" asp-action="GetMeasureChat"
+                       asp-route-measureId=@itemMeasures.Id>
+                                            <input type="button" value="Обговорити" class="button-Obgovor">
+                                        </a>
                                     </div>
                                 </div>
                             }           }      } }}
