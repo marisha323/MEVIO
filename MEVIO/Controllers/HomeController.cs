@@ -45,11 +45,11 @@ namespace MEVIO.Controllers
 
         public IActionResult Index()
         {
-            var init = new MyInitial(context);
+            //var init = new MyInitial(context);
 
-            init.InitClients();
-            init.InitUsers();
-            init.InitEvents();
+            //init.InitClients();
+            //init.InitUsers();
+            //init.InitEvents();
 
 
             return View();

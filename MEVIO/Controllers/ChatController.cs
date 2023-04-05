@@ -60,6 +60,16 @@ namespace MEVIO.Controllers
             Event Event = await context.Events.FirstOrDefaultAsync(e => e.Id.Equals(eventId));
 
             var eventChat = await context.EventsChat.FirstOrDefaultAsync(c => c.EventId.Equals(eventId));
+
+            if (eventChat == null)
+            {
+                context.EventsChat.Add(new()
+                {
+                    EventId = eventId,
+                    EventChatName=Event.EventName
+                });
+            }
+
             var users = await context.EventsUsers.Where(e => e.EventId.Equals(eventChat.EventId)).ToListAsync();
 
             foreach (var item in users)
