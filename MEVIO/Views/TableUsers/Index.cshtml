@@ -226,4 +226,58 @@
       studenttable.classList.add('active');
       
   });
+
+  //Поиск пользователей
+  //Эта функция получает введенный текст из поля поиска, переводит его в верхний регистр,
+  //  искомое имя сравнивается с именами пользователей в таблице,
+  //  и скрывает все строки таблицы, которые не содержат искомое имя.
+  function searchUsers() {
+    var input = document.getElementById("searchInput");
+    var filter = input.value.toUpperCase();
+    var table = document.getElementById("UserTable");
+    var boxes = table.getElementsByClassName("box");
+
+    for (var i = 0; i < boxes.length; i++) {
+        var name = boxes[i].getElementsByClassName("namep")[0].textContent;
+        if (name.toUpperCase().indexOf(filter) > -1) {
+            boxes[i].style.display = "";
+        } else {
+            boxes[i].style.display = "none";
+        }
+    }
+}
+function searchStudents() {
+    var input = document.getElementById("searchInput");
+    var filter = input.value.toUpperCase();
+    var table = document.getElementById("StudentTable");
+    var boxes = table.getElementsByClassName("box");
+
+    for (var i = 0; i < boxes.length; i++) {
+        var name = boxes[i].getElementsByClassName("namep")[0].textContent;
+        if (name.toUpperCase().indexOf(filter) > -1) {
+            boxes[i].style.display = "";
+        } else {
+            boxes[i].style.display = "none";
+        }
+    }
+}
+
+var input = document.getElementById("searchInput");
+input.addEventListener("keyup", function() {
+    searchStudents();
+});
+
+var input = document.getElementById("searchInput");
+input.addEventListener("keyup", function() {
+    searchUsers();
+});
+
+var btnUser = document.getElementById("btnUser");
+btnUser.addEventListener("click", function() {
+    var input = document.getElementById("searchInput");
+    input.value = "";
+    searchUsers();
+});
+
+
   </script>

@@ -257,16 +257,29 @@
        const btnstudent = document.getElementById("btnStudent")
        const studenttable = document.getElementById("StudentTable")
 
-       btnuser.addEventListener('click', () => 
-  {
-      usertable.classList.add('active');
-      studenttable.classList.remove('active');
       
-  });
-   btnstudent.addEventListener('click', () => 
-  {
-      usertable.classList.remove('active');
-      studenttable.classList.add('active');
-      
-  });
+
+
+  //Поиск
+
+  function searchUsers() {
+    var input = document.getElementById("searchInput");
+    var filter = input.value.toUpperCase();
+    var table = document.getElementById("UserTable");
+    var boxes = table.getElementsByClassName("box");
+
+    for (var i = 0; i < boxes.length; i++) {
+        var name = boxes[i].getElementsByClassName("namep")[0].textContent;
+        if (name.toUpperCase().indexOf(filter) > -1) {
+            boxes[i].style.display = "";
+        } else {
+            boxes[i].style.display = "none";
+        }
+    }
+}
+var input = document.getElementById("searchInput");
+input.addEventListener("keyup", function() {
+    searchUsers();
+});
+
   </script>
