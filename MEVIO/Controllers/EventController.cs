@@ -84,6 +84,7 @@ namespace MEVIO.Controllers
             user = JsonSerializer.Deserialize<User>(UserLoggedIn);
                 
             int userId= user.Id;
+
                          
             //Fill Event
             Event event1 = new Event()
@@ -118,6 +119,9 @@ namespace MEVIO.Controllers
                     UserId = int.Parse(usersId),
                     IsCreator = false //устанавливаем false, поскольку это не создатель события
                 };
+                eventsUsers.UserId = userId;//add creator user
+                eventsUsers.IsCreator = true;
+
                 context.EventsUsers.Add(eventsUsers); //добавляем экземпляр EventsUsers в контекст базы данных
             }
 
@@ -127,7 +131,7 @@ namespace MEVIO.Controllers
             //Fill EventClients
 
             //All id of clients
-            var idsClient = Request.Form["clientName"];
+            var idsClient = Request.Form["clientId"];
 
             foreach (var clientsId in idsClient)
             {
@@ -145,6 +149,6 @@ namespace MEVIO.Controllers
 
             return Redirect("/Home/Index");
         }
-
+        
     }
 }

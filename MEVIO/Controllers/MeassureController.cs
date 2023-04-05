@@ -31,12 +31,7 @@ namespace MEVIO.Controllers
             {
                 user = JsonSerializer.Deserialize<User>(UserLoggedIn);
                 ViewBag.NameUser = user.UserName;
-                //ViewBag.User = user;
-                //ViewBag.Id = user.Id;
-                //ViewBag.Role = user.UserRoleId;
-                
-                ViewBag.ImgPath = user.PathImgAVA;
-
+               
             }
 
             ViewBag.Place = context.PlaceForMeasures.ToList();
@@ -52,7 +47,7 @@ namespace MEVIO.Controllers
 
         [HttpPost]
         // public async Task<ActionResult> AddMeasure([Bind("Id,MeasureName,Description,UserId,Begin,End,FreePlaces")] Measure measure)
-        public async Task<ActionResult> AddMeasure(string MeasureName,  int UserId,int FreePlaces )
+        public async Task<ActionResult> AddMeasure(string MeasureName,int UserId,int FreePlaces )
         {
             ////All id of users
             //var idsUser = Request.Form["userId"];
@@ -102,7 +97,7 @@ namespace MEVIO.Controllers
                     UserId = int.Parse(usersId),
                     IsCreator = false //устанавливаем false, поскольку это не создатель события
                 };
-                context.MeasuresUsers.Add(measureUsers); //добавляем экземпляр EventsUsers в контекст базы данных
+                context.MeasuresUsers.Add(measureUsers); //добавляем экземпляр MeasureUsers в контекст базы данных
             }
 
             context.SaveChanges(); //сохраняем изменения в базе данных
@@ -111,7 +106,7 @@ namespace MEVIO.Controllers
             //Fill MeasureClients
 
             //All id of clients
-            var idsClient = Request.Form["clientName"];
+            var idsClient = Request.Form["clientId"];
 
             foreach (var clientsId in idsClient)
             {
