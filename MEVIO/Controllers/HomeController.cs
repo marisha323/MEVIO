@@ -47,9 +47,9 @@ namespace MEVIO.Controllers
         {
             var init = new MyInitial(context);
 
-            //init.InitClients();
-            //init.InitUsers();
-            //init.InitEvents();
+            init.InitClients();
+            init.InitUsers();
+            init.InitEvents();
 
 
             return View();
@@ -84,6 +84,7 @@ namespace MEVIO.Controllers
 
             return View();
         }
+
         [Authorize(Roles = "Admin")]
         public IActionResult TestingAuthorize()
         {

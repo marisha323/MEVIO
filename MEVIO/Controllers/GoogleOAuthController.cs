@@ -4,15 +4,6 @@ using Mevio.Servises;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-//using Google.Apis.Auth.OAuth2.Mvc;
-//using Google.Apis.Json;
-//using Google.Apis.Plus.v1;
-//using Google.Apis.Plus.v1.Data;
-//using Google.Apis.Services;
-//using Google.Apis.Util.Store;
-
-
-
 
 namespace Mevio2Test.Controllers
 {
@@ -25,13 +16,13 @@ namespace Mevio2Test.Controllers
            "https://www.googleapis.com/auth/userinfo.email",
             "https://www.googleapis.com/auth/userinfo.profile"
         };
-        //string scopesString = string.Join(" ", scopes2);
+      string scopesString = string.Join("", scopes2);
 
-        string scopesString = "https://www.googleapis.com/auth/userinfo.email";
+      // string scopesString = "https://www.googleapis.com/auth/userinfo.email";
 
         //var url = GoogleOAuthService.GenerateOAuthRequestUrl(scopesString, redirectUrl, codeChellange);
 
-        private const string redirectUrl = "http://localhost:5001/GoogleOauth/Code";
+        private const string redirectUrl = "https://localhost:7146/GoogleOauth/Code";
 
         private const string PkceSessionKey = "codeVerifier";
 
@@ -56,7 +47,7 @@ namespace Mevio2Test.Controllers
         public async Task<IActionResult> CodeAsync(string code)
         {
        
-            //var redirectUrl = "http://localhost:5001/GoogleOauth/Code";
+           
             string codeVerifier = HttpContext.Session.GetString(PkceSessionKey);
             
 
@@ -79,7 +70,7 @@ namespace Mevio2Test.Controllers
             // І оновлюємо Токен Доступу за допомогою Refresh-токена.
           //  var refreshedTokenResult = await GoogleOAuthService.RefreshTokenAsync(tokenResult.Result);
 
-            return Ok();
+            return Redirect("/MainPage/MainPage");
 
         }
 

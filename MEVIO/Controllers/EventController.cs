@@ -1,20 +1,25 @@
 ﻿using DocumentFormat.OpenXml.Bibliography;
 using MEVIO.Models;
+using MEVIO.Models.TelegramBot;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data.Entity;
+using System.Linq;
 using System.Text.Json;
-
+using Telegram.Bot;
+using Telegram.Bot.Types;
 namespace MEVIO.Controllers
 {
     public class EventController : Controller
     {
         MEVIOContext context;
-        User user = null;
+        MEVIO.Models.User user = null;
+        private readonly ITelegramBotClient botKey;
 
-
-        public EventController(MEVIOContext context)
+        public EventController(MEVIOContext context,ITelegramBotClient botClient)
         {
             this.context = context;
+            botKey = botClient;
         }
 
     ////[Authorize]
@@ -30,7 +35,7 @@ namespace MEVIO.Controllers
 
             if (UserLoggedIn != null && UserLoggedIn != "")
             {
-                user = JsonSerializer.Deserialize<User>(UserLoggedIn);
+                user = JsonSerializer.Deserialize<MEVIO.Models.User>(UserLoggedIn);
                 ViewBag.NameUser=user.UserName;
                 //ViewBag.User = user;
                 ViewBag.Id = user.Id;
@@ -81,10 +86,10 @@ namespace MEVIO.Controllers
             //Get Id of create User
             string UserLoggedIn = HttpContext.Request.Cookies["UserLoggedIn"];
 
-            user = JsonSerializer.Deserialize<User>(UserLoggedIn);
+            user = JsonSerializer.Deserialize<MEVIO.Models.User>(UserLoggedIn);
                 
             int userId= user.Id;
-                         
+            string creator = user.UserName;
             //Fill Event
             Event event1 = new Event()
             {
@@ -123,6 +128,22 @@ namespace MEVIO.Controllers
 
            context.SaveChanges(); //сохраняем изменения в базе данных
 
+            //sending message to the users
+            //List<UserTelegram> userTelegrams = new List<UserTelegram>();
+            // In the controller
+            var bot = HttpContext.RequestServices.GetRequiredService<TelegramBot>();
+            foreach (var item in idsUser)
+            {
+                var userT = context.UserTelegram.Where(o => o.UserId == int.Parse(item)).AsNoTracking().FirstOrDefault();
+                await bot.SendEvent(userT, event1, botKey, creator);
+            }
+
+            // In the TelegramBot class
+            //public async Task SendEvent(UserTelegram userTelegram, Event event1)
+            //{
+            //    Chat key = JsonSerializer.Deserialize<Chat>(userTelegram.TelegramJson);
+            //    await botKey.SendTextMessageAsync(chatId: key, text: $"You got an upcoming Event!\nDescription: {event1.Description}\nBegin Time: {event1.Begin.ToString()}\nEnd Time: {event1.End.ToString()}\nCreator: {event1.User.UserName}");
+            //}
 
             //Fill EventClients
 

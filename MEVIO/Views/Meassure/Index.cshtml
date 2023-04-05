@@ -387,7 +387,7 @@
 
                         @foreach (PlaceForMeasure item in ViewBag.Place)
                         {
-                            <option value="@item.Id">@item.PlaceForMeasureName</option>
+                            <option value="@item.Id" asp-for="@Model.PlaceForMeasure">@item.PlaceForMeasureName</option>
                         }
                     </select>
                 </div>
@@ -396,7 +396,7 @@
                 @*Add Clients--------------------------------------------------------------*@
                 <div class="description">
                     <div class="divDescr">
-                        <p class="styleP">Слієнти</p>
+                        <p class="styleP">Клієнти</p>
                     </div>
 
                     <div class="members">

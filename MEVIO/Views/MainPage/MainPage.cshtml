@@ -84,7 +84,8 @@
 
     <div class="bodyDiv">
 
-
+         <a style="color:aqua" asp-controller="Event" asp-action="Index"> Event </a>
+    <br />
 
         @*<iframe title="Report Section" width="1680" height="720" src="https://app.powerbi.com/view?r=eyJrIjoiNmEyMDBkY2QtNDBlMS00YTkxLTg4OTQtMjMzY2NmYTA5MmJhIiwidCI6IjFjMmFhNDFlLTViOTItNDkwNi04MjdlLTBjMTBmOWQ3Mzg1OSIsImMiOjl9" frameborder="0" allowFullScreen="true"></iframe>*@
         <iframe title="PowerBiFinal" width="1680" height="620" src="https://app.powerbi.com/view?r=eyJrIjoiNmEyMDBkY2QtNDBlMS00YTkxLTg4OTQtMjMzY2NmYTA5MmJhIiwidCI6IjFjMmFhNDFlLTViOTItNDkwNi04MjdlLTBjMTBmOWQ3Mzg1OSIsImMiOjl9" frameborder="0" allowFullScreen="true"></iframe>
@@ -113,7 +114,7 @@
                                 <div class="div-obj-News">
                                     <div class="div-obj-News-cont">
                                         <div class="div-div-News">
-                                            <img class="img-Ava" src=~/Imeg1/@itemUsers.UserName.Replace(" ", "-")/@itemUsers.Email/@itemUsers.PathImgAVA.Replace(" ", "-")>
+                                            <img class="img-Ava" src=~/Imeg1/@itemUsers.UserName?.Replace(" ", "-")/@itemUsers.Email/@itemUsers.PathImgAVA?.Replace(" ", "-")>
                                             <div class="div-Img-Date">
                                                 <p class="Nick-Name">@itemUsers.UserName</p>
                                                 <p class="Data-p">@itemUsers.LastTimeSignIn?.ToString("yyyy-MM-dd")</p>
