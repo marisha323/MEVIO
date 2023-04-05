@@ -84,6 +84,7 @@ namespace MEVIO.Controllers
 
             return View();
         }
+
         [Authorize(Roles = "Admin")]
         public IActionResult TestingAuthorize()
         {
