@@ -1,4 +1,5 @@
 ﻿using MEVIO.Models;
+using MEVIO.Models.StartInitial;
 using Mevio2Test.Helhers;
 
 using Microsoft.AspNetCore.Authorization;
@@ -23,6 +24,13 @@ namespace MEVIO.Controllers
 
         public IActionResult Index()
         {
+            //Sasha Initializer
+            //var init = new MyInitial(context);
+
+            //init.InitClients();
+            //init.InitUsers();
+            //init.InitEvents();
+
             return View();
         }
 

@@ -234,7 +234,7 @@ body {
 }
 
 .message {
-    width: auto;
+    width: fit-content;
     max-width: 330px;
     height: auto;
     background-color: #52A7E4;

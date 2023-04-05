@@ -1,6 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MEVIO.Models;
 using System.Text.Json;
+using System.Globalization;
+using MEVIO.Models.TelegramBot;
+using Telegram.Bot;
+using Telegram.Bot.Types;
+using System.Data.Entity;
 
 namespace MEVIO.Controllers
 {
@@ -8,10 +13,13 @@ namespace MEVIO.Controllers
     {
 
         MEVIOContext context;
-
-        public MeassureController(MEVIOContext context)
+        MEVIO.Models.User user1 = null;
+        private readonly ITelegramBotClient botKey;
+        public MeassureController(MEVIOContext context, ITelegramBotClient botClient)
         {
             this.context = context;
+            botKey = botClient;
+
         }
 
 
@@ -24,12 +32,12 @@ namespace MEVIO.Controllers
 
         public IActionResult Index()
         {
-            User user = null;
+            MEVIO.Models.User user = null;
             string UserLoggedIn = HttpContext.Request.Cookies["UserLoggedIn"];
             ViewBag.CurrentDate = DateTime.Now.Date;
             if (UserLoggedIn != null && UserLoggedIn != "")
             {
-                user = JsonSerializer.Deserialize<User>(UserLoggedIn);
+                user = JsonSerializer.Deserialize<MEVIO.Models.User>(UserLoggedIn);
                 ViewBag.NameUser = user.UserName;
                
             }
@@ -77,8 +85,6 @@ namespace MEVIO.Controllers
             context.Measures.Add(measure);
             context.SaveChanges();
 
-
-
             // Last ID of Event
             var lastIdMeasure = context.Measures.ToList().LastOrDefault().Id;
 
@@ -102,7 +108,23 @@ namespace MEVIO.Controllers
 
             context.SaveChanges(); //сохраняем изменения в базе данных
 
+            //Get Id of create User
+            string UserLoggedIn = HttpContext.Request.Cookies["UserLoggedIn"];
 
+            user1 = JsonSerializer.Deserialize<MEVIO.Models.User>(UserLoggedIn);
+
+            int userId = user1.Id;
+            string creator = user1.UserName;
+
+            var bot = HttpContext.RequestServices.GetRequiredService<TelegramBot>();
+            int placeId = int.Parse(Request.Form["placeSpend"]);
+            var place = context.PlaceForMeasures.Where(o => o.Id == placeId).AsNoTracking().FirstOrDefault();
+            measure.PlaceForMeasure = place;
+            foreach (var item in idsUser)
+            {
+                var userT = context.UserTelegram.Where(o => o.UserId == int.Parse(item)).FirstOrDefault();
+                await bot.SendMeasure(userT, measure, botKey, creator);
+            }
             //Fill MeasureClients
 
             //All id of clients
