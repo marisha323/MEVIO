@@ -13,7 +13,7 @@ namespace MEVIO.Models.StartInitial
         }
 
 
-
+      //  FILL DATABASE
 
         public async void InitClients()
         {
@@ -30,8 +30,8 @@ namespace MEVIO.Models.StartInitial
                 ClientName = "Client 1",
                 ClientStatusId = 1,
                 DateOfPassportIssue = DateTime.Now,
-                PassportNumber="11111",
-                TIN="11111"
+                PassportNumber = "11111",
+                TIN = "11111"
             });
 
             context.Clients.Add(new()
@@ -81,32 +81,32 @@ namespace MEVIO.Models.StartInitial
 
 
 
-             context.SaveChanges();
+            context.SaveChanges();
         }
 
 
         public async void InitUsers()
         {
-            context.UserRoles.Add(new() { UserRoleName = "Admin"});
-            context.UserRoles.Add(new() { UserRoleName = "Director"});
-            context.UserRoles.Add(new() { UserRoleName = "User"});
-            context.UserRoles.Add(new() { UserRoleName = "Manager"});
+            context.UserRoles.Add(new() { UserRoleName = "Admin" });
+            context.UserRoles.Add(new() { UserRoleName = "Director" });
+            context.UserRoles.Add(new() { UserRoleName = "User" });
+            context.UserRoles.Add(new() { UserRoleName = "Manager" });
 
 
-             context.SaveChanges();
+            context.SaveChanges();
 
             context.Users.Add(new()
             {
-                UserName="Admin",
-                UserRoleId=1,
-                Birthdate=DateTime.Now,
-                DateOfPassportIssue=DateTime.Now,
-                Email="admin@mail.com",
-                Password="admin",
-                IsActive=true,
-                PassportNumber= "111111",
-                Phone= "11111",
-                TIN="11111"
+                UserName = "Admin",
+                UserRoleId = 1,
+                Birthdate = DateTime.Now,
+                DateOfPassportIssue = DateTime.Now,
+                Email = "admin@mail.com",
+                Password = "admin",
+                IsActive = true,
+                PassportNumber = "111111",
+                Phone = "11111",
+                TIN = "11111"
             });
 
             context.Users.Add(new()
@@ -209,7 +209,7 @@ namespace MEVIO.Models.StartInitial
 
 
 
-             context.SaveChanges();
+            context.SaveChanges();
         }
 
         public async void InitEvents()
@@ -291,7 +291,7 @@ namespace MEVIO.Models.StartInitial
 
 
 
-            
+
 
 
 
@@ -603,8 +603,180 @@ namespace MEVIO.Models.StartInitial
             context.SaveChanges();
 
 
+        }
+
+
+        public async void InitTasks()
+        {
+            context.Tasks.Add(new()
+            {
+                Begin=DateTime.Now,
+                End=DateTime.Now,
+                Description="Task 1 Desc",
+                IsImportant=true,
+                TaskName="Task 1"
+            });
+
+            context.Tasks.Add(new()
+            {
+                Begin = DateTime.Now,
+                End = DateTime.Now,
+                Description = "Task 2 Desc",
+                IsImportant = true,
+                TaskName = "Task 2"
+            });
+
+            context.Tasks.Add(new()
+            {
+                Begin = DateTime.Now,
+                End = DateTime.Now,
+                Description = "Task 3 Desc",
+                IsImportant = true,
+                TaskName = "Task 3"
+            });
+
+            context.Tasks.Add(new()
+            {
+                Begin = DateTime.Now,
+                End = DateTime.Now,
+                Description = "Task 1 Desc",
+                IsImportant = true,
+                TaskName = "Task 1"
+            });
+
+            context.SaveChanges();
+
+
+
+
+
+            context.TaskChats.Add(new()
+            {
+                TaskId=1,
+                TaskChatName="Task 1"
+            });
+
+            context.TaskChats.Add(new()
+            {
+                TaskId = 2,
+                TaskChatName = "Task 2"
+            });
+
+            context.TaskChats.Add(new()
+            {
+                TaskId = 3,
+                TaskChatName = "Task 3"
+            });
+
+            context.TaskChats.Add(new()
+            {
+                TaskId =4,
+                TaskChatName = "Task 4"
+            });
+
+
+            context.SaveChanges();
+
+
+
+
+
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId=1,
+                UserId=1,
+                IsCreator=true
+            });
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId = 2,
+                UserId = 2,
+                IsCreator = true
+            });
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId = 3,
+                UserId = 3,
+                IsCreator = true
+            });
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId = 4,
+                UserId =4,
+                IsCreator = true
+            });
+
+
+
+
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId=1,
+                UserId=2,
+                IsCreator=false
+            });
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId = 1,
+                UserId = 3,
+                IsCreator = false
+            });
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId = 2,
+                UserId = 3,
+                IsCreator = false
+            });
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId = 2,
+                UserId =4,
+                IsCreator = false
+            });
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId = 3,
+                UserId = 4,
+                IsCreator = false
+            });
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId = 3,
+                UserId = 5,
+                IsCreator = false
+            });
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId = 4,
+                UserId = 5,
+                IsCreator = false
+            });
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId = 4,
+                UserId = 6,
+                IsCreator = false
+            });
+
+
+
+            context.SaveChanges();
 
 
         }
+
     }
 }
+
