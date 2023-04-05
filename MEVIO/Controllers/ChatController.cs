@@ -68,6 +68,8 @@ namespace MEVIO.Controllers
                     EventId = eventId,
                     EventChatName=Event.EventName
                 });
+
+                await context.SaveChangesAsync();
             }
 
             var users = await context.EventsUsers.Where(e => e.EventId.Equals(eventChat.EventId)).ToListAsync();

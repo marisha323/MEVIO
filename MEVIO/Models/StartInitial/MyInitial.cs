@@ -302,35 +302,35 @@ namespace MEVIO.Models.StartInitial
 
 
 
-            //context.EventsChat.Add(new EventChat()
-            //{
-            //    EventId = 1,
-            //    EventChatName = "Event 1"
-            //});
+            context.EventsChat.Add(new EventChat()
+            {
+                EventId = 1,
+                EventChatName = "Event 1"
+            });
 
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 1,
-            //    UserId = 1,
-            //    IsCreator = true
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 1,
+                UserId = 1,
+                IsCreator = true
+            });
 
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 1,
-            //    UserId = 2,
-            //    IsCreator = false
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 1,
+                UserId = 2,
+                IsCreator = false
+            });
 
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 1,
-            //    UserId = 3,
-            //    IsCreator = false
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 1,
+                UserId = 3,
+                IsCreator = false
+            });
 
 
 
@@ -343,34 +343,34 @@ namespace MEVIO.Models.StartInitial
 
 
 
-            //context.EventsChat.Add(new EventChat()
-            //{
-            //    EventId = 2,
-            //    EventChatName = "Event 2"
-            //});
+            context.EventsChat.Add(new EventChat()
+            {
+                EventId = 2,
+                EventChatName = "Event 2"
+            });
 
 
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 2,
-            //    UserId = 2,
-            //    IsCreator = true
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 2,
+                UserId = 2,
+                IsCreator = true
+            });
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 2,
-            //    UserId = 3,
-            //    IsCreator = false
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 2,
+                UserId = 3,
+                IsCreator = false
+            });
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 2,
-            //    UserId = 4,
-            //    IsCreator = false
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 2,
+                UserId = 4,
+                IsCreator = false
+            });
 
 
 
@@ -379,33 +379,33 @@ namespace MEVIO.Models.StartInitial
 
 
 
-            //context.EventsChat.Add(new EventChat()
-            //{
-            //    EventId = 3,
-            //    EventChatName = "Event 3"
-            //});
+            context.EventsChat.Add(new EventChat()
+            {
+                EventId = 3,
+                EventChatName = "Event 3"
+            });
 
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 3,
-            //    UserId = 3,
-            //    IsCreator = true
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 3,
+                UserId = 3,
+                IsCreator = true
+            });
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 3,
-            //    UserId = 4,
-            //    IsCreator = false
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 3,
+                UserId = 4,
+                IsCreator = false
+            });
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 3,
-            //    UserId = 5,
-            //    IsCreator = false
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 3,
+                UserId = 5,
+                IsCreator = false
+            });
 
 
 
@@ -419,33 +419,33 @@ namespace MEVIO.Models.StartInitial
 
 
 
-            //context.EventsChat.Add(new EventChat()
-            //{
-            //    EventId = 4,
-            //    EventChatName = "Event 4"
-            //});
+            context.EventsChat.Add(new EventChat()
+            {
+                EventId = 4,
+                EventChatName = "Event 4"
+            });
 
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 4,
-            //    UserId = 4,
-            //    IsCreator = true
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 4,
+                UserId = 4,
+                IsCreator = true
+            });
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 4,
-            //    UserId = 5,
-            //    IsCreator = false
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 4,
+                UserId = 5,
+                IsCreator = false
+            });
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 4,
-            //    UserId = 6,
-            //    IsCreator = false
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 4,
+                UserId = 6,
+                IsCreator = false
+            });
 
 
 
@@ -454,33 +454,33 @@ namespace MEVIO.Models.StartInitial
 
 
 
-            //context.EventsChat.Add(new EventChat()
-            //{
-            //    EventId = 5,
-            //    EventChatName = "Event 5"
-            //});
+            context.EventsChat.Add(new EventChat()
+            {
+                EventId = 5,
+                EventChatName = "Event 5"
+            });
 
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 5,
-            //    UserId = 5,
-            //    IsCreator = true
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 5,
+                UserId = 5,
+                IsCreator = true
+            });
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 5,
-            //    UserId = 6,
-            //    IsCreator = false
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 5,
+                UserId = 6,
+                IsCreator = false
+            });
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 5,
-            //    UserId = 7,
-            //    IsCreator = false
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 5,
+                UserId = 7,
+                IsCreator = false
+            });
 
 
 
@@ -491,33 +491,33 @@ namespace MEVIO.Models.StartInitial
 
 
 
-            //context.EventsChat.Add(new EventChat()
-            //{
-            //    EventId = 6,
-            //    EventChatName = "Event 6"
-            //});
+            context.EventsChat.Add(new EventChat()
+            {
+                EventId = 6,
+                EventChatName = "Event 6"
+            });
 
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 6,
-            //    UserId = 6,
-            //    IsCreator = true
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 6,
+                UserId = 6,
+                IsCreator = true
+            });
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 6,
-            //    UserId = 7,
-            //    IsCreator = false
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 6,
+                UserId = 7,
+                IsCreator = false
+            });
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 6,
-            //    UserId = 8,
-            //    IsCreator = false
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 6,
+                UserId = 8,
+                IsCreator = false
+            });
 
 
 
@@ -527,33 +527,33 @@ namespace MEVIO.Models.StartInitial
 
 
 
-            //context.EventsChat.Add(new EventChat()
-            //{
-            //    EventId = 7,
-            //    EventChatName = "Event 7"
-            //});
+            context.EventsChat.Add(new EventChat()
+            {
+                EventId = 7,
+                EventChatName = "Event 7"
+            });
 
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 7,
-            //    UserId = 7,
-            //    IsCreator = true
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 7,
+                UserId = 7,
+                IsCreator = true
+            });
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 7,
-            //    UserId = 8,
-            //    IsCreator = false
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 7,
+                UserId = 8,
+                IsCreator = false
+            });
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 7,
-            //    UserId = 1,
-            //    IsCreator = false
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 7,
+                UserId = 1,
+                IsCreator = false
+            });
 
 
 
@@ -564,33 +564,33 @@ namespace MEVIO.Models.StartInitial
 
 
 
-            //context.EventsChat.Add(new EventChat()
-            //{
-            //    EventId = 8,
-            //    EventChatName = "Event 8"
-            //});
+            context.EventsChat.Add(new EventChat()
+            {
+                EventId = 8,
+                EventChatName = "Event 8"
+            });
 
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 8,
-            //    UserId = 8,
-            //    IsCreator = true
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 8,
+                UserId = 8,
+                IsCreator = true
+            });
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 8,
-            //    UserId = 1,
-            //    IsCreator = false
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 8,
+                UserId = 1,
+                IsCreator = false
+            });
 
-            //context.EventsUsers.Add(new EventsUsers()
-            //{
-            //    EventId = 8,
-            //    UserId = 2,
-            //    IsCreator = false
-            //});
+            context.EventsUsers.Add(new EventsUsers()
+            {
+                EventId = 8,
+                UserId = 2,
+                IsCreator = false
+            });
 
 
 
@@ -600,7 +600,7 @@ namespace MEVIO.Models.StartInitial
 
 
 
-            //context.SaveChanges();
+            context.SaveChanges();
 
 
         }
@@ -608,6 +608,172 @@ namespace MEVIO.Models.StartInitial
 
         public async void InitTasks()
         {
+            context.Tasks.Add(new()
+            {
+                Begin=DateTime.Now,
+                End=DateTime.Now,
+                Description="Task 1 Desc",
+                IsImportant=true,
+                TaskName="Task 1"
+            });
+
+            context.Tasks.Add(new()
+            {
+                Begin = DateTime.Now,
+                End = DateTime.Now,
+                Description = "Task 2 Desc",
+                IsImportant = true,
+                TaskName = "Task 2"
+            });
+
+            context.Tasks.Add(new()
+            {
+                Begin = DateTime.Now,
+                End = DateTime.Now,
+                Description = "Task 3 Desc",
+                IsImportant = true,
+                TaskName = "Task 3"
+            });
+
+            context.Tasks.Add(new()
+            {
+                Begin = DateTime.Now,
+                End = DateTime.Now,
+                Description = "Task 1 Desc",
+                IsImportant = true,
+                TaskName = "Task 1"
+            });
+
+            context.SaveChanges();
+
+
+
+
+
+            context.TaskChats.Add(new()
+            {
+                TaskId=1,
+                TaskChatName="Task 1"
+            });
+
+            context.TaskChats.Add(new()
+            {
+                TaskId = 2,
+                TaskChatName = "Task 2"
+            });
+
+            context.TaskChats.Add(new()
+            {
+                TaskId = 3,
+                TaskChatName = "Task 3"
+            });
+
+            context.TaskChats.Add(new()
+            {
+                TaskId =4,
+                TaskChatName = "Task 4"
+            });
+
+
+            context.SaveChanges();
+
+
+
+
+
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId=1,
+                UserId=1,
+                IsCreator=true
+            });
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId = 2,
+                UserId = 2,
+                IsCreator = true
+            });
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId = 3,
+                UserId = 3,
+                IsCreator = true
+            });
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId = 4,
+                UserId =4,
+                IsCreator = true
+            });
+
+
+
+
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId=1,
+                UserId=2,
+                IsCreator=false
+            });
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId = 1,
+                UserId = 3,
+                IsCreator = false
+            });
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId = 2,
+                UserId = 3,
+                IsCreator = false
+            });
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId = 2,
+                UserId =4,
+                IsCreator = false
+            });
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId = 3,
+                UserId = 4,
+                IsCreator = false
+            });
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId = 3,
+                UserId = 5,
+                IsCreator = false
+            });
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId = 4,
+                UserId = 5,
+                IsCreator = false
+            });
+
+            context.TasksUsers.Add(new()
+            {
+                TaskId = 4,
+                UserId = 6,
+                IsCreator = false
+            });
+
+
+
+            context.SaveChanges();
+
 
         }
 
