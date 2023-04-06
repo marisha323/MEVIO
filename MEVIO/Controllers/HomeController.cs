@@ -50,7 +50,8 @@ namespace MEVIO.Controllers
             //init.InitClients();
             //init.InitUsers();
             //init.InitEvents();
-            init.InitTasks();
+            //init.InitTasks();
+            //init.InitMeasures();
 
 
             return View();
