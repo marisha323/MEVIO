@@ -132,6 +132,9 @@
         font-size: 1.5rem;
         margin: 1rem;
         display: flex;
+        justify-content: center;
+        align-items: center;
+
      }
 
      .div_button{
@@ -248,6 +251,7 @@
         cursor: pointer;
         background: #52a7e4;
         border-radius: 15px 15px 0px 0px;
+        white-space:nowrap;
     }
 
         .membersWindow p {
@@ -439,8 +443,7 @@
 
     .eyes{
         background: #111624;
-        
-     
+        margin-right: 0.5rem;
         color: #52a7e4;
         
         font-size: 1.25rem;
@@ -449,9 +452,11 @@
         background: url("/img/eye.jpg") no-repeat center;
         background-size: 20px;
         background-repeat: no-repeat;
-        background-position: 95%;
+        background-position: 100%;
         padding: 1rem;
         width:2rem;
+        margin-right: 0.5rem;
+        border-radius: 50%;
     }
 
 </style>
@@ -663,7 +668,7 @@
             divClose.innerHTML = "&#10006;";
 
 
-            labelWatchPersons.appendChild(diveyes);
+            labelWatchPersons.insertBefore(diveyes, labelWatchPersons.firstChild);
             labelWatchPersons.appendChild(divClose);
             parentClient.appendChild(labelWatchPersons);
 
