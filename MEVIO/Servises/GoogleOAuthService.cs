@@ -8,6 +8,7 @@ namespace Mevio.Servises
         private const string ClientId = "715700270542-m2iv2jqmaue49o43d969evbivc5jqj1s.apps.googleusercontent.com";
 
         private const string ClientSecret = "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";
+
         private const string TokenServerEndpoint = "https://oauth2.googleapis.com/token";
 
 
@@ -56,6 +57,7 @@ namespace Mevio.Servises
         public static async Task<TokenResult> RefreshTokenAsync(string refreshToken)
         {
             var refreshEndpoint ="https://oauth2.googleapis.com/token";
+
             var refreshParams = new Dictionary<string, string>
             {
                 { "client_id", ClientId },

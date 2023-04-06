@@ -131,7 +131,7 @@
         color: #BAE2FF;
         font-size: 1.5rem;
         margin: 1rem;
-
+        display: flex;
      }
 
      .div_button{
@@ -198,8 +198,265 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
     }
+
+    /*box for Watching & Responsible Persons*/
+    .mainBox, .mainBoxPesponsible {
+        position: absolute;
+        display: none;
+        z-index: 1;
+        top: 22rem;
+    }
+
+
+    /*WINDOW mainBox*/
+    .mainBox, .mainBoxClient {
+        position: absolute;
+        display: none;
+        z-index: 1;
+        top: 22rem;
+    }
+
+    .textCenter {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .styleP {
+        width: 5rem;
+        height: 2.5rem;
+        font-size: 1.3rem;
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        line-height: 2.5rem;
+        white-space: nowrap;
+        color: #52a7e4;
+        margin-right: 1rem;
+    }
+    /*/////////////////////////////////////*window*/
+    .parent, .parentClient {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .membersWindow {
+        width: 7.6rem;
+        height: 2.1rem;
+        /* left: 44.5rem;
+             top: 36.8rem;*/
+        border: none;
+        cursor: pointer;
+        background: #52a7e4;
+        border-radius: 15px 15px 0px 0px;
+    }
+
+        .membersWindow p {
+            width: 6.5rem;
+            height: 24px;
+            left: 45rem;
+            top: 37rem;
+            text-align: end;
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 1.4rem;
+            line-height: 1.7rem;
+            color: #111624;
+        }
+
+    .box2, .box2Res {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        width: 29rem;
+        height: 17.5rem;
+        
+        left: 18.2rem;
+        top: 32.3rem;
+        background: #111624;
+        border: 1px solid #52a7e4;
+        position: fixed;
+    }
+
+    .first {
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        height: 3rem;
+        left: 44.86rem;
+        width: 27.4rem;
+        margin-left: 0.428rem;
+        margin-right: 1.214rem;
+        margin-top: 0.642rem;
+        background: #111624;
+        border: 1px solid #52a7e4;
+    }
+
+    .block {
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        width: 11.4rem;
+        height: 2.1rem;
+        left: 45.64rem;
+        top: 39.85rem;
+        margin-left: 0.8rem;
+        background: #a0d7ff;
+    }
+
+        .block img {
+            width: 1.6rem;
+            height: 1.6rem;
+            left: 647px;
+            margin-left: 0.5rem;
+            top: 562px;
+            border-radius: 50%;
+            border: 1px solid #52a7e4;
+        }
+
+        .block p {
+            width: 8.35rem;
+            height: 1.714rem;
+            white-space: nowrap;
+            margin-left: 0.9rem;
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
+            color: #111624;
+        }
+
+    .inpSearch {
+        width: 11rem;
+        height: 1.7rem;
+        margin-left: 4rem;
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        background-color: #111624;
+        color: #52a7e4;
+        border: none;
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    .secondBox, .secondBoxClient {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 29rem;
+        margin-top: 1rem;
+        overflow: scroll;
+        /*для вертикального*/
+        overflow-x: hidden; /*для горизонтального*/
+    }
+
+    ::-webkit-scrollbar {
+        width: 20px;
+    }
+
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey;
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background-color: #52a7e4;
+        border-radius: 10px;
+    }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #00c6fb, #005bea);
+        }
+
+
+
+    .inBox, .inBoxClient {
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        height: 2.5rem;
+        left: 45.57rem;
+        margin-top: 1rem;
+        width: 27.51rem;
+        margin-left: 0.428rem;
+        margin-right: 1.214rem;
+    }
+
+        .inBox:hover, .inBoxClient:hover {
+            background-color: #52a7e4;
+        }
+
+        .inBox p:hover, .inBoxClient p:hover {
+            color: #111624;
+        }
+
+        .inBox img, .inBoxClient img {
+            width: 2rem;
+            height: 2rem;
+            left: 46rem;
+            top: 43.14rem;
+            border-radius: 50%;
+            border: 1px solid #a0d7ff;
+            margin-left: 0.7rem;
+        }
+
+
+        .inBox p, .inBoxClient p {
+            width: 7.857rem;
+            height: 18px;
+            left: 674px;
+            top: 603px;
+            margin-left: 3rem;
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 1.2rem;
+            line-height: 18px;
+        }
+
+    .bird {
+        width: 15.5px;
+        height: 15px;
+        top: 650px;
+        color: #111624;
+        margin: 0.57rem 0.71rem 1.2rem 12rem;
+    }
+
+
+    .close {
+        color: #a0d7ff;
+        cursor: pointer;
+        margin-left: 1rem;
+    }
+
+    .eyes{
+        background: #111624;
+        
+     
+        color: #52a7e4;
+        
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+        transform: (-50%, -50%);
+        background: url("/img/eye.jpg") no-repeat center;
+        background-size: 20px;
+        background-repeat: no-repeat;
+        background-position: 95%;
+        padding: 1rem;
+        width:2rem;
+    }
+
 </style>
 <body id="body">
+   
     <div class="container">
         <div class="head-flex">
             <div class="head-button">Завдання</div>
@@ -233,20 +490,64 @@
                 <hr class="hr">
                 <div class="ollChek">
                     <div class="div_button">
-                        <label class="buttonWithinPerson">+ спостерiгач</label>
-                        <label class="buttonWithinPerson">+ співвиконавець</label>
+                        <label class="buttonWithinPerson" id="WatchingPerson">+ спостерiгач</label>
+
+                        <div class="mainBox" @*style="display: none"*@>
+                            
+                            <div class="box2">
+                              
+                                <div class="secondBox">
+
+                                    @foreach (var itemUsers in ViewBag.WatchingPersons)
+                                    {
+                                        <div class="inBox">
+                                            <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
+                                            <p class="clientName" name="userName">@itemUsers.UserName</p>
+                                            <span class="clientId" hidden>@itemUsers.Id</span>
+                                            <div class="bird">&#10004;</div>
+                                        </div>
+                                    }
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <label class="buttonWithinPerson" id="ResPerson">+ співвиконавець</label>
+                       
+                        <div class="mainBoxPesponsible" @*style="display: none"*@>
+
+                            <div class="box2Res">
+
+                                <div class="secondBoxClient">
+
+                                    @foreach (var itemUsers in ViewBag.Resp)
+                                    {
+                                        <div class="inBoxClient">
+                                            <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
+                                            <p class="resName" name="userName">@itemUsers.UserName</p>
+                                            <span class="resId" hidden>@itemUsers.Id</span>
+                                            <div class="bird">&#10004;</div>
+                                        </div>
+                                    }
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
                     </div>
                     <div class="check_list_div">
 
                         <div class="radiob_mulaz"></div>
                         <input type="text" class="check_list_name" />
-                        <div class="parent">
+                        <div id="parent">
+                           @* <label class="check_list_name_lable">Max Voloshov</label>
                             <label class="check_list_name_lable">Max Voloshov</label>
                             <label class="check_list_name_lable">Max Voloshov</label>
                             <label class="check_list_name_lable">Max Voloshov</label>
                             <label class="check_list_name_lable">Max Voloshov</label>
-                            <label class="check_list_name_lable">Max Voloshov</label>
-                            <label class="check_list_name_lable">Max Voloshov</label>
+                            <label class="check_list_name_lable">Max Voloshov</label>*@
                         </div>
 
                     </div>
@@ -304,7 +605,139 @@
         </form>
     </div>
 
+
+    <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
     <script>
+        //Iryna add watching Persons
+
+        $('#WatchingPerson').click(function ()  //watching Persons
+        {
+            $(".mainBox").fadeToggle(100);
+
+        });
+
+        $('#ResPerson').click(function ()  //watching Persons
+        {
+            $(".mainBoxPesponsible").fadeToggle(100);
+
+        });
+        
+        //ADD WatchingPerson
+        $('.inBox').click(function (e) {
+            //const imgSrcClient = $(this).find('img').attr('src');
+
+            const clientId = $(this).find(".clientId").text();
+            const clientName = $(this).find('.clientName').text();
+
+            console.log(clientId);
+            console.log(clientName);
+
+
+            //All client on this Event
+            const listClient = document.querySelectorAll(".parent");
+            console.log(listClient);
+
+            const formClient = document.getElementById("taskForm");
+            const inputClient = document.createElement("input");
+            inputClient.hidden = true;
+            inputClient.name = "clientId";
+            inputClient.setAttribute("value", clientId);
+            console.log("ClientOk")
+            formClient.appendChild(inputClient);
+
+
+            //Create lables with Wathing Personr
+            const parentClient = document.getElementById("parent");
+
+            const diveyes=document.createElement("div");
+            diveyes.className="eyes";
+
+
+            const labelWatchPersons = document.createElement("label");
+            labelWatchPersons.className = "check_list_name_lable";
+            labelWatchPersons.innerText = clientName;
+
+            //Create close button
+            const divClose = document.createElement("div");
+            divClose.className = "close";
+            divClose.innerHTML = "&#10006;";
+
+
+            labelWatchPersons.appendChild(diveyes);
+            labelWatchPersons.appendChild(divClose);
+            parentClient.appendChild(labelWatchPersons);
+
+
+            // Добавить обработчик события "click" на элемент "divClose"
+            labelWatchPersons.addEventListener("click", function () {
+                parentClient.removeChild(labelWatchPersons);
+
+            });
+
+
+            $(".mainBox").css("display", "none");// закриваємо блок з users
+
+            $(this).hide();
+        });
+
+
+
+        //ADD Resposible
+        $('.inBoxClient').click(function (e) {
+            //const imgSrcClient = $(this).find('img').attr('src');
+            const clientId = $(this).find(".resId").text();
+            const clientName = $(this).find('.resName').text();
+
+            console.log(clientId);
+            console.log(clientName);
+
+
+            //All client on this Event
+            const listClient = document.querySelectorAll(".parent");
+            console.log(listClient);
+
+            const formClient = document.getElementById("taskForm");
+            const inputClient = document.createElement("input");
+            inputClient.hidden = true;
+            inputClient.name = "clientId";
+            inputClient.setAttribute("value", clientId);
+            console.log("ClientOk")
+            formClient.appendChild(inputClient);
+
+
+            //Create lables with Wathing Personr
+            const parentClient = document.getElementById("parent");
+
+            const labelWatchPersons = document.createElement("label");
+            labelWatchPersons.className = "check_list_name_lable";
+            labelWatchPersons.innerText = clientName;
+
+            //Create close button
+            const divClose = document.createElement("div");
+            divClose.className = "close";
+            divClose.innerHTML = "&#10006;";
+
+
+
+            labelWatchPersons.appendChild(divClose);
+            parentClient.appendChild(labelWatchPersons);
+
+
+            // Добавить обработчик события "click" на элемент "divClose"
+            labelWatchPersons.addEventListener("click", function () {
+                parentClient.removeChild(labelWatchPersons);
+
+            });
+
+
+            $(".mainBoxPesponsible").css("display", "none");// закриваємо блок з users
+
+            $(this).hide();
+        });
+
+
+        ///////////////////////////////////////////////////////
+
         var dob = document.getElementById("responseBlock")
         document.getElementById("planTerm").addEventListener("click", function () {
             var input = document.createElement("input");
