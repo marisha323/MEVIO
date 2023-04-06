@@ -79,8 +79,6 @@ divs.forEach(div => {
             }
         });
 
-
-
         setTimeout(() => {
             const screenWidth = window.innerWidth;
             const screenHeight = window.innerHeight;
@@ -97,9 +95,6 @@ divs.forEach(div => {
             const currentScale = getComputedStyle(div).transform.match(/matrix\(([^)]+)\)/)[1].split(', ')[0];
             if (currentScale === '3') {
                 div.style.transform = `translate(${middleX - (divWidth / 2) - divOffsetLeft}px, ${middleY - (divHeight / 2) - divOffsetTop}px) scale(1.0)`;
-
-
-
                 setTimeout(function () {
                     divs.forEach(div1 => {
                         if (div != div1) {
@@ -111,9 +106,6 @@ divs.forEach(div => {
                 div.style.transform = `translate(${middleX - (divWidth / 2) - divOffsetLeft}px, ${middleY - (divHeight / 2) - divOffsetTop}px) scale(3)`;
             }
         }, 400);
-
-
-
 
         setTimeout(() => {
             const screenWidth = window.innerWidth;
@@ -145,13 +137,15 @@ divs.forEach(div => {
                 }, 500);
 
             }
-            else
+            else if (currentScale === '1')
             {
                 div.style.transform = `translate(${middleX - (divWidth / 2) - divOffsetLeft}px, ${middleY - (divHeight / 2) - divOffsetTop}px) scale(3)`;
             }
         }, 1000);
 
-
+        setTimeout(function () {
+            div.style.removeProperty('transform');
+        }, 1000);
         const link = document.getElementById("customStyle");
 
         //div.classList.toggle('goAnimation');
