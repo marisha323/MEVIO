@@ -3,6 +3,12 @@
 *@
 @{
     User? secondUser = ViewBag.secondUser;
+    List<UserChat>? userChats = ViewBag.UserChats;
+    List<EventChat>? eventChats = ViewBag.EventChats;
+    List<TaskChat>? taskChats = ViewBag.TaskChats;
+    List<MeasureChat>? measureChats = ViewBag.MeasureChats;
+
+    bool? isEmptyChat = ViewBag?.IsEmptyChat;
 }
 
 @model User?
@@ -45,31 +51,86 @@
 
 
     .two-users-div {
-        margin-left:2rem;
+        margin-left: 2rem;
         display: flex;
         align-items: center;
         justify-content: flex-start;
         column-gap: 1rem;
-        color:#52A7E4;
+        color: #52A7E4;
     }
 
     .one-user {
         width: 10rem;
         border-left: 1px solid #52A7E4;
         border-right: 1px solid #52A7E4;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        line-height:3rem;
-        text-decoration:none;
-        color:#52A7E4;
-        transition:0.3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 3rem;
+        text-decoration: none;
+        color: #52A7E4;
+        transition: 0.3s;
     }
 
-    .one-user:hover{
-        transform:scale(1.1);
-        background-color:#52A7E4;
-        color:#09122C;
+        .one-user:hover {
+            transform: scale(1.1);
+            background-color: #52A7E4;
+            color: #09122C;
+        }
+
+
+
+
+
+
+    .category-name {
+        height: 3rem;
+        border: 1px solid #52A7E4;
+        border-radius:1rem;
+        text-align: right;
+        font-size: 2rem;
+        font-weight: bold;
+        padding: 0.5rem;
+        width: 100%;
+        cursor: pointer;
+        color: #52A7E4;
+        transition: 0.3s;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+    }
+
+        .category-name:hover {
+            color: #09122C;
+            background-color: #52A7E4;
+        }
+
+
+    .active {
+        color: #09122C;
+        background-color: #52A7E4;
+    }
+
+    .active-chat {
+        border: 3px solid #52A7E4;
+    }
+
+    .hide {
+        display: none;
+        transition: 0.5s;
+    }
+
+    .chat-list {
+        transition: 0.5s;
+    }
+
+
+    .hr2 {
+        margin: 0.5rem 0;
+    }
+
+    a {
+        text-decoration: none;
     }
 </style>
 
@@ -83,41 +144,388 @@
             <p>@Model.UserName (Ви)</p>
         </div>
 
-        <hr class="hr2">
 
-        <div class="flex-between">
+        @*<div class="flex-between">
 
-            <div class="search-div">
-                <img width="40px"
-                     src="https://cdn.discordapp.com/attachments/684475244664193242/1072976650582638632/free-icon-search-4194718.png">
-                <h1 class="search">Поиск</h1>
+        <div class="search-div">
+        <img width="40px"
+        src="https://cdn.discordapp.com/attachments/684475244664193242/1072976650582638632/free-icon-search-4194718.png">
+        <h1 class="search">Поиск</h1>
 
-            </div>
-            <div>
-                <select class="combobox">
-                    <option>Создать</option>
-                </select>
-            </div>
         </div>
+        <div>
+        <select class="combobox">
+        <option>Создать</option>
+        </select>
+        </div>
+        </div>*@
+
+
 
         <div class="users">
             <hr class="hr2">
 
-            <div class="user">
+            <div class="chat-category">
+                @if (ViewBag.ChatType == "EventChat")
+                {
+                    <div class="category-name active">
+                        Події
+                    </div>
+                    <div class="chat-list">
+                        <hr class="hr2">
 
-                <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
-                <div class="user_info">
-                    <p class="p">Name</p>
-                    <p class="label">Последнее сообщение</p>
-                </div>
-                <div class="user-info-time">
-                    <p style="margin-top: 5px;">27.05.2022</p>
-                </div>
+                        @foreach (var chat in eventChats)
+                        {
+                            @if (ViewBag.ChatId == chat.Id)
+                            {
+                                <a class="user active-chat"
+                       asp-action="GetEventChat" asp-route-eventId="@chat.EventId">
+                                    @*<img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">*@
+                                    <div class="user_info">
+                                        <p class="p">@chat.Event.EventName</p>
+                                        <!-- <p class="label">Последнее сообщение</p> -->
+                                    </div>
+                                    <!-- <div class="user-info-time">
+                                        <p style="margin-top: 5px;">27.05.2022</p>
+                                    </div> -->
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="user"
+                       asp-action="GetEventChat" asp-route-eventId="@chat.EventId">
+                                    @*<img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">*@
+                                    <div class="user_info">
+                                        <p class="p">@chat.Event.EventName</p>
+                                        <!-- <p class="label">Последнее сообщение</p> -->
+                                    </div>
+                                    <!-- <div class="user-info-time">
+                                        <p style="margin-top: 5px;">27.05.2022</p>
+                                    </div> -->
+                                </a>
+                            }
+
+
+                            <hr class="hr2">
+
+                        }
+
+
+
+                    </div>
+                }
+
+                else
+                {
+                    <div class="category-name">
+                        Події
+                    </div>
+                    <div class="chat-list hide">
+                        <hr class="hr2">
+
+                        @foreach (var chat in eventChats)
+                        {
+
+                            {
+                                <a class="user"
+                       asp-action="GetEventChat" asp-route-eventId="@chat.EventId">
+                                    @*<img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">*@
+                                    <div class="user_info">
+                                        <p class="p">@chat.Event.EventName</p>
+                                        <!-- <p class="label">Последнее сообщение</p> -->
+                                    </div>
+                                    <!-- <div class="user-info-time">
+                                        <p style="margin-top: 5px;">27.05.2022</p>
+                                    </div> -->
+                                </a>
+                            }
+
+
+                            <hr class="hr2">
+
+                        }
+
+
+
+                    </div>
+                }
+
+
+            </div>
+
+
+
+
+
+            <div class="chat-category">
+
+                @if (ViewBag.ChatType == "TaskChat")
+                {
+                    <div class="category-name active">
+                        Задачі
+                    </div>
+                    <div class="chat-list">
+                        <hr class="hr2">
+
+                        @foreach (var chat in taskChats)
+                        {
+                            @if (ViewBag.ChatId == chat.Id)
+                            {
+                                <a class="user active-chat"
+                       asp-action="GetTaskChat" asp-route-taskId="@chat.TaskId">
+                                    @*<img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">*@
+                                    <div class="user_info">
+                                        <p class="p">@chat.Task.TaskName</p>
+                                        <!-- <p class="label">Последнее сообщение</p> -->
+                                    </div>
+                                    <!-- <div class="user-info-time">
+                                        <p style="margin-top: 5px;">27.05.2022</p>
+                                    </div> -->
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="user"
+                       asp-action="GetTaskChat" asp-route-taskId="@chat.TaskId">
+                                    @*<img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">*@
+                                    <div class="user_info">
+                                        <p class="p">@chat.Task.TaskName</p>
+                                        <!-- <p class="label">Последнее сообщение</p> -->
+                                    </div>
+                                    <!-- <div class="user-info-time">
+                                        <p style="margin-top: 5px;">27.05.2022</p>
+                                    </div> -->
+                                </a>
+                            }
+
+
+                            <hr class="hr2">
+
+                        }
+
+                    </div>
+                }
+
+                else
+                {
+                    <div class="category-name">
+                        Задачі
+                    </div>
+                    <div class="chat-list hide">
+                        <hr class="hr2">
+
+                        @foreach (var chat in taskChats)
+                        {
+
+
+                            <a class="user"
+                       asp-action="GetTaskChat" asp-route-taskId="@chat.TaskId">
+                                @*<img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">*@
+                                <div class="user_info">
+                                    <p class="p">@chat.Task.TaskName</p>
+                                    <!-- <p class="label">Последнее сообщение</p> -->
+                                </div>
+                                <!-- <div class="user-info-time">
+                                    <p style="margin-top: 5px;">27.05.2022</p>
+                                </div> -->
+                            </a>
+
+
+
+                            <hr class="hr2">
+
+                        }
+
+                    </div>
+                }
+
+            </div>
+
+
+
+
+
+            <div class="chat-category">
+
+                @if (ViewBag.ChatType == "MeasureChat")
+                {
+                    <div class="category-name active">
+                        Заходи
+                    </div>
+                    <div class="chat-list">
+                        <hr class="hr2">
+
+                        @foreach (var chat in measureChats)
+                        {
+                            @if (ViewBag.ChatId == chat.Id)
+                            {
+                                <a class="user active-chat"
+                       asp-action="GetMeasureChat" asp-route-measureId="@chat.MeasureId">
+                                    @*<img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">*@
+                                    <div class="user_info">
+                                        <p class="p">@chat.Measure.MeasureName</p>
+                                        <!-- <p class="label">Последнее сообщение</p> -->
+                                    </div>
+                                    <!-- <div class="user-info-time">
+                                        <p style="margin-top: 5px;">27.05.2022</p>
+                                    </div> -->
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="user"
+                       asp-action="GetMeasureChat" asp-route-measureId="@chat.MeasureId">
+                                    @*<img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">*@
+                                    <div class="user_info">
+                                        <p class="p">@chat.Measure.MeasureName</p>
+                                        <!-- <p class="label">Последнее сообщение</p> -->
+                                    </div>
+                                    <!-- <div class="user-info-time">
+                                        <p style="margin-top: 5px;">27.05.2022</p>
+                                    </div> -->
+                                </a>
+                            }
+
+
+                            <hr class="hr2">
+
+                        }
+
+                    </div>
+                }
+
+                else
+                {
+                    <div class="category-name">
+                        Заходи
+                    </div>
+                    <div class="chat-list hide">
+                        <hr class="hr2">
+
+                        @foreach (var chat in measureChats)
+                        {
+
+
+                            <a class="user"
+                       asp-action="GetMeasureChat" asp-route-measureId="@chat.MeasureId">
+                                @*<img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">*@
+                                <div class="user_info">
+                                    <p class="p">@chat.Measure.MeasureName</p>
+                                    <!-- <p class="label">Последнее сообщение</p> -->
+                                </div>
+                                <!-- <div class="user-info-time">
+                                    <p style="margin-top: 5px;">27.05.2022</p>
+                                </div> -->
+                            </a>
+
+
+
+                            <hr class="hr2">
+
+                        }
+
+                    </div>
+                }
+
+            </div>
+
+
+
+            <div class="chat-category">
+
+                @if (ViewBag.ChatType == "UserChat")
+                {
+                    <div class="category-name active">
+                        Користувачі
+                    </div>
+                    <div class="chat-list">
+                        <hr class="hr2">
+
+                        @foreach (var chat in userChats)
+                        {
+                            {
+                                List<UserChatUser> list = chat.UserChatUsers.ToList();
+                                var user = list[0].User;
+
+                                @if (ViewBag.ChatId == chat.Id)
+                                {
+
+                                    <a class="user active-chat"
+                                        asp-action="GetUserChat" asp-route-userId="@user.Id">
+                                        <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
+                                        <div class="user_info">
+
+                                            <p class="p">@user.UserName</p>
+                                            <!-- <p class="label">Последнее сообщение</p> -->
+                                        </div>
+                                        <!-- <div class="user-info-time">
+                                        <p style="margin-top: 5px;">27.05.2022</p>
+                                        </div> -->
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="user"
+                                        asp-action="GetUserChat" asp-route-userId="@user.Id">
+                                        <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
+                                        <div class="user_info">
+                                            <p class="p">@user.UserName</p>
+                                            <!-- <p class="label">Последнее сообщение</p> -->
+                                        </div>
+                                        <!-- <div class="user-info-time">
+                                        <p style="margin-top: 5px;">27.05.2022</p>
+                                        </div> -->
+                                    </a>
+                                }
+                            }
+
+
+                            <hr class="hr2">
+
+                        }
+
+                    </div>
+                }
+
+                else
+                {
+                    <div class="category-name">
+                        Користувачі
+                    </div>
+                    <div class="chat-list hide">
+                        <hr class="hr2">
+
+                        @foreach (var chat in userChats)
+                        {
+                            {
+                                List<UserChatUser> list = chat.UserChatUsers.ToList();
+                                var user = list[0].User;
+
+
+                                <a class="user"
+                                    asp-action="GetUserChat" asp-route-userId="@user.Id">
+                                    <img class="img" src="https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png">
+                                    <div class="user_info">
+                                        <p class="p">@user.UserName</p>
+                                        <!-- <p class="label">Последнее сообщение</p> -->
+                                    </div>
+                                    <!-- <div class="user-info-time">
+                                    <p style="margin-top: 5px;">27.05.2022</p>
+                                    </div> -->
+                                </a>
+
+                            }
+
+                            <hr class="hr2">
+
+                        }
+
+                    </div>
+                }
 
             </div>
 
             <hr class="hr2">
-
 
 
 
@@ -129,60 +537,73 @@
     <div class="right-chat-block">
 
         <div class="chat-name-div">
-            @*@if (ViewBag.ChatUsers != null)*@
-            @if (secondUser == null)
+
+            @if (isEmptyChat == false)
             {
-                <div>
-                    <p class="chat-name">@ViewBag.ChatName</p>
-                    <p class="event-date">@ViewBag.Date</p>
-                </div>
-
-                <div class="chat-members">
-
-
-                    <p class="show-members-button">Учасники</p>
-
-                    <div class="chat-members-list hide">
-                        @foreach (User user in ViewBag.ChatUsers)
-                        {
-                            <div class="chat-list-member">
-                                @user.UserName
-                                <div class="chat-member-container">
-                                    @if (Model.Id != user.Id)
-                                    {
-                                        <a asp-controller="Chat" asp-action="GetUserChat" asp-route-userId="@user.Id">
-                                            <img class="chat-members-img" src="~/img/chat_FILL0_wght400_GRAD0_opsz48.png" alt="Написати" />
-                                        </a>
-                                    }
-
-                                    <a asp-controller="ZapTeacher" asp-action="Teacher" asp-route-id="@user.Id">
-                                        <img class="chat-members-img" src="~/img/account_circle_FILL0_wght400_GRAD0_opsz48.png" alt="Перейти до профілю" />
-                                    </a>
-                                </div>
-                            </div>
-                        }
-
+                @if (secondUser == null)
+                {
+                    <div>
+                        <p class="chat-name">@ViewBag?.ChatName</p>
+                        <p class="event-date">@ViewBag?.Date</p>
                     </div>
 
+                    <div class="chat-members">
+
+
+                        <p class="show-members-button">Учасники</p>
+
+                        <div class="chat-members-list hide">
+                            @foreach (User user in ViewBag?.ChatUsers)
+                            {
+                                <div class="chat-list-member">
+                                    @if (Model.Id.Equals(user.Id))
+                                    {
+                                        <span>@user.UserName (Ви)</span>
+                                    }
+                                    else
+                                    {
+                                        <span>@user.UserName</span>
+                                    }
+                                    @*@user.UserName*@
+                                    <div class="chat-member-container">
+                                        @if (Model.Id != user.Id)
+                                        {
+                                            <a asp-controller="Chat" asp-action="GetUserChat" asp-route-userId="@user.Id">
+                                                <img class="chat-members-img" src="~/img/chat_FILL0_wght400_GRAD0_opsz48.png" alt="Написати" />
+                                            </a>
+                                        }
+
+                                        <a asp-controller="ZapTeacher" asp-action="Teacher" asp-route-id="@user.Id">
+                                            <img class="chat-members-img" src="~/img/account_circle_FILL0_wght400_GRAD0_opsz48.png" alt="Перейти до профілю" />
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
 
 
 
-                </div>
-            }
+
+                    </div>
+                }
 
 
-            @if (secondUser != null)
-            {
-                <div class="two-users-div">
-                    <a class="one-user" asp-controller="ZapTeacher" asp-action="Teacher" asp-route-id="@Model.Id">
-                        @Model.UserName (Ви)
-                    </a>
-                    <div>-</div>
+                @if (secondUser != null)
+                {
+                    <div class="two-users-div">
+                        <a class="one-user" asp-controller="ZapTeacher" asp-action="Teacher" asp-route-id="@Model.Id">
+                            @Model.UserName (Ви)
+                        </a>
+                        <div>-</div>
                         <a class="one-user" asp-controller="ZapTeacher" asp-action="Teacher" asp-route-id="@secondUser.Id">
                             @secondUser.UserName
                         </a>
-                </div>
+                    </div>
+                }
             }
+
+            
 
         </div>
 
@@ -190,7 +611,7 @@
 
             @if (ViewBag.Messages != null)
             {
-                foreach (ChatMessage message in ViewBag.Messages)
+                foreach (ChatMessage message in ViewBag?.Messages)
                 {
                     @*Current User Message*@
 
@@ -271,6 +692,21 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
 <script>
+
+
+    $(".category-name").on("click", function (e) {
+        $(e.target).toggleClass("active");
+
+        const div = $(this).closest(".chat-category").find(".chat-list");
+
+        $(div).toggleClass("hide");
+
+
+    })
+
+
+
+
 
     const messagesDiv = document.querySelector(".messages-div");
 
@@ -436,11 +872,15 @@
 
         const sentDate = document.createElement("div");
         sentDate.className = "sentTime";
+
+
         sentDate.innerText = new Date(message.timeStamp).toLocaleDateString();
 
         const sentTime = document.createElement("div");
         sentTime.className = "sentTime";
-        sentTime.innerText = new Date(message.timeStamp).toLocaleTimeString();
+        const stamp = new Date(message.timeStamp).toLocaleTimeString().split(":");
+        const time = `${stamp[0]}:${stamp[1]}`;
+        sentTime.innerText = time;
 
 
         const p = document.createElement("p");
