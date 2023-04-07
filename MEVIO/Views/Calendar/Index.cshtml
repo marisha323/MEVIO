@@ -925,99 +925,97 @@
             </div>
         </div>
     </div>
-    @{
+  @*  @{
         var events = JsonSerializer.Serialize(ViewBag.Events);
         var tasks = JsonSerializer.Serialize(ViewBag.Tasks);
         var measures = JsonSerializer.Serialize(ViewBag.Measures);
-    }
+    }*@
     <script>
-        var events = @Html.Raw(events);
-        var tasks = @Html.Raw(tasks);
-        var measures = @Html.Raw(measures);
+       
 
-        function handleClick(element) {
-            //week operations
-            document.getElementById("monthbtn").classList.remove("active");
-            document.getElementById("weekbtn").classList.add("active");
-            WeekButtonClick();
+        //function handleClick(element) {
+        //    //week operations
+        //    document.getElementById("monthbtn").classList.remove("active");
+        //    document.getElementById("weekbtn").classList.add("active");
+        //    WeekButtonClick();
 
-            // display events, tasks, and measures
-            let date = new Date(element.id);
-            date.setMinutes(0);
-            date.setSeconds(0);
-            date.setMilliseconds(0);
-            //console.log(date);
-            var weekDayDivs = document.querySelectorAll(".week-day.weekdays");
-            for (var i = 0; i < weekDayDivs.length; i++) {
-                var weekDayDiv = weekDayDivs[i];
-                weekDayDiv.innerHTML = "";
-                const year = date.getFullYear();
-                const month = String(date.getMonth() + 1).padStart(2, '0');
-                const day = String(date.getDate()).padStart(2, '0');
-                const formattedDate = `${year}-${month}-${day}`;
+        //    // display events, tasks, and measures
+        //    let date = new Date(element.id);
+        //    date.setMinutes(0);
+        //    date.setSeconds(0);
+        //    date.setMilliseconds(0);
+        //    //console.log(date);
+        //    var weekDayDivs = document.querySelectorAll(".week-day.weekdays");
+        //    for (var i = 0; i < weekDayDivs.length; i++) {
+        //        var weekDayDiv = weekDayDivs[i];
+        //        weekDayDiv.innerHTML = "";
+        //        const year = date.getFullYear();
+        //        const month = String(date.getMonth() + 1).padStart(2, '0');
+        //        const day = String(date.getDate()).padStart(2, '0');
+        //        const formattedDate = `${year}-${month}-${day}`;
 
-                // iterate over hours between 8 and 23
-                for (var hour = 8; hour <= 23; hour++) {
-                    const formattedHour = String(hour).padStart(2, '0');
-                    const formattedDateTime = `${formattedDate}-${formattedHour}`;
+        //        // iterate over hours between 8 and 23
+        //        for (var hour = 8; hour <= 23; hour++) {
+        //            const formattedHour = String(hour).padStart(2, '0');
+        //            const formattedDateTime = `${formattedDate}-${formattedHour}`;
 
-                    // scan events, tasks, and measures
-                    for (var j = 0; j < events.length; j++) {
-                        var event = events[j];
-                        const beginDate = new Date(event.Begin);
-                        const eventYear = beginDate.getFullYear();
-                        const eventMonth = String(beginDate.getMonth() + 1).padStart(2, '0');
-                        const eventDate = String(beginDate.getDate()).padStart(2, '0');
-                        const eventHour = String(beginDate.getHours()).padStart(2, '0');
-                        const formattedEventDate = `${eventYear}-${eventMonth}-${eventDate}-${eventHour}`;
-                        console.log(formattedEventDate);
-                        console.log(formattedDateTime);
-                        if (formattedEventDate === formattedDateTime) {
-                            var eventDiv = document.createElement("div");
-                            eventDiv.classList.add("event");
-                            var eventInput = document.createElement("input");
-                            eventInput.type = "hidden";
-                            eventInput.value = event.Id;
-                            var eventP = document.createElement("p");
-                            eventP.innerText = event.EventName;
-                            eventDiv.appendChild(eventInput);
-                            eventDiv.appendChild(eventP);
-                            weekDayDiv.appendChild(eventDiv);
-                        }
-                    }
-                    for (var j = 0; j < tasks.length; j++) {
-                        var task = tasks[j];
-                        if (task.Begin.startsWith(formattedDateTime)) {
-                            var taskDiv = document.createElement("div");
-                            taskDiv.classList.add("event", "yellow");
-                            var taskInput = document.createElement("input");
-                            taskInput.type = "hidden";
-                            taskInput.value = task.Id;
-                            var taskP = document.createElement("p");
-                            taskP.innerText = task.TaskName;
-                            taskDiv.appendChild(taskInput);
-                            taskDiv.appendChild(taskP);
-                            weekDayDiv.appendChild(taskDiv);
-                        }
-                    }
-                    for (var j = 0; j < measures.length; j++) {
-                        var measure = measures[j];
-                        if (measure.Begin.startsWith(formattedDateTime)) {
-                            var measureDiv = document.createElement("div");
-                            measureDiv.classList.add("event", "red");
-                            var measureInput = document.createElement("input");
-                            measureInput.type = "hidden";
-                            measureInput.value = measure.Id;
-                            var measureP = document.createElement("p");
-                            measureP.innerText = measure.MeasureName;
-                            measureDiv.appendChild(measureInput);
-                            measureDiv.appendChild(measureP);
-                            weekDayDiv.appendChild(measureDiv);
-                        }
-                    }
-                }
-            }
-        }
+        //            // scan events, tasks, and measures
+        //            for (var j = 0; j < events.length; j++) {
+        //                var event = events[j];
+        //                const beginDate = new Date(event.Begin);
+        //                const eventYear = beginDate.getFullYear();
+        //                const eventMonth = String(beginDate.getMonth() + 1).padStart(2, '0');
+        //                const eventDate = String(beginDate.getDate()).padStart(2, '0');
+        //                const eventHour = String(beginDate.getHours()).padStart(2, '0');
+        //                const formattedEventDate = `${eventYear}-${eventMonth}-${eventDate}-${eventHour}`;
+        //                console.log(formattedEventDate);
+        //                console.log(formattedDateTime);
+        //                if (formattedEventDate === formattedDateTime) {
+        //                    var eventDiv = document.createElement("div");
+        //                    eventDiv.classList.add("event");
+        //                    var eventInput = document.createElement("input");
+        //                    eventInput.type = "hidden";
+        //                    eventInput.value = event.Id;
+        //                    var eventP = document.createElement("p");
+        //                    eventP.innerText = event.EventName;
+        //                    eventDiv.appendChild(eventInput);
+        //                    eventDiv.appendChild(eventP);
+        //                    weekDayDiv.appendChild(eventDiv);
+        //                }
+        //            }
+        //            for (var j = 0; j < tasks.length; j++) {
+        //                var task = tasks[j];
+        //                if (task.Begin.startsWith(formattedDateTime)) {
+        //                    var taskDiv = document.createElement("div");
+        //                    taskDiv.classList.add("event", "yellow");
+        //                    var taskInput = document.createElement("input");
+        //                    taskInput.type = "hidden";
+        //                    taskInput.value = task.Id;
+        //                    var taskP = document.createElement("p");
+        //                    taskP.innerText = task.TaskName;
+        //                    taskDiv.appendChild(taskInput);
+        //                    taskDiv.appendChild(taskP);
+        //                    weekDayDiv.appendChild(taskDiv);
+        //                }
+        //            }
+        //            for (var j = 0; j < measures.length; j++) {
+        //                var measure = measures[j];
+        //                if (measure.Begin.startsWith(formattedDateTime)) {
+        //                    var measureDiv = document.createElement("div");
+        //                    measureDiv.classList.add("event", "red");
+        //                    var measureInput = document.createElement("input");
+        //                    measureInput.type = "hidden";
+        //                    measureInput.value = measure.Id;
+        //                    var measureP = document.createElement("p");
+        //                    measureP.innerText = measure.MeasureName;
+        //                    measureDiv.appendChild(measureInput);
+        //                    measureDiv.appendChild(measureP);
+        //                    weekDayDiv.appendChild(measureDiv);
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
     </script>
 
     <div id="dayGrid" class="calendar-grid calGrid">
