@@ -561,7 +561,7 @@
                                     int firstDayOfWeek = (int)firstDayOfMonth.DayOfWeek;
                                     int lastDayOfWeek = (int)new DateTimeOffset(year, month, daysInMonth, 0, 0, 0, TimeSpan.Zero).DayOfWeek;
                                     int rows = (firstDayOfWeek + daysInMonth + (6 - lastDayOfWeek)) / 7;
-                                    int day = 1 - firstDayOfWeek;
+                                    int day = 2 - firstDayOfWeek;
                                 }
                                 @for (int row = 0; row < rows; row++)
                                 {
@@ -614,6 +614,7 @@
                                         }
                                         else
                                         {
+     
                                             int nextMonthDay = day - daysInMonth;
                                             DateTime nextMonthDate = new DateTime(month == 12 ? year + 1 : year, month == 12 ? 1 : month + 1, nextMonthDay);
                                             <div class="month-day next-month" id="@nextMonthDate.ToString("yyyy-MM-dd")" @*onclick="handleClick(this)"*@>
