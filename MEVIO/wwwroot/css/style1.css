@@ -361,17 +361,18 @@ body {
     transition:0.1s;
 }
 
-.chat-members-list > p {
+.chat-list-member {
     width: 100%;
     color: #52A7E4;
-    cursor:pointer;
-    padding:1rem 2rem 2rem;
-    padding-bottom:2rem;
+    cursor: pointer;
+    padding: 1rem 2rem 2rem;
+    padding-bottom: 0.5rem;
 }
 
-    .chat-members-list > p:hover {
+    .chat-list-member:hover {
         background: #52A7E4;
         color: #09122C;
+        font-weight:bold;
     }
 
 .hide {

@@ -207,13 +207,16 @@ html {
     background: #52a7e4;
     border-radius: 15px;
     margin-bottom: 1rem;
-    font-size:1.5rem;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: #09122C;
 }
 
 .buttonDiv {
     display: flex;
     justify-items: center;
     transition: all 0.7s ease-in-out;
+    text-decoration: none;
 }
 
 .button:hover {

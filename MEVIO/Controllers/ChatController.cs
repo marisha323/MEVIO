@@ -219,6 +219,112 @@ namespace MEVIO.Controllers
 
 
 
+        public async Task<IActionResult> GetUserChat(int userId)
+        {
+            User user = await GetAuthorizedUserAsync();
+            User? secondUser = await context.Users.FirstOrDefaultAsync(u => u.Id.Equals(userId));
+
+
+
+            if (user == null)
+            {
+                return Redirect("Registry/Index");
+            }
+
+
+
+            UserChat? userChat = null;
+
+
+            var allChats = await context.UserChatUsers.AsNoTracking().ToListAsync();
+
+            var chatsBySecondUser = allChats.Where(c => c.UserId.Equals(secondUser.Id)).ToList();
+
+
+
+            foreach (var chat in chatsBySecondUser)
+            {
+                var chats = allChats.Where(c => c.UserChatId.Equals(chat.UserChatId)).ToList();
+
+                if (chats.Count>0)
+                {
+                    foreach (var tmp in chats)
+                    {
+                        if (tmp.UserId.Equals(user.Id))
+                        {
+                            userChat = await context.UserChats.FirstOrDefaultAsync(c => c.Id.Equals(tmp.UserChatId));
+                            break;
+                        }
+                    }
+                }
+            }
+
+
+
+
+            if (userChat == null)
+            {
+                userChat = new UserChat()
+                {
+                    UserChatName = $"{user.Id}-{secondUser.Id}"
+                };
+
+                context.UserChats.Add(userChat);
+
+                context.SaveChanges();
+
+                context.UserChatUsers.Add(new()
+                {
+                    UserChatId = userChat.Id,
+                    UserId = user.Id
+                });
+
+                context.UserChatUsers.Add(new()
+                {
+                    UserChatId = userChat.Id,
+                    UserId = secondUser.Id
+                });
+
+
+                await context.SaveChangesAsync();
+            }
+
+
+
+            
+
+
+
+            ViewBag.ChatName = null;
+
+            ViewBag.ChatId = userChat.Id;
+
+            var list = new List<User>();
+            list.Add(user);
+            list.Add(secondUser);
+
+            ViewBag.ChatUsers = list; 
+
+            
+
+            ViewBag.ChatType = "UserChat";
+
+            ViewBag.Messages = await context.ChatMessages.Where(m => m.UserChatId.Equals(userChat.Id)).ToListAsync();
+
+            ViewBag.SecondUser = secondUser;
+
+
+            return View("Index", user);
+        }
+
+
+
+
+
+
+
+
+
 
 
         public async Task<IActionResult> AddNewMessage()
