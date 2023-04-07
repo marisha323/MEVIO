@@ -143,7 +143,7 @@
                     <img class="imgGoogle" src="/img/imgGoogle.png" alt="" />
                 </a>
 
-                <button id="google-signin-btn" class="g_id_onload" data-shape="circle" data-logo_alignment="center" data-size="large" data-type="icon" data-context="signin">Вход через Google</button>
+                <a asp-controller="Account" asp-action="GoogleLogin">Sign in with Google</a>
                 <div ></div>
             </div>
             </form>
@@ -157,8 +157,9 @@
      private const string ClientSecret = "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";*@
 
 
-<script src="https://accounts.google.com/gsi/client" async defer></script>
-<script async custom-element="amp-onetap-google" src="https://cdn.ampproject.org/v0/amp-onetap-google-0.1.js"></script>
+@*<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script async custom-element="amp-onetap-google" src="https://cdn.ampproject.org/v0/amp-onetap-google-0.1.js"></script>*@
+
 <script>
 
     //function onSignIn(googleUser) {

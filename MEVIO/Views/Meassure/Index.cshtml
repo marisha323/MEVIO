@@ -13,6 +13,7 @@
     input[type="checkbox"] {
         margin-top: auto;
         margin-bottom: auto;
+     
     }
 
     .checkbox-style {
@@ -377,7 +378,7 @@
                 
                 <div>
                     <label class="labelF">Новий захід</label>
-                    <input type="text" class="inputF" asp-for="@Model.MeasureName" />
+                    <input type="text" class="inputF" asp-for="@Model.MeasureName" placeholder="Введіть назву заходу" />
                 </div>
                 <div class="description">
                     <div class="divDescr">
@@ -387,7 +388,7 @@
 
                         @foreach (PlaceForMeasure item in ViewBag.Place)
                         {
-                            <option value="@item.Id" asp-for="@Model.PlaceForMeasure">@item.PlaceForMeasureName</option>
+                            <option value="@item.Id">@item.PlaceForMeasureName</option>
                         }
                     </select>
                 </div>
@@ -701,7 +702,7 @@
 
                 const inputClient = document.createElement("input");
                 inputClient.hidden = true;
-                inputClient.name = "userId";
+                inputClient.name = "clientId";
                 inputClient.setAttribute("value", clientId);
                 console.log("ClientOk")
                 formClient.appendChild(inputClient);
@@ -894,6 +895,8 @@
                     parent_Shedules.removeChild(schedule);
                     coWorkers.removeChild(div2);
                 });
+
+
 
                 $(".mainBox").css("display","none");// закриваємо блок з users
 

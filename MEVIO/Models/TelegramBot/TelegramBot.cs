@@ -163,6 +163,7 @@
             //// Remove the user's authentication
             //_authenticated.Remove(chat.Id);
         }
+
         public async Task SendEvent(UserTelegram userTelegram, Event event1, ITelegramBotClient bot, string creator)
         {
             Chat key = JsonSerializer.Deserialize<Chat>(userTelegram.TelegramJson);

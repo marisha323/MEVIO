@@ -429,7 +429,7 @@
             <div class="insideDiv">
                 <div>
                     <label class="labelF">Нова подія </label>
-                    <input type="text" class="inputF" asp-for="@Model.EventName" />
+                    <input type="text" class="inputF" asp-for="@Model.EventName" placeholder="Введіть назву події" />
                 </div>
 
 
@@ -689,7 +689,7 @@
 
     <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
     <script src="~/js/scriptEventMini2.js" asp-append-version="true"></script>
-    <script src="~/js/SashaTimeLine.js" asp-append-version="true"></script>
+   <script src="~/js/SashaTimeLine.js" asp-append-version="true"></script>
     <script src="~/js/AddNewEvent.js"></script>
 
 
@@ -697,8 +697,101 @@
 
         //EVENT
         $(function () {
+            //GET Time Value
 
-            var dateStart = $('#date1').val();// 
+            const time1 = document.querySelector('#time1');
+            const time2 = document.querySelector('#time2');
+            const timeChangeBlock = document.querySelector(".time-change-block");
+
+            //const beginOfDay = 25200000;
+
+            var offset = Math.abs(new Date().getTimezoneOffset()) * 60 * 1000;
+
+            console.log(offset);
+
+            const beginOfDay = 25200000 - offset;
+            const endOfDay = 75600000;
+            const totalDay = 57600000;
+
+            const timeSpanDivWidth = document.querySelector(".time-span-row").getBoundingClientRect().width;
+
+
+            const milisecByPixel = Math.round(totalDay / timeSpanDivWidth);
+
+
+            time1.value = new Date(beginOfDay).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            time2.value = new Date(beginOfDay + 3600000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+
+            timeChangeBlock.addEventListener("mousemove", function (e) {
+
+                let left = e.target.style.left;
+                left = left.split('p')[0];
+
+
+                let time1Value = Math.round(left * milisecByPixel + beginOfDay);
+                if (time1Value < beginOfDay) time1Value = beginOfDay;
+                if (time1Value > endOfDay - 3600000) time1Value = endOfDay - 3600000;
+                time1.value = new Date(time1Value).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+
+                let timeChangeBlockWidth = timeChangeBlock.getBoundingClientRect().width;
+                let time2Value = Math.round(timeChangeBlockWidth * milisecByPixel + time1Value) + 60000;
+                if (time2Value > endOfDay) time2Value = endOfDay;
+                time2.value = new Date(time2Value).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            });
+
+
+            function ChangeTimeInput() {
+                const beginOfDay = 25200000;
+                const endOfDay = 79200000;
+
+                const timeString1 = time1.value;
+                const [hours1, minutes1] = timeString1.split(":");
+                const hoursInMs1 = parseInt(hours1, 10) * 60 * 60 * 1000;
+                const minutesInMs1 = parseInt(minutes1, 10) * 60 * 1000;
+                let time1Value = hoursInMs1 + minutesInMs1;
+
+                const timeString2 = time2.value;
+                const [hours2, minutes2] = timeString2.split(":");
+                const hoursInMs2 = parseInt(hours2, 10) * 60 * 60 * 1000;
+                const minutesInMs2 = parseInt(minutes2, 10) * 60 * 1000;
+                let time2Value = hoursInMs2 + minutesInMs2;
+
+
+
+                if (time1Value < beginOfDay) time1Value = beginOfDay;
+                if (time1Value > endOfDay) time1Value = endOfDay;
+                if (time1Value > time2Value) time1Value = time2Value - 3600000;
+
+                time1Value -= beginOfDay;
+
+                const left = Math.round((time1Value) / milisecByPixel);
+
+                console.log(time1Value);
+                console.log(time2Value);
+
+                if (time2Value - beginOfDay > time1Value) {
+                    const timeDiff = time2Value - time1Value - beginOfDay;
+                    const width = Math.round(timeDiff / milisecByPixel);
+
+                    if (width > timeSpanDivWidth - left) width = timeSpanDivWidth;
+
+                    timeChangeBlock.style.width = width + "px";
+                }
+
+                if (left < 0) left = 0;
+
+                timeChangeBlock.style.left = left + "px";
+            }
+
+            time1.addEventListener("change", ChangeTimeInput);
+            time2.addEventListener("change", ChangeTimeInput);
+
+
+            ///////////////////////////////////////////////////////
+
+            var dateStart = $('#date1').val();//
             var dateEnd = $('#date2').val();
 
             $('#addMembers').click(function ()  //FOR USERS
@@ -712,11 +805,10 @@
                 $(".mainBoxClient").fadeToggle(100);
 
             });
-           
+
 
             //ADD CLIENTS
-            $('.inBoxClient').click(function (e) 
-            {
+            $('.inBoxClient').click(function (e) {
                 //const imgSrcClient = $(this).find('img').attr('src');
                 const clientId = $(this).find(".clientId").text();
                 const clientName = $(this).find('.clientName').text();
@@ -737,7 +829,7 @@
                 console.log("ClientOk")
                 formClient.appendChild(inputClient);
 
-                             
+
                 //Create blocks with users
                 const parentClient = document.getElementById("parentClient");
 
@@ -765,18 +857,17 @@
                 // Добавить обработчик события "click" на элемент "divClose"
                 divClose.addEventListener("click", function () {
                     parentClient.removeChild(divClient);
-                                      
+
                 });
 
-               
+
                 $(".mainBoxClient").css("display", "none");// закриваємо блок з users
 
                 $(this).hide();
             });
-            
-            $('.inBox').click(function (e) 
-            {
-                 //
+
+            $('.inBox').click(function (e) {
+                //
                 const imgSrc = $(this).find('img').attr('src');
                 const userId = $(this).find(".userId").text();
                 const userName = $(this).find('.userName').text();
@@ -804,7 +895,7 @@
                 divClose.className = "close";
                 divClose.innerHTML = "&#10006;";
 
-                
+
 
                 div.appendChild(img);
                 div.appendChild(p);
@@ -852,15 +943,25 @@
                     timeSpanRow1.appendChild(time);
                 }
 
-                // создаем 
+                // создаем
                 const timeSpanRow2 = document.createElement("div");
                 timeSpanRow2.classList.add("time-span-row", "time-blocks");
 
                 //block c классом "time-change-block"
                 const timeChange_Block = document.createElement("div");
                 timeChange_Block.classList.add("time-change-block");
+
+             
                 timeSpanRow2.appendChild(timeChange_Block);
 
+
+
+                //// Прикрепляем функцию ChangeTimeInput к input time
+                //const timeInputs = document.querySelectorAll('input[type="time"]');
+                //timeInputs.forEach(input => input.addEventListener('change', ChangeTimeInput));
+
+                //time1.addEventListener("change", ChangeTimeInput);
+                //time2.addEventListener("change", ChangeTimeInput);
 
                 // создаем элементы для блоков времени и добавляем их во вторую строку времени
                 for (let i = 0; i < 16; i++) {
@@ -888,12 +989,12 @@
 
 
                 //ADD USER for Shedule
-                 //<div class="coWorkers">
-                 //       <div class="people">
-                 //           <img src="~/Imeg1/@ViewBag.NameUser/@ViewBag.ImgPath" />
-                 //           <p class="peopleP"> @ViewBag.NameUser</p>
-                 //       </div>
-                 //   </div>
+                //<div class="coWorkers">
+                //       <div class="people">
+                //           <img src="~/Imeg1/@ViewBag.NameUser/@ViewBag.ImgPath" />
+                //           <p class="peopleP"> @ViewBag.NameUser</p>
+                //       </div>
+                //   </div>
 
                 const coWorkers = document.getElementById("coWorkers");
 
@@ -910,7 +1011,7 @@
 
                 div2.appendChild(img2);
                 div2.appendChild(p2);
-              
+
                 console.log("OK");
                 coWorkers.appendChild(div2)
 
@@ -922,13 +1023,12 @@
                     coWorkers.removeChild(div2);
                 });
 
-                $(".mainBox").css("display","none");// закриваємо блок з users
+                $(".mainBox").css("display", "none");// закриваємо блок з users
                 $(this).hide();
 
             });
 
-            $('#CheckAllDay').click(function ()
-            {
+            $('#CheckAllDay').click(function () {
                 $('#time1').fadeToggle(200);
                 $('#time2').fadeToggle(200);
 
@@ -962,20 +1062,20 @@
             }
         }
 
-        //// Получить ссылку на элемент "close"
-        //var closeBtn = document.getElementById("close");
+                //// Получить ссылку на элемент "close"
+                //var closeBtn = document.getElementById("close");
 
-        //// Добавить обработчик события "click" на элемент "close"
-        //closeBtn.addEventListener("click", function () {
-        //    // Получить ссылку на родительский элемент "parent"
-        //    var parent = document.getElementById("parent");
+                //// Добавить обработчик события "click" на элемент "close"
+                //closeBtn.addEventListener("click", function () {
+                //    // Получить ссылку на родительский элемент "parent"
+                //    var parent = document.getElementById("parent");
 
-        //    // Get link on element  "memb"
-        //    var memb = document.querySelector(".memb");
+                //    // Get link on element  "memb"
+                //    var memb = document.querySelector(".memb");
 
-        //    // delete element "memb" from  "parent"
-        //    parent.removeChild(memb);
-        //});
+                //    // delete element "memb" from  "parent"
+                //    parent.removeChild(memb);
+                //});
 
     </script>
 
