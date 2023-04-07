@@ -71,7 +71,7 @@ body {
     background-color: #09122C;
     overflow-x: hidden;
     overflow-y: auto;
-    width: fit-content;
+    /*width: fit-content;*/
     padding: 0.5rem;
 }
 
@@ -127,12 +127,22 @@ body {
 .user {
     display: flex;
     column-gap: 0.5rem;
+    border: 3px solid #09122C;
+    cursor:pointer;
 }
+
+    .user:hover {
+        border: 3px solid #52A7E4;
+    }
 
 .user_info {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    align-items:center;
+    width:100%;
+    font-size:1.5rem;
+    line-height:3;
 }
 
 .user-info-time {

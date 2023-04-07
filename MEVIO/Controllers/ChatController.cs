@@ -36,11 +36,147 @@ namespace MEVIO.Controllers
 
 
 
+
+        private async Task<List<UserChat>> GetUserChats(int userId)
+        {
+            List<UserChat> list = new List<UserChat>();
+
+            var allUserChats = await context.UserChats.AsNoTracking().ToListAsync();
+            var allUserChatUsers = await context.UserChatUsers.AsNoTracking().ToListAsync();
+            var allUsers=await context.Users.AsNoTracking().ToListAsync();
+
+            var chatsUser=await context.UserChatUsers.Where(c=>c.UserId.Equals(userId)).ToListAsync();
+
+            foreach (var chat in chatsUser)
+            {
+                var Chat = allUserChats.FirstOrDefault(c => c.Id.Equals(chat.UserChatId));
+                var userChatUser = allUserChatUsers.FirstOrDefault(c => c.UserChatId.Equals(chat.UserChatId) && c.UserId != userId);
+                var user = allUsers.FirstOrDefault(u => u.Id.Equals(userChatUser.UserId));
+
+                userChatUser.User = user;
+                Chat.UserChatUsers.Add(userChatUser);
+
+                list.Add(Chat);
+            }
+
+
+            return list.Reverse<UserChat>().ToList();
+        }
+
+
+        private async Task<List<EventChat>> GetEventChats(int userId)
+        {
+            List<EventChat> list = new List<EventChat>();
+
+
+            var allEvents = await context.Events.AsNoTracking().ToListAsync();
+            var allEventChats = await context.EventsChat.AsNoTracking().ToListAsync();
+
+            var eventUsers = await context.EventsUsers.Where(e => e.UserId.Equals(userId)).ToListAsync();
+
+            foreach (var eventUser in eventUsers)
+            {
+                var Event = allEvents.FirstOrDefault(e => e.Id.Equals(eventUser.EventId));
+                var EventChat = allEventChats.FirstOrDefault(c => c.EventId.Equals(Event.Id));
+
+                EventChat.Event = Event;
+                list.Add(EventChat);
+            }
+
+
+
+            return list.Reverse<EventChat>().ToList();
+        }
+
+
+        private async Task<List<TaskChat>> GetTaskChats(int userId)
+        {
+            List<TaskChat> list = new List<TaskChat>();
+
+            var allTasks=await context.Tasks.AsNoTracking().ToListAsync();
+            var allTaskChats = await context.TaskChats.AsNoTracking().ToListAsync();
+
+            var taskUsers = await context.TasksUsers.Where(t => t.UserId.Equals(userId)).ToListAsync();
+
+            foreach (var item in taskUsers)
+            {
+                var Task = allTasks.FirstOrDefault(t => t.Id.Equals(item.TaskId));
+                var TaskChat = allTaskChats.FirstOrDefault(t => t.TaskId.Equals(item.TaskId));
+
+                TaskChat.Task = Task;
+                list.Add(TaskChat);
+            }
+
+
+
+            return list.Reverse<TaskChat>().ToList();
+        }
+
+
+        private async Task<List<MeasureChat>> GetMeasureChats(int userId)
+        {
+            List<MeasureChat> list = new();
+
+
+            var allMeasures=await context.Measures.ToListAsync();
+            var allMeasureChats = await context.MeasureChats.ToListAsync();
+
+            var measureUsers = await context.MeasuresUsers.Where(m => m.UserId.Equals(userId)).ToListAsync();
+
+            foreach (var item in measureUsers)
+            {
+                var Measure = allMeasures.FirstOrDefault(m => m.Id.Equals(item.MeasureId));
+                var MeasureChat = allMeasureChats.FirstOrDefault(c=>c.MeasureId.Equals(item.MeasureId));
+
+                MeasureChat.Measure = Measure;
+                list.Add(MeasureChat);
+            }
+
+
+            return list.Reverse<MeasureChat>().ToList();
+        }
+
+
+
+
+
         public async Task<IActionResult> Index()
         {
+            User user = await GetAuthorizedUserAsync();
+
+            if (user == null)
+            {
+                return Redirect("Registry/Index");
+            }
 
 
-            return Redirect("Registry/Index");
+            ViewBag.ChatName = null;
+
+            ViewBag.ChatId = null;
+
+            ViewBag.ChatUsers = null;
+
+            ViewBag.Date = null;
+
+            ViewBag.ChatType = null;
+
+            ViewBag.Messages = null;
+
+
+            ViewBag.IsEmptyChat = true;
+
+
+
+            ViewBag.UserChats = await GetUserChats(user.Id);
+
+            ViewBag.EventChats = await GetEventChats(user.Id);
+
+            ViewBag.TaskChats = await GetTaskChats(user.Id);
+
+            ViewBag.MeasureChats = await GetMeasureChats(user.Id);
+
+
+            return View(user);
         }
 
 
@@ -98,6 +234,15 @@ namespace MEVIO.Controllers
 
             ViewBag.Messages = await context.ChatMessages.Where(m => m.EventChatId.Equals(eventChat.Id)).ToListAsync();
 
+
+
+            ViewBag.UserChats = await GetUserChats(user.Id);
+
+            ViewBag.EventChats = await GetEventChats(user.Id);
+
+            ViewBag.TaskChats = await GetTaskChats(user.Id);
+
+            ViewBag.MeasureChats = await GetMeasureChats(user.Id);
 
             return View("Index",user);
         }
@@ -157,6 +302,14 @@ namespace MEVIO.Controllers
             ViewBag.Messages = await context.ChatMessages.Where(m => m.TaskChatId.Equals(taskChat.Id)).ToListAsync();
 
 
+            ViewBag.UserChats = await GetUserChats(user.Id);
+
+            ViewBag.EventChats = await GetEventChats(user.Id);
+
+            ViewBag.TaskChats = await GetTaskChats(user.Id);
+
+            ViewBag.MeasureChats = await GetMeasureChats(user.Id);
+
             return View("Index", user);
         }
 
@@ -214,6 +367,14 @@ namespace MEVIO.Controllers
             ViewBag.Messages = await context.ChatMessages.Where(m => m.MeasureChatId.Equals(measureChat.Id)).ToListAsync();
 
 
+            ViewBag.UserChats = await GetUserChats(user.Id);
+
+            ViewBag.EventChats = await GetEventChats(user.Id);
+
+            ViewBag.TaskChats = await GetTaskChats(user.Id);
+
+            ViewBag.MeasureChats = await GetMeasureChats(user.Id);
+
             return View("Index", user);
         }
 
@@ -222,6 +383,9 @@ namespace MEVIO.Controllers
         public async Task<IActionResult> GetUserChat(int userId)
         {
             User user = await GetAuthorizedUserAsync();
+
+            
+
             User? secondUser = await context.Users.FirstOrDefaultAsync(u => u.Id.Equals(userId));
 
 
@@ -313,6 +477,17 @@ namespace MEVIO.Controllers
 
             ViewBag.SecondUser = secondUser;
 
+
+            ViewBag.UserChats = await GetUserChats(user.Id);
+
+
+            ViewBag.UserChats = await GetUserChats(user.Id);
+
+            ViewBag.EventChats = await GetEventChats(user.Id);
+
+            ViewBag.TaskChats = await GetTaskChats(user.Id);
+
+            ViewBag.MeasureChats = await GetMeasureChats(user.Id);
 
             return View("Index", user);
         }
