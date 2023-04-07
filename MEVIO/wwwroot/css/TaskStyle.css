@@ -78,21 +78,6 @@ body {
 }
 
 
-.response-block {
-    margin-top: 1.5rem;
-    width: 80%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 2rem;
-    margin-bottom: 1rem;
-}
-
-.response-div {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    flex-wrap: wrap;
-}
 
     .response-div:first-child {
         font-size: 1.7rem;

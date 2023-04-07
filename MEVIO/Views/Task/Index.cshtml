@@ -64,14 +64,14 @@
         color: #BAE2FF;
         padding-left: 0.7rem;
         /* border: 1px solid #52A7E4;
-                     border-radius: 15px;*/
+                         border-radius: 15px;*/
         border: none;
         background: #111624;
         font-size: 1.5rem;
         outline: none;
     }
 
-    .check_list_div {
+   /* .check_list_div {
         display: flex;
         flex-direction: row;
         width: 90%;
@@ -85,13 +85,26 @@
         padding: 0.3rem;
         font-size: 1.5rem;
         color: #52A7E4;
+    }*/
+
+    .check_list_div{
+
+        display:grid;
+        grid-template-columns:0.3fr 1fr 3fr;
+       
+    }
+    
+    #parent, #parentClient {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 
     .radiob_mulaz {
+
         width: 1.5rem;
-        ;
+        
         height: 1.5rem;
-        ;
+        
         margin-left: 1.5rem;
         resize: none;
         background-color: #A0D7FF;
@@ -101,7 +114,7 @@
     }
 
     .check_list_name {
-        width: 20%;
+        
         height: 1.5rem;
         font-family: 'Inter';
         font-style: normal;
@@ -110,7 +123,7 @@
         color: #BAE2FF;
         padding-left: 0.7rem;
         border: 1px solid #52A7E4;
-        border-radius: 15px;
+        /*border-radius: 15px;*/
         border: none;
         background: #111624;
         font-size: 1.5rem;
@@ -124,7 +137,7 @@
         height: 2.5rem;
         color: #BAE2FF;
         font-size: 1.5rem;
-        margin: 1rem;
+        margin: 0.3rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -182,10 +195,7 @@
         cursor: pointer;
     }
 
-    .parent, .parentClient {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-    }
+    
 
     /*box for Watching & Responsible Persons*/
     .mainBox, .mainBoxPesponsible {
@@ -231,7 +241,7 @@
         width: 7.6rem;
         height: 2.1rem;
         /* left: 44.5rem;
-                         top: 36.8rem;*/
+                             top: 36.8rem;*/
         border: none;
         cursor: pointer;
         background: #52a7e4;
@@ -258,8 +268,8 @@
         flex-direction: column;
         width: 29rem;
         height: 17.5rem;
-        left: 18.2rem;
-        top: 32.3rem;
+        left: 20rem;
+        top: 36rem;
         background: #111624;
         border: 1px solid #52a7e4;
         position: fixed;
@@ -436,11 +446,143 @@
         background-position: 95%;
         padding: 1rem;
         width: 2rem;
+        margin-right:0.8rem;
+    }
+
+    /*  add date & time*/
+
+
+    input[type="checkbox"] {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .checkbox-style {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #52a7e3;
+        /* margin-top: auto;
+                margin-bottom: auto;*/
+        border-radius: 3px;
+        outline: none;
+        cursor: pointer;
+        margin-left: 1rem;
+    }
+
+        .checkbox-style:checked {
+            background-color: #1e90ff;
+            border: 1px solid #1e90ff;
+        }
+
+    .mainDiv {
+        width: 90%;
+        background-color: #52a7e4;
+        padding-bottom: 1rem;
+        margin: auto;
+    }
+
+
+    input[type="date"], input[type="datetime-local"] {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0.313rem 0.813rem;
+        gap: 0.438rem;
+        width: 15.625rem; /*changed for new datetime from 10.625*/
+        height: 2.313rem;
+        left: 0.5rem;
+        top: 9.313rem;
+        background: #111624;
+        border: 1px solid #52a7e4;
+        border-radius: 0.625rem;
+        color: #52a7e4;
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+        transform: (-50%, -50%);
+        background: url("/img/free-icon-calendar-747824.png") no-repeat center;
+        background-size: 20px;
+        background-repeat: no-repeat;
+        background-position: 95%;
+        padding: 0.313rem;
+        margin: 0.5rem;
+    }
+
+
+    .time-span-row {
+        display: grid;
+        grid-template-columns: repeat(16, 1fr);
+        width: 100%;
+    }
+
+    .superstyle::-webkit-inner-spin-button,
+    .superstyle::-webkit-calendar-picker-indicator {
+        display: none;
+        -webkit-appearance: none;
+    }
+
+
+    input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+        position: relative;
+        z-index: 1;
+        opacity: 0;
+    }
+
+
+    input[type="time"] {
+        box-sizing: border-box;
+        display: flex;
+        height: 2.313rem;
+        width: 5.2rem;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 0.6rem;
+        padding-right: 0.6rem;
+        padding-top: 0.2rem;
+        padding-bottom: 0.375rem;
+        margin-left: 0.5rem;
+        background: #111624;
+        border: 1px solid #52a7e4;
+        border-radius: 0.625rem;
+        color: #52a7e4;
+        font-family: "Inter";
+        font-style: normal;
+        font-size: 1rem;
+    }
+
+    .divDate {
+        display: flex;
+        justify-content: center;
+        grid-column-start: 2;
+        grid-row-start: 2;
+    }
+
+
+    .response-block {
+        margin-top: 1.5rem;
+        width: 80%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .response-div {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        flex-wrap: nowrap;
     }
 
 </style>
 <body id="body">
-   
+
     <div class="container">
         <a style="color:aqua" asp-controller="Home" asp-action="EventMini"> EventMini </a>
         <br />
@@ -449,7 +591,7 @@
             <div class="head-button2">Події</div>
             <div class="head-button2">Заходи</div>
         </div>
-        <form id="taskForm" asp-controller="Task" asp-action="AddTask" method="post">
+        <form asp-controller="Task" asp-action="AddTask" method="POST" id="taskForm">
             <div>
                 <input type="text" asp-for="@Model.TaskName" on class="head-input" placeholder="Ввести назву завдання">
             </div>
@@ -484,12 +626,12 @@
 
                                 <div class="secondBox">
 
-                                    @foreach (var itemUsers in ViewBag?.WatchingPersons)
+                                    @foreach (var itemUsers in ViewBag.Users)
                                     {
                                         <div class="inBox">
                                             <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
                                             <p class="clientName" name="userName">@itemUsers.UserName</p>
-                                            <span class="clientId" hidden>@itemUsers.Id</span>
+                                            <span class="watchId" hidden>@itemUsers.Id</span>
                                             <div class="bird">&#10004;</div>
                                         </div>
                                     }
@@ -506,12 +648,12 @@
 
                                 <div class="secondBoxClient">
 
-                                    @foreach (var itemUsers in ViewBag.Resp)
+                                    @foreach (var itemUsers in ViewBag.Users)
                                     {
                                         <div class="inBoxClient">
                                             <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
                                             <p class="resName" name="userName">@itemUsers.UserName</p>
-                                            <span class="resId" hidden>@itemUsers.Id</span>
+                                            <span class="respId" hidden>@itemUsers.Id</span>
                                             <div class="bird">&#10004;</div>
                                         </div>
                                     }
@@ -526,14 +668,10 @@
                     <div class="check_list_div">
 
                         <div class="radiob_mulaz"></div>
-                        <input type="text" class="check_list_name" />
+                        <input type="text" class="check_list_name" placeholder="Введіть назву підзадачі"/>
+                       
                         <div id="parent">
-                            @* <label class="check_list_name_lable">Max Voloshov</label>
-                            <label class="check_list_name_lable">Max Voloshov</label>
-                            <label class="check_list_name_lable">Max Voloshov</label>
-                            <label class="check_list_name_lable">Max Voloshov</label>
-                            <label class="check_list_name_lable">Max Voloshov</label>
-                            <label class="check_list_name_lable">Max Voloshov</label>*@
+                           @* //////*@
                         </div>
 
                     </div>
@@ -565,10 +703,16 @@
 
             <div id="responseBlock" class="response-block">
                 <div class="response-div">Крайній термін</div>
+
+                @* add inputs for date & time*@
                 <div class="response-div">
-                    <input class="conData" type="date" id="date" name="date">
+                    <input type="date" id="date1" name="dateField1"  />
+                    <input type="time" class="superstyle" id="time1" name="timeField1" />
+                    <div class="ture"></div>
+                    <input type="date" id="date2" name="dateField2" />
+                    <input type="time" class="superstyle" id="time2" name="timeField2" />
                 </div>
-                <div id="planTerm" class="response-div">Планування термінів</div>
+                @*<div id="planTerm" class="response-div">Планування термінів</div>*@
             </div>
 
             <hr class="hr">
@@ -578,7 +722,7 @@
                     Результати завдання
                 </div>
                 <div>
-                    <input class="alert-checkbox" type="checkbox" name="" id="alertMe">
+                    <input class="alert-checkbox checkbox-style" type="checkbox" name="" id="alertMe">
                     <label class="label-alert" for="alertMe">Обов'язковий звіт при завершенні завдання</label>
                 </div>
             </div>
@@ -593,7 +737,10 @@
 
 
     <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
+
+
     <script>
+
         //Iryna add watching Persons
 
         $('#WatchingPerson').click(function ()  //watching Persons
@@ -612,10 +759,10 @@
         $('.inBox').click(function (e) {
             //const imgSrcClient = $(this).find('img').attr('src');
 
-            const clientId = $(this).find(".clientId").text();
+            const watchIdd = $(this).find(".watchId").text();
             const clientName = $(this).find('.clientName').text();
 
-            console.log(clientId);
+            console.log(watchIdd);
             console.log(clientName);
 
 
@@ -626,13 +773,13 @@
             const formClient = document.getElementById("taskForm");
             const inputClient = document.createElement("input");
             inputClient.hidden = true;
-            inputClient.name = "clientId";
-            inputClient.setAttribute("value", clientId);
-            console.log("ClientOk")
+            inputClient.name = "watchIdd";
+            inputClient.setAttribute("value", watchIdd);
+            console.log("Watching person")
             formClient.appendChild(inputClient);
 
 
-            //Create lables with Wathing Personr
+            //Create lables with Watching Personr
             const parentClient = document.getElementById("parent");
 
             const diveyes = document.createElement("div");
@@ -671,10 +818,10 @@
         //ADD Resposible
         $('.inBoxClient').click(function (e) {
             //const imgSrcClient = $(this).find('img').attr('src');
-            const clientId = $(this).find(".resId").text();
+            const respIdd = $(this).find(".respId").text();
             const clientName = $(this).find('.resName').text();
 
-            console.log(clientId);
+            console.log(respIdd);
             console.log(clientName);
 
 
@@ -685,9 +832,9 @@
             const formClient = document.getElementById("taskForm");
             const inputClient = document.createElement("input");
             inputClient.hidden = true;
-            inputClient.name = "clientId";
-            inputClient.setAttribute("value", clientId);
-            console.log("ClientOk")
+            inputClient.name = "respIdd";
+            inputClient.setAttribute("value", respIdd);
+            console.log("Resp persons");
             formClient.appendChild(inputClient);
 
 
@@ -797,8 +944,8 @@
             newCheckList.appendChild(newRadio);
             newCheckList.appendChild(newInput);
             newCheckList.appendChild(newperent);
-         
-             ollChek.querySelectorAll('.radiob_mulaz').forEach(function (button) {
+
+            ollChek.querySelectorAll('.radiob_mulaz').forEach(function (button) {
                 // При кліку на елемент
                 button.addEventListener('click', function () {
                     // const checkListDiv = button.closest('.check_list_div');
@@ -823,7 +970,7 @@
 
 
 
-      
+
         //const deleteBtn = document.querySelector('.delete_check');
         //deleteBtn.addEventListener('click', function () {
         //    const checkListDivs = document.querySelectorAll('.check_list_div');
