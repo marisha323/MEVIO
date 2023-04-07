@@ -152,7 +152,7 @@
             <div class="box">
                 <p class="numb">@counterUsers</p>
                 <div class="imgs">
-                        <p class="namepimg"> <img class="user-img" src="~/Imeg1/@itemUsers.UserName.Replace(" ", "-")/@itemUsers.Email/@itemUsers.PathImgAVA.Replace(" ", "-")" /></p>
+                        <p class="namepimg"> <img class="user-img" src="~/Imeg1/@itemUsers.UserName.Replace(" ", "-")/@itemUsers.Email/@itemUsers.PathImgAVA?.Replace(" ", "-")" /></p>
                 </div>
                 <div class="name">
                     <p>
@@ -180,7 +180,7 @@
         {
          <div class="box">
             <p class="numb">@counterStudents</p>
-                    <div class="imgs"><p class="namepimg"><img class="user-img" src="~/Imeg2/@itemStudents.StudentName.Replace(" ", "-")/@itemStudents.Email/@itemStudents.PathImgAVA.Replace(" ", "-")" /></p></div>
+                    <div class="imgs"><p class="namepimg"><img class="user-img" src="~/Imeg2/@itemStudents.StudentName.Replace(" ", "-")/@itemStudents.Email/@itemStudents.PathImgAVA?.Replace(" ", "-")" /></p></div>
             <div class="name">
              <p class="namep" ><a asp-controller="ZapTeacher" asp-action="student" asp-route-id="@itemStudents.Id" >@itemStudents.StudentName</a></p>
             </div>

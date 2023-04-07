@@ -29,6 +29,7 @@ namespace MEVIO.Controllers
                 user = JsonSerializer.Deserialize<User>(UserLoggedIn);
                 ViewBag.NameUser = user.UserName;
                 ViewBag.CurrentRole = user.UserRoleId;
+                ViewBag.CurrentUser = user;
             }
 
 

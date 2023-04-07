@@ -2,6 +2,8 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    User user = ViewBag.Useres;
+    User? currentUser = ViewBag.CurrentUser;
 }
 
 <link rel="stylesheet" href="~/css/teacher.css" asp-append-version="true" />
@@ -26,7 +28,7 @@
                 <div><h2>Викладач</h2></div>
 
                 <div class="avatar">
-                    <img class="avatar" src="~/imeg1/@ViewBag.Useres.UserName.Replace(" ", "-")/@ViewBag.Useres.Email/@ViewBag.Useres.PathImgAVA.Replace(" ", "-")" />
+                    <img class="avatar" src="~/imeg1/@ViewBag.Useres.UserName.Replace(" ", "-")/@ViewBag.Useres.Email/@ViewBag.Useres.PathImgAVA?.Replace(" ", "-")" />
                 </div>
 
                 <div class="status">
@@ -164,8 +166,14 @@
                 </div>
             </div>
             <p>@ViewBag.CurrentRole</p>
-            <div style="padding-top:2rem;" class="buttonDiv"><button class="button">Send Message</button></div>
-        </div>
+            @if (currentUser.Id != user.Id)
+            {
+                <a asp-controller="Chat" asp-action="GetUserChat"
+               asp-route-userId="@user.Id" style="padding-top:2rem;" class="buttonDiv"><button class="button">Send Message</button></a>
+
+            }
+            
+           </div>
         
     </div>
 </body>
