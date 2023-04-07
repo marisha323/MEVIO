@@ -10,191 +10,177 @@
 <link type="text/css" rel="stylesheet" href="/css/MyTask.css">
 
 <style>
-     .head-button {
-         font-size: 30px;
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         padding: 0.5rem;
-         cursor: pointer;
-         transition: 0.1s;
-         border-radius: 14px;
-         width: 10rem;
-         background-color: #52A7E4;
-         color: #111624;
+    .head-button {
+        font-size: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.5rem;
+        cursor: pointer;
+        transition: 0.1s;
+        border-radius: 14px;
+        width: 10rem;
+        background-color: #52A7E4;
+        color: #111624;
+    }
 
-     }
+    .head-button2 {
+        font-size: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.5rem;
+        cursor: pointer;
+        transition: 0.1s;
+        border-radius: 14px;
+        width: 10rem;
+    }
 
-     .head-button2 {
-         font-size: 30px;
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         padding: 0.5rem;
-         cursor: pointer;
-         transition: 0.1s;
-         border-radius: 14px;
-         width: 10rem;
-     }
+        .head-button2:hover {
+            background-color: #52A7E4;
+            color: #111624;
+        }
+    /*мои стили*/
+    .podvodka {
+        width: 100%;
+        height: 40%;
+        margin-top: 1rem;
+        resize: none;
+        background-color: #111624;
+        border: 1px solid #52A7E4;
+        border-radius: 20px;
+        padding: 1rem;
+        font-size: 1.5rem;
+        color: #52A7E4;
+    }
 
-         .head-button2:hover {
-             background-color: #52A7E4;
-             color: #111624;
-         }
-        /*мои стили*/
-            .podvodka {
-         width: 100%;
-         height: 40%;
-         margin-top: 1rem;
-         resize: none;
-         background-color: #111624;
-         border: 1px solid #52A7E4;
-         border-radius: 20px;
-         padding: 1rem;
-         font-size: 1.5rem;
-         color: #52A7E4;
-
-     }
-
-     .divStrockZap2 {
-         width: 80%;
-         height: 1.875rem;
-         font-family: 'Inter';
-         font-style: normal;
-         font-weight: 700;
-         line-height: 30px;
-         color: #BAE2FF;
-         padding-left: 0.7rem;
+    .divStrockZap2 {
+        width: 80%;
+        height: 1.875rem;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 700;
+        line-height: 30px;
+        color: #BAE2FF;
+        padding-left: 0.7rem;
         /* border: 1px solid #52A7E4;
-         border-radius: 15px;*/
-         border:none;
-         background: #111624;
-         font-size: 1.5rem;
-         outline:none;
-     }
-     .check_list_div
-     {
-          display:flex;
-         flex-direction:row;
-         width: 90%;
-     height: 40%;
-     margin-top: 0.5rem;
-     margin-left:1rem;
-     resize: none;
-     background-color: #111624;
-     border: 1px solid #52A7E4;
-     border-radius: 15px;
-     padding: 0.3rem;
-     font-size: 1.5rem;
-     color: #52A7E4;
-     }
-     .radiob_mulaz{
+                             border-radius: 15px;*/
+        border: none;
+        background: #111624;
+        font-size: 1.5rem;
+        outline: none;
+    }
 
-     width: 1.5rem;;
-     height: 1.5rem;;
+    .check_list_div {
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+        height: 40%;
+        margin-top: 0.5rem;
+        margin-left: 1rem;
+        resize: none;
+        background-color: #111624;
+        border: 1px solid #52A7E4;
+        border-radius: 15px;
+        padding: 0.3rem;
+        font-size: 1.5rem;
+        color: #52A7E4;
+    }
 
-     margin-left:1.5rem;
-     resize: none;
-     background-color: #A0D7FF;
+    .radiob_mulaz {
+        width: 1.5rem;
+        ;
+        height: 1.5rem;
+        ;
+        margin-left: 1.5rem;
+        resize: none;
+        background-color: #A0D7FF;
+        border-radius: 25px;
+        color: #52A7E4;
+        margin-top: 0.5rem;
+    }
 
-     border-radius: 25px;
-
-
-     color: #52A7E4;
-     margin-top: 0.5rem;
-
-
-     }
-     .check_list_name{
-          width: 20%;
-         height: 1.5rem;
-         font-family: 'Inter';
-         font-style: normal;
-         font-weight: 700;
-         line-height: 30px;
-         color: #BAE2FF;
-         padding-left: 0.7rem;
-         border: 1px solid #52A7E4;
-         border-radius: 15px;
-         border:none;
-         background: #111624;
-         font-size: 1.5rem;
+    .check_list_name {
+        width: 20%;
+        height: 1.5rem;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 700;
+        line-height: 30px;
+        color: #BAE2FF;
+        padding-left: 0.7rem;
+        border: 1px solid #52A7E4;
+        border-radius: 15px;
+        border: none;
+        background: #111624;
+        font-size: 1.5rem;
         /* outline:none;*/
-         margin-left:0.5rem;
+        margin-left: 0.5rem;
+        margin-top: 0.5rem;
+    }
 
-      margin-top: 0.5rem;
-
-     }
-     .check_list_name_lable{
+    .check_list_name_lable {
         width: 100%;
         height: 2.5rem;
         color: #BAE2FF;
         font-size: 1.5rem;
         margin: 1rem;
         display: flex;
-     }
+    }
 
-     .div_button{
-         display:flex;
-         flex-direction: row;
-         border: 1px solid #52A7E4;
-         width:35%;
-         height:2rem;
-         margin-left:5rem;
-         margin-top:1rem;
-         padding:0.5rem;
+    .div_button {
+        display: flex;
+        flex-direction: row;
+        border: 1px solid #52A7E4;
+        width: 35%;
+        height: 2rem;
+        margin-left: 5rem;
+        margin-top: 1rem;
+        padding: 0.5rem;
+    }
 
-     }
+    .buttonWithinPerson {
+        color: #A0D7FF;
+        width: 50%;
+        height: 1rem;
+        background-color: none;
+        font-size: 1rem;
+        margin-left: 0.8rem;
+        cursor: pointer;
+    }
 
-     .buttonWithinPerson
-     {
-          color: #A0D7FF;
-     width:50%;
-     height:1rem;
-     background-color:none;
-     font-size: 1rem;
-      margin-left: 0.8rem;
-      cursor:pointer;
+    .buttonWithinPerson2 {
+        color: #A0D7FF;
+        width: 50%;
+        height: 1rem;
+        font-size: 1rem;
+        margin-left: 0.8rem;
+        cursor: pointer;
+    }
 
-     }
-      .buttonWithinPerson2
-      {
-            color: #A0D7FF;
-      width:50%;
-      height:1rem;
+    .button_botom_div_con {
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+        height: 40%;
+        margin-top: 0.5rem;
+        margin-left: 1rem;
+        padding: 0.3rem;
+        font-size: 1.5rem;
+    }
 
-      font-size: 1rem;
-       margin-left: 0.8rem;
-       cursor:pointer;
-      }
-     .button_botom_div_con
-     {
-          display:flex;
-         flex-direction:row;
-         width: 90%;
-         height: 40%;
-         margin-top: 0.5rem;
-         margin-left:1rem;
+    .add_check {
+        color: #A0D7FF;
+        cursor: pointer;
+    }
 
-         padding: 0.3rem;
-         font-size: 1.5rem;
+    .delete_check {
+        color: #DB1A1A;
+        margin-left: 4rem;
+        cursor: pointer;
+    }
 
-     }
-     .add_check
-     {
-         color: #A0D7FF;
-      cursor:pointer;
-      }
-     .delete_check
-     {
-
-         color: #DB1A1A;
-    margin-left:4rem;
-      cursor:pointer;
-
-     }
-
-     .parent, .parentClient {
+    .parent, .parentClient {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
     }
@@ -243,7 +229,7 @@
         width: 7.6rem;
         height: 2.1rem;
         /* left: 44.5rem;
-             top: 36.8rem;*/
+                                 top: 36.8rem;*/
         border: none;
         cursor: pointer;
         background: #52a7e4;
@@ -270,7 +256,6 @@
         flex-direction: column;
         width: 29rem;
         height: 17.5rem;
-        
         left: 18.2rem;
         top: 32.3rem;
         background: #111624;
@@ -388,6 +373,7 @@
         width: 27.51rem;
         margin-left: 0.428rem;
         margin-right: 1.214rem;
+        white-space: nowrap;
     }
 
         .inBox:hover, .inBoxClient:hover {
@@ -437,12 +423,9 @@
         margin-left: 1rem;
     }
 
-    .eyes{
+    .eyes {
         background: #111624;
-        
-     
         color: #52a7e4;
-        
         font-size: 1.25rem;
         line-height: 1.5rem;
         transform: (-50%, -50%);
@@ -451,12 +434,12 @@
         background-repeat: no-repeat;
         background-position: 95%;
         padding: 1rem;
-        width:2rem;
+        width: 2rem;
     }
 
 </style>
 <body id="body">
-   
+
     <div class="container">
         <div class="head-flex">
             <div class="head-button">Завдання</div>
@@ -493,15 +476,15 @@
                         <label class="buttonWithinPerson" id="WatchingPerson">+ спостерiгач</label>
 
                         <div class="mainBox" @*style="display: none"*@>
-                            
+
                             <div class="box2">
-                              
+
                                 <div class="secondBox">
 
                                     @foreach (var itemUsers in ViewBag.WatchingPersons)
                                     {
                                         <div class="inBox">
-                                            <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
+                                            <img src="~/Imeg1/@itemUsers.UserName.Replase(" ","-")/@itemUsers.Email/@itemUsers.PathImgAVA.Replase(" ","-")" />
                                             <p class="clientName" name="userName">@itemUsers.UserName</p>
                                             <span class="clientId" hidden>@itemUsers.Id</span>
                                             <div class="bird">&#10004;</div>
@@ -513,7 +496,7 @@
                             </div>
                         </div>
                         <label class="buttonWithinPerson" id="ResPerson">+ співвиконавець</label>
-                       
+
                         <div class="mainBoxPesponsible" @*style="display: none"*@>
 
                             <div class="box2Res">
@@ -523,7 +506,7 @@
                                     @foreach (var itemUsers in ViewBag.Resp)
                                     {
                                         <div class="inBoxClient">
-                                            <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
+                                            <img src="~/Imeg1/@itemUsers.UserName.Replase(" ","-")/@itemUsers.Email/@itemUsers.PathImgAVA.Replase(" ","-")" />
                                             <p class="resName" name="userName">@itemUsers.UserName</p>
                                             <span class="resId" hidden>@itemUsers.Id</span>
                                             <div class="bird">&#10004;</div>
@@ -542,7 +525,7 @@
                         <div class="radiob_mulaz"></div>
                         <input type="text" class="check_list_name" />
                         <div id="parent">
-                           @* <label class="check_list_name_lable">Max Voloshov</label>
+                            @* <label class="check_list_name_lable">Max Voloshov</label>
                             <label class="check_list_name_lable">Max Voloshov</label>
                             <label class="check_list_name_lable">Max Voloshov</label>
                             <label class="check_list_name_lable">Max Voloshov</label>
@@ -621,7 +604,7 @@
             $(".mainBoxPesponsible").fadeToggle(100);
 
         });
-        
+
         //ADD WatchingPerson
         $('.inBox').click(function (e) {
             //const imgSrcClient = $(this).find('img').attr('src');
@@ -649,8 +632,8 @@
             //Create lables with Wathing Personr
             const parentClient = document.getElementById("parent");
 
-            const diveyes=document.createElement("div");
-            diveyes.className="eyes";
+            const diveyes = document.createElement("div");
+            diveyes.className = "eyes";
 
 
             const labelWatchPersons = document.createElement("label");
@@ -762,17 +745,17 @@
             const newbuttonWithinPerson = document.createElement('label');
             newbuttonWithinPerson.classList.add('buttonWithinPerson');
             newbuttonWithinPerson.textContent = '+ спостерiгач';
+            
+
 
             const newbuttonWithinPerson2 = document.createElement('label');
             newbuttonWithinPerson2.classList.add('buttonWithinPerson2');
             newbuttonWithinPerson2.textContent = '+ співвиконавець';
 
-           
-
             const newCheckList = document.createElement('div');
             newCheckList.classList.add('check_list_div');
 
-          
+
 
             const newRadio = document.createElement('div');
             newRadio.classList.add('radiob_mulaz');
@@ -783,149 +766,71 @@
 
             const newperent = document.createElement('div');
             newperent.classList.add('parent');
-           
 
-            const newLabel1 = document.createElement('label');
-            newLabel1.classList.add('check_list_name_lable');
-            newLabel1.textContent = 'Max Voloshov';
 
-            const newLabel2 = document.createElement('label');
-            newLabel2.classList.add('check_list_name_lable');
-            newLabel2.textContent = 'Max Voloshov';
-
-            const newLabel3 = document.createElement('label');
-            newLabel3.classList.add('check_list_name_lable');
-            newLabel3.textContent = 'Max Voloshov';
-
-            const newLabel4 = document.createElement('label');
-            newLabel4.classList.add('check_list_name_lable');
-            newLabel4.textContent = 'Max Voloshov';
 
             // Додавання нових елементів до документу
             addCheck.appendChild(ollChek);
             ollChek.appendChild(newdiv_button);
             newdiv_button.appendChild(newbuttonWithinPerson);
             newdiv_button.appendChild(newbuttonWithinPerson2);
-           
+
             ollChek.appendChild(newCheckList);
             newCheckList.appendChild(newRadio);
             newCheckList.appendChild(newInput);
             newCheckList.appendChild(newperent);
-            newperent.appendChild(newLabel1);
-            newperent.appendChild(newLabel2);
-            newperent.appendChild(newLabel3);
-            newperent.appendChild(newLabel4);
+
+
+            ollChek.querySelectorAll('.radiob_mulaz').forEach(function (button) {
+                // При кліку на елемент
+                button.addEventListener('click', function () {
+                    // const checkListDiv = button.closest('.check_list_div');
+                    // Отримуємо поточний стан елемента з даних-атрибута
+                    const isChecked = newCheckList.getAttribute('data-checked');
+
+                    // Перевіряємо, чи елемент уже відзначений
+                    if (isChecked === 'true') {
+                        // Якщо він уже відзначений, то знімаємо закраску
+                        newCheckList.style.backgroundColor = '';
+                        // Оновлюємо стан елемента в даних-атрибуті
+                        newCheckList.setAttribute('data-checked', 'false');
+                    } else {
+                        // Якщо елемент не відзначений, то закрашуємо його
+                        newCheckList.style.backgroundColor = 'red';
+                        // Оновлюємо стан елемента в даних-атрибуті
+                        newCheckList.setAttribute('data-checked', 'true');
+                    }
+                });
+            });
+
         });
 
-
-        // Знаходимо елементи на сторінці
-        ////const addCheck = document.getElementById('addCheck');
-        ////const buttonAddCheck = document.getElementById('butonaddcheck');
-
-        ////// Додаємо обробник події натискання на кнопку
-        ////buttonAddCheck.addEventListener('click', function () {
-        ////    // Створюємо новий елемент
-        ////    const oolCheck = document.createElement('div');
-        ////    oolCheck.classList.add('ollChek');
-
-        ////    const newdiv_button = document.createElement('div');
-        ////    newdiv_button.classList.add('div_button');
-
-        ////    const newbuttonWithinPerson = document.createElement('label');
-        ////    newbuttonWithinPerson.classList.add('buttonWithinPerson');
-        ////    newbuttonWithinPerson.textContent = '+ спостерiгач';
-
-        ////    const newbuttonWithinPerson2 = document.createElement('label');
-        ////    newbuttonWithinPerson2.classList.add('buttonWithinPerson2');
-        ////    newbuttonWithinPerson2.textContent = '+ співвиконавець';
-
-        ////    const newCheckList = document.createElement('div');
-        ////    newCheckList.classList.add('check_list_div');
-
-        ////    const newRadio = document.createElement('div');
-        ////    newRadio.classList.add('radiob_mulaz');
-
-        ////    const newInput = document.createElement('input');
-        ////    newInput.type = 'text';
-        ////    newInput.classList.add('check_list_name');
-
-        ////    const newLabel1 = document.createElement('label');
-        ////    newLabel1.classList.add('check_list_name');
-        ////    newLabel1.textContent = 'Max Voloshov';
-
-        ////    const newLabel2 = document.createElement('label');
-        ////    newLabel2.classList.add('check_list_name');
-        ////    newLabel2.textContent = 'Max Voloshov';
-
-        ////    const newLabel3 = document.createElement('label');
-        ////    newLabel3.classList.add('check_list_name');
-        ////    newLabel3.textContent = 'Max Voloshov';
-
-        ////    const newLabel4 = document.createElement('label');
-        ////    newLabel4.classList.add('check_list_name');
-        ////    newLabel4.textContent = 'Max Voloshov';
-
-        ////    // Додаємо новий елемент до списку
-        ////    addCheck.appendChild(newdiv_button);
-        ////    newdiv_button.appendChild(newbuttonWithinPerson);
-        ////    newdiv_button.appendChild(newbuttonWithinPerson2);
-        ////    newCheckList.appendChild(newRadio);
-        ////    newCheckList.appendChild(newInput);
-        ////    newCheckList.appendChild(newLabel1);
-        ////    newCheckList.appendChild(newLabel2);
-        ////    newCheckList.appendChild(newLabel3);
-        ////    newCheckList.appendChild(newLabel4);
-        ////    addCheck.appendChild(newCheckList);
-        ////});
-
-
-        // Навішуємо обробник подій на батьківський елемент, який існує на сторінці
-        addCheck.addEventListener('click', function (event) {
-            // Перевіряємо, щоб клік був на елементі з класом .radiob_mulaz
-            if (event.target.classList.contains('radiob_mulaz')) {
-                const checkListDiv = event.target.closest('.check_list_div');
-                checkListDiv.style.backgroundColor = 'red';
-            }
-        });
 
 
         const radioButtons = document.querySelectorAll('.radiob_mulaz');
+
+        // Додаємо обробник подій до кожного елемента
         radioButtons.forEach(function (button) {
+            // При кліку на елемент
             button.addEventListener('click', function () {
                 const checkListDiv = button.closest('.check_list_div');
-                checkListDiv.style.backgroundColor = 'red';
+                // Отримуємо поточний стан елемента з даних-атрибута
+                const isChecked = checkListDiv.getAttribute('data-checked');
+
+                // Перевіряємо, чи елемент уже відзначений
+                if (isChecked === 'true') {
+                    // Якщо він уже відзначений, то знімаємо закраску
+                    checkListDiv.style.backgroundColor = '';
+                    // Оновлюємо стан елемента в даних-атрибуті
+                    checkListDiv.setAttribute('data-checked', 'false');
+                } else {
+                    // Якщо елемент не відзначений, то закрашуємо його
+                    checkListDiv.style.backgroundColor = 'red';
+                    // Оновлюємо стан елемента в даних-атрибуті
+                    checkListDiv.setAttribute('data-checked', 'true');
+                }
             });
         });
-
-        //const deleteBtn = document.querySelector('.delete_check');
-        //deleteBtn.addEventListener('click', function () {
-        //    const checkListDivs = document.querySelectorAll('.check_list_div');
-        //    if (checkListDiv.style.backgroundColor === 'red') {
-        //    checkListDivs.forEach(function (div) {
-        //        div.remove(); // або div.parentNode.removeChild(div);
-        //    });
-        //    }
-        //});
-        //function deleteCheckList() {
-        //    let checkListDiv = document.querySelector('.check_list_div');
-        //    if (checkListDiv.style.backgroundColor === 'red') {
-        //        checkListDiv.remove();
-        //    }
-        //}
-
-
-
-        //function deleteCheckList() {
-        //    const checkListDivs = document.querySelectorAll('.check_list_div');
-        //    const ollCheck = document.querySelectorAll('.check_list_div');
-
-        //    checkListDivs.forEach(checkListDiv => {
-        //        if (checkListDiv.style.backgroundColor === 'red') {
-        //            ollChek.remove();
-        //        }
-        //    });
-        //}
-
 
 
         function deleteCheckList() {
@@ -940,6 +845,9 @@
                 }
             });
         }
+
+
+
     </script>
 
 

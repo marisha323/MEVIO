@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
-<link type="text/css" rel="stylesheet" href="/css/MEVIOStvorPodii.css">
+<link type="text/css" rel="stylesheet" href="/css/MEVIOStvorPodii3.css">
 <link type="text/css" rel="stylesheet" href="/css/measureInfoStyle.css" />
 <style>
     .logo-imgM {
@@ -106,6 +106,8 @@
     .yellow {
         background-color: yellow;
     }
+
+    }
 </style>
 @*@model Event*@
 <form enctype="multipart/form-data" action="Calendar">
@@ -156,25 +158,62 @@
                     <div id="nameEvent" class="day">Субота, Лютий 25</div>
 
                     <div class="time-span-row">
-                        @for (int i = 7; i < 23; i++)
-                        {
-                            <div>@i-00</div>
-                        }
+                        <div>7-00</div>
+                        <div>8-00</div>
+                        <div>9-00</div>
+                        <div>10-00</div>
+                        <div>11-00</div>
+                        <div>12-00</div>
+                        <div>13-00</div>
+                        <div>14-00</div>
+                        <div>15-00</div>
+                        <div>16-00</div>
+                        <div>17-00</div>
+                        <div>18-00</div>
+                        <div>19-00</div>
+                        <div>20-00</div>
+                        <div>21-00</div>
+                        <div>22-00</div>
                     </div>
 
                     <div class="time-span-row time-blocks">
+                       
                         <div class="time-change-block"></div>
-                        @for (int i = 0; i < 16; i++)
-                        {
-                            <div class="time-block"></div>
-                        }
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
+                        <div class="time-block"></div>
                     </div>
 
                     <div class="time-span-row">
-                        @for (int i = 0; i < 16; i++)
-                        {
-                            <div></div>
-                        }
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
                     </div>
 
                 </div>
@@ -195,6 +234,7 @@
             <input type="submit" value="Редагувати" class="button-Stvorutu">
             <input onclick="closeEvent()" type="button" value="Закрити" class="button-Vidminutu">
         </div>
+      
     </div>
 </form>
 
@@ -212,7 +252,7 @@
                             <p id="MeasureBegin">
                                 <b>Початок:</b> 02/02/2023 12:00
                             </p>
-                            
+
                             <p id="MeasureEnd">
                                 <b>Кінець:</b> 02/02/2023 15:00
                             </p>
@@ -306,7 +346,7 @@
             const addedClients = document.querySelector('.added-clients');
 
             //here we fill the hidden input with added clients:
-            
+
         }
 
         const button = document.querySelector(".add-client-button");
@@ -839,7 +879,7 @@
                             string[] arr = new string[] { "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
                             foreach (var item in arr)
                             {
-                                    <div class="option-item">item</div>
+                                <div class="option-item">item</div>
                             }
                         }
                     </div>
@@ -1364,9 +1404,15 @@
             }
         });                                                                                                                          //});
     </script>
+
     <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
-    <script src="~/js/scriptEventMini2.js" asp-append-version="true"></script>
+    @* <script src="~/js/scriptEventMini2.js" asp-append-version="true"></script>*@
     @*<script src="~/js/MathTimeLine.js" asp-append-version="true"></script>*@
+     <script src="~/js/scriptEventMini2.js" asp-append-version="true"></script>
     <script src="~/js/SashaTimeLine.js" asp-append-version="true"></script>
+    @*  <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>*@
+    @*<script src="~/js/scriptEventMini2.js" asp-append-version="true"></script>*@
+    @*<script src="~/js/MathTimeLine.js" asp-append-version="true"></script>*@
+    @*<script src="~/js/SashaTimeLine.js" asp-append-version="true"></script>*@
     <script src="/js/script.js"></script>
-    <script src="/js/scriptEventMini.js" asp-append-version="true"></script>
+    @*  <script src="/js/scriptEventMini.js" asp-append-version="true"></script>*@
