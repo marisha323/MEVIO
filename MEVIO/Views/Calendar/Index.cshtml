@@ -24,7 +24,10 @@
         font-size: 20px;
         transition: 0.2s;
     }
-
+    .redev
+    {
+        background: #DB6D6D;
+    }
     .hide {
         display: none;
     }
@@ -824,6 +827,7 @@
         DateTime currentDate = DateTime.Now;
         DateTime startDate = currentDate.AddDays(-(int)currentDate.DayOfWeek + 1);
         DateTime endDate = startDate.AddDays(6);
+        
     }
 
     <div id="weekGrid" class="calendar-grid calGrid">
@@ -877,13 +881,13 @@
 
 
             <div class="week-grid">
-                <div class="head-day left-radius">Понеділок</div>
-                <div class="head-day">Вівторок</div>
-                <div class="head-day">Середа</div>
-                <div class="head-day">Четвер</div>
-                <div class="head-day">П'ятниця</div>
-                <div class="head-day">Субота</div>
-                <div class="head-day right-radius">Неділя</div>
+                <div class="head-day left-radius">Понеділок @startDate.ToString("d ", new System.Globalization.CultureInfo("uk-UA"))</div>
+                <div class="head-day">Вівторок @startDate.AddDays(1).ToString("d ", new System.Globalization.CultureInfo("uk-UA"))</div>
+                <div class="head-day">Середа @startDate.AddDays(2).ToString("d ", new System.Globalization.CultureInfo("uk-UA"))</div>
+                <div class="head-day">Четвер @startDate.AddDays(3).ToString("d ", new System.Globalization.CultureInfo("uk-UA"))</div>
+                <div class="head-day">П'ятниця @startDate.AddDays(4).ToString("d ", new System.Globalization.CultureInfo("uk-UA"))</div>
+                <div class="head-day">Субота @startDate.AddDays(5).ToString("d ", new System.Globalization.CultureInfo("uk-UA"))</div>
+                <div class="head-day right-radius">Неділя @endDate.ToString("d ", new System.Globalization.CultureInfo("uk-UA"))</div>
 
                 @for (int i = 8; i < 24; i++)
                 {
@@ -894,7 +898,7 @@
                             {
                                 if (item.Begin.ToString("yyyy-MM-dd-HH") == date.ToString("yyyy-MM-dd-HH"))
                                 {
-                                    <div class="event">
+                                    <div  class="event redev">
                                         <input type="hidden" value="@item.Id">
                                         <p>@item.EventName</p>
                                     </div>
