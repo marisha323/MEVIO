@@ -137,11 +137,11 @@ namespace MEVIO.Controllers
             context.SaveChanges();
 
 
+            //UserAcceptStatus userAcceptStatus = new UserAcceptStatus()
+            //{
 
 
-
-
-
+            //};
 
 
             return Redirect("/Home/Index");
