@@ -570,7 +570,7 @@
                                         if (day >= 1 && day <= daysInMonth)
                                         {
                                             DateTime currentDate2 = new DateTime(year, month, day);
-                                            <div class="month-day" id="@currentDate2.ToString("yyyy-MM-dd")" onclick="handleClick(this)">
+                                            <div class="month-day" id="@currentDate2.ToString("yyyy-MM-dd")" @*onclick="handleClick(this)"*@>
                                                 @day
                                                 @foreach (var item in @ViewBag.Events)
                                                 {
@@ -608,7 +608,7 @@
                                         {
                                             int prevMonthDay = daysInLastMonth + day;
                                             DateTime prevMonthDate = new DateTime(month == 1 ? year - 1 : year, month == 1 ? 12 : month - 1, prevMonthDay);
-                                            <div class="month-day prev-month" id="@prevMonthDate.ToString("yyyy-MM-dd")" onclick="handleClick(this)">
+                                            <div class="month-day prev-month" id="@prevMonthDate.ToString("yyyy-MM-dd")" @*onclick="handleClick(this)"*@>
                                                 @prevMonthDate.Day
                                             </div>
                                         }
@@ -616,7 +616,7 @@
                                         {
                                             int nextMonthDay = day - daysInMonth;
                                             DateTime nextMonthDate = new DateTime(month == 12 ? year + 1 : year, month == 12 ? 1 : month + 1, nextMonthDay);
-                                            <div class="month-day next-month" id="@nextMonthDate.ToString("yyyy-MM-dd")" onclick="handleClick(this)">
+                                            <div class="month-day next-month" id="@nextMonthDate.ToString("yyyy-MM-dd")" @*onclick="handleClick(this)"*@>
                                                 @nextMonthDate.Day
                                             </div>
                                         }
@@ -666,37 +666,37 @@
         //yearBtn.addEventListener("click", CurrentMonth);
 
         function CurrentMonth() {
-    var currentMonth = @ViewBag.monthNow.Number;
-    var monthSwitchers = document.querySelectorAll('.month-switcher');
+            var currentMonth = @ViewBag.monthNow.Number;
+            var monthSwitchers = document.querySelectorAll('.month-switcher');
 
-    for (var i = 0; i < monthSwitchers.length; i++) {
-        var monthSwitcher = monthSwitchers[i];
-        var monthId = monthSwitcher.id;
-        var monthNumber = parseInt(monthId.split('_')[2]);
-        
-        console.log(monthNumber);
-        console.log(currentMonth);
-        if (monthNumber !== currentMonth) {
-            monthSwitcher.style.display = 'none';
-        }
-        else {
-            monthSwitcher.style.display = 'block';
-        }
-    }
+            for (var i = 0; i < monthSwitchers.length; i++) {
+                var monthSwitcher = monthSwitchers[i];
+                var monthId = monthSwitcher.id;
+                var monthNumber = parseInt(monthId.split('_')[2]);
 
-    var yearSwitchers = document.querySelectorAll('.year-switcher');
-    for (var i = 0; i < yearSwitchers.length; i++) {
-        var yearSwitcher = yearSwitchers[i];
-        var year = parseInt(yearSwitcher.id.split('_')[1]);
+                console.log(monthNumber);
+                console.log(currentMonth);
+                if (monthNumber !== currentMonth) {
+                    monthSwitcher.style.display = 'none';
+                }
+                else {
+                    monthSwitcher.style.display = 'block';
+                }
+            }
 
-        if (year === new Date().getFullYear()) {
-            yearSwitcher.style.display = 'block';
+            var yearSwitchers = document.querySelectorAll('.year-switcher');
+            for (var i = 0; i < yearSwitchers.length; i++) {
+                var yearSwitcher = yearSwitchers[i];
+                var year = parseInt(yearSwitcher.id.split('_')[1]);
+
+                if (year === new Date().getFullYear()) {
+                    yearSwitcher.style.display = 'block';
+                }
+                else {
+                    yearSwitcher.style.display = 'none';
+                }
+            }
         }
-        else {
-            yearSwitcher.style.display = 'none';
-        }
-    }
-}
     </script>
     <script>
         function toggleVisibility(elementId) {
@@ -828,7 +828,7 @@
     <div id="weekGrid" class="calendar-grid calGrid">
         <div class="calendar-header">
             <div class="month-name pointer">
-                @startDate.ToString("MMMM d yyyy") - @endDate.ToString("MMMM d yyyy")
+                @startDate.ToString("d MMMM yyyy", new System.Globalization.CultureInfo("uk-UA")) - @endDate.ToString("d MMMM yyyy", new System.Globalization.CultureInfo("uk-UA"))
             </div>
             <div class="flex">
                 <div class="flex-center">
@@ -879,9 +879,9 @@
                 <div class="head-day left-radius">Понеділок</div>
                 <div class="head-day">Вівторок</div>
                 <div class="head-day">Середа</div>
-                <div class="head-day">Четверг</div>
+                <div class="head-day">Четвер</div>
                 <div class="head-day">П'ятниця</div>
-                <div class="head-day">Суббота</div>
+                <div class="head-day">Субота</div>
                 <div class="head-day right-radius">Неділя</div>
 
                 @for (int i = 8; i < 24; i++)
@@ -925,98 +925,100 @@
             </div>
         </div>
     </div>
-  @*  @{
+    @*@{
         var events = JsonSerializer.Serialize(ViewBag.Events);
         var tasks = JsonSerializer.Serialize(ViewBag.Tasks);
         var measures = JsonSerializer.Serialize(ViewBag.Measures);
-    }*@
+    }
     <script>
-       
+        var events = @Html.Raw(events);
+        var tasks = @Html.Raw(tasks);
+        var measures = @Html.Raw(measures);
 
-        //function handleClick(element) {
-        //    //week operations
-        //    document.getElementById("monthbtn").classList.remove("active");
-        //    document.getElementById("weekbtn").classList.add("active");
-        //    WeekButtonClick();
+        function handleClick(element) {
+            //week operations
+            document.getElementById("monthbtn").classList.remove("active");
+            document.getElementById("weekbtn").classList.add("active");
+            WeekButtonClick();
 
-        //    // display events, tasks, and measures
-        //    let date = new Date(element.id);
-        //    date.setMinutes(0);
-        //    date.setSeconds(0);
-        //    date.setMilliseconds(0);
-        //    //console.log(date);
-        //    var weekDayDivs = document.querySelectorAll(".week-day.weekdays");
-        //    for (var i = 0; i < weekDayDivs.length; i++) {
-        //        var weekDayDiv = weekDayDivs[i];
-        //        weekDayDiv.innerHTML = "";
-        //        const year = date.getFullYear();
-        //        const month = String(date.getMonth() + 1).padStart(2, '0');
-        //        const day = String(date.getDate()).padStart(2, '0');
-        //        const formattedDate = `${year}-${month}-${day}`;
+            // display events, tasks, and measures
+            let date = new Date(element.id);
+            date.setMinutes(0);
+            date.setSeconds(0);
+            date.setMilliseconds(0);
+            //console.log(date);
+            var weekDayDivs = document.querySelectorAll(".week-day.weekdays");
+            for (var i = 0; i < weekDayDivs.length; i++) {
+                var weekDayDiv = weekDayDivs[i];
+                weekDayDiv.innerHTML = "";
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                const formattedDate = `${year}-${month}-${day}`;
 
-        //        // iterate over hours between 8 and 23
-        //        for (var hour = 8; hour <= 23; hour++) {
-        //            const formattedHour = String(hour).padStart(2, '0');
-        //            const formattedDateTime = `${formattedDate}-${formattedHour}`;
+                // iterate over hours between 8 and 23
+                for (var hour = 8; hour <= 23; hour++) {
+                    const formattedHour = String(hour).padStart(2, '0');
+                    const formattedDateTime = `${formattedDate}-${formattedHour}`;
 
-        //            // scan events, tasks, and measures
-        //            for (var j = 0; j < events.length; j++) {
-        //                var event = events[j];
-        //                const beginDate = new Date(event.Begin);
-        //                const eventYear = beginDate.getFullYear();
-        //                const eventMonth = String(beginDate.getMonth() + 1).padStart(2, '0');
-        //                const eventDate = String(beginDate.getDate()).padStart(2, '0');
-        //                const eventHour = String(beginDate.getHours()).padStart(2, '0');
-        //                const formattedEventDate = `${eventYear}-${eventMonth}-${eventDate}-${eventHour}`;
-        //                console.log(formattedEventDate);
-        //                console.log(formattedDateTime);
-        //                if (formattedEventDate === formattedDateTime) {
-        //                    var eventDiv = document.createElement("div");
-        //                    eventDiv.classList.add("event");
-        //                    var eventInput = document.createElement("input");
-        //                    eventInput.type = "hidden";
-        //                    eventInput.value = event.Id;
-        //                    var eventP = document.createElement("p");
-        //                    eventP.innerText = event.EventName;
-        //                    eventDiv.appendChild(eventInput);
-        //                    eventDiv.appendChild(eventP);
-        //                    weekDayDiv.appendChild(eventDiv);
-        //                }
-        //            }
-        //            for (var j = 0; j < tasks.length; j++) {
-        //                var task = tasks[j];
-        //                if (task.Begin.startsWith(formattedDateTime)) {
-        //                    var taskDiv = document.createElement("div");
-        //                    taskDiv.classList.add("event", "yellow");
-        //                    var taskInput = document.createElement("input");
-        //                    taskInput.type = "hidden";
-        //                    taskInput.value = task.Id;
-        //                    var taskP = document.createElement("p");
-        //                    taskP.innerText = task.TaskName;
-        //                    taskDiv.appendChild(taskInput);
-        //                    taskDiv.appendChild(taskP);
-        //                    weekDayDiv.appendChild(taskDiv);
-        //                }
-        //            }
-        //            for (var j = 0; j < measures.length; j++) {
-        //                var measure = measures[j];
-        //                if (measure.Begin.startsWith(formattedDateTime)) {
-        //                    var measureDiv = document.createElement("div");
-        //                    measureDiv.classList.add("event", "red");
-        //                    var measureInput = document.createElement("input");
-        //                    measureInput.type = "hidden";
-        //                    measureInput.value = measure.Id;
-        //                    var measureP = document.createElement("p");
-        //                    measureP.innerText = measure.MeasureName;
-        //                    measureDiv.appendChild(measureInput);
-        //                    measureDiv.appendChild(measureP);
-        //                    weekDayDiv.appendChild(measureDiv);
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-    </script>
+                    // scan events, tasks, and measures
+                    for (var j = 0; j < events.length; j++) {
+                        var event = events[j];
+                        const beginDate = new Date(event.Begin);
+                        const eventYear = beginDate.getFullYear();
+                        const eventMonth = String(beginDate.getMonth() + 1).padStart(2, '0');
+                        const eventDate = String(beginDate.getDate()).padStart(2, '0');
+                        const eventHour = String(beginDate.getHours()).padStart(2, '0');
+                        const formattedEventDate = `${eventYear}-${eventMonth}-${eventDate}-${eventHour}`;
+                        console.log(formattedEventDate);
+                        console.log(formattedDateTime);
+                        if (formattedEventDate === formattedDateTime) {
+                            var eventDiv = document.createElement("div");
+                            eventDiv.classList.add("event");
+                            var eventInput = document.createElement("input");
+                            eventInput.type = "hidden";
+                            eventInput.value = event.Id;
+                            var eventP = document.createElement("p");
+                            eventP.innerText = event.EventName;
+                            eventDiv.appendChild(eventInput);
+                            eventDiv.appendChild(eventP);
+                            weekDayDiv.appendChild(eventDiv);
+                        }
+                    }
+                    for (var j = 0; j < tasks.length; j++) {
+                        var task = tasks[j];
+                        if (task.Begin.startsWith(formattedDateTime)) {
+                            var taskDiv = document.createElement("div");
+                            taskDiv.classList.add("event", "yellow");
+                            var taskInput = document.createElement("input");
+                            taskInput.type = "hidden";
+                            taskInput.value = task.Id;
+                            var taskP = document.createElement("p");
+                            taskP.innerText = task.TaskName;
+                            taskDiv.appendChild(taskInput);
+                            taskDiv.appendChild(taskP);
+                            weekDayDiv.appendChild(taskDiv);
+                        }
+                    }
+                    for (var j = 0; j < measures.length; j++) {
+                        var measure = measures[j];
+                        if (measure.Begin.startsWith(formattedDateTime)) {
+                            var measureDiv = document.createElement("div");
+                            measureDiv.classList.add("event", "red");
+                            var measureInput = document.createElement("input");
+                            measureInput.type = "hidden";
+                            measureInput.value = measure.Id;
+                            var measureP = document.createElement("p");
+                            measureP.innerText = measure.MeasureName;
+                            measureDiv.appendChild(measureInput);
+                            measureDiv.appendChild(measureP);
+                            weekDayDiv.appendChild(measureDiv);
+                        }
+                    }
+                }
+            }
+        }
+    </script>*@
 
     <div id="dayGrid" class="calendar-grid calGrid">
         <div class="header">
@@ -1038,7 +1040,7 @@
                             string[] arr = new string[] { "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
                             foreach (var item in arr)
                             {
-                                    <div class="option-item">item</div>
+                                        <div class="option-item">item</div>
                             }
                         }
                     </div>
@@ -1206,6 +1208,7 @@
         }
         //getting all events by class .event
         const events = document.querySelectorAll('.event');
+        console.log("hello");
         //Measure stuff
         const measureName = document.querySelector('#MeasureName.task-nameM');
         const measureBegin = document.querySelector('#MeasureBegin');
@@ -1240,7 +1243,7 @@
         let dayEvent = document.getElementById("nameEvent");
 
         document.querySelectorAll('.event').forEach(function (element) {
-
+            console.log(element);
             const usersData = JSON.parse('@Html.Raw(usersJson)');
 
 
