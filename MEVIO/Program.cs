@@ -167,6 +167,6 @@ app.UseAuthentication();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Registry}/{action=Index}/{id?}");
+    pattern: "{controller=Calendar}/{action=Index}/{id?}");
 
 app.Run();
