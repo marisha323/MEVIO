@@ -570,7 +570,7 @@
                                         if (day >= 1 && day <= daysInMonth)
                                         {
                                             DateTime currentDate2 = new DateTime(year, month, day);
-                                            <div class="month-day" id="@currentDate2.ToString("yyyy-MM-dd")" onclick="handleClick(this)">
+                                            <div class="month-day" id="@currentDate2.ToString("yyyy-MM-dd")" @*onclick="handleClick(this)"*@>
                                                 @day
                                                 @foreach (var item in @ViewBag.Events)
                                                 {
@@ -608,7 +608,7 @@
                                         {
                                             int prevMonthDay = daysInLastMonth + day;
                                             DateTime prevMonthDate = new DateTime(month == 1 ? year - 1 : year, month == 1 ? 12 : month - 1, prevMonthDay);
-                                            <div class="month-day prev-month" id="@prevMonthDate.ToString("yyyy-MM-dd")" onclick="handleClick(this)">
+                                            <div class="month-day prev-month" id="@prevMonthDate.ToString("yyyy-MM-dd")" @*onclick="handleClick(this)"*@>
                                                 @prevMonthDate.Day
                                             </div>
                                         }
@@ -616,7 +616,7 @@
                                         {
                                             int nextMonthDay = day - daysInMonth;
                                             DateTime nextMonthDate = new DateTime(month == 12 ? year + 1 : year, month == 12 ? 1 : month + 1, nextMonthDay);
-                                            <div class="month-day next-month" id="@nextMonthDate.ToString("yyyy-MM-dd")" onclick="handleClick(this)">
+                                            <div class="month-day next-month" id="@nextMonthDate.ToString("yyyy-MM-dd")" @*onclick="handleClick(this)"*@>
                                                 @nextMonthDate.Day
                                             </div>
                                         }
@@ -666,37 +666,37 @@
         //yearBtn.addEventListener("click", CurrentMonth);
 
         function CurrentMonth() {
-    var currentMonth = @ViewBag.monthNow.Number;
-    var monthSwitchers = document.querySelectorAll('.month-switcher');
+            var currentMonth = @ViewBag.monthNow.Number;
+            var monthSwitchers = document.querySelectorAll('.month-switcher');
 
-    for (var i = 0; i < monthSwitchers.length; i++) {
-        var monthSwitcher = monthSwitchers[i];
-        var monthId = monthSwitcher.id;
-        var monthNumber = parseInt(monthId.split('_')[2]);
-        
-        console.log(monthNumber);
-        console.log(currentMonth);
-        if (monthNumber !== currentMonth) {
-            monthSwitcher.style.display = 'none';
-        }
-        else {
-            monthSwitcher.style.display = 'block';
-        }
-    }
+            for (var i = 0; i < monthSwitchers.length; i++) {
+                var monthSwitcher = monthSwitchers[i];
+                var monthId = monthSwitcher.id;
+                var monthNumber = parseInt(monthId.split('_')[2]);
 
-    var yearSwitchers = document.querySelectorAll('.year-switcher');
-    for (var i = 0; i < yearSwitchers.length; i++) {
-        var yearSwitcher = yearSwitchers[i];
-        var year = parseInt(yearSwitcher.id.split('_')[1]);
+                console.log(monthNumber);
+                console.log(currentMonth);
+                if (monthNumber !== currentMonth) {
+                    monthSwitcher.style.display = 'none';
+                }
+                else {
+                    monthSwitcher.style.display = 'block';
+                }
+            }
 
-        if (year === new Date().getFullYear()) {
-            yearSwitcher.style.display = 'block';
+            var yearSwitchers = document.querySelectorAll('.year-switcher');
+            for (var i = 0; i < yearSwitchers.length; i++) {
+                var yearSwitcher = yearSwitchers[i];
+                var year = parseInt(yearSwitcher.id.split('_')[1]);
+
+                if (year === new Date().getFullYear()) {
+                    yearSwitcher.style.display = 'block';
+                }
+                else {
+                    yearSwitcher.style.display = 'none';
+                }
+            }
         }
-        else {
-            yearSwitcher.style.display = 'none';
-        }
-    }
-}
     </script>
     <script>
         function toggleVisibility(elementId) {
@@ -828,7 +828,7 @@
     <div id="weekGrid" class="calendar-grid calGrid">
         <div class="calendar-header">
             <div class="month-name pointer">
-                @startDate.ToString("MMMM d yyyy") - @endDate.ToString("MMMM d yyyy")
+                @startDate.ToString("d MMMM yyyy", new System.Globalization.CultureInfo("uk-UA")) - @endDate.ToString("d MMMM yyyy", new System.Globalization.CultureInfo("uk-UA"))
             </div>
             <div class="flex">
                 <div class="flex-center">
@@ -879,9 +879,9 @@
                 <div class="head-day left-radius">Понеділок</div>
                 <div class="head-day">Вівторок</div>
                 <div class="head-day">Середа</div>
-                <div class="head-day">Четверг</div>
+                <div class="head-day">Четвер</div>
                 <div class="head-day">П'ятниця</div>
-                <div class="head-day">Суббота</div>
+                <div class="head-day">Субота</div>
                 <div class="head-day right-radius">Неділя</div>
 
                 @for (int i = 8; i < 24; i++)
@@ -925,7 +925,7 @@
             </div>
         </div>
     </div>
-    @{
+    @*@{
         var events = JsonSerializer.Serialize(ViewBag.Events);
         var tasks = JsonSerializer.Serialize(ViewBag.Tasks);
         var measures = JsonSerializer.Serialize(ViewBag.Measures);
@@ -1018,7 +1018,7 @@
                 }
             }
         }
-    </script>
+    </script>*@
 
     <div id="dayGrid" class="calendar-grid calGrid">
         <div class="header">
@@ -1040,7 +1040,7 @@
                             string[] arr = new string[] { "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
                             foreach (var item in arr)
                             {
-                                    <div class="option-item">item</div>
+                                        <div class="option-item">item</div>
                             }
                         }
                     </div>
@@ -1208,6 +1208,7 @@
         }
         //getting all events by class .event
         const events = document.querySelectorAll('.event');
+        console.log("hello");
         //Measure stuff
         const measureName = document.querySelector('#MeasureName.task-nameM');
         const measureBegin = document.querySelector('#MeasureBegin');
@@ -1242,7 +1243,7 @@
         let dayEvent = document.getElementById("nameEvent");
 
         document.querySelectorAll('.event').forEach(function (element) {
-
+            console.log(element);
             const usersData = JSON.parse('@Html.Raw(usersJson)');
 
 
