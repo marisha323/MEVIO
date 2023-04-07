@@ -478,13 +478,14 @@
 
     <div id="yearGrid" class="calendar-grid calGrid activeGrid">
         @{
+            CultureInfo ukrainianCulture = new CultureInfo("uk-UA");
             int monthcount = 1;
         }
         @foreach (var month in ViewBag.months)
         {
             <div class="month-div @month.Season">
                 <div id="@($"month_2023_{monthcount}")" class="month-name option-item-month">
-                    @DateTimeFormatInfo.CurrentInfo.GetMonthName(monthcount)
+                    @ukrainianCulture.DateTimeFormat.GetMonthName(monthcount)
                 </div>
 
                 <div class="week-div">
@@ -514,7 +515,7 @@
             <div class="year-switcher" id="@($"year_{year}")" @(year == 2020 ? "style='display:block'" : "style='display:none'")>
                 @for (int month = 1; month <= 12; month++)
                 {
-                    var monthName = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
+                    var monthName = @ukrainianCulture.DateTimeFormat.GetMonthName(month);
 
                     <div id="@($"month_{year}_{month}")" class="month-switcher @monthName">
                         <div class="calendar-header">
@@ -527,7 +528,7 @@
                                     {
                                         //here
                                         <div id="@($"month_{year}_{m}")" class="option-item option-item-month">
-                                            @DateTimeFormatInfo.CurrentInfo.GetMonthName(m)
+                                            @ukrainianCulture.DateTimeFormat.GetMonthName(m)
                                         </div>
                                     }
                                 </div>
@@ -665,35 +666,37 @@
         //yearBtn.addEventListener("click", CurrentMonth);
 
         function CurrentMonth() {
-            var currentMonth = @ViewBag.monthNow.Number;
-            var monthSwitchers = document.querySelectorAll('.month-switcher');
+    var currentMonth = @ViewBag.monthNow.Number;
+    var monthSwitchers = document.querySelectorAll('.month-switcher');
 
-            for (var i = 0; i < monthSwitchers.length; i++) {
-                var monthSwitcher = monthSwitchers[i];
-                var monthName = monthSwitcher.classList[1].split('-')[0];
-                var monthNumber = new Date(Date.parse('01 ' + monthName + ' 2023')).getMonth() + 1;
-
-                if (monthNumber !== currentMonth) {
-                    monthSwitcher.style.display = 'none';
-                }
-                else {
-                    monthSwitcher.style.display = 'block';
-                }
-            }
-
-            var yearSwitchers = document.querySelectorAll('.year-switcher');
-            for (var i = 0; i < yearSwitchers.length; i++) {
-                var yearSwitcher = yearSwitchers[i];
-                var year = parseInt(yearSwitcher.id.split('_')[1]);
-
-                if (year === new Date().getFullYear()) {
-                    yearSwitcher.style.display = 'block';
-                }
-                else {
-                    yearSwitcher.style.display = 'none';
-                }
-            }
+    for (var i = 0; i < monthSwitchers.length; i++) {
+        var monthSwitcher = monthSwitchers[i];
+        var monthId = monthSwitcher.id;
+        var monthNumber = parseInt(monthId.split('_')[2]);
+        
+        console.log(monthNumber);
+        console.log(currentMonth);
+        if (monthNumber !== currentMonth) {
+            monthSwitcher.style.display = 'none';
         }
+        else {
+            monthSwitcher.style.display = 'block';
+        }
+    }
+
+    var yearSwitchers = document.querySelectorAll('.year-switcher');
+    for (var i = 0; i < yearSwitchers.length; i++) {
+        var yearSwitcher = yearSwitchers[i];
+        var year = parseInt(yearSwitcher.id.split('_')[1]);
+
+        if (year === new Date().getFullYear()) {
+            yearSwitcher.style.display = 'block';
+        }
+        else {
+            yearSwitcher.style.display = 'none';
+        }
+    }
+}
     </script>
     <script>
         function toggleVisibility(elementId) {
@@ -1037,7 +1040,7 @@
                             string[] arr = new string[] { "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
                             foreach (var item in arr)
                             {
-                                <div class="option-item">item</div>
+                                    <div class="option-item">item</div>
                             }
                         }
                     </div>
