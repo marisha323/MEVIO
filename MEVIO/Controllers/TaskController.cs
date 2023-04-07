@@ -100,20 +100,47 @@ namespace MEVIO.Controllers
 
             foreach (var clientsId in idsWatchPersons)
             {
-                var idsWatchper = new TaskResponsiblePersons
+                var tasksWatchingPersons = new TasksWatchingPersons
                 {
                     TaskId = lastIdTask,
-                    UserId=userId,
+                    UserId= int.Parse(clientsId)
 
-                    
-                    // IsCreator = false //устанавливаем false, поскольку это не создатель события
                 };
-                context.TaskResponsiblePersons.Add(idsWatchper); //добавляем экземпляр EventsUsers в контекст базы данных
+                context.TasksWatchingPersons.Add(tasksWatchingPersons); //добавляем экземпляр EventsUsers в контекст базы данных
             }
 
             context.SaveChanges(); //сохраняем изменения в базе данных
 
-           
+            //////////////////////////////////////////
+            foreach (var clientsId in idsResponsiblePersons)
+            {
+                var tasksRespPersons = new TaskResponsiblePersons
+                {
+                    TaskId = lastIdTask,
+                    UserId = int.Parse(clientsId)
+
+                };
+                context.TaskResponsiblePersons.Add(tasksRespPersons); //добавляем экземпляр EventsUsers в контекст базы данных
+            }
+
+            context.SaveChanges(); //сохраняем изменения в базе данных
+
+
+            UnderTask underTask = new UnderTask()
+            {
+                TaskId = lastIdTask,
+                UnderTaskName= underTaskName
+
+            };
+
+            context.UnderTasks.Add(underTask);
+            context.SaveChanges();
+
+
+
+
+
+
 
 
 
