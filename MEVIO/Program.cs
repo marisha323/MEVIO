@@ -155,12 +155,13 @@ builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
-})
-        .AddCookie()
-        .AddGoogle(options =>
+}).AddCookie()
+.AddGoogle(googleOptions =>
         {
-            options.ClientId = builder.Configuration["Google:ClientId"];
-            options.ClientSecret = builder.Configuration["Google:ClientSecret"];
+            googleOptions.ClientId = builder.Configuration.GetSection("Google")
+.GetValue<string>("ClientId");
+            googleOptions.ClientSecret = builder.Configuration.GetSection("Google")
+        .GetValue<string>("ClientSecret");
         });
 
 var app = builder.Build();

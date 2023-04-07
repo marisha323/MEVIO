@@ -36,6 +36,11 @@
         width: 10rem;
     }
 
+    .head-button2 a{
+        text-decoration:none;
+        color: #52A7E4;
+
+    }
         .head-button2:hover {
             background-color: #52A7E4;
             color: #111624;
@@ -123,13 +128,14 @@
         color: #BAE2FF;
         padding-left: 0.7rem;
         border: 1px solid #52A7E4;
-        /*border-radius: 15px;*/
+        border-radius: 15px;
         border: none;
         background: #111624;
         font-size: 1.5rem;
         /* outline:none;*/
         margin-left: 0.5rem;
         margin-top: 0.5rem;
+            margin: 1rem;
     }
 
     .check_list_name_lable {
@@ -198,21 +204,13 @@
     
 
     /*box for Watching & Responsible Persons*/
-    .mainBox, .mainBoxPesponsible {
+    .mainBox, .mainBoxPesponsible, mainBoxNewUser {
         position: absolute;
         display: none;
         z-index: 1;
         top: 22rem;
     }
 
-
-    /*WINDOW mainBox*/
-    .mainBox, .mainBoxClient {
-        position: absolute;
-        display: none;
-        z-index: 1;
-        top: 22rem;
-    }
 
     .textCenter {
         margin-top: auto;
@@ -235,6 +233,7 @@
     .parent, .parentClient {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
+        padding:0.5rem;
     }
 
     .membersWindow {
@@ -588,8 +587,8 @@
         <br />
         <div class="head-flex">
             <div class="head-button">Завдання</div>
-            <div class="head-button2">Події</div>
-            <div class="head-button2">Заходи</div>
+            <div class="head-button2"> <a href="/Event/Index">Події</a></div>
+            <div class="head-button2"><a href="/Measure/Index">Заходи</a></div>
         </div>
         <form asp-controller="Task" asp-action="AddTask" method="POST" id="taskForm">
             <div>
@@ -612,6 +611,7 @@
                 </div>
 
             </div>
+
             <div class="podvodka">
                 <input class="divStrockZap2" value="чек лист" />
                 <br />
@@ -621,6 +621,85 @@
                         <label class="buttonWithinPerson" id="WatchingPerson">+ спостерiгач</label>
 
                         <div class="mainBox" @*style="display: none"*@>
+
+                            <div class="box2">
+
+                                <div class="secondBox">
+
+                                    @foreach (var itemUsers in ViewBag.Users)
+                                    {
+                                        <div class="inBox">
+                                            <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
+                                            <p class="clientName" name="userName">@itemUsers.UserName</p>
+                                            <span class="clientId" hidden>@itemUsers.Id</span>
+                                            <div class="bird">&#10004;</div>
+                                        </div>
+                                    }
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <label class="buttonWithinPerson" id="ResPerson">+ співвиконавець</label>
+
+                        <div class="mainBoxPesponsible" @*style="display: none"*@>
+
+                            <div class="box2Res">
+
+                                <div class="secondBoxClient">
+
+                                    @foreach (var itemUsers in  ViewBag.Users)
+                                    {
+                                        <div class="inBoxClient">
+                                            <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
+                                            <p class="resName" name="userName">@itemUsers.UserName</p>
+                                            <span class="resId" hidden>@itemUsers.Id</span>
+                                            <div class="bird">&#10004;</div>
+                                        </div>
+                                    }
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="check_list_div">
+
+                        <div class="radiob_mulaz"></div>
+                        <input type="text" class="check_list_name" />
+                        <div id="parent">
+                            @* <label class="check_list_name_lable">Max Voloshov</label>
+                            <label class="check_list_name_lable">Max Voloshov</label>
+                            <label class="check_list_name_lable">Max Voloshov</label>
+                            <label class="check_list_name_lable">Max Voloshov</label>
+                            <label class="check_list_name_lable">Max Voloshov</label>
+                            <label class="check_list_name_lable">Max Voloshov</label>*@
+                        </div>
+
+                    </div>
+                </div>
+                <div id="addCheck">
+                </div>
+                <div class="button_botom_div_con">
+                    <label id="butonaddcheck" class="add_check">+ Добавить пункт</label>
+                    <label onclick="deleteCheckList()" class="delete_check">+ Удалить чек лист</label>
+                </div>
+            </div>
+
+
+
+
+            @*<div class="podvodka">
+                <input class="divStrockZap2" value="чек лист" />
+                <br />
+                <hr class="hr">
+                <div class="ollChek">
+                    <div class="div_button">
+                        <label class="buttonWithinPerson" id="WatchingPerson">+ спостерiгач</label>
+
+                        <div class="mainBox" >
 
                             <div class="box2">
 
@@ -642,7 +721,7 @@
                         </div>
                         <label class="buttonWithinPerson" id="ResPerson">+ співвиконавець</label>
 
-                        <div class="mainBoxPesponsible" @*style="display: none"*@>
+                        <div class="mainBoxPesponsible">
 
                             <div class="box2Res">
 
@@ -672,7 +751,7 @@
                         <input type="text" class="check_list_name" name="underTask" placeholder="Введіть назву підзадачі"/>
                        
                         <div id="parent">
-                           @* //////*@
+                          
                         </div>
 
                     </div>
@@ -683,7 +762,7 @@
                     <label id="butonaddcheck" class="add_check">+ Добавить пункт</label>
                     <label onclick="deleteCheckList()" class="delete_check">+ Удалить чек лист</label>
                 </div>
-            </div>
+            </div>*@
             <div class="response-block">
                 <div class="response-div">Відповідальний</div>
                 <div class="response-div">
@@ -691,7 +770,7 @@
                         <div class="user-block">
                             W1sh
                         </div>
-                        <div class="add-response-user">
+                        <div class="add-response-user" id="AddResp">
                             + Додати ще
                         </div>
                     </div>
@@ -755,6 +834,12 @@
             $(".mainBoxPesponsible").fadeToggle(100);
 
         });
+
+        //$('.AddResp').click(function ()  //watching Persons
+        //{
+        //    $(".mainBoxNewUser").fadeToggle(100);
+
+        //});
 
         //ADD WatchingPerson
         $('.inBox').click(function (e) {
@@ -872,13 +957,15 @@
 
         ///////////////////////////////////////////////////////
 
-        var dob = document.getElementById("responseBlock")
-        document.getElementById("planTerm").addEventListener("click", function () {
-            var input = document.createElement("input");
-            input.type = "date";
-            input.classList = "response-div";
-            dob.appendChild(input);
-        });
+        //var dob = document.getElementById("responseBlock")
+        //document.getElementById("planTerm").addEventListener("click", function () {
+        //    var input = document.createElement("input");
+        //    input.type = "date";
+        //    input.classList = "response-div";
+        //    dob.appendChild(input);
+        //});
+
+        console.log("DONE!!")
 
         //мой скрипт
         //створення addCheck
@@ -886,6 +973,8 @@
         const addCheck = document.querySelector('#addCheck');
 
         buttonAddCheck.addEventListener('click', function () {
+            
+            
             // Створення нових елементів
             const ollChek = document.createElement('div');
             ollChek.classList.add('ollChek');
