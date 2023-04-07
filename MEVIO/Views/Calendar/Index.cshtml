@@ -11,6 +11,22 @@
 <link type="text/css" rel="stylesheet" href="/css/MEVIOStvorPodii3.css">
 <link type="text/css" rel="stylesheet" href="/css/measureInfoStyle.css" />
 <style>
+    .options-month,
+    .options-years {
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #52A7E4;
+        color: #111624;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        font-size: 20px;
+        transition: 0.2s;
+    }
+    .hide {
+    display: none;
+}
     .logo-imgM {
         width: 3rem;
         border-radius: 50%;
@@ -505,7 +521,7 @@
         @foreach (var month in ViewBag.months)
         {
             <div class="month-div @month.Season">
-                <div class="month-name option-item-month">
+                <div id="@($"month_2023_{monthcount}")" class="month-name option-item-month">
                     @DateTimeFormatInfo.CurrentInfo.GetMonthName(monthcount)
                 </div>
 
@@ -538,9 +554,9 @@
                 {
                     var monthName = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
 
-                    <div class="month-switcher @monthName">
+                    <div id="@($"month_{year}_{month}")" class="month-switcher @monthName">
                         <div class="calendar-header">
-                            <div class="month-name pointer">@monthName @year</div>@*@ViewBag.monthNames[month-1]*@
+                            <div class="month-name pointer">@monthName @year</div>
                             <div class="select-month">
                                 <label class="label pointer">Місяць</label>
                                 <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
@@ -548,7 +564,7 @@
                                     @for (int m = 1; m <= 12; m++)
                                     {
                                         //here
-                                        <div class="option-item option-item-month">
+                                        <div id="@($"month_{year}_{m}")" class="option-item option-item-month">
                                             @DateTimeFormatInfo.CurrentInfo.GetMonthName(m)
                                         </div>
                                     }
@@ -560,7 +576,7 @@
                                 <div class="options-years hide">
                                     @for (int y = 2020; y <= 2025; y++)
                                     {
-                                        <div class="option-item" onclick="toggleVisibility('@($"year_{y}")'); setMyValue('@y');">@y</div>
+                                        <div class="option-item" onclick="toggleVisibility('@($"month_{y}_{month}")');">@y</div>
                                     }
                                 </div>
                             </div>
@@ -571,12 +587,8 @@
                             <div class="grid">
                                 @for (int i = 0; i < 7; i++)
                                 {
-                                    <div class="week-day">@ViewBag.weekDays[i]@*@dayOfWeek.ToString()*@</div>
+                                    <div class="week-day">@ViewBag.weekDays[i]</div>
                                 }
-                                @*@foreach (var dayOfWeek in Enum.GetValues(typeof(DayOfWeek)))
-                        {
-                        <div class="week-day">@dayOfWeek.ToString()</div>
-                        }*@
                             </div>
                             <div class="month-days grid">
                                 @{
@@ -693,9 +705,6 @@
         function CurrentMonth() {
             var currentMonth = @ViewBag.monthNow.Number;
             var monthSwitchers = document.querySelectorAll('.month-switcher');
-            //var currentMonth = new Date().getMonth() + 1;
-            var currentMonth = @ViewBag.monthNow.Number;
-            var monthSwitchers = document.querySelectorAll('.month-switcher');
 
             for (var i = 0; i < monthSwitchers.length; i++) {
                 var monthSwitcher = monthSwitchers[i];
@@ -709,23 +718,60 @@
                     monthSwitcher.style.display = 'block';
                 }
             }
-        }
-    </script>
-    <script>
-        function toggleVisibility(id) {
-            var allYears = document.querySelectorAll('.year-switcher');
-            for (var i = 0; i < allYears.length; i++) {
-                if (allYears[i].id === id) {
-                    allYears[i].style.display = 'block';
-                } else {
-                    allYears[i].style.display = 'none';
+
+            var yearSwitchers = document.querySelectorAll('.year-switcher');
+            for (var i = 0; i < yearSwitchers.length; i++) {
+                var yearSwitcher = yearSwitchers[i];
+                var year = parseInt(yearSwitcher.id.split('_')[1]);
+
+                if (year === new Date().getFullYear()) {
+                    yearSwitcher.style.display = 'block';
+                }
+                else {
+                    yearSwitcher.style.display = 'none';
                 }
             }
         }
+    </script>
+    <script>
+        function toggleVisibility(elementId) {
+            let element = document.getElementById(elementId);
+            var yearAndMonth = elementId.split('_');
+            var year = yearAndMonth[1];
+            var month = yearAndMonth[2];
 
-        function setMyValue(value) {
-            document.getElementById("myInput").value = value;
-            toggleVisibility('year_' + value);
+            var monthSwitchers = document.querySelectorAll('.month-switcher');
+            let yearSwitchers = document.querySelectorAll('.year-switcher');
+
+            yearSwitchers.forEach(function (yearSwitcher) {
+                let id = yearSwitcher.id;
+                var yearIn = parseInt(id.split('_')[1]);
+
+                if (year == yearIn) {
+                    yearSwitcher.style.display = "block";
+                } else {
+                    yearSwitcher.style.display = "none";
+                }
+            });
+
+            monthSwitchers.forEach(function (monthSwitcher) {
+                let id = monthSwitcher.id;
+                var yearAndMonthIn = id.split('_');
+                var yearIn = yearAndMonthIn[1];
+                var monthIn = yearAndMonthIn[2];
+
+                if (year == yearIn && month == monthIn) {
+                    monthSwitcher.style.display = "block";
+                } else {
+                    monthSwitcher.style.display = "none";
+                }
+            });
+
+            if (element.style.display === "none") {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
         }
 
         window.onload = function () {
@@ -744,33 +790,58 @@
     </script>
     <script>
         // Get all the month switcher divs
-        var monthSwitchers = document.querySelectorAll('.month-switcher');
-        //var currentMonth = new Date().getMonth() + 1;
-        var currentMonth = @ViewBag.monthNow.Number;
+        let monthSwitchers = document.querySelectorAll('.month-switcher');
+        let currentDate = new Date();
+        let currentMonth = currentDate.getMonth() + 1;
+        let currentYear = currentDate.getFullYear();
 
         for (var i = 0; i < monthSwitchers.length; i++) {
-            var monthSwitcher = monthSwitchers[i];
-            var monthName = monthSwitcher.classList[1].split('-')[0];
-            var monthNumber = new Date(Date.parse('01 ' + monthName + ' 2023')).getMonth() + 1;
+            let monthSwitcher = monthSwitchers[i];
+            let monthName = monthSwitcher.classList[1].split('-')[0];
+            let monthNumber = new Date(Date.parse('01 ' + monthName + ' ' + currentYear)).getMonth() + 1;
 
             if (monthNumber !== currentMonth) {
                 monthSwitcher.style.display = 'none';
             }
         }
+
         // Add click event listener to each month option item
-        var monthOptionItems = document.querySelectorAll('.option-item-month');
+        let monthOptionItems = document.querySelectorAll('.option-item-month');
         monthOptionItems.forEach(function (item) {
             item.addEventListener('click', function () {
-                // Get the selected month name
-                var selectedMonth = this.innerText.trim();
+                // Get the selected month id
+                let selectedMonthId = this.id;
 
+                // Extract the year and month from the id
+                let [_, year, month] = selectedMonthId.split('_');
+                let selectedMonthNumber = new Date(Date.parse('01 ' + month + ' ' + year));
+                console.log(selectedMonthNumber);
                 // Loop through all the month switcher divs
                 monthSwitchers.forEach(function (switcher) {
-                    // Get the month name from the switcher class name
-                    var switcherMonth = switcher.classList[1];
+                    // Get the month number from the switcher id
+                    let switcherId = switcher.id;
+                    let switcherMonth = switcherId.replace('month_', '').replace('_', '');
 
+                    let selectedMonthString = year + (month < 10 ? '0' : '') + month;
+                    selectedMonthString = selectedMonthString.replace(/^0+/, '');
+                    console.log(switcherMonth);
+                    let firstFourDigits = selectedMonthString.substring(0, 4);
+
+                    // extract last 2 digits
+                    let lastTwoDigits = selectedMonthString.substring(4);
+
+                    // check if first digit of lastTwoDigits is 0
+                    if (lastTwoDigits.charAt(0) === "0") {
+                        // remove leading 0
+                        lastTwoDigits = lastTwoDigits.substring(1);
+                    }
+
+                    // concatenate firstFourDigits and lastTwoDigits
+                    let result = firstFourDigits + lastTwoDigits;
+
+                    console.log(result); // output: 20235
                     // Show the switcher if it matches the selected month, hide it otherwise
-                    if (switcherMonth === selectedMonth) {
+                    if (switcherMonth === result) {
                         switcher.style.display = 'block';
                     } else {
                         switcher.style.display = 'none';
