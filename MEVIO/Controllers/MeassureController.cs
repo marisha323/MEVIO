@@ -56,11 +56,18 @@ namespace MEVIO.Controllers
         [HttpPost]
         // public async Task<ActionResult> AddMeasure([Bind("Id,MeasureName,Description,UserId,Begin,End,FreePlaces")] Measure measure)
         public async Task<ActionResult> AddMeasure(string MeasureName,int UserId,int FreePlaces )
-        {
-            ////All id of users
-            //var idsUser = Request.Form["userId"];
-            ////All id of clients
-            //var idsClient = Request.Form["clientId"];
+        {    
+            //Get Id of create User
+            string UserLoggedIn = HttpContext.Request.Cookies["UserLoggedIn"];
+            user1 = JsonSerializer.Deserialize<MEVIO.Models.User>(UserLoggedIn);
+            int userId = user1.Id;
+            string creator = user1.UserName;
+
+            //Get Place for Measure
+            int placeId = int.Parse(Request.Form["placeSpend"]);
+            var place = context.PlaceForMeasures.Where(o => o.Id == placeId).AsNoTracking().FirstOrDefault();
+           
+
 
             //DATETIME
             string dateField1 = Request.Form["dateField1"];
@@ -77,7 +84,8 @@ namespace MEVIO.Controllers
             {
                 MeasureName = MeasureName,
                 FreePlaces=FreePlaces,
-                UserId = UserId,
+                PlaceForMeasureId=placeId,
+                UserId = userId,
                 Begin = dateTime1,
                 End = dateTime2
             };
@@ -91,9 +99,7 @@ namespace MEVIO.Controllers
             //All id of users
             var idsUser = Request.Form["userId"];
 
-
-            //var UserCheck = context.Users.Where(o => o.Id == idsUser).Select(p=>p.Id);
-            
+                    
             //Fill MeasureUsers
             foreach (var usersId in idsUser)
             {
@@ -108,23 +114,17 @@ namespace MEVIO.Controllers
 
             context.SaveChanges(); //сохраняем изменения в базе данных
 
-            //Get Id of create User
-            string UserLoggedIn = HttpContext.Request.Cookies["UserLoggedIn"];
-
-            user1 = JsonSerializer.Deserialize<MEVIO.Models.User>(UserLoggedIn);
-
-            int userId = user1.Id;
-            string creator = user1.UserName;
 
             var bot = HttpContext.RequestServices.GetRequiredService<TelegramBot>();
-            int placeId = int.Parse(Request.Form["placeSpend"]);
-            var place = context.PlaceForMeasures.Where(o => o.Id == placeId).AsNoTracking().FirstOrDefault();
             measure.PlaceForMeasure = place;
+
             foreach (var item in idsUser)
             {
                 var userT = context.UserTelegram.Where(o => o.UserId == int.Parse(item)).FirstOrDefault();
                 await bot.SendMeasure(userT, measure, botKey, creator);
             }
+
+
             //Fill MeasureClients
 
             //All id of clients

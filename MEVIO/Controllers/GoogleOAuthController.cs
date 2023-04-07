@@ -16,9 +16,9 @@ namespace Mevio2Test.Controllers
            "https://www.googleapis.com/auth/userinfo.email",
             "https://www.googleapis.com/auth/userinfo.profile"
         };
-      string scopesString = string.Join("", scopes2);
+        string scopesString = string.Join("/", scopes2);
 
-      // string scopesString = "https://www.googleapis.com/auth/userinfo.email";
+        //string scopesString = "https://www.googleapis.com/auth/userinfo.profile";
 
         //var url = GoogleOAuthService.GenerateOAuthRequestUrl(scopesString, redirectUrl, codeChellange);
 
