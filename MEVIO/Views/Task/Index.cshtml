@@ -10,27 +10,6 @@
 <link type="text/css" rel="stylesheet" href="/css/MyTask.css">
 
 <style>
-    .conData {
-        display: flex;
-        align-items: center;
-        padding: 1rem;
-        gap: 0.438rem;
-        width: 15rem;
-        height: 3.8rem;
-        border: 1px solid #52A7E4;
-        border-radius: 23px;
-        color: #52A7E4;
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 1.5rem;
-        transform: (-50%, -50%);
-        background: url(/img/free-icon-calendar-747824.png) no-repeat center;
-        background-size: 20px;
-        background-repeat: no-repeat;
-        background-position: 95%;
-        padding: 0.313rem;
-    }
     .head-button {
         font-size: 30px;
         display: flex;
@@ -85,14 +64,14 @@
         color: #BAE2FF;
         padding-left: 0.7rem;
         /* border: 1px solid #52A7E4;
-             border-radius: 15px;*/
+                         border-radius: 15px;*/
         border: none;
         background: #111624;
         font-size: 1.5rem;
         outline: none;
     }
 
-    .check_list_div {
+   /* .check_list_div {
         display: flex;
         flex-direction: row;
         width: 90%;
@@ -106,13 +85,26 @@
         padding: 0.3rem;
         font-size: 1.5rem;
         color: #52A7E4;
+    }*/
+
+    .check_list_div{
+
+        display:grid;
+        grid-template-columns:0.3fr 1fr 3fr;
+       
+    }
+    
+    #parent, #parentClient {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 
     .radiob_mulaz {
+
         width: 1.5rem;
-        ;
+        
         height: 1.5rem;
-        ;
+        
         margin-left: 1.5rem;
         resize: none;
         background-color: #A0D7FF;
@@ -122,7 +114,7 @@
     }
 
     .check_list_name {
-        width: 20%;
+        
         height: 1.5rem;
         font-family: 'Inter';
         font-style: normal;
@@ -131,7 +123,7 @@
         color: #BAE2FF;
         padding-left: 0.7rem;
         border: 1px solid #52A7E4;
-        border-radius: 15px;
+        /*border-radius: 15px;*/
         border: none;
         background: #111624;
         font-size: 1.5rem;
@@ -145,7 +137,10 @@
         height: 2.5rem;
         color: #BAE2FF;
         font-size: 1.5rem;
-        margin: 1rem;
+        margin: 0.3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .div_button {
@@ -200,21 +195,403 @@
         cursor: pointer;
     }
 
+    
+
+    /*box for Watching & Responsible Persons*/
+    .mainBox, .mainBoxPesponsible {
+        position: absolute;
+        display: none;
+        z-index: 1;
+        top: 22rem;
+    }
+
+
+    /*WINDOW mainBox*/
+    .mainBox, .mainBoxClient {
+        position: absolute;
+        display: none;
+        z-index: 1;
+        top: 22rem;
+    }
+
+    .textCenter {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .styleP {
+        width: 5rem;
+        height: 2.5rem;
+        font-size: 1.3rem;
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        line-height: 2.5rem;
+        white-space: nowrap;
+        color: #52a7e4;
+        margin-right: 1rem;
+    }
+    /*/////////////////////////////////////*window*/
     .parent, .parentClient {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
     }
 
-   
+    .membersWindow {
+        width: 7.6rem;
+        height: 2.1rem;
+        /* left: 44.5rem;
+                             top: 36.8rem;*/
+        border: none;
+        cursor: pointer;
+        background: #52a7e4;
+        border-radius: 15px 15px 0px 0px;
+    }
+
+        .membersWindow p {
+            width: 6.5rem;
+            height: 24px;
+            left: 45rem;
+            top: 37rem;
+            text-align: end;
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 1.4rem;
+            line-height: 1.7rem;
+            color: #111624;
+        }
+
+    .box2, .box2Res {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        width: 29rem;
+        height: 17.5rem;
+        left: 20rem;
+        top: 36rem;
+        background: #111624;
+        border: 1px solid #52a7e4;
+        position: fixed;
+    }
+
+    .first {
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        height: 3rem;
+        left: 44.86rem;
+        width: 27.4rem;
+        margin-left: 0.428rem;
+        margin-right: 1.214rem;
+        margin-top: 0.642rem;
+        background: #111624;
+        border: 1px solid #52a7e4;
+    }
+
+    .block {
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        width: 11.4rem;
+        height: 2.1rem;
+        left: 45.64rem;
+        top: 39.85rem;
+        margin-left: 0.8rem;
+        background: #a0d7ff;
+    }
+
+        .block img {
+            width: 1.6rem;
+            height: 1.6rem;
+            left: 647px;
+            margin-left: 0.5rem;
+            top: 562px;
+            border-radius: 50%;
+            border: 1px solid #52a7e4;
+        }
+
+        .block p {
+            width: 8.35rem;
+            height: 1.714rem;
+            white-space: nowrap;
+            margin-left: 0.9rem;
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
+            color: #111624;
+        }
+
+    .inpSearch {
+        width: 11rem;
+        height: 1.7rem;
+        margin-left: 4rem;
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        background-color: #111624;
+        color: #52a7e4;
+        border: none;
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    .secondBox, .secondBoxClient {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 29rem;
+        margin-top: 1rem;
+        overflow: scroll;
+        /*для вертикального*/
+        overflow-x: hidden; /*для горизонтального*/
+    }
+
+    ::-webkit-scrollbar {
+        width: 20px;
+    }
+
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey;
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background-color: #52a7e4;
+        border-radius: 10px;
+    }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #00c6fb, #005bea);
+        }
+
+
+
+    .inBox, .inBoxClient {
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        height: 2.5rem;
+        left: 45.57rem;
+        margin-top: 1rem;
+        width: 27.51rem;
+        margin-left: 0.428rem;
+        margin-right: 1.214rem;
+    }
+
+        .inBox:hover, .inBoxClient:hover {
+            background-color: #52a7e4;
+        }
+
+        .inBox p:hover, .inBoxClient p:hover {
+            color: #111624;
+        }
+
+        .inBox img, .inBoxClient img {
+            width: 2rem;
+            height: 2rem;
+            left: 46rem;
+            top: 43.14rem;
+            border-radius: 50%;
+            border: 1px solid #a0d7ff;
+            margin-left: 0.7rem;
+        }
+
+
+        .inBox p, .inBoxClient p {
+            width: 7.857rem;
+            height: 18px;
+            left: 674px;
+            top: 603px;
+            margin-left: 3rem;
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 1.2rem;
+            line-height: 18px;
+        }
+
+    .bird {
+        width: 15.5px;
+        height: 15px;
+        top: 650px;
+        color: #111624;
+        margin: 0.57rem 0.71rem 1.2rem 12rem;
+    }
+
+
+    .close {
+        color: #a0d7ff;
+        cursor: pointer;
+        margin-left: 1rem;
+    }
+
+    .eyes {
+        background: #111624;
+        color: #52a7e4;
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+        transform: (-50%, -50%);
+        background: url("/img/eye.jpg") no-repeat center;
+        background-size: 20px;
+        background-repeat: no-repeat;
+        background-position: 95%;
+        padding: 1rem;
+        width: 2rem;
+        margin-right:0.8rem;
+    }
+
+    /*  add date & time*/
+
+
+    input[type="checkbox"] {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .checkbox-style {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #52a7e3;
+        /* margin-top: auto;
+                margin-bottom: auto;*/
+        border-radius: 3px;
+        outline: none;
+        cursor: pointer;
+        margin-left: 1rem;
+    }
+
+        .checkbox-style:checked {
+            background-color: #1e90ff;
+            border: 1px solid #1e90ff;
+        }
+
+    .mainDiv {
+        width: 90%;
+        background-color: #52a7e4;
+        padding-bottom: 1rem;
+        margin: auto;
+    }
+
+
+    input[type="date"], input[type="datetime-local"] {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0.313rem 0.813rem;
+        gap: 0.438rem;
+        width: 15.625rem; /*changed for new datetime from 10.625*/
+        height: 2.313rem;
+        left: 0.5rem;
+        top: 9.313rem;
+        background: #111624;
+        border: 1px solid #52a7e4;
+        border-radius: 0.625rem;
+        color: #52a7e4;
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+        transform: (-50%, -50%);
+        background: url("/img/free-icon-calendar-747824.png") no-repeat center;
+        background-size: 20px;
+        background-repeat: no-repeat;
+        background-position: 95%;
+        padding: 0.313rem;
+        margin: 0.5rem;
+    }
+
+
+    .time-span-row {
+        display: grid;
+        grid-template-columns: repeat(16, 1fr);
+        width: 100%;
+    }
+
+    .superstyle::-webkit-inner-spin-button,
+    .superstyle::-webkit-calendar-picker-indicator {
+        display: none;
+        -webkit-appearance: none;
+    }
+
+
+    input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+        position: relative;
+        z-index: 1;
+        opacity: 0;
+    }
+
+
+    input[type="time"] {
+        box-sizing: border-box;
+        display: flex;
+        height: 2.313rem;
+        width: 5.2rem;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 0.6rem;
+        padding-right: 0.6rem;
+        padding-top: 0.2rem;
+        padding-bottom: 0.375rem;
+        margin-left: 0.5rem;
+        background: #111624;
+        border: 1px solid #52a7e4;
+        border-radius: 0.625rem;
+        color: #52a7e4;
+        font-family: "Inter";
+        font-style: normal;
+        font-size: 1rem;
+    }
+
+    .divDate {
+        display: flex;
+        justify-content: center;
+        grid-column-start: 2;
+        grid-row-start: 2;
+    }
+
+
+    .response-block {
+        margin-top: 1.5rem;
+        width: 80%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .response-div {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        flex-wrap: nowrap;
+    }
+
 </style>
 <body id="body">
+
     <div class="container">
+        <a style="color:aqua" asp-controller="Home" asp-action="EventMini"> EventMini </a>
+        <br />
         <div class="head-flex">
             <div class="head-button">Завдання</div>
             <div class="head-button2">Події</div>
             <div class="head-button2">Заходи</div>
         </div>
-        <form id="taskForm" asp-controller="Task" asp-action="AddTask" method="post">
+        <form asp-controller="Task" asp-action="AddTask" method="POST" id="taskForm">
             <div>
                 <input type="text" asp-for="@Model.TaskName" on class="head-input" placeholder="Ввести назву завдання">
             </div>
@@ -226,7 +603,7 @@
             <div class="check-list-flex">
                 <div class="flex">
                     <input type="file" name="file" id="file" hidden>
-                    <label class="label" for="file"><img src="img/free-icon-paperclip-8774561 2.png" alt=""></label>
+                    <label class="label" for="file"><img src="img/free-icon-paperclip-87745612.png" alt=""></label>
                     <label for="file" class="label">Файл</label>
                 </div>
 
@@ -241,20 +618,61 @@
                 <hr class="hr">
                 <div class="ollChek">
                     <div class="div_button">
-                        <label class="buttonWithinPerson">+ спостерiгач</label>
-                        <label class="buttonWithinPerson">+ співвиконавець</label>
+                        <label class="buttonWithinPerson" id="WatchingPerson">+ спостерiгач</label>
+
+                        <div class="mainBox" @*style="display: none"*@>
+
+                            <div class="box2">
+
+                                <div class="secondBox">
+
+                                    @foreach (var itemUsers in ViewBag.Users)
+                                    {
+                                        <div class="inBox">
+                                            <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
+                                            <p class="clientName" name="userName">@itemUsers.UserName</p>
+                                            <span class="watchId" hidden>@itemUsers.Id</span>
+                                            <div class="bird">&#10004;</div>
+                                        </div>
+                                    }
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <label class="buttonWithinPerson" id="ResPerson">+ співвиконавець</label>
+
+                        <div class="mainBoxPesponsible" @*style="display: none"*@>
+
+                            <div class="box2Res">
+
+                                <div class="secondBoxClient">
+
+                                    @foreach (var itemUsers in ViewBag.Users)
+                                    {
+                                        <div class="inBoxClient">
+                                            <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
+                                            <p class="resName" name="userName">@itemUsers.UserName</p>
+                                            <span class="respId" hidden>@itemUsers.Id</span>
+                                            <div class="bird">&#10004;</div>
+                                        </div>
+                                    }
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
                     </div>
                     <div class="check_list_div">
 
                         <div class="radiob_mulaz"></div>
-                        <input type="text" class="check_list_name" />
-                        <div class="parent">
-                            <label class="check_list_name_lable">Max Voloshov</label>
-                            <label class="check_list_name_lable">Max Voloshov</label>
-                            <label class="check_list_name_lable">Max Voloshov</label>
-                            <label class="check_list_name_lable">Max Voloshov</label>
-                            <label class="check_list_name_lable">Max Voloshov</label>
-                            <label class="check_list_name_lable">Max Voloshov</label>
+
+                        <input type="text" class="check_list_name" name="underTask" placeholder="Введіть назву підзадачі"/>
+                       
+                        <div id="parent">
+                           @* //////*@
                         </div>
 
                     </div>
@@ -286,10 +704,16 @@
 
             <div id="responseBlock" class="response-block">
                 <div class="response-div">Крайній термін</div>
+
+                @* add inputs for date & time*@
                 <div class="response-div">
-                    <input class="conData" type="date" id="date" name="date">
+                    <input type="date" id="date1" name="dateField1"  />
+                    <input type="time" class="superstyle" id="time1" name="timeField1" />
+                    <div class="ture"></div>
+                    <input type="date" id="date2" name="dateField2" />
+                    <input type="time" class="superstyle" id="time2" name="timeField2" />
                 </div>
-                <div id="planTerm" class="response-div">Планування термінів</div>
+                @*<div id="planTerm" class="response-div">Планування термінів</div>*@
             </div>
 
             <hr class="hr">
@@ -299,7 +723,7 @@
                     Результати завдання
                 </div>
                 <div>
-                    <input class="alert-checkbox" type="checkbox" name="" id="alertMe">
+                    <input class="alert-checkbox checkbox-style" type="checkbox" name="" id="alertMe">
                     <label class="label-alert" for="alertMe">Обов'язковий звіт при завершенні завдання</label>
                 </div>
             </div>
@@ -312,7 +736,142 @@
         </form>
     </div>
 
+
+    <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
+
+
     <script>
+
+        //Iryna add watching Persons
+
+        $('#WatchingPerson').click(function ()  //watching Persons
+        {
+            $(".mainBox").fadeToggle(100);
+
+        });
+
+        $('#ResPerson').click(function ()  //watching Persons
+        {
+            $(".mainBoxPesponsible").fadeToggle(100);
+
+        });
+
+        //ADD WatchingPerson
+        $('.inBox').click(function (e) {
+            //const imgSrcClient = $(this).find('img').attr('src');
+
+            const watchIdd = $(this).find(".watchId").text();
+            const clientName = $(this).find('.clientName').text();
+
+            console.log(watchIdd);
+            console.log(clientName);
+
+
+            //All client on this Event
+            const listClient = document.querySelectorAll(".parent");
+            console.log(listClient);
+
+            const formClient = document.getElementById("taskForm");
+            const inputClient = document.createElement("input");
+            inputClient.hidden = true;
+            inputClient.name = "watchIdd";
+            inputClient.setAttribute("value", watchIdd);
+            console.log("Watching person")
+            formClient.appendChild(inputClient);
+
+
+            //Create lables with Watching Personr
+            const parentClient = document.getElementById("parent");
+
+            const diveyes = document.createElement("div");
+            diveyes.className = "eyes";
+
+
+            const labelWatchPersons = document.createElement("label");
+            labelWatchPersons.className = "check_list_name_lable";
+            labelWatchPersons.innerText = clientName;
+
+            //Create close button
+            const divClose = document.createElement("div");
+            divClose.className = "close";
+            divClose.innerHTML = "&#10006;";
+
+
+            labelWatchPersons.insertBefore(diveyes, labelWatchPersons.firstChild);
+            labelWatchPersons.appendChild(divClose);
+            parentClient.appendChild(labelWatchPersons);
+
+
+            // Добавить обработчик события "click" на элемент "divClose"
+            labelWatchPersons.addEventListener("click", function () {
+                parentClient.removeChild(labelWatchPersons);
+
+            });
+
+
+            $(".mainBox").css("display", "none");// закриваємо блок з users
+
+            $(this).hide();
+        });
+
+
+
+        //ADD Resposible
+        $('.inBoxClient').click(function (e) {
+            //const imgSrcClient = $(this).find('img').attr('src');
+            const respIdd = $(this).find(".respId").text();
+            const clientName = $(this).find('.resName').text();
+
+            console.log(respIdd);
+            console.log(clientName);
+
+
+            //All client on this Event
+            const listClient = document.querySelectorAll(".parent");
+            console.log(listClient);
+
+            const formClient = document.getElementById("taskForm");
+            const inputClient = document.createElement("input");
+            inputClient.hidden = true;
+            inputClient.name = "respIdd";
+            inputClient.setAttribute("value", respIdd);
+            console.log("Resp persons");
+            formClient.appendChild(inputClient);
+
+
+            //Create lables with Wathing Personr
+            const parentClient = document.getElementById("parent");
+
+            const labelWatchPersons = document.createElement("label");
+            labelWatchPersons.className = "check_list_name_lable";
+            labelWatchPersons.innerText = clientName;
+
+            //Create close button
+            const divClose = document.createElement("div");
+            divClose.className = "close";
+            divClose.innerHTML = "&#10006;";
+
+
+
+            labelWatchPersons.appendChild(divClose);
+            parentClient.appendChild(labelWatchPersons);
+
+
+            // Добавить обработчик события "click" на элемент "divClose"
+            labelWatchPersons.addEventListener("click", function () {
+                parentClient.removeChild(labelWatchPersons);
+
+            });
+
+
+            $(".mainBoxPesponsible").css("display", "none");// закриваємо блок з users
+
+            $(this).hide();
+        });
+
+
+        ///////////////////////////////////////////////////////
+
         var dob = document.getElementById("responseBlock")
         document.getElementById("planTerm").addEventListener("click", function () {
             var input = document.createElement("input");
@@ -386,30 +945,32 @@
             newCheckList.appendChild(newRadio);
             newCheckList.appendChild(newInput);
             newCheckList.appendChild(newperent);
-            newperent.appendChild(newLabel1);
-            newperent.appendChild(newLabel2);
-            newperent.appendChild(newLabel3);
-            newperent.appendChild(newLabel4);
-        });
 
+            ollChek.querySelectorAll('.radiob_mulaz').forEach(function (button) {
+                // При кліку на елемент
+                button.addEventListener('click', function () {
+                    // const checkListDiv = button.closest('.check_list_div');
+                    // Отримуємо поточний стан елемента з даних-атрибута
+                    const isChecked = newCheckList.getAttribute('data-checked');
 
-        // Навішуємо обробник подій на батьківський елемент, який існує на сторінці
-        addCheck.addEventListener('click', function (event) {
-            // Перевіряємо, щоб клік був на елементі з класом .radiob_mulaz
-            if (event.target.classList.contains('radiob_mulaz')) {
-                const checkListDiv = event.target.closest('.check_list_div');
-                checkListDiv.style.backgroundColor = 'red';
-            }
-        });
-
-
-        const radioButtons = document.querySelectorAll('.radiob_mulaz');
-        radioButtons.forEach(function (button) {
-            button.addEventListener('click', function () {
-                const checkListDiv = button.closest('.check_list_div');
-                checkListDiv.style.backgroundColor = 'red';
+                    // Перевіряємо, чи елемент уже відзначений
+                    if (isChecked === 'true') {
+                        // Якщо він уже відзначений, то знімаємо закраску
+                        newCheckList.style.backgroundColor = '';
+                        // Оновлюємо стан елемента в даних-атрибуті
+                        newCheckList.setAttribute('data-checked', 'false');
+                    } else {
+                        // Якщо елемент не відзначений, то закрашуємо його
+                        newCheckList.style.backgroundColor = 'red';
+                        // Оновлюємо стан елемента в даних-атрибуті
+                        newCheckList.setAttribute('data-checked', 'true');
+                    }
+                });
             });
         });
+
+
+
 
         //const deleteBtn = document.querySelector('.delete_check');
         //deleteBtn.addEventListener('click', function () {
@@ -440,6 +1001,30 @@
         //    });
         //}
 
+        const radioButtons = document.querySelectorAll('.radiob_mulaz');
+
+        // Додаємо обробник подій до кожного елемента
+        radioButtons.forEach(function (button) {
+            // При кліку на елемент
+            button.addEventListener('click', function () {
+                const checkListDiv = button.closest('.check_list_div');
+                // Отримуємо поточний стан елемента з даних-атрибута
+                const isChecked = checkListDiv.getAttribute('data-checked');
+
+                // Перевіряємо, чи елемент уже відзначений
+                if (isChecked === 'true') {
+                    // Якщо він уже відзначений, то знімаємо закраску
+                    checkListDiv.style.backgroundColor = '';
+                    // Оновлюємо стан елемента в даних-атрибуті
+                    checkListDiv.setAttribute('data-checked', 'false');
+                } else {
+                    // Якщо елемент не відзначений, то закрашуємо його
+                    checkListDiv.style.backgroundColor = 'red';
+                    // Оновлюємо стан елемента в даних-атрибуті
+                    checkListDiv.setAttribute('data-checked', 'true');
+                }
+            });
+        });
 
 
         function deleteCheckList() {

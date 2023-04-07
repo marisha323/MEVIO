@@ -148,7 +148,7 @@ namespace MEVIO.Controllers
             //Fill EventClients
 
             //All id of clients
-            var idsClient = Request.Form["clientName"];
+            var idsClient = Request.Form["clientId"];
 
             foreach (var clientsId in idsClient)
             {

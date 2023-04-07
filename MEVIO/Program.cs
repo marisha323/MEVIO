@@ -89,6 +89,14 @@ using Telegram.Bot;
 using MEVIO.Models.TelegramBot;
 using System;
 
+using Google.Apis.Auth.AspNetCore3;
+using System.Configuration;
+using Microsoft.Extensions.Configuration;
+//using Microsoft.Extensions.Configuration.FileExtensions;
+using Microsoft.Extensions.Configuration.Json;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using MEVIO.Servises;
+
 var builder = WebApplication.CreateBuilder(args);
 
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -101,7 +109,7 @@ builder.Services.AddSingleton<ITelegramBotClient>(new TelegramBotClient("5898521
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSession();
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+//builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 //.AddCookie(options =>
 //{
 //    options.LoginPath = "/Registry/Index";
@@ -111,21 +119,6 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 
 
-////
-//builder.Services.AddAuthentication(
-//    options =>
-//    {
-//        options.DefaultAuthenticateScheme = GoogleDefaults.AuthenticationScheme;
-//        options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
-//    }).AddGoogle(options =>
-//    {
-//        options.ClientId = "715700270542-m2iv2jqmaue49o43d969evbivc5jqj1s.apps.googleusercontent.com";
-//        options.ClientSecret = "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";
-//    }) ;
-
-
-////
-//builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
 builder.Services.AddAuthorization();
 builder.Services.AddSingleton<TelegramBot>(sp =>
@@ -134,6 +127,42 @@ builder.Services.AddSingleton<TelegramBot>(sp =>
     return new TelegramBot(botClient);
 });
 //builder.Services.AddSingleton<ITelegramBotClient>(new TelegramBotClient("5898521490:AAExzqnbIo-xFBea-Ad26XSvlX8xlxzb96U"));
+
+
+//GOOGLE _ AUTH/.....
+//builder.Services.AddAuthentication(o =>
+//{
+//    o.DefaultAuthenticateScheme = GoogleOpenIdConnectDefaults.AuthenticationScheme;
+//    o.DefaultChallengeScheme = GoogleOpenIdConnectDefaults.AuthenticationScheme;
+//}).AddGoogleOpenIdConnect(options =>
+//    {
+//        //IConfigurationSection googleAuthNSection = Configuration.GetSection("Google");
+
+//        //options.ClientId = googleAuthNSection["ClientId"];
+//        //options.ClientSecret = googleAuthNSection["ClientSecret"];
+//        //options.Scope.Add("openid");
+//        //options.SaveTokens = true;
+//        IConfiguration configuration = new ConfigurationBuilder()
+//        .SetBasePath(Directory.GetCurrentDirectory())
+//        .AddJsonFile("appsettings.json")
+//        .Build();
+
+//        builder.Services.Configure<GoogleAuthNSettings>(configuration.GetSection("Google"));
+
+//    });
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+})
+        .AddCookie()
+        .AddGoogle(options =>
+        {
+            options.ClientId = builder.Configuration["Google:ClientId"];
+            options.ClientSecret = builder.Configuration["Google:ClientSecret"];
+        });
+
 var app = builder.Build();
 
 
@@ -147,7 +176,7 @@ var bot = app.Services.GetRequiredService<TelegramBot>();
 bot.db = dbContext;
 bot.StartReceiving();
 
-app.UseSession();//Ï²ÄÊËÞ×ÅÍÍß ÑÅÑ²¯
+app.UseSession();//
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -162,11 +191,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication(); // добавляем вызов UseAuthentication
 app.UseAuthorization();
-app.UseAuthentication();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Registry}/{action=Index}/{id?}");
+    pattern: "{controller=Calendar}/{action=Index}/{id?}");
 
 app.Run();

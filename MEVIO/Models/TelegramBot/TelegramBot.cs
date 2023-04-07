@@ -13,7 +13,7 @@
     public class TelegramBot
     {
         private readonly ITelegramBotClient _botClient;
-        private readonly Dictionary<long, string> _usernames = new();
+        private readonly Dictionary<long, string> _email = new();
         private readonly Dictionary<long, string> _passwords = new();
         private readonly HashSet<long> _authenticated = new();
         public MEVIOContext db { get; set; }
@@ -57,13 +57,13 @@
                         break;
                 }
             }
-            else if (_usernames.ContainsKey(e.Message.Chat.Id) && _passwords.ContainsKey(e.Message.Chat.Id))
+            else if (_email.ContainsKey(e.Message.Chat.Id) && _passwords.ContainsKey(e.Message.Chat.Id))
             {
-                // Check if bot is waiting for username or password
-                if (_usernames[e.Message.Chat.Id] == null)
+                // Check if bot is waiting for email or password
+                if (_email[e.Message.Chat.Id] == null)
                 {
-                    // Store the received username and ask for password
-                    _usernames[e.Message.Chat.Id] = e.Message.Text;
+                    // Store the received email and ask for password
+                    _email[e.Message.Chat.Id] = e.Message.Text;
                     await _botClient.SendTextMessageAsync(
                         chatId: e.Message.Chat,
                         text: "Please enter your password:");
@@ -76,7 +76,7 @@
                     bool isValidUser = false;
                     foreach (var item in users)
                     {
-                        if (e.Message.Text == item.Password && _usernames[e.Message.Chat.Id] == item.UserName)
+                        if (e.Message.Text == item.Password && _email[e.Message.Chat.Id] == item.Email)
                         {
                             isValidUser = true;
                             // Mark the user as authenticated and notify them
@@ -98,11 +98,11 @@
                     {
                         await _botClient.SendTextMessageAsync(
                             chatId: e.Message.Chat,
-                            text: "Invalid username or password. Please try again.");
+                            text: "Invalid email or password. Please try again.");
                     }
 
                     // Reset user state
-                    _usernames.Remove(e.Message.Chat.Id);
+                    _email.Remove(e.Message.Chat.Id);
                     _passwords.Remove(e.Message.Chat.Id);
                 }
             }
@@ -133,11 +133,11 @@
         }
         private async Task Login(Chat chat)
         {
-            // Send a message asking for the username
-            await _botClient.SendTextMessageAsync(chatId: chat, text: "Please enter your username:");
+            // Send a message asking for the email
+            await _botClient.SendTextMessageAsync(chatId: chat, text: "Please enter your email:");
 
             // Keep track of the current user's state
-            _usernames[chat.Id] = null;
+            _email[chat.Id] = null;
             _passwords[chat.Id] = null;
         }
 
@@ -163,6 +163,7 @@
             //// Remove the user's authentication
             //_authenticated.Remove(chat.Id);
         }
+
         public async Task SendEvent(UserTelegram userTelegram, Event event1, ITelegramBotClient bot, string creator)
         {
             Chat key = JsonSerializer.Deserialize<Chat>(userTelegram.TelegramJson);

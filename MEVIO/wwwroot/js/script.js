@@ -288,7 +288,6 @@ function MonthButtonClick() {
     document.body.style.overflowY = 'auto';
 }
 
-
 function WeekButtonClick() {
     grids.forEach(grid => {
         if (grid.classList.contains("activeGrid")) {
@@ -384,41 +383,41 @@ function DayButtonClick() {
 
 //Adding event to every month-day button to run an animation
 //add day event or see event onclick
-const monthDays = document.querySelectorAll('.month-day'); // Get all elements with the class 'month-day'
-//menu
-const rightMenu = document.getElementById("rightMenu");
-//eventMini
-const container = document.querySelector(".contener");
+//const monthDays = document.querySelectorAll('.month-day'); // Get all elements with the class 'month-day'
+////menu
+//const rightMenu = document.getElementById("rightMenu");
+////eventMini
+//const container = document.querySelector(".contener");
 
-monthDays.forEach(day => {
-    day.addEventListener('click', () => {
+//monthDays.forEach(day => {
+//    day.addEventListener('click', () => {
 
-        const events = day.querySelectorAll('.event');
+//        const events = day.querySelectorAll('.event');
 
-        // if(events.length > 0){
-        //     const container = document.querySelector(".contener");
-        //     events.forEach(event=>{
-        //         event.addEventListener('click', ()=>{
-        //             container.classList.toggle("eventShow");
-        //         });
-        //     });
-        // }
-        if (events.length == 0) {
-            $(".right-task-menu").addClass("trans");
-            //Sahsa закоментил и добавил JQuery
-            //if (!container.classList.contains("eventShow")) {
-            //    if (!rightMenu.classList.contains("trans")) {
-            //        rightMenu.style.display = "block";
-            //        setTimeout(() => {
-            //            document.body.style.overflowY = "visible";
-            //            rightMenu.classList.add("trans");
-            //        }, 300)
-            //    }
-            //}
-        }
-        // You can replace the console.log statement with your desired functionality
-    });
-});
+//        // if(events.length > 0){
+//        //     const container = document.querySelector(".contener");
+//        //     events.forEach(event=>{
+//        //         event.addEventListener('click', ()=>{
+//        //             container.classList.toggle("eventShow");
+//        //         });
+//        //     });
+//        // }
+//        if (events.length == 0) {
+//            $(".right-task-menu").addClass("trans");
+//            //Sahsa закоментил и добавил JQuery
+//            //if (!container.classList.contains("eventShow")) {
+//            //    if (!rightMenu.classList.contains("trans")) {
+//            //        rightMenu.style.display = "block";
+//            //        setTimeout(() => {
+//            //            document.body.style.overflowY = "visible";
+//            //            rightMenu.classList.add("trans");
+//            //        }, 300)
+//            //    }
+//            //}
+//        }
+//        // You can replace the console.log statement with your desired functionality
+//    });
+//});
 //const events = document.querySelectorAll('.event'); // Get all elements with the class 'event'
 ////Adding events for every <p> child that is inside the event div
 //events.forEach(event => {
