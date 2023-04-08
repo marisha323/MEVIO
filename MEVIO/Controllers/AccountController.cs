@@ -21,13 +21,13 @@ namespace MEVIO.Controllers
             return Unauthorized();
         }
 
-        [HttpGet]
-        public IActionResult LoginWithGoogle()
-        {
-            var redirectUri = Url.Action("GoogleCallback", "Account", null, Request.Scheme);
-            var properties = new AuthenticationProperties { RedirectUri = redirectUri };
-            return Challenge(properties, GoogleDefaults.AuthenticationScheme);
-        }
+        //[HttpGet]
+        //public IActionResult LoginWithGoogle()
+        //{
+        //    var redirectUri = Url.Action("GoogleCallback", "Account", null, Request.Scheme);
+        //    var properties = new AuthenticationProperties { RedirectUri = redirectUri };
+        //    return Challenge(properties, GoogleDefaults.AuthenticationScheme);
+        //}
 
         [HttpGet]
         public async Task<IActionResult> GoogleCallback()
