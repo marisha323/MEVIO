@@ -24,6 +24,11 @@ time2.value = new Date(beginOfDay + 3600000).toLocaleTimeString([], { hour: '2-d
 
 timeChangeBlock.addEventListener("mousemove", function (e) {
 
+	MoveTineBlock(e);
+});
+
+
+function MoveTineBlock(e) {
 	let left = e.target.style.left;
 	left = left.split('p')[0];
 
@@ -38,7 +43,8 @@ timeChangeBlock.addEventListener("mousemove", function (e) {
 	let time2Value = Math.round(timeChangeBlockWidth * milisecByPixel + time1Value) + 60000;
 	if (time2Value > endOfDay) time2Value = endOfDay;
 	time2.value = new Date(time2Value).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-});
+}
+
 
 
 function ChangeTimeInput() {
@@ -76,12 +82,16 @@ function ChangeTimeInput() {
 
 		if (width > timeSpanDivWidth - left) width = timeSpanDivWidth;
 
-		timeChangeBlock.style.width = width + "px";
+		$(".time-change-block").css("width", width);
+
+		//timeChangeBlock.style.width = width + "px";
 	}
 
 	if (left < 0) left = 0;
 
-	timeChangeBlock.style.left = left + "px";
+	//timeChangeBlock.style.left = left + "px";
+
+	$(".time-change-block").css("left", left);
 }
 
 
