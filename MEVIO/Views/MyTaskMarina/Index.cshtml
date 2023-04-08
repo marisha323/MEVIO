@@ -466,8 +466,7 @@
                     <label for="" class="label check-list">+ Чек лист</label>
                 </div>
 
-            </div>
-            <div class="podvodka">
+            </div>   <div class="podvodka">
                 <input class="divStrockZap2" value="чек лист" />
                 <br />
                 <hr class="hr">
@@ -484,7 +483,7 @@
                                     @foreach (var itemUsers in ViewBag.WatchingPersons)
                                     {
                                         <div class="inBox">
-                                            <img src="~/Imeg1/@itemUsers.UserName.Replase(" ","-")/@itemUsers.Email/@itemUsers.PathImgAVA.Replase(" ","-")" />
+                                            <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
                                             <p class="clientName" name="userName">@itemUsers.UserName</p>
                                             <span class="clientId" hidden>@itemUsers.Id</span>
                                             <div class="bird">&#10004;</div>
@@ -506,7 +505,7 @@
                                     @foreach (var itemUsers in ViewBag.Resp)
                                     {
                                         <div class="inBoxClient">
-                                            <img src="~/Imeg1/@itemUsers.UserName.Replase(" ","-")/@itemUsers.Email/@itemUsers.PathImgAVA.Replase(" ","-")" />
+                                            <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
                                             <p class="resName" name="userName">@itemUsers.UserName</p>
                                             <span class="resId" hidden>@itemUsers.Id</span>
                                             <div class="bird">&#10004;</div>
@@ -542,6 +541,7 @@
                     <label onclick="deleteCheckList()" class="delete_check">+ Удалить чек лист</label>
                 </div>
             </div>
+         
             <div class="response-block">
                 <div class="response-div">Відповідальний</div>
                 <div class="response-div">
