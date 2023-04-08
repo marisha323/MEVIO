@@ -368,7 +368,7 @@
 
 
 
-    .inBox, .inBoxClient {
+    .inBox, .inBoxClient, .inBoxUsers {
         display: flex;
         justify-items: center;
         align-items: center;
@@ -378,17 +378,18 @@
         width: 27.51rem;
         margin-left: 0.428rem;
         margin-right: 1.214rem;
+        white-space:nowrap;
     }
 
-        .inBox:hover, .inBoxClient:hover {
+        .inBox:hover, .inBoxClient:hover, .inBoxUsers:hover {
             background-color: #52a7e4;
         }
 
-        .inBox p:hover, .inBoxClient p:hover {
+        .inBox p:hover, .inBoxClient p:hover, .inBoxUsers p:hover {
             color: #111624;
         }
 
-        .inBox img, .inBoxClient img {
+        .inBox img, .inBoxClient img, .inBoxUsers img{
             width: 2rem;
             height: 2rem;
             left: 46rem;
@@ -399,7 +400,7 @@
         }
 
 
-        .inBox p, .inBoxClient p {
+        .inBox p, .inBoxClient p, .inBoxUsers p {
             width: 7.857rem;
             height: 18px;
             left: 674px;
@@ -768,7 +769,7 @@
             <div class="response-block">
                 <div class="response-div">Відповідальний</div>
                 <div class="response-div">
-                    <div class="response-div">Постановник</div>
+                   @* <div class="response-div">Постановник</div>*@
                     <div class="add-response-block">
 
                         <div id="userParent">
@@ -789,7 +790,7 @@
 
                                     @foreach (var itemUsers in ViewBag.Users)
                                     {
-                                        <div class="inBox">
+                                        <div class="inBoxUsers">
                                             <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
                                             <p class="userName">@itemUsers.UserName</p>
                                             <span class="userId" hidden>@itemUsers.Id</span>
@@ -877,7 +878,7 @@
         //        < /div>
         //        < /div>
 
-        $('.box2Users').click(function(e){
+        $('.inBoxUsers').click(function (e) {
 
             const UserId=$(this).find(".userId").text();
             const userName = $(this).find('.userName').text();
