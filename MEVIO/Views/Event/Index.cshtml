@@ -512,7 +512,7 @@
                             </div>
 
                             <div class="time-span-row time-blocks">
-                                <div class="time-change-block"></div>
+                                <div class="time-change-block" id="timeChangeBlock"></div>
                                 <div class="time-block"></div>
                                 <div class="time-block"></div>
                                 <div class="time-block"></div>
@@ -951,9 +951,18 @@
                 const timeChange_Block = document.createElement("div");
                 timeChange_Block.classList.add("time-change-block");
 
+                timeChange_Block.addEventListener("mousemove", function (e) {
+
+                    MoveTineBlock(e);
+                });
+
+                
+                console.log(timeChange_Block);
              
                 timeSpanRow2.appendChild(timeChange_Block);
 
+                
+                
 
 
                 //// Прикрепляем функцию ChangeTimeInput к input time
@@ -1025,6 +1034,36 @@
 
                 $(".mainBox").css("display", "none");// закриваємо блок з users
                 $(this).hide();
+
+
+
+
+                $(".time-change-block").on("mousedown", function (e) {
+
+
+                    BlockMouseDown(e);
+
+
+                });
+
+                $(".time-blocks").on("mouseup", function (e) {
+                    $(".time-span-row").off("mousemove");
+                });
+
+
+
+                const mainTimeBlock = document.getElementById("timeChangeBlock");
+                const width = mainTimeBlock.getBoundingClientRect().width;
+                const left = $(mainTimeBlock).css("left").split('p')[0];
+
+
+                $(timeChange_Block).css({
+                    "left":`${left}px`,
+                    "width":`${width}px`
+                });
+                
+
+                console.log(timeChange_Block);
 
             });
 
