@@ -101,13 +101,7 @@ body {
     column-gap: 1rem;
 }
 
-.user-block {
-    padding: 0.3rem;
-    font-size: 1.5rem;
-    background-color: #A0D7FF;
-    color: #1B2B36;
-    cursor: pointer;
-}
+
 
 .add-response-user {
     font-size: 1.5rem;

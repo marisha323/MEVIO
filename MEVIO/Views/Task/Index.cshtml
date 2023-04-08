@@ -36,11 +36,11 @@
         width: 10rem;
     }
 
-    .head-button2 a{
-        text-decoration:none;
-        color: #52A7E4;
+        .head-button2 a {
+            text-decoration: none;
+            color: #52A7E4;
+        }
 
-    }
         .head-button2:hover {
             background-color: #52A7E4;
             color: #111624;
@@ -69,47 +69,42 @@
         color: #BAE2FF;
         padding-left: 0.7rem;
         /* border: 1px solid #52A7E4;
-                         border-radius: 15px;*/
+                                 border-radius: 15px;*/
         border: none;
         background: #111624;
         font-size: 1.5rem;
         outline: none;
     }
 
-   /* .check_list_div {
-        display: flex;
-        flex-direction: row;
-        width: 90%;
-        height: 40%;
-        margin-top: 0.5rem;
-        margin-left: 1rem;
-        resize: none;
-        background-color: #111624;
-        border: 1px solid #52A7E4;
-        border-radius: 15px;
-        padding: 0.3rem;
-        font-size: 1.5rem;
-        color: #52A7E4;
-    }*/
+    /* .check_list_div {
+                display: flex;
+                flex-direction: row;
+                width: 90%;
+                height: 40%;
+                margin-top: 0.5rem;
+                margin-left: 1rem;
+                resize: none;
+                background-color: #111624;
+                border: 1px solid #52A7E4;
+                border-radius: 15px;
+                padding: 0.3rem;
+                font-size: 1.5rem;
+                color: #52A7E4;
+            }*/
 
-    .check_list_div{
-
-        display:grid;
-        grid-template-columns:0.3fr 1fr 3fr;
-       
+    .check_list_div {
+        display: grid;
+        grid-template-columns: 0.3fr 1fr 3fr;
     }
-    
-    #parent, #parentClient {
+
+    #parent, #parentClient, #userParent {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
     }
 
     .radiob_mulaz {
-
         width: 1.5rem;
-        
         height: 1.5rem;
-        
         margin-left: 1.5rem;
         resize: none;
         background-color: #A0D7FF;
@@ -119,7 +114,6 @@
     }
 
     .check_list_name {
-        
         height: 1.5rem;
         font-family: 'Inter';
         font-style: normal;
@@ -135,7 +129,7 @@
         /* outline:none;*/
         margin-left: 0.5rem;
         margin-top: 0.5rem;
-            margin: 1rem;
+        margin: 1rem;
     }
 
     .check_list_name_lable {
@@ -201,10 +195,10 @@
         cursor: pointer;
     }
 
-    
+
 
     /*box for Watching & Responsible Persons*/
-    .mainBox, .mainBoxPesponsible, mainBoxNewUser {
+    .mainBox, .mainBoxPesponsible, .mainBoxNewUser {
         position: absolute;
         display: none;
         z-index: 1;
@@ -230,17 +224,17 @@
         margin-right: 1rem;
     }
     /*/////////////////////////////////////*window*/
-    .parent, .parentClient {
+    .parent, .parentClient, .userParent {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        padding:0.5rem;
+        padding: 0.5rem;
     }
 
     .membersWindow {
         width: 7.6rem;
         height: 2.1rem;
         /* left: 44.5rem;
-                             top: 36.8rem;*/
+                                     top: 36.8rem;*/
         border: none;
         cursor: pointer;
         background: #52a7e4;
@@ -261,7 +255,7 @@
             color: #111624;
         }
 
-    .box2, .box2Res {
+    .box2, .box2Res, .box2Users {
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
@@ -445,7 +439,7 @@
         background-position: 95%;
         padding: 1rem;
         width: 2rem;
-        margin-right:0.8rem;
+        margin-right: 0.8rem;
     }
 
     /*  add date & time*/
@@ -464,7 +458,7 @@
         height: 20px;
         border: 1px solid #52a7e3;
         /* margin-top: auto;
-                margin-bottom: auto;*/
+                        margin-bottom: auto;*/
         border-radius: 3px;
         outline: none;
         cursor: pointer;
@@ -579,6 +573,14 @@
         flex-wrap: nowrap;
     }
 
+    .user-block {
+        padding: 0.3rem;
+        font-size: 1.5rem;
+        background-color: #A0D7FF;
+        color: #1B2B36;
+        cursor: pointer;
+        margin: 0.5rem;
+    }
 </style>
 <body id="body">
 
@@ -588,7 +590,7 @@
         <div class="head-flex">
             <div class="head-button">Завдання</div>
             <div class="head-button2"> <a href="/Event/Index">Події</a></div>
-            <div class="head-button2"><a href="/Measure/Index">Заходи</a></div>
+            <div class="head-button2"><a href="/Meassure/Index">Заходи</a></div>
         </div>
         <form asp-controller="Task" asp-action="AddTask" method="POST" id="taskForm">
             <div>
@@ -630,7 +632,7 @@
                                     {
                                         <div class="inBox">
                                             <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
-                                            <p class="clientName" name="userName">@itemUsers.UserName</p>
+                                            <p class="clientName" @*name="userName"*@>@itemUsers.UserName</p>
                                             <span class="clientId" hidden>@itemUsers.Id</span>
                                             <div class="bird">&#10004;</div>
                                         </div>
@@ -648,11 +650,11 @@
 
                                 <div class="secondBoxClient">
 
-                                    @foreach (var itemUsers in  ViewBag.Users)
+                                    @foreach (var itemUsers in ViewBag.Users)
                                     {
                                         <div class="inBoxClient">
                                             <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
-                                            <p class="resName" name="userName">@itemUsers.UserName</p>
+                                            <p class="resName" @*name="userName"*@>@itemUsers.UserName</p>
                                             <span class="resId" hidden>@itemUsers.Id</span>
                                             <div class="bird">&#10004;</div>
                                         </div>
@@ -692,16 +694,96 @@
 
 
             @*<div class="podvodka">
-                <input class="divStrockZap2" value="чек лист" />
-                <br />
-                <hr class="hr">
-                <div class="ollChek">
-                    <div class="div_button">
-                        <label class="buttonWithinPerson" id="WatchingPerson">+ спостерiгач</label>
+            <input class="divStrockZap2" value="чек лист" />
+            <br />
+            <hr class="hr">
+            <div class="ollChek">
+            <div class="div_button">
+            <label class="buttonWithinPerson" id="WatchingPerson">+ спостерiгач</label>
 
-                        <div class="mainBox" >
+            <div class="mainBox" >
 
-                            <div class="box2">
+            <div class="box2">
+
+            <div class="secondBox">
+
+            @foreach (var itemUsers in ViewBag.Users)
+            {
+            <div class="inBox">
+            <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
+            <p class="clientName" name="userName">@itemUsers.UserName</p>
+            <span class="watchId" hidden>@itemUsers.Id</span>
+            <div class="bird">&#10004;</div>
+            </div>
+            }
+
+            </div>
+
+            </div>
+            </div>
+            <label class="buttonWithinPerson" id="ResPerson">+ співвиконавець</label>
+
+            <div class="mainBoxPesponsible">
+
+            <div class="box2Res">
+
+            <div class="secondBoxClient">
+
+            @foreach (var itemUsers in ViewBag.Users)
+            {
+            <div class="inBoxClient">
+            <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
+            <p class="resName" name="userName">@itemUsers.UserName</p>
+            <span class="respId" hidden>@itemUsers.Id</span>
+            <div class="bird">&#10004;</div>
+            </div>
+            }
+
+            </div>
+
+            </div>
+            </div>
+
+
+            </div>
+            <div class="check_list_div">
+
+            <div class="radiob_mulaz"></div>
+
+            <input type="text" class="check_list_name" name="underTask" placeholder="Введіть назву підзадачі"/>
+
+            <div id="parent">
+
+            </div>
+
+            </div>
+            </div>
+            <div id="addCheck">
+            </div>
+            <div class="button_botom_div_con">
+            <label id="butonaddcheck" class="add_check">+ Добавить пункт</label>
+            <label onclick="deleteCheckList()" class="delete_check">+ Удалить чек лист</label>
+            </div>
+            </div>*@
+            <div class="response-block">
+                <div class="response-div">Відповідальний</div>
+                <div class="response-div">
+                    <div class="response-div">Постановник</div>
+                    <div class="add-response-block">
+
+                        <div id="userParent">
+                            @*<div class="user-block">
+                                
+                            </div>*@
+                        </div>
+
+                        <div class="add-response-user" id="AddResp">
+                            + Додати ще
+                        </div>
+
+                        <div class="mainBoxNewUser">
+
+                            <div class="box2Users">
 
                                 <div class="secondBox">
 
@@ -709,8 +791,8 @@
                                     {
                                         <div class="inBox">
                                             <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
-                                            <p class="clientName" name="userName">@itemUsers.UserName</p>
-                                            <span class="watchId" hidden>@itemUsers.Id</span>
+                                            <p class="userName">@itemUsers.UserName</p>
+                                            <span class="userId" hidden>@itemUsers.Id</span>
                                             <div class="bird">&#10004;</div>
                                         </div>
                                     }
@@ -718,67 +800,14 @@
                                 </div>
 
                             </div>
-                        </div>
-                        <label class="buttonWithinPerson" id="ResPerson">+ співвиконавець</label>
-
-                        <div class="mainBoxPesponsible">
-
-                            <div class="box2Res">
-
-                                <div class="secondBoxClient">
-
-                                    @foreach (var itemUsers in ViewBag.Users)
-                                    {
-                                        <div class="inBoxClient">
-                                            <img src="~/Imeg1/@itemUsers.UserName/@itemUsers.PathImgAVA" />
-                                            <p class="resName" name="userName">@itemUsers.UserName</p>
-                                            <span class="respId" hidden>@itemUsers.Id</span>
-                                            <div class="bird">&#10004;</div>
-                                        </div>
-                                    }
-
-                                </div>
-
-                            </div>
-                        </div>
 
 
-                    </div>
-                    <div class="check_list_div">
-
-                        <div class="radiob_mulaz"></div>
-
-                        <input type="text" class="check_list_name" name="underTask" placeholder="Введіть назву підзадачі"/>
-                       
-                        <div id="parent">
-                          
                         </div>
 
                     </div>
-                </div>
-                <div id="addCheck">
-                </div>
-                <div class="button_botom_div_con">
-                    <label id="butonaddcheck" class="add_check">+ Добавить пункт</label>
-                    <label onclick="deleteCheckList()" class="delete_check">+ Удалить чек лист</label>
-                </div>
-            </div>*@
-            <div class="response-block">
-                <div class="response-div">Відповідальний</div>
-                <div class="response-div">
-                    <div class="add-response-block">
-                        <div class="user-block">
-                            W1sh
-                        </div>
-                        <div class="add-response-user" id="AddResp">
-                            + Додати ще
-                        </div>
-                    </div>
 
                 </div>
-                <div class="response-div">Постановник</div>
             </div>
-
             <hr class="hr">
 
             <div id="responseBlock" class="response-block">
@@ -786,7 +815,7 @@
 
                 @* add inputs for date & time*@
                 <div class="response-div">
-                    <input type="date" id="date1" name="dateField1"  />
+                    <input type="date" id="date1" name="dateField1" />
                     <input type="time" class="superstyle" id="time1" name="timeField1" />
                     <div class="ture"></div>
                     <input type="date" id="date2" name="dateField2" />
@@ -835,11 +864,51 @@
 
         });
 
-        //$('.AddResp').click(function ()  //watching Persons
-        //{
-        //    $(".mainBoxNewUser").fadeToggle(100);
+        $('#AddResp').click(function ()  //user Persons
+        {
+            $(".mainBoxNewUser").fadeToggle(100);
 
-        //});
+        });
+
+        //ADD Inner Users
+        //<div id="parent" >
+        //    <div class="user-block" >
+        //        W1sh
+        //        < /div>
+        //        < /div>
+
+        $('.box2Users').click(function(e){
+
+            const UserId=$(this).find(".userId").text();
+            const userName = $(this).find('.userName').text();
+
+            
+                var userParent = document.getElementById("userParent");
+                var newUserBlock = document.createElement("div");
+                newUserBlock.className = "user-block";
+            newUserBlock.innerText = userName;
+                userParent.appendChild(newUserBlock);
+
+
+
+                const formClient = document.getElementById("taskForm");
+            const inputUser = document.createElement("input");
+            inputUser.hidden = true;
+            inputUser.name = "userId";
+            inputUser.setAttribute("value", UserId);
+           
+
+            formClient.appendChild(inputUser);
+
+
+
+            $(".mainBoxNewUser").css("display", "none");// закриваємо блок з users
+
+            $(this).hide();
+
+        });
+
+
 
         //ADD WatchingPerson
         $('.inBox').click(function (e) {
@@ -973,8 +1042,8 @@
         const addCheck = document.querySelector('#addCheck');
 
         buttonAddCheck.addEventListener('click', function () {
-            
-            
+
+
             // Створення нових елементів
             const ollChek = document.createElement('div');
             ollChek.classList.add('ollChek');
