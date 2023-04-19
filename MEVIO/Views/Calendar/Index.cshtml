@@ -3,6 +3,10 @@
 @{
     ViewData["Title"] = "Calendar";
 }
+
+
+
+
 <link rel="stylesheet" href="/css/main.css">
 <link rel="stylesheet" href="/css/year.css" id="customStyle">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -947,6 +951,8 @@
         var placeformeasuresJson = JsonSerializer.Serialize(ViewBag.PlaceForMeasures);
         var measureclientsJson = JsonSerializer.Serialize(ViewBag.MeasureClients);
         var clientsJson = JsonSerializer.Serialize(ViewBag.Clients);
+        var user = JsonSerializer.Serialize(ViewBag.User);
+        
     }
     <script>
         //Measure stuff
@@ -1303,9 +1309,32 @@
             }
 
         }
+
+
+
+
+
         var events = @Html.Raw(eventsJson);
         var tasks = @Html.Raw(tasksJson);
         var measures = @Html.Raw(measuresJson);
+        var user=@Html.Raw(user);
+
+
+
+
+        events.forEach(event=>{
+
+            const eventDate=new Date(event.Begin);
+            
+            console.log(eventDate);
+
+            if(eventDate===new Date()){
+                console.log("true");
+            }
+            else{
+                console.log("false");
+            }
+        });
 
         function handleClick(element) {
             //week operations
@@ -1327,10 +1356,14 @@
             //get the month of the clicked element
             let month = String(date.getMonth() + 1).padStart(2, '0');
 
+
+
             //for loop blocks of weekDayDivs grid
             weekDayDivs.forEach(div =>{
                 div.innerHTML = "";
             });
+
+
             //clean every block
             //var weekDayDiv = weekDayDivs[i];
             //weekDayDiv.innerHTML = "";

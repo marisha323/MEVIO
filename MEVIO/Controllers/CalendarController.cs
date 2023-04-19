@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
+using System.Text.Json;
 
 namespace MEVIO.Controllers
 {
@@ -17,8 +18,21 @@ namespace MEVIO.Controllers
             this.db = db;
         }
         // GET: CalendarController
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
+            User user = null;
+            string UserLoggedIn = HttpContext.Request.Cookies["UserLoggedIn"];
+            if (UserLoggedIn != null && UserLoggedIn != "")
+            {
+                user = JsonSerializer.Deserialize<User>(UserLoggedIn);
+            }
+
+            if (user == null)
+            {
+                return Redirect("Registry/Index");
+            }
+
+
             List<MonthGenerator> months = new List<MonthGenerator>();
             months = MonthGenerator.Fill();
             ViewBag.months = months;
@@ -28,7 +42,7 @@ namespace MEVIO.Controllers
             List<int> spacesInDay = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
             ViewBag.weekDays = days;
             ViewBag.spaces = spacesInDay;
-            
+
             //var Events = db.Events.AsNoTracking().ToList();
             //List <BreakDate> breakDates= new List<BreakDate>();
             //foreach(var item in Events)
@@ -37,6 +51,25 @@ namespace MEVIO.Controllers
             //    breakDates.Add(date);
             //}
             //ViewBag.Events = breakDates;
+
+
+            //Pull All Events by current user
+
+            var eventsUsers = await db.EventsUsers.Where(e => e.UserId.Equals(user.Id)).ToListAsync();
+            List<Event> events = new();
+
+            foreach (var item in eventsUsers)
+            {
+                var Event = await db.Events.FirstOrDefaultAsync(e => e.Id.Equals(item.EventId));
+                events.Add(Event);
+            }
+
+            //ViewBag.Events = events;
+            ViewBag.User = user;
+
+
+
+
 
             ViewBag.Events = db.Events.AsNoTracking().ToList();
             ViewBag.Tasks = db.Tasks.AsNoTracking().ToList();
@@ -56,6 +89,7 @@ namespace MEVIO.Controllers
             //string monthNumber = culture.DateTimeFormat.GetMonthName(monthNow);
 
             ViewBag.monthNow = new { Name = monthName, Number = monthNow };
+
 
             return View();
         }
