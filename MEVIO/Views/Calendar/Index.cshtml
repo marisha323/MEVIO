@@ -24,10 +24,11 @@
         font-size: 20px;
         transition: 0.2s;
     }
-    .redev
-    {
+
+    .redev {
         background: #DB6D6D;
     }
+
     .hide {
         display: none;
     }
@@ -573,13 +574,13 @@
                                         if (day >= 1 && day <= daysInMonth)
                                         {
                                             DateTime currentDate2 = new DateTime(year, month, day);
-                                            <div class="month-day" id="@currentDate2.ToString("yyyy-MM-dd")" @*onclick="handleClick(this)"*@>
+                                            <div class="month-day" id="@currentDate2.ToString("yyyy-MM-dd")" onclick="handleClick(this)">
                                                 @day
                                                 @foreach (var item in @ViewBag.Events)
                                                 {
                                                     if (item.Begin.ToString("yyyy-MM-dd") == currentDate2.ToString("yyyy-MM-dd"))
                                                     {
-                                                        <div class="event">
+                                                        <div class="event" onclick="ShowEventMenu(event)">
                                                             <input type="hidden" value="@item.Id">
                                                             <p>@item.EventName</p>
                                                         </div>
@@ -589,7 +590,7 @@
                                                 {
                                                     if (item.Begin.ToString("yyyy-MM-dd") == currentDate2.ToString("yyyy-MM-dd"))
                                                     {
-                                                        <div class="event yellow">
+                                                        <div class="event yellow" onclick="ShowTaskMenu(event)">
                                                             <input type="hidden" value="@item.Id">
                                                             <p>@item.TaskName</p>
                                                         </div>
@@ -599,7 +600,7 @@
                                                 {
                                                     if (item.Begin.ToString("yyyy-MM-dd") == currentDate2.ToString("yyyy-MM-dd"))
                                                     {
-                                                        <div class="event red">
+                                                        <div class="event red" onclick="ShowMeasureMenu(event)">
                                                             <input type="hidden" value="@item.Id">
                                                             <p>@item.MeasureName</p>
                                                         </div>
@@ -617,7 +618,7 @@
                                         }
                                         else
                                         {
-     
+
                                             int nextMonthDay = day - daysInMonth;
                                             DateTime nextMonthDate = new DateTime(month == 12 ? year + 1 : year, month == 12 ? 1 : month + 1, nextMonthDay);
                                             <div class="month-day next-month" id="@nextMonthDate.ToString("yyyy-MM-dd")" @*onclick="handleClick(this)"*@>
@@ -678,8 +679,8 @@
                 var monthId = monthSwitcher.id;
                 var monthNumber = parseInt(monthId.split('_')[2]);
 
-                console.log(monthNumber);
-                console.log(currentMonth);
+                //console.log(monthNumber);
+                //console.log(currentMonth);
                 if (monthNumber !== currentMonth) {
                     monthSwitcher.style.display = 'none';
                 }
@@ -827,7 +828,7 @@
         DateTime currentDate = DateTime.Now;
         DateTime startDate = currentDate.AddDays(-(int)currentDate.DayOfWeek + 1);
         DateTime endDate = startDate.AddDays(6);
-        
+
     }
 
     <div id="weekGrid" class="calendar-grid calGrid">
@@ -898,7 +899,7 @@
                             {
                                 if (item.Begin.ToString("yyyy-MM-dd-HH") == date.ToString("yyyy-MM-dd-HH"))
                                 {
-                                    <div  class="event redev">
+                                    <div class="event redev">
                                         <input type="hidden" value="@item.Id">
                                         <p>@item.EventName</p>
                                     </div>
@@ -930,15 +931,381 @@
             </div>
         </div>
     </div>
-    @*@{
-        var events = JsonSerializer.Serialize(ViewBag.Events);
-        var tasks = JsonSerializer.Serialize(ViewBag.Tasks);
-        var measures = JsonSerializer.Serialize(ViewBag.Measures);
+    @{
+        // Serialize the events as a JSON object
+        var usersJson = JsonSerializer.Serialize(ViewBag.users);
+        //events
+
+        var eventsJson = JsonSerializer.Serialize(ViewBag.Events);
+        //tasks
+        var tasksJson = JsonSerializer.Serialize(ViewBag.Tasks);
+        var tasksusersJson = JsonSerializer.Serialize(ViewBag.TasksUsers);
+        var responsibleJson = JsonSerializer.Serialize(ViewBag.Responsible);
+        var observersJson = JsonSerializer.Serialize(ViewBag.Observers);
+        //measures
+        var measuresJson = JsonSerializer.Serialize(ViewBag.Measures);
+        var placeformeasuresJson = JsonSerializer.Serialize(ViewBag.PlaceForMeasures);
+        var measureclientsJson = JsonSerializer.Serialize(ViewBag.MeasureClients);
+        var clientsJson = JsonSerializer.Serialize(ViewBag.Clients);
     }
     <script>
-        var events = @Html.Raw(events);
-        var tasks = @Html.Raw(tasks);
-        var measures = @Html.Raw(measures);
+        //Measure stuff
+        const measureName = document.querySelector('#MeasureName.task-nameM');
+        const measureBegin = document.querySelector('#MeasureBegin');
+        const measureEnd = document.querySelector('#MeasureEnd');
+        const measureDirImg = document.querySelector('#MeasureDirImg.logo-imgM');
+        const measureDirName = document.querySelector('#MeasureDirName');
+        const venue = document.querySelector('#Venue.place-select');
+        const maxSpaces = document.querySelector('#MaxSpaces');
+        const measureClients = document.querySelector('#MeasureClients.clients-list');
+        const addedClients = document.querySelector('.added-clients');
+        //Task stuff
+        const rightmenuName = document.getElementById('rightmenuName');
+        const rightDescription = document.getElementById('rightDescription');
+        const dateSpanEnd = document.querySelector('.date-placeholder');
+        const span = document.querySelector('div span:last-child');
+        const dateSpanStart = document.querySelector('#rightmenuDateStart');
+        const deadLine = document.querySelector('#deadLine');
+        const Director = document.querySelector("#Director");
+        const Responsible = document.querySelector('#Responsible');
+        const Observers = document.querySelector('#Observers');
+        const Coperformers = document.querySelector("#Coperformers");
+
+        //Event Stuff
+        let eventId = document.getElementsByName("EventId");
+        let eventName = document.getElementsByName("EventName");
+        let showStartDate = document.getElementById("Date");
+        let showEndDate = document.getElementById("DateEnd");
+        let beginDate = document.getElementById("time1");
+        let endDate = document.getElementById("time2");
+        let eventDescription = document.getElementsByName("EventDescription");
+        let creatorUsername = document.getElementById("creatorUsername");
+        let dayEvent = document.getElementById("nameEvent");
+
+        function ShowTaskMenu(element) {
+            console.log(element);
+            element.stopPropagation();
+
+            const tasksData = JSON.parse('@Html.Raw(tasksJson)');
+            const tasksusers = JSON.parse('@Html.Raw(tasksusersJson)');
+            const responsible = JSON.parse('@Html.Raw(responsibleJson)');
+            const observers = JSON.parse('@Html.Raw(observersJson)');
+
+
+            var clickedDiv = event.target.closest(".event");
+            var hiddenInput = clickedDiv.querySelector("input[type=hidden]");
+            var selectedTaskId = hiddenInput.value;
+            //alert(hiddenInputValue);
+            //Open Event
+            rightMenu.classList.add("trans");
+
+            tasksData.forEach(item => {
+                if (item.Id == selectedTaskId) {
+                    rightmenuName.innerHTML = item.TaskName;
+                    rightDescription.innerHTML = item.Description;
+
+                    let date = new Date(item.End);
+                    const options = { timeZone: 'UTC' };
+                    let dateString = date.toLocaleString('en-US', options);
+                    dateSpanEnd.textContent = `${dateString} UTC`;
+                    deadLine.textContent = `${dateString} UTC`;
+
+                    date = new Date(item.Begin);
+                    dateString = date.toLocaleString('en-US', options);
+                    dateSpanStart.textContent = `${dateString} UTC`;
+
+                    //removing the old views
+                    let removeElement = Director.querySelector(".logo-div");
+                    Director.removeChild(removeElement);
+                    //let br = document.createElement("br");
+                    //Director.appendChild(br);
+                    //adding a view to see Users
+                    let divElement = document.createElement("div");
+                    divElement.classList.add("logo-div");
+
+                    let imgElement = document.createElement("img");
+                    imgElement.classList.add("logo-imgM");
+
+                    imgElement.setAttribute("alt", "");
+
+                    let spanNameElement = document.createElement("span");
+                    //loop to find the Director by his Id
+                    tasksusers.forEach(tasks => {
+                        if (tasks.TaskId == item.Id) {
+                            usersData.forEach(user => {
+                                if (user.Id == tasks.UserId && tasks.IsCreator) {
+                                    imgElement.setAttribute("src", `/Imeg1/${user.UserName}/${user.PathImgAVA}`);
+                                    spanNameElement.textContent = `${user.UserName}`;
+                                }
+                            });
+                        }
+                    });
+                    // Add the child elements to the Director element
+                    divElement.appendChild(imgElement);
+                    divElement.appendChild(spanNameElement);
+                    Director.appendChild(divElement);
+                    //clear resposible
+                    removeElement = Responsible.querySelector(".logo-div");
+                    Responsible.removeChild(removeElement);
+
+                    //looping and filling up the Responsible people
+                    responsible.forEach(res => {
+                        //console.log(res);
+                        if (res.TaskId == item.Id) {
+                            usersData.forEach(user => {
+                                if (res.UserId == user.Id) {
+                                    //renewing elements and saving them
+                                    divElement = document.createElement("div");
+                                    divElement.classList.add("logo-div");
+
+                                    imgElement = document.createElement("img");
+                                    imgElement.classList.add("logo-imgM");
+                                    imgElement.setAttribute("alt", "");
+
+                                    imgElement.setAttribute("src", `/Imeg1/${user.UserName}/${user.PathImgAVA}`);
+                                    spanNameElement = document.createElement("span");
+                                    spanNameElement.textContent = `${user.UserName}`;
+
+                                    divElement.appendChild(imgElement);
+                                    divElement.appendChild(spanNameElement);
+                                    Responsible.appendChild(divElement);
+
+                                }
+                            });
+                        }
+                    });
+                    //clear observers
+                    removeElement = Observers.querySelector(".logo-div");
+                    Observers.removeChild(removeElement);
+
+                    //looping and filling up the Responsible people
+                    observers.forEach(observe => {
+                        //console.log(observe);
+                        if (observe.TaskId == item.Id) {
+                            usersData.forEach(user => {
+                                if (observe.UserId == user.Id) {
+                                    //renewing elements and saving them
+                                    divElement = document.createElement("div");
+                                    divElement.classList.add("logo-div");
+
+                                    imgElement = document.createElement("img");
+                                    imgElement.classList.add("logo-imgM");
+                                    imgElement.setAttribute("alt", "");
+
+                                    imgElement.setAttribute("src", `/Imeg1/${user.UserName}/${user.PathImgAVA}`);
+                                    spanNameElement = document.createElement("span");
+                                    spanNameElement.textContent = `${user.UserName}`;
+
+                                    divElement.appendChild(imgElement);
+                                    divElement.appendChild(spanNameElement);
+                                    Observers.appendChild(divElement);
+
+                                }
+                            });
+                        }
+                    });
+
+                    //clear Coperformers
+                    removeElement = Coperformers.querySelector(".logo-div");
+                    Coperformers.removeChild(removeElement);
+
+                    //looping and filling up the Responsible people
+                    tasksusers.forEach(usertask => {
+                        //console.log(usertask);
+                        if (usertask.TaskId == item.Id) {
+                            usersData.forEach(user => {
+                                if (usertask.UserId == user.Id && !user.IsCreator) {
+                                    //renewing elements and saving them
+                                    divElement = document.createElement("div");
+                                    divElement.classList.add("logo-div");
+
+                                    imgElement = document.createElement("img");
+                                    imgElement.classList.add("logo-imgM");
+                                    imgElement.setAttribute("alt", "");
+
+                                    imgElement.setAttribute("src", `/Imeg1/${user.UserName}/${user.PathImgAVA}`);
+                                    spanNameElement = document.createElement("span");
+                                    spanNameElement.textContent = `${user.UserName}`;
+
+                                    divElement.appendChild(imgElement);
+                                    divElement.appendChild(spanNameElement);
+                                    Coperformers.appendChild(divElement);
+                                }
+                            });
+                        }
+                    });
+
+                }
+            });
+
+        }
+        function ShowMeasureMenu(element) {
+            element.stopPropagation();
+
+            const measuresData = JSON.parse('@Html.Raw(measuresJson)');
+            const placemeasuresData = JSON.parse('@Html.Raw(placeformeasuresJson)');
+            const measureclientsData = JSON.parse('@Html.Raw(measureclientsJson)');
+            const clientsData = JSON.parse('@Html.Raw(clientsJson)');
+            const usersData = JSON.parse('@Html.Raw(usersJson)');
+
+            var clickedDiv = event.target.closest(".event");
+            var hiddenInput = clickedDiv.querySelector("input[type=hidden]");
+            var selectedMeasureId = hiddenInput.value;
+            //measure view filling
+            measuresData.forEach(item => {
+                if (item.Id == selectedMeasureId) {
+                    measureName.textContent = item.MeasureName;
+                    measureBegin.innerHTML = `<b>Початок:</b> ${item.Begin}`;
+                    measureEnd.innerHTML = `<b>Кінець:</b> ${item.End}`;
+                    //dir filling
+                    usersData.forEach(user => {
+                        if (item.UserId == user.Id) {
+                            measureDirImg.src = `/Imeg1/${user.UserName}/${user.Email}/${user.PathImgAVA}`;
+                            measureDirName.textContent = user.UserName;
+                        }
+                    });
+                    //end of user filling
+
+                    //venue filling
+                    // Clear existing options
+                    venue.innerHTML = '';
+                    placemeasuresData.forEach(place => {
+                        if (place.IsFree) {
+                            const newOption = document.createElement('option');
+                            newOption.textContent = place.PlaceForMeasureName;
+                            newOption.setAttribute('data-free-spaces', place.FreePlaces);
+                            if (place.Id == item.PlaceForMeasureId) {
+                                newOption.selected = true;
+                            }
+                            maxSpaces.textContent = place.Capacity;
+                            venue.appendChild(newOption);
+                        } else if (place.Id == item.PlaceForMeasureId) {
+                            const newOption = document.createElement('option');
+                            newOption.textContent = place.PlaceForMeasureName;
+                            newOption.setAttribute('data-free-spaces', item.FreePlaces);
+                            newOption.selected = true;
+                            maxSpaces.textContent = place.Capacity;
+                            venue.appendChild(newOption);
+                        }
+                    });
+
+                    venue.addEventListener('change', (event) => {
+                        const selectedPlace = placemeasuresData.find(place => place.PlaceForMeasureName === event.target.value);
+                        if (selectedPlace) {
+                            maxSpaces.textContent = selectedPlace.Capacity;
+                        } else {
+                            maxSpaces.textContent = '';
+                        }
+                    });
+                    //end of venue filling
+                    //fill clients
+                    // Clear existing clients
+
+                    measureClients.innerHTML = '';
+                    addedClients.innerHTML = '';
+
+                    clientsData.forEach(client => {
+                        let foundMatch = false;
+
+                        measureclientsData.forEach(Mclient => {
+                            if (client.Id == Mclient.ClientId && Mclient.MeasureId == item.Id) {
+                                // Found a match, add client to addedClients
+                                addedClients.innerHTML += '<div class="client-div"><p>' + client.ClientName + '</p><input type="hidden" name="AddedClients[]" value="' + client.Id + '"></div>';
+                                foundMatch = true;
+                            }
+                        });
+
+                        if (!foundMatch) {
+                            // Did not find a match, add client to measureClients
+                            measureClients.innerHTML += '<div class="client-div"><p>' + client.ClientName + '</p><input type="hidden" name="MeasureClients[]" value="' + client.Id + '"></div>';
+                        }
+                    });
+
+                    // Add click event listeners to client elements
+                    const clientDivs = document.querySelectorAll('.client-div');
+                    clientDivs.forEach(clientDiv => {
+                        clientDiv.addEventListener('click', () => {
+                            const input = clientDiv.querySelector('input');
+                            if (clientDiv.parentNode === addedClients) {
+                                // Clicked on addedClient, move to measureClient
+                                input.name = 'MeasureClients';
+                                addedClients.removeChild(clientDiv);
+                                measureClients.appendChild(clientDiv);
+                            } else if (clientDiv.parentNode === measureClients) {
+                                // Clicked on measureClient, move to addedClient
+                                input.name = 'AddedClients';
+                                measureClients.removeChild(clientDiv);
+                                addedClients.appendChild(clientDiv);
+                            }
+                        });
+                    });
+                    //end of client filling
+                    //opening Measure
+                    const editMeasureInfo = document.querySelector('#editMeasureInfo');
+                    editMeasureInfo.classList.add('transM');
+                }
+            });
+
+        }
+        function ShowEventMenu(element) {
+            element.stopPropagation();
+
+            const usersData = JSON.parse('@Html.Raw(usersJson)');
+            const eventsData = JSON.parse('@Html.Raw(eventsJson)');
+
+            var clickedDiv = event.target.closest(".event");
+            var hiddenInput = clickedDiv.querySelector("input[type=hidden]");
+            var selectedEventId = hiddenInput.value;
+            eventsData.forEach(item => {
+                if (item.Id == selectedEventId) {
+                    eventId[0].value = item.Id;
+                    eventName[0].value = item.EventName;
+                    showStartDate.value = new Date(item.Begin).toISOString().substring(0, 10);
+                    showEndDate.value = new Date(item.End).toISOString().substring(0, 10);
+
+                    let date = new Date(item.Begin);
+                    let hours = date.getHours().toString().padStart(2, '0');
+                    let minutes = date.getMinutes().toString().padStart(2, '0');
+                    beginDate.value = `${hours}:${minutes}`;
+
+                    date = new Date(item.End);
+                    hours = date.getHours().toString().padStart(2, '0');
+                    minutes = date.getMinutes().toString().padStart(2, '0');
+                    endDate.value = `${hours}:${minutes}`;
+
+                    eventDescription[0].innerText = item.Description;
+
+                    usersData.forEach(user => {
+                        if (user.Id == item.UserId) {
+                            creatorUsername.innerText = user.UserName;
+                        }
+                    });
+                    const firstEvent = item;
+                    const eventDate = new Date(firstEvent.Begin);
+                    const dayNames = ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"];
+                    const monthNames = ["Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень"];
+
+                    const dayName = dayNames[eventDate.getDay()];
+                    const monthName = monthNames[eventDate.getMonth()];
+                    const dateString = `${dayName}, ${monthName} ${eventDate.getDate()}`;
+
+                    // Set the dayEvent element's text content to the formatted date string
+                    dayEvent.textContent = dateString;
+                }
+            });
+            //Open Event
+            if (!rightMenu.classList.contains("trans")) {
+                if (!container.classList.contains("eventShow")) {
+                    container.classList.add("eventShow");
+                } else {
+                    container.classList.remove("eventShow");
+                }
+            }
+
+        }
+        var events = @Html.Raw(eventsJson);
+        var tasks = @Html.Raw(tasksJson);
+        var measures = @Html.Raw(measuresJson);
 
         function handleClick(element) {
             //week operations
@@ -953,77 +1320,129 @@
             date.setMilliseconds(0);
             //console.log(date);
             var weekDayDivs = document.querySelectorAll(".week-day.weekdays");
+
+            //get the year of the clicked element
+            let year = date.getFullYear();
+            //get the month of the clicked element
+            let month = String(date.getMonth() + 1).padStart(2, '0');
+
+            //for loop blocks of weekDayDivs grid
             for (var i = 0; i < weekDayDivs.length; i++) {
+                //clean every block
                 var weekDayDiv = weekDayDivs[i];
                 weekDayDiv.innerHTML = "";
-                const year = date.getFullYear();
-                const month = String(date.getMonth() + 1).padStart(2, '0');
-                const day = String(date.getDate()).padStart(2, '0');
-                const formattedDate = `${year}-${month}-${day}`;
-
-                // iterate over hours between 8 and 23
+                //for loop from 8 hours to 23 hours
                 for (var hour = 8; hour <= 23; hour++) {
-                    const formattedHour = String(hour).padStart(2, '0');
-                    const formattedDateTime = `${formattedDate}-${formattedHour}`;
+                    //create a formatted Hour for this element: formattedDateTime
+                    let formattedHour = String(hour).padStart(2, '0');
+                    //for loop to make it go through day of the week
+                    for (var j = 0; j < 7; j++) {
+                        //creating a day for this element: formattedDateTime
+                        let day = String(date.getDate() + j).padStart(2, '0');
+                        //for loop of the length on events
+                        for (var o = 0; o < events.length; o++) {
+                            //event Object
+                            var eventObj = events[o];
 
-                    // scan events, tasks, and measures
-                    for (var j = 0; j < events.length; j++) {
-                        var event = events[j];
-                        const beginDate = new Date(event.Begin);
-                        const eventYear = beginDate.getFullYear();
-                        const eventMonth = String(beginDate.getMonth() + 1).padStart(2, '0');
-                        const eventDate = String(beginDate.getDate()).padStart(2, '0');
-                        const eventHour = String(beginDate.getHours()).padStart(2, '0');
-                        const formattedEventDate = `${eventYear}-${eventMonth}-${eventDate}-${eventHour}`;
-                        console.log(formattedEventDate);
-                        console.log(formattedDateTime);
-                        if (formattedEventDate === formattedDateTime) {
-                            var eventDiv = document.createElement("div");
-                            eventDiv.classList.add("event");
-                            var eventInput = document.createElement("input");
-                            eventInput.type = "hidden";
-                            eventInput.value = event.Id;
-                            var eventP = document.createElement("p");
-                            eventP.innerText = event.EventName;
-                            eventDiv.appendChild(eventInput);
-                            eventDiv.appendChild(eventP);
-                            weekDayDiv.appendChild(eventDiv);
-                        }
-                    }
-                    for (var j = 0; j < tasks.length; j++) {
-                        var task = tasks[j];
-                        if (task.Begin.startsWith(formattedDateTime)) {
-                            var taskDiv = document.createElement("div");
-                            taskDiv.classList.add("event", "yellow");
-                            var taskInput = document.createElement("input");
-                            taskInput.type = "hidden";
-                            taskInput.value = task.Id;
-                            var taskP = document.createElement("p");
-                            taskP.innerText = task.TaskName;
-                            taskDiv.appendChild(taskInput);
-                            taskDiv.appendChild(taskP);
-                            weekDayDiv.appendChild(taskDiv);
-                        }
-                    }
-                    for (var j = 0; j < measures.length; j++) {
-                        var measure = measures[j];
-                        if (measure.Begin.startsWith(formattedDateTime)) {
-                            var measureDiv = document.createElement("div");
-                            measureDiv.classList.add("event", "red");
-                            var measureInput = document.createElement("input");
-                            measureInput.type = "hidden";
-                            measureInput.value = measure.Id;
-                            var measureP = document.createElement("p");
-                            measureP.innerText = measure.MeasureName;
-                            measureDiv.appendChild(measureInput);
-                            measureDiv.appendChild(measureP);
-                            weekDayDiv.appendChild(measureDiv);
+                            const beginDate = new Date(eventObj.Begin);
+                            const eventYear = beginDate.getFullYear();
+                            const eventMonth = String(beginDate.getMonth() + 1).padStart(2, '0');
+                            const eventDate = String(beginDate.getDate()).padStart(2, '0');
+                            const eventHour = String(beginDate.getHours()).padStart(2, '0');
+                            const formattedEventDate = `${eventYear}-${eventMonth}-${eventDate}-${eventHour}`;
+
+                            //creating format
+                            let formattedDate = `${year}-${month}-${day}`;
+                            let formattedDateTime = `${formattedDate}-${formattedHour}`;
+
+                            //checking and displaying
+                            if (formattedEventDate == formattedDateTime) {
+                                var eventDiv = document.createElement("div");
+                                eventDiv.classList.add("event");
+                                var eventInput = document.createElement("input");
+                                eventInput.type = "hidden";
+                                eventInput.value = eventObj.Id;
+                                var eventP = document.createElement("p");
+                                eventP.innerText = eventObj.EventName;
+                                eventDiv.appendChild(eventInput);
+                                eventDiv.appendChild(eventP);
+                                weekDayDiv.appendChild(eventDiv);
+                            }
                         }
                     }
                 }
             }
+            //for (var i = 0; i < weekDayDivs.length; i++) {
+            //    var weekDayDiv = weekDayDivs[i];
+            //    weekDayDiv.innerHTML = "";
+            //    const year = date.getFullYear();
+            //    const month = String(date.getMonth() + 1).padStart(2, '0');
+            //    const day = String(date.getDate()).padStart(2, '0');
+            //    const formattedDate = `${year}-${month}-${day}`;
+
+            //    // iterate over hours between 8 and 23
+            //    for (var hour = 8; hour <= 23; hour++) {
+            //        const formattedHour = String(hour).padStart(2, '0');
+            //        const formattedDateTime = `${formattedDate}-${formattedHour}`;
+
+            //        // scan events, tasks, and measures
+            //        for (var j = 0; j < events.length; j++) {
+            //            var event = events[j];
+            //            const beginDate = new Date(event.Begin);
+            //            const eventYear = beginDate.getFullYear();
+            //            const eventMonth = String(beginDate.getMonth() + 1).padStart(2, '0');
+            //            const eventDate = String(beginDate.getDate()).padStart(2, '0');
+            //            const eventHour = String(beginDate.getHours()).padStart(2, '0');
+            //            const formattedEventDate = `${eventYear}-${eventMonth}-${eventDate}-${eventHour}`;
+            //            //console.log(formattedEventDate);
+            //            //console.log(formattedDateTime);
+            //            if (formattedEventDate === formattedDateTime) {
+            //                var eventDiv = document.createElement("div");
+            //                eventDiv.classList.add("event");
+            //                var eventInput = document.createElement("input");
+            //                eventInput.type = "hidden";
+            //                eventInput.value = event.Id;
+            //                var eventP = document.createElement("p");
+            //                eventP.innerText = event.EventName;
+            //                eventDiv.appendChild(eventInput);
+            //                eventDiv.appendChild(eventP);
+            //                weekDayDiv.appendChild(eventDiv);
+            //            }
+            //        }
+            //        for (var j = 0; j < tasks.length; j++) {
+            //            var task = tasks[j];
+            //            if (task.Begin.startsWith(formattedDateTime)) {
+            //                var taskDiv = document.createElement("div");
+            //                taskDiv.classList.add("event", "yellow");
+            //                var taskInput = document.createElement("input");
+            //                taskInput.type = "hidden";
+            //                taskInput.value = task.Id;
+            //                var taskP = document.createElement("p");
+            //                taskP.innerText = task.TaskName;
+            //                taskDiv.appendChild(taskInput);
+            //                taskDiv.appendChild(taskP);
+            //                weekDayDiv.appendChild(taskDiv);
+            //            }
+            //        }
+            //        for (var j = 0; j < measures.length; j++) {
+            //            var measure = measures[j];
+            //            if (measure.Begin.startsWith(formattedDateTime)) {
+            //                var measureDiv = document.createElement("div");
+            //                measureDiv.classList.add("event", "red");
+            //                var measureInput = document.createElement("input");
+            //                measureInput.type = "hidden";
+            //                measureInput.value = measure.Id;
+            //                var measureP = document.createElement("p");
+            //                measureP.innerText = measure.MeasureName;
+            //                measureDiv.appendChild(measureInput);
+            //                measureDiv.appendChild(measureP);
+            //                weekDayDiv.appendChild(measureDiv);
+            //            }
+            //        }
+            //    }
+            //}
         }
-    </script>*@
+    </script>
 
     <div id="dayGrid" class="calendar-grid calGrid">
         <div class="header">
@@ -1045,7 +1464,7 @@
                             string[] arr = new string[] { "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
                             foreach (var item in arr)
                             {
-                                        <div class="option-item">item</div>
+                                <div class="option-item">item</div>
                             }
                         }
                     </div>
@@ -1162,23 +1581,7 @@
         }
     </script>
     @*This shit works with events!!!!!*@
-    @{
-        // Serialize the events as a JSON object
-        var usersJson = JsonSerializer.Serialize(ViewBag.users);
-        //events
 
-        var eventsJson = JsonSerializer.Serialize(ViewBag.Events);
-        //tasks
-        var tasksJson = JsonSerializer.Serialize(ViewBag.Tasks);
-        var tasksusersJson = JsonSerializer.Serialize(ViewBag.TasksUsers);
-        var responsibleJson = JsonSerializer.Serialize(ViewBag.Responsible);
-        var observersJson = JsonSerializer.Serialize(ViewBag.Observers);
-        //measures
-        var measuresJson = JsonSerializer.Serialize(ViewBag.Measures);
-        var placeformeasuresJson = JsonSerializer.Serialize(ViewBag.PlaceForMeasures);
-        var measureclientsJson = JsonSerializer.Serialize(ViewBag.MeasureClients);
-        var clientsJson = JsonSerializer.Serialize(ViewBag.Clients);
-    }
 
     <script>
         //Edit Event
@@ -1211,363 +1614,60 @@
             editMeasureInfo.classList.remove('transM');
 
         }
-        //getting all events by class .event
-        const events = document.querySelectorAll('.event');
-        console.log("hello");
-        //Measure stuff
-        const measureName = document.querySelector('#MeasureName.task-nameM');
-        const measureBegin = document.querySelector('#MeasureBegin');
-        const measureEnd = document.querySelector('#MeasureEnd');
-        const measureDirImg = document.querySelector('#MeasureDirImg.logo-imgM');
-        const measureDirName = document.querySelector('#MeasureDirName');
-        const venue = document.querySelector('#Venue.place-select');
-        const maxSpaces = document.querySelector('#MaxSpaces');
-        const measureClients = document.querySelector('#MeasureClients.clients-list');
-        const addedClients = document.querySelector('.added-clients');
-        //Task stuff
-        const rightmenuName = document.getElementById('rightmenuName');
-        const rightDescription = document.getElementById('rightDescription');
-        const dateSpanEnd = document.querySelector('.date-placeholder');
-        const span = document.querySelector('div span:last-child');
-        const dateSpanStart = document.querySelector('#rightmenuDateStart');
-        const deadLine = document.querySelector('#deadLine');
-        const Director = document.querySelector("#Director");
-        const Responsible = document.querySelector('#Responsible');
-        const Observers = document.querySelector('#Observers');
-        const Coperformers = document.querySelector("#Coperformers");
+        ////getting all events by class .event
+        //const events = document.querySelectorAll('.event');
+        ////console.log("hello");
+        ////Measure stuff
+        //const measureName = document.querySelector('#MeasureName.task-nameM');
+        //const measureBegin = document.querySelector('#MeasureBegin');
+        //const measureEnd = document.querySelector('#MeasureEnd');
+        //const measureDirImg = document.querySelector('#MeasureDirImg.logo-imgM');
+        //const measureDirName = document.querySelector('#MeasureDirName');
+        //const venue = document.querySelector('#Venue.place-select');
+        //const maxSpaces = document.querySelector('#MaxSpaces');
+        //const measureClients = document.querySelector('#MeasureClients.clients-list');
+        //const addedClients = document.querySelector('.added-clients');
+        ////Task stuff
+        //const rightmenuName = document.getElementById('rightmenuName');
+        //const rightDescription = document.getElementById('rightDescription');
+        //const dateSpanEnd = document.querySelector('.date-placeholder');
+        //const span = document.querySelector('div span:last-child');
+        //const dateSpanStart = document.querySelector('#rightmenuDateStart');
+        //const deadLine = document.querySelector('#deadLine');
+        //const Director = document.querySelector("#Director");
+        //const Responsible = document.querySelector('#Responsible');
+        //const Observers = document.querySelector('#Observers');
+        //const Coperformers = document.querySelector("#Coperformers");
 
-        //Event Stuff
-        let eventId = document.getElementsByName("EventId");
-        let eventName = document.getElementsByName("EventName");
-        let showStartDate = document.getElementById("Date");
-        let showEndDate = document.getElementById("DateEnd");
-        let beginDate = document.getElementById("time1");
-        let endDate = document.getElementById("time2");
-        let eventDescription = document.getElementsByName("EventDescription");
-        let creatorUsername = document.getElementById("creatorUsername");
-        let dayEvent = document.getElementById("nameEvent");
+        ////Event Stuff
+        //let eventId = document.getElementsByName("EventId");
+        //let eventName = document.getElementsByName("EventName");
+        //let showStartDate = document.getElementById("Date");
+        //let showEndDate = document.getElementById("DateEnd");
+        //let beginDate = document.getElementById("time1");
+        //let endDate = document.getElementById("time2");
+        //let eventDescription = document.getElementsByName("EventDescription");
+        //let creatorUsername = document.getElementById("creatorUsername");
+        //let dayEvent = document.getElementById("nameEvent");
 
         document.querySelectorAll('.event').forEach(function (element) {
-            console.log(element);
-            const usersData = JSON.parse('@Html.Raw(usersJson)');
+            //console.log(element);
+
 
 
             if (element.classList.contains('yellow')) {
                 //console.log("Yellow");
-                const tasksData = JSON.parse('@Html.Raw(tasksJson)');
-                const tasksusers = JSON.parse('@Html.Raw(tasksusersJson)');
-                const responsible = JSON.parse('@Html.Raw(responsibleJson)');
-                const observers = JSON.parse('@Html.Raw(observersJson)');
 
-                const paragraph = element.querySelector('p');
-                paragraph.addEventListener('click', function () {
-                    let selectedTaskId = element.querySelector("input[type=hidden]").value;
-                    //Open Event
-                    rightMenu.classList.add("trans");
-
-                    tasksData.forEach(item => {
-                        if (item.Id == selectedTaskId) {
-                            rightmenuName.innerHTML = item.TaskName;
-                            rightDescription.innerHTML = item.Description;
-
-                            let date = new Date(item.End);
-                            const options = { timeZone: 'UTC' };
-                            let dateString = date.toLocaleString('en-US', options);
-                            dateSpanEnd.textContent = `${dateString} UTC`;
-                            deadLine.textContent = `${dateString} UTC`;
-
-                            date = new Date(item.Begin);
-                            dateString = date.toLocaleString('en-US', options);
-                            dateSpanStart.textContent = `${dateString} UTC`;
-
-                            //removing the old views
-                            let removeElement = Director.querySelector(".logo-div");
-                            Director.removeChild(removeElement);
-                            //let br = document.createElement("br");
-                            //Director.appendChild(br);
-                            //adding a view to see Users
-                            let divElement = document.createElement("div");
-                            divElement.classList.add("logo-div");
-
-                            let imgElement = document.createElement("img");
-                            imgElement.classList.add("logo-imgM");
-
-                            imgElement.setAttribute("alt", "");
-
-                            let spanNameElement = document.createElement("span");
-                            //loop to find the Director by his Id
-                            tasksusers.forEach(tasks => {
-                                if (tasks.TaskId == item.Id) {
-                                    usersData.forEach(user => {
-                                        if (user.Id == tasks.UserId && tasks.IsCreator) {
-                                            imgElement.setAttribute("src", `/Imeg1/${user.UserName}/${user.PathImgAVA}`);
-                                            spanNameElement.textContent = `${user.UserName}`;
-                                        }
-                                    });
-                                }
-                            });
-                            // Add the child elements to the Director element
-                            divElement.appendChild(imgElement);
-                            divElement.appendChild(spanNameElement);
-                            Director.appendChild(divElement);
-                            //clear resposible
-                            removeElement = Responsible.querySelector(".logo-div");
-                            Responsible.removeChild(removeElement);
-
-                            //looping and filling up the Responsible people
-                            responsible.forEach(res => {
-                                //console.log(res);
-                                if (res.TaskId == item.Id) {
-                                    usersData.forEach(user => {
-                                        if (res.UserId == user.Id) {
-                                            //renewing elements and saving them
-                                            divElement = document.createElement("div");
-                                            divElement.classList.add("logo-div");
-
-                                            imgElement = document.createElement("img");
-                                            imgElement.classList.add("logo-imgM");
-                                            imgElement.setAttribute("alt", "");
-
-                                            imgElement.setAttribute("src", `/Imeg1/${user.UserName}/${user.PathImgAVA}`);
-                                            spanNameElement = document.createElement("span");
-                                            spanNameElement.textContent = `${user.UserName}`;
-
-                                            divElement.appendChild(imgElement);
-                                            divElement.appendChild(spanNameElement);
-                                            Responsible.appendChild(divElement);
-
-                                        }
-                                    });
-                                }
-                            });
-                            //clear observers
-                            removeElement = Observers.querySelector(".logo-div");
-                            Observers.removeChild(removeElement);
-
-                            //looping and filling up the Responsible people
-                            observers.forEach(observe => {
-                                //console.log(observe);
-                                if (observe.TaskId == item.Id) {
-                                    usersData.forEach(user => {
-                                        if (observe.UserId == user.Id) {
-                                            //renewing elements and saving them
-                                            divElement = document.createElement("div");
-                                            divElement.classList.add("logo-div");
-
-                                            imgElement = document.createElement("img");
-                                            imgElement.classList.add("logo-imgM");
-                                            imgElement.setAttribute("alt", "");
-
-                                            imgElement.setAttribute("src", `/Imeg1/${user.UserName}/${user.PathImgAVA}`);
-                                            spanNameElement = document.createElement("span");
-                                            spanNameElement.textContent = `${user.UserName}`;
-
-                                            divElement.appendChild(imgElement);
-                                            divElement.appendChild(spanNameElement);
-                                            Observers.appendChild(divElement);
-
-                                        }
-                                    });
-                                }
-                            });
-
-                            //clear Coperformers
-                            removeElement = Coperformers.querySelector(".logo-div");
-                            Coperformers.removeChild(removeElement);
-
-                            //looping and filling up the Responsible people
-                            tasksusers.forEach(usertask => {
-                                //console.log(usertask);
-                                if (usertask.TaskId == item.Id) {
-                                    usersData.forEach(user => {
-                                        if (usertask.UserId == user.Id && !user.IsCreator) {
-                                            //renewing elements and saving them
-                                            divElement = document.createElement("div");
-                                            divElement.classList.add("logo-div");
-
-                                            imgElement = document.createElement("img");
-                                            imgElement.classList.add("logo-imgM");
-                                            imgElement.setAttribute("alt", "");
-
-                                            imgElement.setAttribute("src", `/Imeg1/${user.UserName}/${user.PathImgAVA}`);
-                                            spanNameElement = document.createElement("span");
-                                            spanNameElement.textContent = `${user.UserName}`;
-
-                                            divElement.appendChild(imgElement);
-                                            divElement.appendChild(spanNameElement);
-                                            Coperformers.appendChild(divElement);
-                                        }
-                                    });
-                                }
-                            });
-
-                        }
-                    });
-                });
             }
             else if (element.classList.contains('red')) {
                 //console.log("Red");
 
-                const measuresData = JSON.parse('@Html.Raw(measuresJson)');
-                const placemeasuresData = JSON.parse('@Html.Raw(placeformeasuresJson)');
-                const measureclientsData = JSON.parse('@Html.Raw(measureclientsJson)');
-                const clientsData = JSON.parse('@Html.Raw(clientsJson)');
 
-                const paragraph = element.querySelector('p');
-                paragraph.addEventListener('click', function () {
-                    let selectedEventId = element.querySelector("input[type=hidden]").value;
-
-                    //measure view filling
-                    measuresData.forEach(item => {
-                        if (item.Id == selectedEventId) {
-                            measureName.textContent = item.MeasureName;
-                            measureBegin.innerHTML = `<b>Початок:</b> ${item.Begin}`;
-                            measureEnd.innerHTML = `<b>Кінець:</b> ${item.End}`;
-                            //dir filling
-                            usersData.forEach(user => {
-                                if (item.UserId == user.Id) {
-                                    measureDirImg.src = `/Imeg1/${user.UserName}/${user.Email}/${user.PathImgAVA}`;
-                                    measureDirName.textContent = user.UserName;
-                                }
-                            });
-                            //end of user filling
-
-                            //venue filling
-                            // Clear existing options
-                            venue.innerHTML = '';
-                            placemeasuresData.forEach(place => {
-                                if (place.IsFree) {
-                                    const newOption = document.createElement('option');
-                                    newOption.textContent = place.PlaceForMeasureName;
-                                    newOption.setAttribute('data-free-spaces', place.FreePlaces);
-                                    if (place.Id == item.PlaceForMeasureId) {
-                                        newOption.selected = true;
-                                    }
-                                    maxSpaces.textContent = place.Capacity;
-                                    venue.appendChild(newOption);
-                                } else if (place.Id == item.PlaceForMeasureId) {
-                                    const newOption = document.createElement('option');
-                                    newOption.textContent = place.PlaceForMeasureName;
-                                    newOption.setAttribute('data-free-spaces', item.FreePlaces);
-                                    newOption.selected = true;
-                                    maxSpaces.textContent = place.Capacity;
-                                    venue.appendChild(newOption);
-                                }
-                            });
-
-                            venue.addEventListener('change', (event) => {
-                                const selectedPlace = placemeasuresData.find(place => place.PlaceForMeasureName === event.target.value);
-                                if (selectedPlace) {
-                                    maxSpaces.textContent = selectedPlace.Capacity;
-                                } else {
-                                    maxSpaces.textContent = '';
-                                }
-                            });
-                            //end of venue filling
-                            //fill clients
-                            // Clear existing clients
-
-                            measureClients.innerHTML = '';
-                            addedClients.innerHTML = '';
-
-                            clientsData.forEach(client => {
-                                let foundMatch = false;
-
-                                measureclientsData.forEach(Mclient => {
-                                    if (client.Id == Mclient.ClientId && Mclient.MeasureId == item.Id) {
-                                        // Found a match, add client to addedClients
-                                        addedClients.innerHTML += '<div class="client-div"><p>' + client.ClientName + '</p><input type="hidden" name="AddedClients[]" value="' + client.Id + '"></div>';
-                                        foundMatch = true;
-                                    }
-                                });
-
-                                if (!foundMatch) {
-                                    // Did not find a match, add client to measureClients
-                                    measureClients.innerHTML += '<div class="client-div"><p>' + client.ClientName + '</p><input type="hidden" name="MeasureClients[]" value="' + client.Id + '"></div>';
-                                }
-                            });
-
-                            // Add click event listeners to client elements
-                            const clientDivs = document.querySelectorAll('.client-div');
-                            clientDivs.forEach(clientDiv => {
-                                clientDiv.addEventListener('click', () => {
-                                    const input = clientDiv.querySelector('input');
-                                    if (clientDiv.parentNode === addedClients) {
-                                        // Clicked on addedClient, move to measureClient
-                                        input.name = 'MeasureClients';
-                                        addedClients.removeChild(clientDiv);
-                                        measureClients.appendChild(clientDiv);
-                                    } else if (clientDiv.parentNode === measureClients) {
-                                        // Clicked on measureClient, move to addedClient
-                                        input.name = 'AddedClients';
-                                        measureClients.removeChild(clientDiv);
-                                        addedClients.appendChild(clientDiv);
-                                    }
-                                });
-                            });
-                            //end of client filling
-                            //opening Measure
-                            const editMeasureInfo = document.querySelector('#editMeasureInfo');
-                            editMeasureInfo.classList.add('transM');
-                        }
-                    });
-                });
 
             }
             else {
                 //console.log("Normal");
-                const eventsData = JSON.parse('@Html.Raw(eventsJson)');
 
-                const paragraph = element.querySelector('p');
-                paragraph.addEventListener('click', function () {
-                    let selectedEventId = element.querySelector("input[type=hidden]").value;
-
-                    eventsData.forEach(item => {
-                        if (item.Id == selectedEventId) {
-                            eventId[0].value = item.Id;
-                            eventName[0].value = item.EventName;
-                            showStartDate.value = new Date(item.Begin).toISOString().substring(0, 10);
-                            showEndDate.value = new Date(item.End).toISOString().substring(0, 10);
-
-                            let date = new Date(item.Begin);
-                            let hours = date.getHours().toString().padStart(2, '0');
-                            let minutes = date.getMinutes().toString().padStart(2, '0');
-                            beginDate.value = `${hours}:${minutes}`;
-
-                            date = new Date(item.End);
-                            hours = date.getHours().toString().padStart(2, '0');
-                            minutes = date.getMinutes().toString().padStart(2, '0');
-                            endDate.value = `${hours}:${minutes}`;
-
-                            eventDescription[0].innerText = item.Description;
-
-                            usersData.forEach(user => {
-                                if (user.Id == item.UserId) {
-                                    creatorUsername.innerText = user.UserName;
-                                }
-                            });
-                            const firstEvent = item;
-                            const eventDate = new Date(firstEvent.Begin);
-                            const dayNames = ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"];
-                            const monthNames = ["Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень"];
-
-                            const dayName = dayNames[eventDate.getDay()];
-                            const monthName = monthNames[eventDate.getMonth()];
-                            const dateString = `${dayName}, ${monthName} ${eventDate.getDate()}`;
-
-                            // Set the dayEvent element's text content to the formatted date string
-                            dayEvent.textContent = dateString;
-                        }
-                    });
-                    //Open Event
-                    if (!rightMenu.classList.contains("trans")) {
-                        if (!container.classList.contains("eventShow")) {
-                            container.classList.add("eventShow");
-                        } else {
-                            container.classList.remove("eventShow");
-                        }
-                    }
-                });
             }
         });                                                                                                                          //});
     </script>
