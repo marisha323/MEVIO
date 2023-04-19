@@ -1318,6 +1318,7 @@
             date.setMinutes(0);
             date.setSeconds(0);
             date.setMilliseconds(0);
+            alert(date.getDate() + 1);
             //console.log(date);
             var weekDayDivs = document.querySelectorAll(".week-day.weekdays");
 
@@ -1327,51 +1328,53 @@
             let month = String(date.getMonth() + 1).padStart(2, '0');
 
             //for loop blocks of weekDayDivs grid
-            for (var i = 0; i < weekDayDivs.length; i++) {
-                //clean every block
-                var weekDayDiv = weekDayDivs[i];
-                weekDayDiv.innerHTML = "";
-                //for loop from 8 hours to 23 hours
-                for (var hour = 8; hour <= 23; hour++) {
-                    //create a formatted Hour for this element: formattedDateTime
-                    let formattedHour = String(hour).padStart(2, '0');
-                    //for loop to make it go through day of the week
-                    for (var j = 0; j < 7; j++) {
-                        //creating a day for this element: formattedDateTime
-                        let day = String(date.getDate() + j).padStart(2, '0');
-                        //for loop of the length on events
-                        for (var o = 0; o < events.length; o++) {
-                            //event Object
-                            var eventObj = events[o];
+            weekDayDivs.forEach(div =>{
+                div.innerHTML = "";
+            });
+            //clean every block
+            //var weekDayDiv = weekDayDivs[i];
+            //weekDayDiv.innerHTML = "";
+            //for loop from 8 hours to 23 hours
+            for (var hour = 8; hour <= 23; hour++) {
+                //create a formatted Hour for this element: formattedDateTime
+                let formattedHour = String(hour).padStart(2, '0');
+                //for loop to make it go through day of the week
+                for (var j = 0; j < 7; j++) {
+                    //creating a day for this element: formattedDateTime
+                    let day = String(date.getDate() + j).padStart(2, '0');
+                    //for loop of the length on events
+                    for (var o = 0; o < events.length; o++) {
+                        //event Object
+                        var eventObj = events[o];
 
-                            const beginDate = new Date(eventObj.Begin);
-                            const eventYear = beginDate.getFullYear();
-                            const eventMonth = String(beginDate.getMonth() + 1).padStart(2, '0');
-                            const eventDate = String(beginDate.getDate()).padStart(2, '0');
-                            const eventHour = String(beginDate.getHours()).padStart(2, '0');
-                            const formattedEventDate = `${eventYear}-${eventMonth}-${eventDate}-${eventHour}`;
+                        const beginDate = new Date(eventObj.Begin);
+                        const eventYear = beginDate.getFullYear();
+                        const eventMonth = String(beginDate.getMonth() + 1).padStart(2, '0');
+                        const eventDate = String(beginDate.getDate() + 1).padStart(2, '0');
+                        const eventHour = String(beginDate.getHours()).padStart(2, '0');
+                        const formattedEventDate = `${eventYear}-${eventMonth}-${eventDate}-${eventHour}`;
 
-                            //creating format
-                            let formattedDate = `${year}-${month}-${day}`;
-                            let formattedDateTime = `${formattedDate}-${formattedHour}`;
+                        //creating format
+                        let formattedDate = `${year}-${month}-${day}`;
+                        let formattedDateTime = `${formattedDate}-${formattedHour}`;
 
-                            //checking and displaying
-                            if (formattedEventDate == formattedDateTime) {
-                                var eventDiv = document.createElement("div");
-                                eventDiv.classList.add("event");
-                                var eventInput = document.createElement("input");
-                                eventInput.type = "hidden";
-                                eventInput.value = eventObj.Id;
-                                var eventP = document.createElement("p");
-                                eventP.innerText = eventObj.EventName;
-                                eventDiv.appendChild(eventInput);
-                                eventDiv.appendChild(eventP);
-                                weekDayDiv.appendChild(eventDiv);
-                            }
+                        //checking and displaying
+                        if (formattedEventDate === formattedDateTime) {
+                            var eventDiv = document.createElement("div");
+                            eventDiv.classList.add("event");
+                            var eventInput = document.createElement("input");
+                            eventInput.type = "hidden";
+                            eventInput.value = eventObj.Id;
+                            var eventP = document.createElement("p");
+                            eventP.innerText = eventObj.EventName;
+                            eventDiv.appendChild(eventInput);
+                            eventDiv.appendChild(eventP);
+                            weekDayDiv.appendChild(eventDiv);
                         }
                     }
                 }
             }
+
             //for (var i = 0; i < weekDayDivs.length; i++) {
             //    var weekDayDiv = weekDayDivs[i];
             //    weekDayDiv.innerHTML = "";
@@ -1464,7 +1467,7 @@
                             string[] arr = new string[] { "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
                             foreach (var item in arr)
                             {
-                                <div class="option-item">item</div>
+                                            <div class="option-item">item</div>
                             }
                         }
                     </div>
