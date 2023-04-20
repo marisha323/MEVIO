@@ -53,25 +53,28 @@ namespace MEVIO.Controllers
             //ViewBag.Events = breakDates;
 
 
-            //Pull All Events by current user
+            ////Pull All Events by current user
 
-            var eventsUsers = await db.EventsUsers.Where(e => e.UserId.Equals(user.Id)).ToListAsync();
-            List<Event> events = new();
+            //var eventsUsers = await db.EventsUsers.Where(e => e.UserId.Equals(user.Id)).ToListAsync();
+            //List<Event> events = new();
 
-            foreach (var item in eventsUsers)
-            {
-                var Event = await db.Events.FirstOrDefaultAsync(e => e.Id.Equals(item.EventId));
-                events.Add(Event);
-            }
+            //foreach (var item in eventsUsers)
+            //{
+            //    var Event = await db.Events.FirstOrDefaultAsync(e => e.Id.Equals(item.EventId));
+            //    events.Add(Event);
+            //}
 
-            //ViewBag.Events = events;
+            ////ViewBag.Events = events;
+            //ViewBag.User = user;
+            var eventsUsers = db.EventsUsers.Where(o => o.UserId == user.Id).AsNoTracking().ToList();
+            var events = db.Events.Where(o => o.UserId == user.Id).AsNoTracking().ToList();
+
             ViewBag.User = user;
+            ViewBag.Events = events;
 
 
 
-
-
-            ViewBag.Events = db.Events.AsNoTracking().ToList();
+            //ViewBag.Events = db.Events.AsNoTracking().ToList();
             ViewBag.Tasks = db.Tasks.AsNoTracking().ToList();
             ViewBag.Measures = db.Measures.AsNoTracking().ToList();
             ViewBag.PlaceForMeasures = db.PlaceForMeasures.AsNoTracking().ToList();
