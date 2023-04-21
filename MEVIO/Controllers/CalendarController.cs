@@ -1,4 +1,5 @@
-﻿using MEVIO.Models;
+﻿using DocumentFormat.OpenXml.Office2021.DocumentTasks;
+using MEVIO.Models;
 using MEVIO.Models.BackendClasses;
 using MEVIO.Views.Calendar;
 using Microsoft.AspNetCore.Authorization;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 using System.Text.Json;
+using Task = MEVIO.Models.Task;
 
 namespace MEVIO.Controllers
 {
@@ -67,22 +69,46 @@ namespace MEVIO.Controllers
             ////ViewBag.Events = events;
             //ViewBag.User = user;
             var eventsUsers = db.EventsUsers.Where(o => o.UserId == user.Id).AsNoTracking().ToList();
-            var events = db.Events.Where(o => o.UserId == user.Id).AsNoTracking().ToList();
+            var events = new List<Event>();
+
+            foreach(var item in eventsUsers)
+            {
+                if(item.UserId == user.Id)
+                {
+                    events.Add(db.Events.Where(o => o.Id == item.EventId).AsNoTracking().FirstOrDefault());
+                }
+            }
+
+            var measuresUsers = db.MeasuresUsers.Where(o => o.UserId == user.Id).AsNoTracking().ToList();
+            var measures = new List<Measure>();
+            foreach(var item in measuresUsers)
+            {
+                if(item.UserId == user.Id)
+                {
+                    measures.Add(db.Measures.Where(o=>o.Id == item.MeasureId).AsNoTracking().FirstOrDefault());
+                }
+            }
+
+            var tasksUsers = db.TasksUsers.Where(o => o.UserId == user.Id).AsNoTracking().ToList();
+            var tasks = new List<Task>();
+            foreach (var item in tasksUsers)
+            {
+                if (item.UserId == user.Id)
+                {
+                    tasks.Add(db.Tasks.Where(o => o.Id == item.TaskId).AsNoTracking().FirstOrDefault());
+                }
+            }
 
             ViewBag.User = user;
             ViewBag.Events = events;
-
-
-
-            //ViewBag.Events = db.Events.AsNoTracking().ToList();
-            ViewBag.Tasks = db.Tasks.AsNoTracking().ToList();
-            ViewBag.Measures = db.Measures.AsNoTracking().ToList();
+            ViewBag.Tasks = tasks;
+            ViewBag.Measures = measures;
             ViewBag.PlaceForMeasures = db.PlaceForMeasures.AsNoTracking().ToList();
             ViewBag.MeasureClients = db.MeasuresClients.AsNoTracking().ToList();
             ViewBag.Clients = db.Clients.AsNoTracking().ToList();
             ViewBag.Monthnames = monthNames;
             ViewBag.users = db.Users.AsNoTracking().ToList();
-            ViewBag.TasksUsers = db.TasksUsers.AsNoTracking().ToList();
+            ViewBag.TasksUsers = tasksUsers;
             ViewBag.Responsible = db.TaskResponsiblePersons.AsNoTracking().ToList();
             ViewBag.Observers = db.TasksWatchingPersons.AsNoTracking().ToList();
 
