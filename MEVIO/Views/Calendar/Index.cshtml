@@ -1347,7 +1347,7 @@
             date.setMinutes(0);
             date.setSeconds(0);
             date.setMilliseconds(0);
-            alert(date.getDate() + 1);
+            //alert(date.getDate() + 1);
             //console.log(date);
             var weekDayDivs = document.querySelectorAll(".week-day.weekdays");
 
@@ -1368,11 +1368,16 @@
             //var weekDayDiv = weekDayDivs[i];
             //weekDayDiv.innerHTML = "";
             //for loop from 8 hours to 23 hours
+            console.log(events);
+            let count = 0;
             for (var hour = 8; hour <= 23; hour++) {
+                let weekDayDiv = weekDayDivs[count];
+                count++;
                 //create a formatted Hour for this element: formattedDateTime
                 let formattedHour = String(hour).padStart(2, '0');
+                hour = String(hour).padStart(2, '0');
                 //for loop to make it go through day of the week
-                for (var j = 0; j < 7; j++) {
+                for (var j = 1; j <= 7; j++) {
                     //creating a day for this element: formattedDateTime
                     let day = String(date.getDate() + j).padStart(2, '0');
                     //for loop of the length on events
@@ -1392,7 +1397,9 @@
                         let formattedDateTime = `${formattedDate}-${formattedHour}`;
 
                         //checking and displaying
-                        if (formattedEventDate === formattedDateTime) {
+                        //alert(`${formatedDate} and ${formattedDateTime}`);
+                        console.log(`${formattedEventDate} and ${formattedDateTime}`);
+                        if (formattedEventDate == formattedDateTime) {
                             var eventDiv = document.createElement("div");
                             eventDiv.classList.add("event");
                             var eventInput = document.createElement("input");
@@ -1500,7 +1507,7 @@
                             string[] arr = new string[] { "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
                             foreach (var item in arr)
                             {
-                                            <div class="option-item">item</div>
+                                                                                            <div class="option-item">item</div>
                             }
                         }
                     </div>
