@@ -762,6 +762,13 @@
             document.getElementById("myInput").value = currentYear.toString();
         }
     </script>
+
+
+
+
+
+
+
     <script>
         // Get all the month switcher divs
         let monthSwitchers = document.querySelectorAll('.month-switcher');
@@ -824,9 +831,35 @@
             });
         });
     </script>
-    <script>
+    
 
-    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @*///////////////////////////////////////////////*@
     @{
         DateTime currentDate = DateTime.Now;
@@ -896,9 +929,10 @@
 
                 @for (int i = 8; i < 24; i++)
                 {
-                    @for (DateTime date = startDate.AddHours(i); date <= endDate.AddHours(i); date = date.AddDays(1))
+                    @for (DateTime date = startDate; date <= endDate.AddHours(i); date = date.AddDays(1))
                     {
-                        <div class="week-day weekdays" id="@date.ToString("yyyy-MM-dd-HH")">
+                      
+                        <div class="week-day weekdays" id="@date.ToString("yyyy-MM-dd")-@i">
                             @foreach (var item in @ViewBag.Events)
                             {
                                 if (item.Begin.ToString("yyyy-MM-dd-HH") == date.ToString("yyyy-MM-dd-HH"))
@@ -954,6 +988,11 @@
         var user = JsonSerializer.Serialize(ViewBag.User);
         
     }
+
+
+
+
+
     <script>
         //Measure stuff
         const measureName = document.querySelector('#MeasureName.task-nameM');
@@ -987,6 +1026,15 @@
         let eventDescription = document.getElementsByName("EventDescription");
         let creatorUsername = document.getElementById("creatorUsername");
         let dayEvent = document.getElementById("nameEvent");
+
+
+
+
+
+
+
+
+
 
         function ShowTaskMenu(element) {
             console.log(element);
@@ -1145,6 +1193,8 @@
             });
 
         }
+
+
         function ShowMeasureMenu(element) {
             element.stopPropagation();
 
@@ -1253,6 +1303,9 @@
             });
 
         }
+
+
+
         function ShowEventMenu(element) {
             element.stopPropagation();
 
@@ -1314,6 +1367,10 @@
 
 
 
+
+
+
+
         var events = @Html.Raw(eventsJson);
         var tasks = @Html.Raw(tasksJson);
         var measures = @Html.Raw(measuresJson);
@@ -1350,73 +1407,188 @@
             document.getElementById("weekbtn").classList.add("active");
             WeekButtonClick();
 
+
+
+
+
+
+            //--------------------------------------------------------------------
+
             // display events, tasks, and measures
-            let date = new Date(element.id);
-            date.setMinutes(0);
-            date.setSeconds(0);
-            date.setMilliseconds(0);
+            //let date = new Date(element.id);
+            //date.setMinutes(0);
+            //date.setSeconds(0);
+            //date.setMilliseconds(0);
+
+
+            ////get the year of the clicked element
+            //let year = date.getFullYear();
+            ////get the month of the clicked element
+            //let month = String(date.getMonth() + 1).padStart(2, '0');
+
+
+
+
+
+            //Sasha
+            //--------------------------------------------------------------------
 
             var weekDayDivs = document.querySelectorAll(".week-day.weekdays");
 
-            //get the year of the clicked element
-            let year = date.getFullYear();
-            //get the month of the clicked element
-            let month = String(date.getMonth() + 1).padStart(2, '0');
 
             //for loop blocks of weekDayDivs grid
             weekDayDivs.forEach(div => {
-                div.innerHTML = "";
-            });
-
             //clean every block
-            let count = 0;
-            for (let hour = 8; hour <= 23; hour++) {
-                let weekDayDiv = weekDayDivs[count];
-                count++;
-                //create a formatted Hour for this element: formattedDateTime
-                const formattedHour = String(hour).padStart(2, '0');
-                hour = String(hour).padStart(2, '0');
-                //for loop to make it go through day of the week
-                for (let j = 1; j <= 7; j++) {
-                    //creating a new date for this element
-                    const currentDate = new Date(date);
-                    currentDate.setDate(date.getDate() + j);
-                    //creating a formatted date for this element
-                    const day = String(currentDate.getDate()).padStart(2, '0');
-                    const formattedDate = `${year}-${month}-${day}`;
-                    const formattedDateTime = `${formattedDate}-${formattedHour}`;
-                    //for loop of the length on events
-                    for (let o = 0; o < events.length; o++) {
-                        //event Object
-                        const eventObj = events[o];
+                div.innerHTML = "";
 
-                        const beginDate = new Date(eventObj.Begin);
-                        const eventYear = beginDate.getFullYear();
-                        const eventMonth = String(beginDate.getMonth() + 1).padStart(2, '0');
-                        const eventDate = String(beginDate.getDate()).padStart(2, '0');
-                        const eventHour = String(beginDate.getHours()).padStart(2, '0');
-                        const formattedEventDate = `${eventYear}-${eventMonth}-${eventDate}-${eventHour}`;
 
-                        //checking and displaying
-                        
-                        if (formattedEventDate === formattedDateTime) {
-                            //alert(`${formattedEventDate} and ${formattedDateTime}`)
+                //Get id every block
+                const id=div.id;
+
+                const timeArr=id.split("-");
+
+                const divYear=timeArr[0];
+                const divMonth = timeArr[1];
+                const divDay=timeArr[2];
+                const divHour=timeArr[3];
+
+                const divDate=new Date(`${divYear}-${divMonth}-${divDay}`);
+                divDate.setHours(divHour);
+
+                
+
+
+                const userEvents=[];
+                
+                events.forEach(event=>{
+                    const eventBegin=new Date(event.Begin);
+                    eventBegin.setMinutes(0,0);
+
+                    if(divDate==eventBegin){
+                        const eventBeginDay = eventBegin.getDate();
+                        const eventBeginHour = eventBegin.getHours();
+
+                        if(divDay==eventBeginDay&&divHour==eventBeginHour){
+
+                            userEvents.push(event);
+
                             var eventDiv = document.createElement("div");
                             eventDiv.classList.add("event");
                             var eventInput = document.createElement("input");
                             eventInput.type = "hidden";
-                            eventInput.value = eventObj.Id;
+                            eventInput.value = event.Id;
                             var eventP = document.createElement("p");
-                            eventP.innerText = eventObj.EventName;
+                            eventP.innerText = event.EventName;
                             eventDiv.appendChild(eventInput);
                             eventDiv.appendChild(eventP);
-                            weekDayDiv.appendChild(eventDiv);
+                            div.appendChild(eventDiv);
                         }
                     }
-                }
-            }
+
+                    
+
+                    //console.log("EventDay:"+eventBeginDay+"   EventHour:"+eventBeginHour);
+                    //console.log("DivDay:"+divDay+"   DivHour:"+divHour);
+                    //console.log("\n");
+
+                });
+            });
+
+            console.log(userEvents);
+
+
+            //---------------------------------------------------------
+
+
+
+
+
+
+
+
+
+            //---------------------------------------------------------
+
+
+        //    let count = 0;
+        //    for (let hour = 8; hour <= 23; hour++) {
+        //        let weekDayDiv = weekDayDivs[count];
+        //        count++;
+        //        //create a formatted Hour for this element: formattedDateTime
+        //        const formattedHour = String(hour).padStart(2, '0');
+        //        hour = String(hour).padStart(2, '0');
+        //        //for loop to make it go through day of the week
+        //        for (let j = 1; j <= 7; j++) {
+        //            //creating a new date for this element
+        //            const currentDate = new Date(date);
+        //            currentDate.setDate(date.getDate() + j);
+        //            //creating a formatted date for this element
+        //            const day = String(currentDate.getDate()).padStart(2, '0');
+        //            const formattedDate = `${year}-${month}-${day}`;
+        //            const formattedDateTime = `${formattedDate}-${formattedHour}`;
+        //            //for loop of the length on events
+        //            for (let o = 0; o < events.length; o++) {
+        //                //event Object
+        //                const eventObj = events[o];
+
+        //                const beginDate = new Date(eventObj.Begin);
+        //                const eventYear = beginDate.getFullYear();
+        //                const eventMonth = String(beginDate.getMonth() + 1).padStart(2, '0');
+        //                const eventDate = String(beginDate.getDate()).padStart(2, '0');
+        //                const eventHour = String(beginDate.getHours()).padStart(2, '0');
+        //                const formattedEventDate = `${eventYear}-${eventMonth}-${eventDate}-${eventHour}`;
+
+        //                //checking and displaying
+                        
+        //                if (formattedEventDate === formattedDateTime) {
+        //                    //alert(`${formattedEventDate} and ${formattedDateTime}`)
+        //                    var eventDiv = document.createElement("div");
+        //                    eventDiv.classList.add("event");
+        //                    var eventInput = document.createElement("input");
+        //                    eventInput.type = "hidden";
+        //                    eventInput.value = eventObj.Id;
+        //                    var eventP = document.createElement("p");
+        //                    eventP.innerText = eventObj.EventName;
+        //                    eventDiv.appendChild(eventInput);
+        //                    eventDiv.appendChild(eventP);
+        //                    weekDayDiv.appendChild(eventDiv);
+        //                }
+        //            }
+        //        }
+        //    }
+
+
+
+        //end of function "HandleClick()"
         }
+
+
+
+        //---------------------------------------------------------
+
+
     </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <div id="dayGrid" class="calendar-grid calGrid">
         <div class="header">
@@ -1645,6 +1817,12 @@
             }
         });                                                                                                                          //});
     </script>
+
+
+
+
+
+
     <script src="~/js/jquery-3.6.1.min.js" asp-append-version="true"></script>
     <script src="~/js/scriptEventMini2.js" asp-append-version="true"></script>
     @*<script src="~/js/MathTimeLine.js" asp-append-version="true"></script>*@
