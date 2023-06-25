@@ -1,0 +1,161 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var ukrainianCulture = Model.culture;
+    var monthes = Model.monthes;
+}
+
+<div id="yearGrid" class="calendar-grid calGrid">
+    @{
+        int monthcount = 1;
+    }
+    @foreach (var month in monthes)
+    {
+        <div class="month-div @month.Season">
+            <div id="@($"month_2023_{monthcount}")" class="month-name option-item-month">
+                @ukrainianCulture.DateTimeFormat.GetMonthName(monthcount)
+            </div>
+
+            <div class="week-div">
+                <div class="week-header">
+                    @foreach (var day in ViewBag.weekDays)
+                    {
+                        <div class="week-day">@day</div>
+                    }
+                </div>
+
+                <div class="month-days">
+                    @for (int i = 1; i <= 35; i++)
+                    {
+                        <div class="month-day">@i</div>
+                    }
+                </div>
+            </div>
+        </div>
+        monthcount++;
+    }
+
+</div>
+
+
+
+<script>
+    //Anomation while click on month
+    const divs = document.querySelectorAll('.month-div');
+
+
+    divs.forEach(div => {
+        div.addEventListener('click', () => {
+
+            divs.forEach(div1 => {
+                if (div != div1) {
+                    div1.style.visibility = "hidden";
+                }
+            });
+
+            setTimeout(() => {
+                const screenWidth = window.innerWidth;
+                const screenHeight = window.innerHeight;
+
+                const middleX = screenWidth / 2;
+                const middleY = screenHeight / 2;
+
+                const divRect = div.getBoundingClientRect();
+                const divWidth = divRect.width;
+                const divHeight = divRect.height;
+                const divOffsetTop = divRect.top + window.pageYOffset;
+                const divOffsetLeft = divRect.left + window.pageXOffset;
+
+                const currentScale = getComputedStyle(div).transform.match(/matrix\(([^)]+)\)/)[1].split(', ')[0];
+                if (currentScale === '3') {
+                    div.style.transform = `translate(${middleX - (divWidth / 2) - divOffsetLeft}px, ${middleY - (divHeight / 2) - divOffsetTop}px) scale(1.0)`;
+                    setTimeout(function () {
+                        divs.forEach(div1 => {
+                            if (div != div1) {
+                                div1.style.visibility = "visible";
+                            }
+                        });
+                    }, 500);
+                } else {
+                    div.style.transform = `translate(${middleX - (divWidth / 2) - divOffsetLeft}px, ${middleY - (divHeight / 2) - divOffsetTop}px) scale(3)`;
+                }
+            }, 400);
+
+            setTimeout(() => {
+                const screenWidth = window.innerWidth;
+                const screenHeight = window.innerHeight;
+
+                const middleX = screenWidth / 2;
+                const middleY = screenHeight / 2;
+
+                const divRect = div.getBoundingClientRect();
+                const divWidth = divRect.width;
+                const divHeight = divRect.height;
+                const divOffsetTop = divRect.top + window.pageYOffset;
+                const divOffsetLeft = divRect.left + window.pageXOffset;
+
+                const currentScale = getComputedStyle(div).transform.match(/matrix\(([^)]+)\)/)[1].split(', ')[0];
+
+                if (currentScale === '3') {
+                    div.style.transform = `translate(${middleX - (divWidth / 2) - divOffsetLeft}px, ${middleY - (divHeight / 2) - divOffsetTop}px) scale(1.0)`;
+
+                    div.style.removeProperty('transform');
+
+                    setTimeout(function () {
+                        divs.forEach(div1 => {
+                            if (div != div1) {
+                                div1.style.visibility = "visible";
+                            }
+                        });
+                    }, 500);
+
+                }
+                else if (currentScale === '1') {
+                    div.style.transform = `translate(${middleX - (divWidth / 2) - divOffsetLeft}px, ${middleY - (divHeight / 2) - divOffsetTop}px) scale(3)`;
+                }
+            }, 1000);
+
+            setTimeout(function () {
+                div.style.removeProperty('transform');
+            }, 1000);
+            const link = document.getElementById("customStyle");
+
+            //div.classList.toggle('goAnimation');
+            setTimeout(() => {
+                // link.hide("style/year.css");
+                $("#yearGrid").hide();
+            }, 1000);
+
+            setTimeout(() => {
+                link.href = "/css/month.css";
+                $("#monthGrid").show();
+            }, 1000);
+
+            let yearbtn = document.getElementById("yearbtn");
+            yearbtn.classList.remove("active");
+
+            let monthbtn = document.getElementById("monthbtn");
+            monthbtn.classList.add("active");
+
+            let yearGrid = document.getElementById("yearGrid");
+            yearGrid.classList.add("shrink");
+            yearGrid.classList.add("go");
+            yearGrid.classList.remove("activeGrid");
+            yearGrid.classList.remove("appearGrid");
+            yearGrid.classList.remove("hidden");
+            yearGrid.classList.remove("showw");
+            yearGrid.classList.remove("go");
+            yearGrid.classList.remove("shrink");
+
+            let monthGrid = document.getElementById("monthGrid");
+            monthGrid.classList.add("activeGrid")
+            monthGrid.classList.add("appearGrid");
+            monthGrid.classList.add("hidden");
+            monthGrid.classList.add("showw");
+
+        });
+
+        div.classList.add("month-div-hover");
+    });
+</script>

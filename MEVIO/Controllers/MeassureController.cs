@@ -56,93 +56,101 @@ namespace MEVIO.Controllers
         [HttpPost]
         // public async Task<ActionResult> AddMeasure([Bind("Id,MeasureName,Description,UserId,Begin,End,FreePlaces")] Measure measure)
         public async Task<ActionResult> AddMeasure(string MeasureName,int UserId,int FreePlaces )
-        {    
-            //Get Id of create User
-            string UserLoggedIn = HttpContext.Request.Cookies["UserLoggedIn"];
-            user1 = JsonSerializer.Deserialize<MEVIO.Models.User>(UserLoggedIn);
-            int userId = user1.Id;
-            string creator = user1.UserName;
-
-            //Get Place for Measure
-            int placeId = int.Parse(Request.Form["placeSpend"]);
-            var place = context.PlaceForMeasures.Where(o => o.Id == placeId).AsNoTracking().FirstOrDefault();
-           
-
-
-            //DATETIME
-            string dateField1 = Request.Form["dateField1"];
-            string timeField1 = Request.Form["timeField1"];
-
-            DateTime dateTime1 = DateTime.Parse(dateField1 + " " + timeField1);
-
-            string dateField2 = Request.Form["dateField2"];
-            string timeField2 = Request.Form["timeField2"];
-
-            DateTime dateTime2 = DateTime.Parse(dateField2 + " " + timeField2);
-
-            Measure measure = new Measure()
+        {
+            try
             {
-                MeasureName = MeasureName,
-                FreePlaces=FreePlaces,
-                PlaceForMeasureId=placeId,
-                UserId = userId,
-                Begin = dateTime1,
-                End = dateTime2
-            };
+                //Get Id of create User
+                string UserLoggedIn = HttpContext.Request.Cookies["UserLoggedIn"];
+                user1 = JsonSerializer.Deserialize<MEVIO.Models.User>(UserLoggedIn);
+                int userId = user1.Id;
+                string creator = user1.UserName;
 
-            context.Measures.Add(measure);
-            context.SaveChanges();
+                //Get Place for Measure
+                int placeId = int.Parse(Request.Form["placeSpend"]);
+                var place = context.PlaceForMeasures.Where(o => o.Id == placeId).AsNoTracking().FirstOrDefault();
 
-            // Last ID of Event
-            var lastIdMeasure = context.Measures.ToList().LastOrDefault().Id;
 
-            //All id of users
-            var idsUser = Request.Form["userId"];
 
-                    
-            //Fill MeasureUsers
-            foreach (var usersId in idsUser)
-            {
-                var measureUsers = new MeasureUsers
+                //DATETIME
+                string dateField1 = Request.Form["dateField1"];
+                string timeField1 = Request.Form["timeField1"];
+
+                DateTime dateTime1 = DateTime.Parse(dateField1 + " " + timeField1);
+
+                string dateField2 = Request.Form["dateField2"];
+                string timeField2 = Request.Form["timeField2"];
+
+                DateTime dateTime2 = DateTime.Parse(dateField2 + " " + timeField2);
+
+                Measure measure = new Measure()
                 {
-                    MeasureId = lastIdMeasure,
-                    UserId = int.Parse(usersId),
-                    IsCreator = false //устанавливаем false, поскольку это не создатель события
+                    MeasureName = MeasureName,
+                    FreePlaces = FreePlaces,
+                    PlaceForMeasureId = placeId,
+                    UserId = userId,
+                    Begin = dateTime1,
+                    End = dateTime2
                 };
-                context.MeasuresUsers.Add(measureUsers); //добавляем экземпляр MeasureUsers в контекст базы данных
-            }
 
-            context.SaveChanges(); //сохраняем изменения в базе данных
+                context.Measures.Add(measure);
+                context.SaveChanges();
 
+                // Last ID of Event
+                var lastIdMeasure = context.Measures.ToList().LastOrDefault().Id;
 
-            var bot = HttpContext.RequestServices.GetRequiredService<TelegramBot>();
-            measure.PlaceForMeasure = place;
-
-            foreach (var item in idsUser)
-            {
-                var userT = context.UserTelegram.Where(o => o.UserId == int.Parse(item)).FirstOrDefault();
-                await bot.SendMeasure(userT, measure, botKey, creator);
-            }
+                //All id of users
+                var idsUser = Request.Form["userId"];
 
 
-            //Fill MeasureClients
-
-            //All id of clients
-            var idsClient = Request.Form["clientId"];
-
-            foreach (var clientsId in idsClient)
-            {
-                var measureClients = new MeasuresClients
+                //Fill MeasureUsers
+                foreach (var usersId in idsUser)
                 {
-                    MeasureId = lastIdMeasure,
-                    ClientId = int.Parse(clientsId),
-                    // IsCreator = false //устанавливаем false, поскольку это не создатель события
-                };
-                context.MeasuresClients.Add(measureClients); //добавляем экземпляр EventsUsers в контекст базы данных
+                    var measureUsers = new MeasureUsers
+                    {
+                        MeasureId = lastIdMeasure,
+                        UserId = int.Parse(usersId),
+                        IsCreator = false //устанавливаем false, поскольку это не создатель события
+                    };
+                    context.MeasuresUsers.Add(measureUsers); //добавляем экземпляр MeasureUsers в контекст базы данных
+                }
+
+                context.SaveChanges(); //сохраняем изменения в базе данных
+
+
+                var bot = HttpContext.RequestServices.GetRequiredService<TelegramBot>();
+                measure.PlaceForMeasure = place;
+
+                foreach (var item in idsUser)
+                {
+                    var userT = context.UserTelegram.Where(o => o.UserId == int.Parse(item)).FirstOrDefault();
+                    await bot.SendMeasure(userT, measure, botKey, creator);
+                }
+
+
+                //Fill MeasureClients
+
+                //All id of clients
+                var idsClient = Request.Form["clientId"];
+
+                foreach (var clientsId in idsClient)
+                {
+                    var measureClients = new MeasuresClients
+                    {
+                        MeasureId = lastIdMeasure,
+                        ClientId = int.Parse(clientsId),
+                        // IsCreator = false //устанавливаем false, поскольку это не создатель события
+                    };
+                    context.MeasuresClients.Add(measureClients); //добавляем экземпляр EventsUsers в контекст базы данных
+                }
+
+                context.SaveChanges(); //сохраняем изменения в базе данных
             }
+            catch(Exception ex)
+            {
+                await Console.Out.WriteLineAsync(ex.Message);
 
-            context.SaveChanges(); //сохраняем изменения в базе данных
-
+                return RedirectToAction("Index");
+            }
 
 
             return Redirect("/Home/Index");

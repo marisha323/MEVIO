@@ -1,0 +1,446 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@using System.Globalization;
+
+@{
+    var ukrainianCulture = Model.culture;
+    var currentDateNow = DateTime.Now;
+}
+
+
+<div id="dayGrid" class="calendar-grid calGrid">
+    <input type="hidden" id="currentDayInput" value="@($"{currentDateNow.ToString("yyyy_M_d")}")"/>
+    <input type="hidden" id="selectedDay" value="@($"{currentDateNow.ToString("yyyy_M_d")}")" />
+    @for (int year = 2022; year <= 2025; year++)
+    {
+        <div class="year-switcher" id="@($"year_{year}")" @(year == 2023 ? "style='display:block'" : "style='display:none'")>
+            @for (int month = 1; month <= 12; month++)
+            {
+                var monthName = @ukrainianCulture.DateTimeFormat.GetMonthName(month);
+
+                <div id="@($"month_{year}_{month}")" class="month-switcher @monthName">
+                    <div class="calendar-header">
+                        <div class="month-name pointer">@monthName @year</div>
+                        <div class=" flex-center">
+                            <img onclick="clickPrevDay()" class="pointer trans-left" src="img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                            <label class="label">День</label>
+                            <img onclick="clickNextDay()" class="pointer trans-right" src="img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                        </div>
+                        <div class="select-month">
+                            <label class="label pointer">Місяць</label>
+                            <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                            <div class="options-month hide">
+                                @for (int m = 1; m <= 12; m++)
+                                {
+                                    //here
+                                    <div id="@($"month_{year}_{m}")" class="option-item option-item-month" onclick="toggleVisibility('@($"month_{year}_{m}")');">
+                                        @ukrainianCulture.DateTimeFormat.GetMonthName(m)
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="select-years">
+                            <label class="label pointer">Рік</label>
+                            <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                            <div class="options-years hide">
+                                @for (int y = 2022; y <= 2025; y++)
+                                {
+                                    <div class="option-item" onclick="toggleVisibility('@($"month_{y}_{month}")');">@y</div>
+                                }
+                            </div>
+                        </div>
+                        <input type="hidden" name="yearValue" id="myInput">
+                    </div>
+                    
+                    @{
+                        int daysInMonth = DateTime.DaysInMonth(year, month);
+                    }
+
+                    @for(int d = 1; d<=daysInMonth; d++)
+                    {
+                        <div class="day-flex day-switcher" id="@($"day_{year}_{month}_{d}")" style="display:none">
+                            <div class="times-grid">
+                                <div class="white-text">День</div>
+                                @for (int i = 8; i < 24; i++)
+                                {
+                                    <div class="white-text">@i:00</div>
+                                }
+                            </div>
+
+                            <div class="day-grid">
+                                <div class="day-div">
+                                    @{
+                                        var currentDate = new DateTime(year, month, d);
+                                    }
+                                    @currentDate.ToString("dddd", new CultureInfo("uk-UA")).ToString().ToUpper()
+                                    @currentDate.ToString("dd")
+                                </div>
+
+                                @for (int i = 8; i < 24; i++)
+                                {
+                                    <div class="time-div">
+
+                                        @foreach (Event item in @ViewBag.Events)
+                                        {
+                                            var eventDate = currentDate.AddHours(i);
+
+                                            @*if (eventDate.Day >= item.Begin.Day && eventDate.Day <= item.End.Day)
+                                            {
+                                                if (eventDate.Hour >= item.Begin.Hour && eventDate.Hour <= item.End.Hour)
+                                                {
+                                                    <div class="event event-day" onclick="ShowEventMenu(event)">
+                                                        <input type="hidden" value="@item.Id">
+                                                        <p class="event-name">@item.EventName</p>
+                                                    </div>
+                                                }
+
+                                            }*@
+
+                                            if (eventDate >= item.Begin && eventDate <= item.End)
+                                            {
+                                                <div class="event event-day" onclick="ShowEventMenu(event)">
+                                                    <input type="hidden" value="@item.Id">
+                                                    <p class="event-name">@item.EventName</p>
+                                                </div>
+                                            }
+                                        }
+                                        @foreach (MEVIO.Models.Task item in @ViewBag.Tasks)
+                                        {
+                                            var taskDate = currentDate.AddHours(i);
+
+                                            @*if (taskDate.Day >= item.Begin.Day && taskDate.Day <= item.End.Day)
+                                            {
+                                                if (taskDate.Hour >= item.Begin.Hour && taskDate.Hour <= item.End.Hour)
+                                                {
+                                                    <div class="event event-day yellow" onclick="ShowTaskMenu(event)">
+                                                        <input type="hidden" value="@item.Id">
+                                                        <p class="event-name">@item.TaskName</p>
+                                                    </div>
+                                                }
+                                            }*@
+
+                                            if (taskDate >= item.Begin && taskDate <= item.End)
+                                            {
+                                                <div class="event event-day yellow" onclick="ShowTaskMenu(event)">
+                                                    <input type="hidden" value="@item.Id">
+                                                    <p class="event-name">@item.TaskName</p>
+                                                </div>
+                                            }
+                                        }
+                                        @foreach (Measure item in @ViewBag.Measures)
+                                        {
+                                            var measDate = currentDate.AddHours(i);
+
+                                            @*if (measDate.Day >= item.Begin.Day && measDate.Day <= item.End.Day)
+                                            {
+                                                if (measDate.Hour >= item.Begin.Hour && measDate.Hour <= item.End.Hour)
+                                                {
+                                                    <div class="event event-day red" onclick="ShowMeasureMenu(event)">
+                                                        <input type="hidden" value="@item.Id">
+                                                        <p class="event-name">@item.MeasureName</p>
+                                                    </div>
+                                                }
+                                            }*@
+
+                                            if (measDate >= item.Begin && measDate <= item.End)
+                                            {
+                                                <div class="event event-day red" onclick="ShowMeasureMenu(event)">
+                                                    <input type="hidden" value="@item.Id">
+                                                    <p class="event-name">@item.MeasureName</p>
+                                                </div>
+                                            }
+                                        }
+
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                    }
+
+                    
+                    
+                    
+                </div>
+            }
+        </div>
+    }
+
+</div>
+
+
+
+
+
+<script>
+    function FindNextYear() {
+        try {
+            const yearBlock = $(".year-switcher:visible");
+            $(yearBlock).hide();
+
+            const nextYearBlock = $(yearBlock).next(".year-switcher");
+            $(nextYearBlock).show();
+
+            const firstMonthBlock = $(nextYearBlock).children(".month-switcher").first();
+            $(firstMonthBlock).show();
+
+            const firstDayBlock = $(firstMonthBlock).children(".day-switcher").first();
+            $(firstDayBlock).show();
+
+            const id = $(firstDayBlock)[0].id;
+            const [, year, month, day] = id.split('_');
+
+
+            const selectedDay = document.getElementById("selectedDay");
+            selectedDay.value = `${year}_${month}_${day}`;
+        }
+        catch (ex) {
+            const selectedDay = document.getElementById("selectedDay");
+            const id = selectedDay.value;
+
+            const [year, month, day] = id.split('_');
+
+            const yearBlock = $(`#dayGrid #year_${year}`);
+            $(yearBlock).show();
+
+            const monthBlock = $(yearBlock).children(".month-switcher").last();
+            $(monthBlock).show();
+
+            const dayBlock = $(monthBlock).children(".day-switcher").last();
+            $(dayBlock).show();
+        }
+    }
+
+
+    function FindNextMonth() {
+
+        try {
+            const monthBlock = $(".month-switcher:visible");
+            $(monthBlock).hide();
+
+            const nextMonthBlock = $(monthBlock).next(".month-switcher");
+            $(nextMonthBlock).show();
+
+            const firstDayBlock = $(nextMonthBlock).children(".day-switcher").first();
+
+            $(firstDayBlock).show();
+
+
+            const id = $(firstDayBlock)[0].id;
+            const [, year, month, day] = id.split('_');
+
+
+            const selectedDay = document.getElementById("selectedDay");
+            selectedDay.value = `${year}_${month}_${day}`;
+        }
+        catch (ex) {
+            FindNextYear();
+        }
+
+    }
+
+
+    function clickNextDay(){
+        try {
+            const selectedDay = document.getElementById("selectedDay");
+            let id = selectedDay.value;
+
+            let [year, month, day] = id.split('_');
+
+            const currentDayDiv = $(`#day_${id}`);
+            const nextDayDiv = $(currentDayDiv).next(".day-switcher");
+
+            $(currentDayDiv).hide();
+            $(nextDayDiv).show();
+
+
+            id = $(nextDayDiv)[0].id;
+            [, year, month, day] = id.split('_');
+
+            selectedDay.value = `${year}_${month}_${day}`;
+        }
+        catch (ex) {
+            FindNextMonth();
+        }
+    }
+</script>
+
+
+
+<script>
+    function FindPrevYear(){
+        try{
+            const yearBlock = $(".year-switcher:visible");
+            $(yearBlock).hide();
+
+            const prevYearBlock = $(yearBlock).prev(".year-switcher");
+            $(prevYearBlock).show();
+
+            const lastMonthBlock = $(prevYearBlock).children(".month-switcher").last();
+            $(lastMonthBlock).show();
+
+            const lastDayBlock = $(lastMonthBlock).children(".day-switcher").last();
+            $(lastDayBlock).show();
+
+            const id = $(lastDayBlock)[0].id;
+            const [, year, month, day] = id.split('_');
+
+
+            const selectedDay = document.getElementById("selectedDay");
+            selectedDay.value = `${year}_${month}_${day}`;
+        }
+        catch(ex){
+            const selectedDay = document.getElementById("selectedDay");
+            const id = selectedDay.value;
+
+            const [year, month, day] = id.split('_');
+
+            const yearBlock = $(`#dayGrid #year_${year}`);
+            $(yearBlock).show();
+
+            const monthBlock = $(yearBlock).children(".month-switcher").first();
+            $(monthBlock).show();
+            
+            const dayBlock = $(monthBlock).children(".day-switcher").first();
+            $(dayBlock).show();
+        }
+    }
+
+
+    function FindPrevMonth(){
+
+        try{
+            const monthBlock = $(".month-switcher:visible");
+            $(monthBlock).hide();
+
+            const prevMonthBlock = $(monthBlock).prev(".month-switcher");
+            $(prevMonthBlock).show();
+
+            const lastDayBlock = $(prevMonthBlock).children(".day-switcher").last();
+
+            $(lastDayBlock).show();
+
+
+            const id = $(lastDayBlock)[0].id;
+            const [, year, month, day] = id.split('_');
+
+
+            const selectedDay = document.getElementById("selectedDay");
+            selectedDay.value = `${year}_${month}_${day}`;
+        }
+        catch(ex){
+            FindPrevYear();
+        }
+
+    }
+
+
+    function clickPrevDay(){
+        try{
+            const selectedDay = document.getElementById("selectedDay");
+            let id = selectedDay.value;
+
+            let [year, month, day] = id.split('_');
+
+            const currentDayDiv = $(`#day_${id}`);
+            const prevDayDiv = $(currentDayDiv).prev(".day-switcher");
+
+            $(currentDayDiv).hide();
+            $(prevDayDiv).show();
+
+
+            id = $(prevDayDiv)[0].id;
+            [, year, month, day] = id.split('_');
+
+            selectedDay.value = `${year}_${month}_${day}`;
+        }
+        catch(ex){
+            FindPrevMonth();
+        }
+    }
+</script>
+
+
+
+
+<script>
+    
+
+
+
+    const dayBtn = document.getElementById("daybtn");
+    dayBtn.addEventListener("click", CurrentDay);
+
+
+
+    function CurrentDay() {
+
+        const currentDayInput = document.getElementById("currentDayInput");
+
+
+        const [year,month,day] = currentDayInput.value.split('_');
+
+        toggleSwitcherBlocks(year,month);
+
+        $(".day-switcher:visible").hide();
+
+        $(`#day_${currentDayInput.value}`).show();
+
+
+        
+    }
+
+
+
+    function MonthButtonClick() {
+        document.body.style.overflowY = 'hidden';
+        grids.forEach(grid => {
+            if (grid.classList.contains("activeGrid")) {
+                grid.classList.add("shrink");
+                setTimeout(() => {
+                    grid.classList.add("go");
+                }, 100);
+                grid.classList.remove("activeGrid");
+
+                grid.classList.remove("appearGrid");
+                grid.classList.remove("hidden");
+                grid.classList.remove("showw");
+            }
+            setTimeout(() => {
+                grid.classList.remove("go");
+                grid.classList.remove("shrink");
+            }, 500);
+        });
+        monthGrid = document.getElementById("monthGrid");
+        monthGrid.classList.add("activeGrid");
+
+        monthGrid.classList.add("appearGrid");
+        monthGrid.classList.add("hidden");
+
+        setTimeout(() => {
+            // link.hide("style/year.css");
+            $("#yearGrid").hide();
+            $("#weekGrid").hide();
+            $("#dayGrid").hide();
+        }, 300);
+
+        setTimeout(() => {
+            link.href = "/css/month.css";
+            $("#monthGrid").show();
+            setTimeout(() => {
+                monthGrid.classList.add("showw");
+            }, 200);
+        }, 200);
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+
+        document.body.style.overflowY = 'auto';
+    }
+
+
+</script>

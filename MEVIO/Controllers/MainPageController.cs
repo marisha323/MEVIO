@@ -15,7 +15,7 @@ namespace MEVIO.Controllers
 
 
         }
-        public IActionResult MainPage()
+        public async Task <IActionResult> MainPage()
         {
             User user = null;
             string UserLoggedIn = HttpContext.Request.Cookies["UserLoggedIn"];

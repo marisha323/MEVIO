@@ -45,29 +45,7 @@ namespace MEVIO.Controllers
             ViewBag.weekDays = days;
             ViewBag.spaces = spacesInDay;
 
-            //var Events = db.Events.AsNoTracking().ToList();
-            //List <BreakDate> breakDates= new List<BreakDate>();
-            //foreach(var item in Events)
-            //{
-            //    BreakDate date = new BreakDate(item);
-            //    breakDates.Add(date);
-            //}
-            //ViewBag.Events = breakDates;
-
-
-            ////Pull All Events by current user
-
-            //var eventsUsers = await db.EventsUsers.Where(e => e.UserId.Equals(user.Id)).ToListAsync();
-            //List<Event> events = new();
-
-            //foreach (var item in eventsUsers)
-            //{
-            //    var Event = await db.Events.FirstOrDefaultAsync(e => e.Id.Equals(item.EventId));
-            //    events.Add(Event);
-            //}
-
-            ////ViewBag.Events = events;
-            //ViewBag.User = user;
+            
             var eventsUsers = db.EventsUsers.Where(o => o.UserId == user.Id).AsNoTracking().ToList();
             var events = new List<Event>();
 
@@ -115,13 +93,13 @@ namespace MEVIO.Controllers
             CultureInfo culture = CultureInfo.GetCultureInfo("uk-UA");
             int monthNow = DateTime.Now.Month;
             string monthName = culture.DateTimeFormat.GetMonthName(monthNow);
-            //string monthNumber = culture.DateTimeFormat.GetMonthName(monthNow);
 
             ViewBag.monthNow = new { Name = monthName, Number = monthNow };
 
 
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> EditMeasure()
         {

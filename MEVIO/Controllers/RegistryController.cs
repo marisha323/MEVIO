@@ -18,18 +18,41 @@ namespace MEVIO.Controllers
 
         public RegistryController(MEVIOContext context)
         {
-
             this.context = context;
+            //StartInit();
+        }
+
+        protected void InitRoles()
+        {
+            UserRole roleadmin = new UserRole() { UserRoleName = "admin" };
+            UserRole roledirector = new UserRole() { UserRoleName = "director" };
+            UserRole rolemanager = new UserRole() { UserRoleName = "manager" };
+            UserRole roleuser = new UserRole() { UserRoleName = "user" };
+            context.UserRoles.Add(roleadmin);
+            context.UserRoles.Add(roledirector);
+            context.UserRoles.Add(rolemanager);
+            context.UserRoles.Add(roleuser);
+            context.SaveChanges();
+        }
+
+        protected void StartInit()
+        {
+            var init = new MyInitial(context);
+
+            InitRoles();
+            init.InitClients();
+            init.InitUsers();
+            init.InitEvents();
+            init.InitTasks();
+            init.InitMeasures();
+
+
+
+
         }
 
         public IActionResult Index()
         {
-            //Sasha Initializer
-            //var init = new MyInitial(context);
-
-            //init.InitClients();
-            //init.InitUsers();
-            //init.InitEvents();
 
             return View();
         }

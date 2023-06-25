@@ -1,0 +1,236 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var currentDate = DateTime.Today;
+    var currentYear = currentDate.Year;
+    var currentMonth = currentDate.Month;
+    var currentDay = currentDate.Day;
+
+    var currentDayOfWeek = (int)currentDate.DayOfWeek == 0 ? 7 : (int)currentDate.DayOfWeek;
+    var currentDateStart = currentDate.AddDays(1 - currentDayOfWeek);
+
+    var ViewBag = Model._ViewBag;
+}
+
+
+<div id="weekGrid" class="calendar-grid calGrid">
+    @{
+        var dateTime = new DateTime(2022, 1, 1);
+        var dayOfWeek = (int)dateTime.DayOfWeek;
+        var dateStart = dateTime.AddDays(1 - dayOfWeek);
+
+        dateTime = new DateTime(2025, 12, 31);
+        dayOfWeek = (int)dateTime.DayOfWeek;
+        var dateEnd = dateTime.AddDays(6 - dayOfWeek);
+
+    }
+
+    <input type="hidden" id="currentWeek" value="@currentDateStart.ToString("yyyy_M_d")"/>
+    
+    @for (var startDate = dateStart; startDate <= dateEnd; startDate = startDate.AddDays(7))
+    {
+        var endDate = startDate.AddDays(6);
+        var year = startDate.Year;
+        var month = startDate.Month;
+        var day = startDate.Day;
+
+        var display = "none";
+        if ( currentDate >= startDate && currentDate <= endDate)
+        {
+            display = "block";
+        }
+
+        <div class="week-switcher" id="@($"week_{year}_{month}_{day}")" style="display:@display">
+            <div class="calendar-header">
+                <div class="month-name pointer">
+                    @startDate.ToString("d MMMM yyyy", new System.Globalization.CultureInfo("uk-UA")) - @endDate.ToString("d MMMM yyyy", new System.Globalization.CultureInfo("uk-UA"))
+                </div>
+                <div class="flex">
+                    <div class="flex-center">
+                        <p class="pointer trans-left" onclick="prevWeekClick()">
+                            <img src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                        </p>
+                        <label class="label">Тиждень</label>
+                        <p class="pointer trans-right" onclick="nextWeekClick()">
+                            <img src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="week-flex">
+                <div class="times-grid">
+                    <div class="white-text">День</div>
+                    @for (int i = 8; i <= 23; i++)
+                    {
+                        <div class="white-text">@i:00</div>
+                    }
+                </div>
+
+
+                <div class="week-grid">
+                    <div id="week_head_@startDate.ToString("yyyy_M_d")" class="head-day left-radius" onclick="weekHeadDayClick(this)">Понеділок @startDate.ToString("d ", new System.Globalization.CultureInfo("uk-UA"))</div>
+                    <div id="week_head_@startDate.AddDays(1).ToString("yyyy_M_d")" class="head-day" onclick="weekHeadDayClick(this)">Вівторок @startDate.AddDays(1).ToString("d ", new System.Globalization.CultureInfo("uk-UA"))</div>
+                    <div id="week_head_@startDate.AddDays(2).ToString("yyyy_M_d")" class="head-day" onclick="weekHeadDayClick(this)">Середа @startDate.AddDays(2).ToString("d ", new System.Globalization.CultureInfo("uk-UA"))</div>
+                    <div id="week_head_@startDate.AddDays(3).ToString("yyyy_M_d")" class="head-day" onclick="weekHeadDayClick(this)">Четвер @startDate.AddDays(3).ToString("d ", new System.Globalization.CultureInfo("uk-UA"))</div>
+                    <div id="week_head_@startDate.AddDays(4).ToString("yyyy_M_d")" class="head-day" onclick="weekHeadDayClick(this)">П'ятниця @startDate.AddDays(4).ToString("d ", new System.Globalization.CultureInfo("uk-UA"))</div>
+                    <div id="week_head_@startDate.AddDays(5).ToString("yyyy_M_d")" class="head-day" onclick="weekHeadDayClick(this)">Субота @startDate.AddDays(5).ToString("d ", new System.Globalization.CultureInfo("uk-UA"))</div>
+                    <div id="week_head_@startDate.AddDays(6).ToString("yyyy_M_d")" class="head-day right-radius" onclick="weekHeadDayClick(this)">Неділя @endDate.ToString("d ", new System.Globalization.CultureInfo("uk-UA"))</div>
+
+                    @for (int i = 8; i < 24; i++)
+                    {
+                        @for (DateTime date = startDate; date <= endDate.AddHours(i); date = date.AddDays(1))
+                        {
+                            
+
+                            <div class="week-day weekdays" id="@date.ToString("yyyy_M_d")_@i">
+                                
+                                <div class="event-date-box">
+                                    @foreach (Event item in @ViewBag.Events)
+                                    {
+                                        var eventDate = date.AddHours(i);
+                                        @*if (eventDate.Day >= item.Begin.Day && eventDate.Day <= item.End.Day)
+                                        {
+                                            if (eventDate.Hour >= item.Begin.Hour && eventDate.Hour <= item.End.Hour)
+                                            {
+                                                <div class="event" onclick="ShowEventMenu(event)">
+                                                    <input type="hidden" value="@item.Id">
+                                                    <p>@item.EventName</p>
+                                                </div>
+                                            }
+
+                                        }
+                                        else*@ 
+
+                                        if (eventDate >= item.Begin && eventDate <= item.End)
+                                        {
+                                            <div class="event" onclick="ShowEventMenu(event)">
+                                                <input type="hidden" value="@item.Id">
+                                                <p>@item.EventName</p>
+                                            </div>
+                                        }
+                                    }
+                                    @foreach (MEVIO.Models.Task item in @ViewBag.Tasks)
+                                    {
+                                        var taskDate = date.AddHours(i);
+
+                                        @*if (taskDate.Day >= item.Begin.Day && taskDate.Day <= item.End.Day)
+                                        {
+                                            if (taskDate.Hour >= item.Begin.Hour && taskDate.Hour <= item.End.Hour)
+                                            {
+                                                <div class="event yellow" onclick="ShowTaskMenu(event)">
+                                                    <input type="hidden" value="@item.Id">
+                                                    <p>@item.TaskName</p>
+                                                </div>
+                                            }
+                                        }*@
+
+                                        if (taskDate >= item.Begin && taskDate <= item.End)
+                                        {
+                                            <div class="event yellow" onclick="ShowTaskMenu(event)">
+                                                <input type="hidden" value="@item.Id">
+                                                <p>@item.TaskName</p>
+                                            </div>
+                                        }
+
+                                    }
+                                    @foreach (Measure item in @ViewBag.Measures)
+                                    {
+                                        var measDate = date.AddHours(i);
+
+                                        @*if (measDate.Day >= item.Begin.Day && measDate.Day <= item.End.Day)
+                                        {
+                                            if (measDate.Hour >= item.Begin.Hour && measDate.Hour <= item.End.Hour)
+                                            {
+                                                <div class="event red" onclick="ShowMeasureMenu(event)">
+                                                    <input type="hidden" value="@item.Id">
+                                                    <p>@item.MeasureName</p>
+                                                </div>
+                                            }
+                                        }*@
+
+                                        if (measDate >= item.Begin && measDate <= item.End)
+                                        {
+                                            <div class="event red" onclick="ShowMeasureMenu(event)">
+                                                <input type="hidden" value="@item.Id">
+                                                <p>@item.MeasureName</p>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                                
+                                
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+
+        </div>
+
+
+    }
+    
+    
+</div>
+
+
+<script>
+    function nextWeekClick() {
+        const currentWeek = $(".week-switcher:visible");
+        const nextWeek = $(currentWeek).next(".week-switcher");
+
+        $(currentWeek).hide();
+        $(nextWeek).show();
+    }
+
+
+    function prevWeekClick(){
+        const currentWeek = $(".week-switcher:visible");
+        const prevWeek = $(currentWeek).prev(".week-switcher");
+
+        $(currentWeek).hide();
+        $(prevWeek).show();
+    }
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        const year = @currentYear;
+        const month = @currentMonth;
+        const day = @currentDay;
+
+        $(`#week_head_${year}_${month}_${day}`).addClass("current-week-head-day");
+
+        for(let i = 8; i <= 23; i++){
+            $(`#${year}_${month}_${day}_${i}`).addClass("current-week-day");
+        }
+    })
+</script>      
+
+
+<script>
+    function weekHeadDayClick(element){
+        const id = element.id;
+        const [,,year, month, day] = id.split('_');
+
+        if (year < 2022 || year > 2026) {
+            return;
+        }
+
+        DayButtonClick();
+
+        toggleSwitcherBlocks(year, month);
+
+        $(".day-switcher:visible").hide();
+
+        $(`#day_${year}_${month}_${day}`).show();
+
+        const selectedDay = document.getElementById("selectedDay");
+        selectedDay.value = `${year}_${month}_${day}`;
+    }
+</script>
+

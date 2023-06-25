@@ -1,725 +1,128 @@
 ﻿@using System.Globalization
 @using System.Text.Json
+@using Microsoft.AspNetCore.Components
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 @{
     ViewData["Title"] = "Calendar";
+    CultureInfo ukrainianCulture = new CultureInfo("uk-UA");
 }
 
 
 
 
 <link rel="stylesheet" href="/css/main.css">
-<link rel="stylesheet" href="/css/year.css" id="customStyle">
+<link rel="stylesheet" href="/css/month.css" id="customStyle">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="/css/MEVIOStvorPodii.css">
 <link type="text/css" rel="stylesheet" href="/css/measureInfoStyle.css" />
-<style>
-    .options-month,
-    .options-years {
-        display: block;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background-color: #52A7E4;
-        color: #111624;
-        padding: 0.5rem;
-        border-radius: 0.5rem;
-        font-size: 20px;
-        transition: 0.2s;
-    }
-
-    .redev {
-        background: #DB6D6D;
-    }
-
-    .hide {
-        display: none;
-    }
-
-    .logo-imgM {
-        width: 3rem;
-        border-radius: 50%;
-        height: 3rem;
-    }
-
-    .client-div {
-        cursor: pointer;
-    }
-
-    .conTime {
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding-left: 1.125rem;
-        padding-top: 0.313rem;
-        padding-bottom: 0.375rem;
-        width: 5.188rem;
-        height: 2.375rem;
-        left: 11.688rem;
-        top: 9.313rem;
-        background: #111624;
-        border: 1px solid #52A7E4;
-        border-radius: 0.625rem;
-        color: #52A7E4;
-        font-size: 17px;
-    }
-
-    .conTime2 {
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding-left: 1.125rem;
-        padding-top: 0.313rem;
-        padding-bottom: 0.375rem;
-        width: 5.188rem;
-        height: 2.375rem;
-        left: 21.313rem;
-        top: 9.313rem;
-        background: #111624;
-        border: 1px solid #52A7E4;
-        border-radius: 0.625rem;
-        color: #52A7E4;
-        font-size: 17px;
-    }
-
-    .Div-Mesto-Prov2 {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin: 1rem 0 0 1rem;
-    }
-
-    .p-Mesto-Prov2 {
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 13px;
-        line-height: 16px;
-        /* identical to box height */
 
 
-        color: #52A7E4;
-    }
-
-    .button-Mesto-Prov2 {
-        background: #111624;
-        border: 1px solid #52A7E4;
-        border-radius: 15px;
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 13px;
-        line-height: 16px;
-        /* identical to box height */
-        padding: 0.5rem;
-        width: 6rem;
-        margin-right: 31rem;
-        color: #52A7E4;
-        cursor: pointer;
-    }
-
-    .event {
-        color: black;
-    }
-
-    .red {
-        background-color: #FFC0CB;
-    }
-
-    .yellow {
-        background-color: yellow;
-    }
-</style>
-@*@model Event*@
-<form enctype="multipart/form-data" action="Calendar">
-    <input type="hidden" name="EventId" />
-
-    <div class="contener">
-        <div class="divStrockZap2">
 
 
-            <input name="EventName" class="input-StrockZap2" type="text" placeholder="Нова подiя">
-        </div>
 
-        <div class="classPodcherk">
-        </div>
+@Html.Partial("Components/Calendar/Partials/CalendarStyles")
 
-        <div class="div-NazCal">
-            <img class="imgAVA" src="/img/6a523b423e71ad8b708af55f0f6a0bd5.jpg">
-            <p class="nazCalendar">Календар:
 
-            <p id="creatorUsername" class="nazCalendar2"></p>
-        </div>
 
-        <div class="Data-Calendat-Time">
 
-            <input id="Date" name="Date" onchange="updateDates()" type="date" class="conData">
-            <input type="time" name="time1" id="time1" min="07:00" max="22:00" class="conTime superstyle element-time">
-            <div class="classPodcherk2"></div>
-            <input type="time" name="time2" id="time2" min="07:00" max="23:00" class="conTime2 superstyle element-time">
-            <input id="DateEnd" name="DateEnd" value="" type="date" class="conData2">
-            <input class="checkbox2" id="checkbox" onclick="myFunction()" type="checkbox">
-            <p class="checkbox">На весь день</p>
+@Html.Partial("Components/Calendar/EventModalWindow")
 
-        </div>
 
-        <div class="Div-Spov">
-            <input type="submit" value="Учасники" class="butonYchas">
-            <div class="Div-spov-Icon-Parad">
-                <img class="imgCol" src="/img/free-icon-ringing-bell-6816519.png">
-                <p class="classSpov">
-                    Сповіщати про рішення
-                </p>
-            </div>
-        </div>
-        <div class="Scrol-Time">
-            <img src="/img/6a523b423e71ad8b708af55f0f6a0bd5.jpg" class="imgAva2">
-            <div class="Raz-Line">
-                <div class="shedule">
-                    <div id="nameEvent" class="day">Субота, Лютий 25</div>
-
-                    <div class="time-span-row">
-                        @for (int i = 7; i < 23; i++)
-                        {
-                            <div>@i-00</div>
-                        }
-                    </div>
-
-                    <div class="time-span-row time-blocks">
-                        <div class="time-change-block"></div>
-                        @for (int i = 0; i < 16; i++)
-                        {
-                            <div class="time-block"></div>
-                        }
-                    </div>
-
-                    <div class="time-span-row">
-                        @for (int i = 0; i < 16; i++)
-                        {
-                            <div></div>
-                        }
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="Div-Mesto-Prov">
-            <p class="p-Mesto-Prov">Перейти до чату:</p>
-            <input type="submit" value="Перейти" asp-action="Chat" asp-controller="Home" class="button-Mesto-Prov">
-        </div>
-        <div class="Div-Mesto-Prov2">
-            <p class="p-Mesto-Prov2">Опис:</p>
-            <div class="div-Mesto-Prov2">
-                <textarea name="EventDescription" class="textarea-Mesto-Prov2"></textarea>
-            </div>
-            <input type="submit" value="Редагувати" class="button-Mesto-Prov2">
-        </div>
-        <div class="div-Button-ST-VD">
-            <input type="submit" value="Редагувати" class="button-Stvorutu">
-            <input onclick="closeEvent()" type="button" value="Закрити" class="button-Vidminutu">
-        </div>
-    </div>
-</form>
 
 <div class="calendar-container">
-    @*measure right menu*@
-    <form method="post" action="@Url.Action("EditMeasure")">
-        <div id="editMeasureInfo" class="measure-info-block">
-            <img onclick="closeEvent()" class="closeMenuBtn" src="https://cdn.discordapp.com/attachments/684475244664193242/1074858765746180208/free-icon-cross-mark-4225670.png">
-            <div class="container">
-                <div id="MeasureName" name="MeasureNameM" class="task-nameM">Захід №1</div>
-                <input type="hidden" name="MeasureNameI" />
-                <div class="task-descM">
-                    <div class="task-right">
-                        <div class="task-headM">
-                            <p id="MeasureBegin">
-                                <b>Початок:</b> 02/02/2023 12:00
-                            </p>
-
-                            <p id="MeasureEnd">
-                                <b>Кінець:</b> 02/02/2023 15:00
-                            </p>
-
-                        </div>
-                        <div class="task-body">
-
-                            <div>
-                                <b class="desc">Постановник:</b>
-                            </div>
-                            <div class="logo-div">
-                                <img id="MeasureDirImg" class="logo-imgM" src="data:image/jpeg;base64,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" alt="">
-                                <span id="MeasureDirName">W1shAgony</span>
-                            </div>
-
-                            <hr class="right-hr">
-
-                            <div>
-                                <b class="desc">Місце проведення:</b>
-                                <p>
-                                    Місце №1
-
-                                    <select id="Venue" class="place-select" required>
-                                        <option>Місце №1</option>
-                                        <option>Місце №2</option>
-                                        <option>Місце №3</option>
-                                        <option>Місце №4</option>
-                                    </select>
-                                </p>
-                            </div>
-
-                            <hr class="right-hr">
-
-                            <div>
-                                <b class="desc">Всього місць:</b>
-                                <p id="MaxSpaces">30</p>
-                            </div>
-
-                            <hr class="right-hr">
-
-                            <div class="clients-div">
-                                <div>
-                                    <b class="desc">Запрошені клієнти:</b>
-                                    <div class="added-clients">
-                                    </div>
-                                </div>
-
-                                <div class="add-client-div">
-                                    <p class="add-client-button">Add Client</p>
-
-                                    <div id="MeasureClients" class="clients-list hide">
-                                        <p class="client-div">Клієнт №1</p>
-                                        <p class="client-div">Клієнт №2</p>
-                                        <p class="client-div">Клієнт №3</p>
-                                        <p class="client-div">Клієнт №4</p>
-                                        <p class="client-div">Клієнт №5</p>
-                                        <p class="client-div">Клієнт №6</p>
-                                        <p class="client-div">Клієнт №7</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            @*bruh*@
-            <div class="box-shadow">
-                <button type="submit" onclick="submitform()" class="footer-button save">Зберегти</button>
-                <button type="button" class="footer-button cancel">Скасувати</button>
-            </div>
-        </div>
-    </form>
-    <script>
-        function submitform() {
-            //name
-            const measureName = document.querySelector('#MeasureName.task-nameM');
-            const measureNameInput = document.querySelector('input[name="MeasureNameI"]');
-            measureNameInput.value = measureName.innerText;
-
-            //begin date
-            const measureBegin = document.querySelector('#MeasureBegin');
-            //end date
-            const measureEnd = document.querySelector('#MeasureEnd');
-
-            const measureDirImg = document.querySelector('#MeasureDirImg.logo-imgM');
-            const measureDirName = document.querySelector('#MeasureDirName');
-            const venue = document.querySelector('#Venue.place-select');
-            const maxSpaces = document.querySelector('#MaxSpaces');
-            const measureClients = document.querySelector('#MeasureClients.clients-list');
-            const addedClients = document.querySelector('.added-clients');
-
-            //here we fill the hidden input with added clients:
-
-        }
-
-        const button = document.querySelector(".add-client-button");
-
-        button.addEventListener("click", function (e) {
-            $(".clients-list").toggleClass("hide");
-        });
 
 
-        $(".client-div").on("click", function (e) {
-
-            const parrent = document.querySelector(".added-clients");
-
-            //console.log(parrent);
-            const p = document.createElement("p");
-
-            p.innerText = e.target.innerText;
-
-            parrent.appendChild(p);
-        });
-
-    </script>
-    @*right menu*@
-    <div id="rightMenu" class="right-task-menu ">
-        <img onclick="closeMenu()" class="closeMenuBtn" src="https://cdn.discordapp.com/attachments/684475244664193242/1074858765746180208/free-icon-cross-mark-4225670.png">
-        <div class="container">
-            <div id="rightmenuName" class="task-name">Зробити магазин</div>
-            <div class="task-desc">
-                <div class="task-left">
-                    <div class="task-head">
-                        Задача
-                    </div>
-                    <div class="task-body">
-                        <div class="textarea">
-                            <p id="rightDescription" cols="30" rows="10" class="task-input">Опис ...</p>
-                        </div>
-                        <div class="checklist">
-                            <p>+ Чеклист</p>
-                        </div>
-                        <div class="task-flex">
-                            <div class="task-button">Почати виконання</div>
-                            <div class="task-button">Завершити</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="task-right">
-                    <div class="task-head">
-                        <b>Чекає на виконання</b> з <span class="date-placeholder">02/02/2023</span>
-                    </div>
-                    <div class="task-body">
-                        <div>
-                            <span><b>Дедлайн:</b></span>
-                            <span id="deadLine">Немає</span>
-                        </div>
-                        <hr class="right-hr">
-
-                        <div>
-                            <span><b>Поставлена:</b></span>
-                            <span id="rightmenuDateStart">02/02/2023</span>
-                        </div>
-                        <hr class="right-hr">
-
-                        <div id="Director">
-                            <b>Постановник</b>
-                            <div class="logo-div">
-                                <img class="logo-imgM" src="data:image/jpeg;base64,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" alt="">
-                                <span>W1shAgony</span>
-                            </div>
-                        </div>
-
-
-                        @*<div class="flex-between">
-                        <div><b>Відповідальний</b></div>
-                        <div class="change pointer"><b>Змінити</b></div>
-                        </div>*@
-                        <div id="Responsible">
-                            <div><b>Відповідальний</b></div>
-                            <div class="logo-div">
-                                <img class="logo-imgM" src="data:image/jpeg;base64,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" alt="">
-                                <span>W1shAgony</span>
-                            </div>
-                        </div>
-
-                        @*<div class="flex-between">
-                        <div><b>Співвиконавці</b></div>
-                        <div class="change pointer"><b>Додати</b></div>
-                        </div>*@
-                        <div id="Coperformers">
-                            <div><b>Співвиконавці</b></div>
-                            <div class="logo-div">
-                                <img class="logo-imgM" src="data:image/jpeg;base64,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" alt="">
-                                <span>W1shAgony</span>
-                            </div>
-                        </div>
-                        @* <div class="flex-between">
-                        <div><b>Спостерігачі</b></div>
-                        <div class="change pointer"><b>Додати</b></div>
-                        </div>*@
-                        <div id="Observers">
-                            <div><b>Спостерігачі</b></div>
-                            <div class="logo-div">
-                                <img class="logo-imgM" src="data:image/jpeg;base64,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" alt="">
-                                <span>W1shAgony</span>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-
-
-        <div class="box-shadow">
-            <div class="footer-button save">Зберегти</div>
-            <div class="footer-button cancel">Скасувати</div>
-        </div>
-
-
-    </div>
-
-    <div class="main-header">
-        <div class="flex">
-            <div class="calendar pointer">
-                Календар
-            </div>
-            <div class="button header-button round pointer">
-                Створити
-            </div>
-        </div>
-
-        <div class="flex round calendar-buttons">
-            <div id="daybtn" class="round pointer button calendar-button" onclick="DayButtonClick()">День</div>
-            <div id="weekbtn" class="round pointer button calendar-button" onclick="WeekButtonClick()">Тиждень</div>
-            <div id="monthbtn" class="round pointer button calendar-button" onclick="MonthButtonClick()">Місяць</div>
-            <div id="yearbtn" class="round pointer button calendar-button active" onclick="YearButtonClick()">Рік</div>
-        </div>
-
-        <div class="flex">
-            <div class="round pointer button header-button">
-                Запросити
-            </div>
-            <div class="round pointer button header-button">
-                Синхронізація календаря
-            </div>
-        </div>
-
-    </div>
-
-    <div id="yearGrid" class="calendar-grid calGrid activeGrid">
-        @{
-            CultureInfo ukrainianCulture = new CultureInfo("uk-UA");
-            int monthcount = 1;
-        }
-        @foreach (var month in ViewBag.months)
-        {
-            <div class="month-div @month.Season">
-                <div id="@($"month_2023_{monthcount}")" class="month-name option-item-month">
-                    @ukrainianCulture.DateTimeFormat.GetMonthName(monthcount)
-                </div>
-
-                <div class="week-div">
-                    <div class="week-header">
-                        @foreach (var day in ViewBag.weekDays)
-                        {
-                            <div class="week-day">@day</div>
-                        }
-                    </div>
-
-                    <div class="month-days">
-                        @for (int i = 1; i <= 35; i++)
-                        {
-                            <div class="month-day">@i</div>
-                        }
-                    </div>
-                </div>
-            </div>
-            monthcount++;
-        }
-
-    </div>
-
-    <div id="monthGrid" class="calendar-grid calGrid">
-        @for (int year = 2020; year <= 2026; year++)
-        {
-            <div class="year-switcher" id="@($"year_{year}")" @(year == 2020 ? "style='display:block'" : "style='display:none'")>
-                @for (int month = 1; month <= 12; month++)
-                {
-                    var monthName = @ukrainianCulture.DateTimeFormat.GetMonthName(month);
-
-                    <div id="@($"month_{year}_{month}")" class="month-switcher @monthName">
-                        <div class="calendar-header">
-                            <div class="month-name pointer">@monthName @year</div>
-                            <div class="select-month">
-                                <label class="label pointer">Місяць</label>
-                                <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
-                                <div class="options-month hide">
-                                    @for (int m = 1; m <= 12; m++)
-                                    {
-                                        //here
-                                        <div id="@($"month_{year}_{m}")" class="option-item option-item-month">
-                                            @ukrainianCulture.DateTimeFormat.GetMonthName(m)
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                            <div class="select-years">
-                                <label class="label pointer">Рік</label>
-                                <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
-                                <div class="options-years hide">
-                                    @for (int y = 2020; y <= 2025; y++)
-                                    {
-                                        <div class="option-item" onclick="toggleVisibility('@($"month_{y}_{month}")');">@y</div>
-                                    }
-                                </div>
-                            </div>
-                            <input type="hidden" name="yearValue" id="myInput">
-                        </div>
-
-                        <div>
-                            <div class="grid">
-                                @for (int i = 0; i < 7; i++)
-                                {
-                                    <div class="week-day">@ViewBag.weekDays[i]</div>
-                                }
-                            </div>
-                            <div class="month-days grid">
-                                @{
-                                    DateTimeOffset firstDayOfMonth = new DateTimeOffset(year, month, 1, 0, 0, 0, TimeSpan.Zero);
-                                    int daysInMonth = DateTime.DaysInMonth(year, month);
-                                    int daysInLastMonth = DateTime.DaysInMonth(year, month == 1 ? 12 : month - 1);
-                                    int firstDayOfWeek = (int)firstDayOfMonth.DayOfWeek;
-                                    int lastDayOfWeek = (int)new DateTimeOffset(year, month, daysInMonth, 0, 0, 0, TimeSpan.Zero).DayOfWeek;
-                                    int rows = (firstDayOfWeek + daysInMonth + (6 - lastDayOfWeek)) / 7;
-                                    int day = 2 - firstDayOfWeek;
-                                }
-                                @for (int row = 0; row < rows; row++)
-                                {
-                                    @for (int col = 0; col < 7; col++)
-                                    {
-                                        if (day >= 1 && day <= daysInMonth)
-                                        {
-                                            DateTime currentDate2 = new DateTime(year, month, day);
-                                            <div class="month-day" id="@currentDate2.ToString("yyyy-MM-dd")" onclick="handleClick(this)">
-                                                @day
-                                                @foreach (var item in @ViewBag.Events)
-                                                {
-                                                    if (item.Begin.ToString("yyyy-MM-dd") == currentDate2.ToString("yyyy-MM-dd"))
-                                                    {
-                                                        <div class="event" onclick="ShowEventMenu(event)">
-                                                            <input type="hidden" value="@item.Id">
-                                                            <p>@item.EventName</p>
-                                                        </div>
-                                                    }
-                                                }
-                                                @foreach (var item in @ViewBag.Tasks)
-                                                {
-                                                    if (item.Begin.ToString("yyyy-MM-dd") == currentDate2.ToString("yyyy-MM-dd"))
-                                                    {
-                                                        <div class="event yellow" onclick="ShowTaskMenu(event)">
-                                                            <input type="hidden" value="@item.Id">
-                                                            <p>@item.TaskName</p>
-                                                        </div>
-                                                    }
-                                                }
-                                                @foreach (var item in @ViewBag.Measures)
-                                                {
-                                                    if (item.Begin.ToString("yyyy-MM-dd") == currentDate2.ToString("yyyy-MM-dd"))
-                                                    {
-                                                        <div class="event red" onclick="ShowMeasureMenu(event)">
-                                                            <input type="hidden" value="@item.Id">
-                                                            <p>@item.MeasureName</p>
-                                                        </div>
-                                                    }
-                                                }
-                                            </div>
-                                        }
-                                        else if (day < 1)
-                                        {
-                                            int prevMonthDay = daysInLastMonth + day;
-                                            DateTime prevMonthDate = new DateTime(month == 1 ? year - 1 : year, month == 1 ? 12 : month - 1, prevMonthDay);
-                                            <div class="month-day prev-month" id="@prevMonthDate.ToString("yyyy-MM-dd")" @*onclick="handleClick(this)"*@>
-                                                @prevMonthDate.Day
-                                            </div>
-                                        }
-                                        else
-                                        {
-
-                                            int nextMonthDay = day - daysInMonth;
-                                            DateTime nextMonthDate = new DateTime(month == 12 ? year + 1 : year, month == 12 ? 1 : month + 1, nextMonthDay);
-                                            <div class="month-day next-month" id="@nextMonthDate.ToString("yyyy-MM-dd")" @*onclick="handleClick(this)"*@>
-                                                @nextMonthDate.Day
-                                            </div>
-                                        }
-                                        day++;
-                                    }
-                                }
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
-        }
-
-    </div>
+    @Html.Partial("Components/Calendar/MeasureModalWindow")
 
 
 
+    @Html.Partial("Components/Calendar/TaskRightMenuComponent")
+    
 
-    @*this peace of code gets the value of the year when picked*@
+
+    @Html.Partial("Components/Calendar/Partials/CalendarHeader")
+    
+
+
+    @Html.Partial("Components/Calendar/YearGridComponent",
+    new{
+        culture = ukrainianCulture ,
+        monthes = ViewBag.months
+    })
+
+
+
+    @Html.Partial("Components/Calendar/MonthGridComponent",
+    new{
+    culture = ukrainianCulture ,
+    _ViewBag = ViewBag
+    })
+
+    
+
+    @Html.Partial("Components/Calendar/WeekGridComponent",
+    new{
+    culture = ukrainianCulture ,
+    _ViewBag = ViewBag
+    })
+
+
+
+    @Html.Partial("Components/Calendar/DayGridComponent",
+    new{
+    culture = ukrainianCulture ,
+    _ViewBag = ViewBag
+    })
+
+
+
     <script src="/js/jquery-3.6.1.min.js"></script>
-    @*<script>
-    $(".option-item-month").on("click", function (event) {
-    var month = $(event.target).text();
-    console.log(month);
-    $.ajax({
-    url: '/Calendar/Action',
-    type: 'POST',
-    data: { month: month },
-    success: function (response) {
-    $('#my-container').html(response);
-    var myValue = response.MyValue;
-    // Do something with myValue
-    },
-    error: function (jqXHR, textStatus, errorThrown) {
-    console.log(textStatus, errorThrown);
-    }
-    });
-    });
-    </script>*@
+
+
     <script>
-        const monthBtn = document.getElementById("monthbtn");
 
-        // Add event listeners to each button
-        //dayBtn.addEventListener("click", DayButtonClick);
-        //weekBtn.addEventListener("click", WeekButtonClick);
-        monthBtn.addEventListener("click", CurrentMonth);
-        //yearBtn.addEventListener("click", CurrentMonth);
-
-        function CurrentMonth() {
-            var currentMonth = @ViewBag.monthNow.Number;
-            var monthSwitchers = document.querySelectorAll('.month-switcher');
-
-            for (var i = 0; i < monthSwitchers.length; i++) {
-                var monthSwitcher = monthSwitchers[i];
-                var monthId = monthSwitcher.id;
-                var monthNumber = parseInt(monthId.split('_')[2]);
-
-                //console.log(monthNumber);
-                //console.log(currentMonth);
-                if (monthNumber !== currentMonth) {
-                    monthSwitcher.style.display = 'none';
-                }
-                else {
-                    monthSwitcher.style.display = 'block';
-                }
-            }
-
-            var yearSwitchers = document.querySelectorAll('.year-switcher');
-            for (var i = 0; i < yearSwitchers.length; i++) {
-                var yearSwitcher = yearSwitchers[i];
-                var year = parseInt(yearSwitcher.id.split('_')[1]);
-
-                if (year === new Date().getFullYear()) {
-                    yearSwitcher.style.display = 'block';
-                }
-                else {
-                    yearSwitcher.style.display = 'none';
-                }
-            }
-        }
-    </script>
-    <script>
         function toggleVisibility(elementId) {
             let element = document.getElementById(elementId);
-            var yearAndMonth = elementId.split('_');
-            var year = yearAndMonth[1];
-            var month = yearAndMonth[2];
+            var [,year,month] = elementId.split('_');
 
-            var monthSwitchers = document.querySelectorAll('.month-switcher');
-            let yearSwitchers = document.querySelectorAll('.year-switcher');
+            
+            toggleSwitcherBlocks(year,month);
+
+            
+
+            if (element.style.display === "none") {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+
+            $(".day-switcher:visible").hide();
+
+            const selectedDay = document.getElementById("selectedDay");
+
+            if (selectedDay) {
+
+                const [,,day] = selectedDay.value.split('_');
+
+                const dayDiv = document.getElementById(`day_${year}_${month}_${day}`);
+
+                $(dayDiv).show();
+
+                selectedDay.value = `${year}_${month}_${day}`;
+            }
+        }
+
+
+        function toggleSwitcherBlocks(year, month) {
+
+            const yearSwitchers = document.querySelectorAll('.year-switcher');
 
             yearSwitchers.forEach(function (yearSwitcher) {
-                let id = yearSwitcher.id;
-                var yearIn = parseInt(id.split('_')[1]);
+                const id = yearSwitcher.id;
+                const yearIn = parseInt(id.split('_')[1]);
 
                 if (year == yearIn) {
                     yearSwitcher.style.display = "block";
@@ -728,11 +131,23 @@
                 }
             });
 
+
+
+            //$(".year-switcher:visible").hide();
+            //$(`#year_${year}`).show();
+
+
+            //$(".month-switcher:visible").hide();
+            //$(`#mont_${year}_${month}`).show();
+
+
+
+            const monthSwitchers = document.querySelectorAll('.month-switcher');
+
             monthSwitchers.forEach(function (monthSwitcher) {
-                let id = monthSwitcher.id;
-                var yearAndMonthIn = id.split('_');
-                var yearIn = yearAndMonthIn[1];
-                var monthIn = yearAndMonthIn[2];
+
+                const id = monthSwitcher.id;
+                const [,yearIn,monthIn] = id.split('_');
 
                 if (year == yearIn && month == monthIn) {
                     monthSwitcher.style.display = "block";
@@ -740,12 +155,6 @@
                     monthSwitcher.style.display = "none";
                 }
             });
-
-            if (element.style.display === "none") {
-                element.style.display = "block";
-            } else {
-                element.style.display = "none";
-            }
         }
 
         window.onload = function () {
@@ -831,874 +240,30 @@
             });
         });
     </script>
+
+
+
     
+    @Html.Partial("Components/Calendar/Scripts/DataTransferToModalWindows",new{_ViewBag = ViewBag})
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @*///////////////////////////////////////////////*@
-    @{
-        DateTime currentDate = DateTime.Now;
-        DateTime startDate = currentDate.AddDays(-(int)currentDate.DayOfWeek + 1);
-        DateTime endDate = startDate.AddDays(6);
-
-    }
-
-    <div id="weekGrid" class="calendar-grid calGrid">
-        <div class="calendar-header">
-            <div class="month-name pointer">
-                @startDate.ToString("d MMMM yyyy", new System.Globalization.CultureInfo("uk-UA")) - @endDate.ToString("d MMMM yyyy", new System.Globalization.CultureInfo("uk-UA"))
-            </div>
-            <div class="flex">
-                <div class="flex-center">
-                    <a class="pointer trans-left" href="@Url.Action("Index", "Calendar", new { date = startDate.AddDays(-7).ToString("yyyy-MM-dd") })">
-                        <img src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
-                    </a>
-                    <label class="label">Тиждень</label>
-                    <a class="pointer trans-right" href="@Url.Action("Index", "Calendar", new { date = startDate.AddDays(7).ToString("yyyy-MM-dd") })">
-                        <img src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
-                    </a>
-                </div>
-
-                <div class="flex-center select-month">
-                    <label class="label pointer">Місяць</label>
-                    <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
-                    <div class="options-month hide">
-                        @foreach (var item in ViewBag.monthNames)
-                        {
-                            <div class="option-item">@item</div>
-                        }
-                    </div>
-                </div>
-
-                <div class="flex-center select-years">
-                    <label class="label pointer">Рік</label>
-                    <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
-                    <div class="options-years hide">
-                        @for (int i = 2020; i < 2026; i++)
-                        {
-                            <div class="option-item">@i</div>
-                        }
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="week-flex">
-            <div class="times-grid">
-                <div class="white-text">День</div>
-                @for (int i = 8; i <= 23; i++)
-                {
-                    <div class="white-text">@i:00</div>
-                }
-            </div>
-
-
-            <div class="week-grid">
-                <div class="head-day left-radius">Понеділок @startDate.ToString("d ", new System.Globalization.CultureInfo("uk-UA"))</div>
-                <div class="head-day">Вівторок @startDate.AddDays(1).ToString("d ", new System.Globalization.CultureInfo("uk-UA"))</div>
-                <div class="head-day">Середа @startDate.AddDays(2).ToString("d ", new System.Globalization.CultureInfo("uk-UA"))</div>
-                <div class="head-day">Четвер @startDate.AddDays(3).ToString("d ", new System.Globalization.CultureInfo("uk-UA"))</div>
-                <div class="head-day">П'ятниця @startDate.AddDays(4).ToString("d ", new System.Globalization.CultureInfo("uk-UA"))</div>
-                <div class="head-day">Субота @startDate.AddDays(5).ToString("d ", new System.Globalization.CultureInfo("uk-UA"))</div>
-                <div class="head-day right-radius">Неділя @endDate.ToString("d ", new System.Globalization.CultureInfo("uk-UA"))</div>
-
-                @for (int i = 8; i < 24; i++)
-                {
-                    @for (DateTime date = startDate; date <= endDate.AddHours(i); date = date.AddDays(1))
-                    {
-                      
-                        <div class="week-day weekdays" id="@date.ToString("yyyy-MM-dd")-@i">
-                            @foreach (var item in @ViewBag.Events)
-                            {
-                                if (item.Begin.ToString("yyyy-MM-dd-HH") == date.ToString("yyyy-MM-dd-HH"))
-                                {
-                                    <div class="event redev">
-                                        <input type="hidden" value="@item.Id">
-                                        <p>@item.EventName</p>
-                                    </div>
-                                }
-                            }
-                            @foreach (var item in @ViewBag.Tasks)
-                            {
-                                if (item.Begin.ToString("yyyy-MM-dd-HH") == date.ToString("yyyy-MM-dd-HH"))
-                                {
-                                    <div class="event yellow">
-                                        <input type="hidden" value="@item.Id">
-                                        <p>@item.TaskName</p>
-                                    </div>
-                                }
-                            }
-                            @foreach (var item in @ViewBag.Measures)
-                            {
-                                if (item.Begin.ToString("yyyy-MM-dd-HH") == date.ToString("yyyy-MM-dd-HH"))
-                                {
-                                    <div class="event red">
-                                        <input type="hidden" value="@item.Id">
-                                        <p>@item.MeasureName</p>
-                                    </div>
-                                }
-                            }
-                        </div>
-                    }
-                }
-            </div>
-        </div>
-    </div>
-    @{
-        // Serialize the events as a JSON object
-        var usersJson = JsonSerializer.Serialize(ViewBag.users);
-        //events
-
-        var eventsJson = JsonSerializer.Serialize(ViewBag.Events);
-        //tasks
-        var tasksJson = JsonSerializer.Serialize(ViewBag.Tasks);
-        var tasksusersJson = JsonSerializer.Serialize(ViewBag.TasksUsers);
-        var responsibleJson = JsonSerializer.Serialize(ViewBag.Responsible);
-        var observersJson = JsonSerializer.Serialize(ViewBag.Observers);
-        //measures
-        var measuresJson = JsonSerializer.Serialize(ViewBag.Measures);
-        var placeformeasuresJson = JsonSerializer.Serialize(ViewBag.PlaceForMeasures);
-        var measureclientsJson = JsonSerializer.Serialize(ViewBag.MeasureClients);
-        var clientsJson = JsonSerializer.Serialize(ViewBag.Clients);
-        var user = JsonSerializer.Serialize(ViewBag.User);
-        
-    }
-
-
-
-
-
-    <script>
-        //Measure stuff
-        const measureName = document.querySelector('#MeasureName.task-nameM');
-        const measureBegin = document.querySelector('#MeasureBegin');
-        const measureEnd = document.querySelector('#MeasureEnd');
-        const measureDirImg = document.querySelector('#MeasureDirImg.logo-imgM');
-        const measureDirName = document.querySelector('#MeasureDirName');
-        const venue = document.querySelector('#Venue.place-select');
-        const maxSpaces = document.querySelector('#MaxSpaces');
-        const measureClients = document.querySelector('#MeasureClients.clients-list');
-        const addedClients = document.querySelector('.added-clients');
-        //Task stuff
-        const rightmenuName = document.getElementById('rightmenuName');
-        const rightDescription = document.getElementById('rightDescription');
-        const dateSpanEnd = document.querySelector('.date-placeholder');
-        const span = document.querySelector('div span:last-child');
-        const dateSpanStart = document.querySelector('#rightmenuDateStart');
-        const deadLine = document.querySelector('#deadLine');
-        const Director = document.querySelector("#Director");
-        const Responsible = document.querySelector('#Responsible');
-        const Observers = document.querySelector('#Observers');
-        const Coperformers = document.querySelector("#Coperformers");
-
-        //Event Stuff
-        let eventId = document.getElementsByName("EventId");
-        let eventName = document.getElementsByName("EventName");
-        let showStartDate = document.getElementById("Date");
-        let showEndDate = document.getElementById("DateEnd");
-        let beginDate = document.getElementById("time1");
-        let endDate = document.getElementById("time2");
-        let eventDescription = document.getElementsByName("EventDescription");
-        let creatorUsername = document.getElementById("creatorUsername");
-        let dayEvent = document.getElementById("nameEvent");
-
-
-
-
-
-
-
-
-
-
-        function ShowTaskMenu(element) {
-            console.log(element);
-            element.stopPropagation();
-
-            const tasksData = JSON.parse('@Html.Raw(tasksJson)');
-            const tasksusers = JSON.parse('@Html.Raw(tasksusersJson)');
-            const responsible = JSON.parse('@Html.Raw(responsibleJson)');
-            const observers = JSON.parse('@Html.Raw(observersJson)');
-
-
-            var clickedDiv = event.target.closest(".event");
-            var hiddenInput = clickedDiv.querySelector("input[type=hidden]");
-            var selectedTaskId = hiddenInput.value;
-            //alert(hiddenInputValue);
-            //Open Event
-            rightMenu.classList.add("trans");
-
-            tasksData.forEach(item => {
-                if (item.Id == selectedTaskId) {
-                    rightmenuName.innerHTML = item.TaskName;
-                    rightDescription.innerHTML = item.Description;
-
-                    let date = new Date(item.End);
-                    const options = { timeZone: 'UTC' };
-                    let dateString = date.toLocaleString('en-US', options);
-                    dateSpanEnd.textContent = `${dateString} UTC`;
-                    deadLine.textContent = `${dateString} UTC`;
-
-                    date = new Date(item.Begin);
-                    dateString = date.toLocaleString('en-US', options);
-                    dateSpanStart.textContent = `${dateString} UTC`;
-
-                    //removing the old views
-                    let removeElement = Director.querySelector(".logo-div");
-                    Director.removeChild(removeElement);
-                    //let br = document.createElement("br");
-                    //Director.appendChild(br);
-                    //adding a view to see Users
-                    let divElement = document.createElement("div");
-                    divElement.classList.add("logo-div");
-
-                    let imgElement = document.createElement("img");
-                    imgElement.classList.add("logo-imgM");
-
-                    imgElement.setAttribute("alt", "");
-
-                    let spanNameElement = document.createElement("span");
-                    //loop to find the Director by his Id
-                    tasksusers.forEach(tasks => {
-                        if (tasks.TaskId == item.Id) {
-                            usersData.forEach(user => {
-                                if (user.Id == tasks.UserId && tasks.IsCreator) {
-                                    imgElement.setAttribute("src", `/Imeg1/${user.UserName}/${user.PathImgAVA}`);
-                                    spanNameElement.textContent = `${user.UserName}`;
-                                }
-                            });
-                        }
-                    });
-                    // Add the child elements to the Director element
-                    divElement.appendChild(imgElement);
-                    divElement.appendChild(spanNameElement);
-                    Director.appendChild(divElement);
-                    //clear resposible
-                    removeElement = Responsible.querySelector(".logo-div");
-                    Responsible.removeChild(removeElement);
-
-                    //looping and filling up the Responsible people
-                    responsible.forEach(res => {
-                        //console.log(res);
-                        if (res.TaskId == item.Id) {
-                            usersData.forEach(user => {
-                                if (res.UserId == user.Id) {
-                                    //renewing elements and saving them
-                                    divElement = document.createElement("div");
-                                    divElement.classList.add("logo-div");
-
-                                    imgElement = document.createElement("img");
-                                    imgElement.classList.add("logo-imgM");
-                                    imgElement.setAttribute("alt", "");
-
-                                    imgElement.setAttribute("src", `/Imeg1/${user.UserName}/${user.PathImgAVA}`);
-                                    spanNameElement = document.createElement("span");
-                                    spanNameElement.textContent = `${user.UserName}`;
-
-                                    divElement.appendChild(imgElement);
-                                    divElement.appendChild(spanNameElement);
-                                    Responsible.appendChild(divElement);
-
-                                }
-                            });
-                        }
-                    });
-                    //clear observers
-                    removeElement = Observers.querySelector(".logo-div");
-                    Observers.removeChild(removeElement);
-
-                    //looping and filling up the Responsible people
-                    observers.forEach(observe => {
-                        //console.log(observe);
-                        if (observe.TaskId == item.Id) {
-                            usersData.forEach(user => {
-                                if (observe.UserId == user.Id) {
-                                    //renewing elements and saving them
-                                    divElement = document.createElement("div");
-                                    divElement.classList.add("logo-div");
-
-                                    imgElement = document.createElement("img");
-                                    imgElement.classList.add("logo-imgM");
-                                    imgElement.setAttribute("alt", "");
-
-                                    imgElement.setAttribute("src", `/Imeg1/${user.UserName}/${user.PathImgAVA}`);
-                                    spanNameElement = document.createElement("span");
-                                    spanNameElement.textContent = `${user.UserName}`;
-
-                                    divElement.appendChild(imgElement);
-                                    divElement.appendChild(spanNameElement);
-                                    Observers.appendChild(divElement);
-
-                                }
-                            });
-                        }
-                    });
-
-                    //clear Coperformers
-                    removeElement = Coperformers.querySelector(".logo-div");
-                    Coperformers.removeChild(removeElement);
-
-                    //looping and filling up the Responsible people
-                    tasksusers.forEach(usertask => {
-                        //console.log(usertask);
-                        if (usertask.TaskId == item.Id) {
-                            usersData.forEach(user => {
-                                if (usertask.UserId == user.Id && !user.IsCreator) {
-                                    //renewing elements and saving them
-                                    divElement = document.createElement("div");
-                                    divElement.classList.add("logo-div");
-
-                                    imgElement = document.createElement("img");
-                                    imgElement.classList.add("logo-imgM");
-                                    imgElement.setAttribute("alt", "");
-
-                                    imgElement.setAttribute("src", `/Imeg1/${user.UserName}/${user.PathImgAVA}`);
-                                    spanNameElement = document.createElement("span");
-                                    spanNameElement.textContent = `${user.UserName}`;
-
-                                    divElement.appendChild(imgElement);
-                                    divElement.appendChild(spanNameElement);
-                                    Coperformers.appendChild(divElement);
-                                }
-                            });
-                        }
-                    });
-
-                }
-            });
-
-        }
-
-
-        function ShowMeasureMenu(element) {
-            element.stopPropagation();
-
-            const measuresData = JSON.parse('@Html.Raw(measuresJson)');
-            const placemeasuresData = JSON.parse('@Html.Raw(placeformeasuresJson)');
-            const measureclientsData = JSON.parse('@Html.Raw(measureclientsJson)');
-            const clientsData = JSON.parse('@Html.Raw(clientsJson)');
-            const usersData = JSON.parse('@Html.Raw(usersJson)');
-
-            var clickedDiv = event.target.closest(".event");
-            var hiddenInput = clickedDiv.querySelector("input[type=hidden]");
-            var selectedMeasureId = hiddenInput.value;
-            //measure view filling
-            measuresData.forEach(item => {
-                if (item.Id == selectedMeasureId) {
-                    measureName.textContent = item.MeasureName;
-                    measureBegin.innerHTML = `<b>Початок:</b> ${item.Begin}`;
-                    measureEnd.innerHTML = `<b>Кінець:</b> ${item.End}`;
-                    //dir filling
-                    usersData.forEach(user => {
-                        if (item.UserId == user.Id) {
-                            measureDirImg.src = `/Imeg1/${user.UserName}/${user.Email}/${user.PathImgAVA}`;
-                            measureDirName.textContent = user.UserName;
-                        }
-                    });
-                    //end of user filling
-
-                    //venue filling
-                    // Clear existing options
-                    venue.innerHTML = '';
-                    placemeasuresData.forEach(place => {
-                        if (place.IsFree) {
-                            const newOption = document.createElement('option');
-                            newOption.textContent = place.PlaceForMeasureName;
-                            newOption.setAttribute('data-free-spaces', place.FreePlaces);
-                            if (place.Id == item.PlaceForMeasureId) {
-                                newOption.selected = true;
-                            }
-                            maxSpaces.textContent = place.Capacity;
-                            venue.appendChild(newOption);
-                        } else if (place.Id == item.PlaceForMeasureId) {
-                            const newOption = document.createElement('option');
-                            newOption.textContent = place.PlaceForMeasureName;
-                            newOption.setAttribute('data-free-spaces', item.FreePlaces);
-                            newOption.selected = true;
-                            maxSpaces.textContent = place.Capacity;
-                            venue.appendChild(newOption);
-                        }
-                    });
-
-                    venue.addEventListener('change', (event) => {
-                        const selectedPlace = placemeasuresData.find(place => place.PlaceForMeasureName === event.target.value);
-                        if (selectedPlace) {
-                            maxSpaces.textContent = selectedPlace.Capacity;
-                        } else {
-                            maxSpaces.textContent = '';
-                        }
-                    });
-                    //end of venue filling
-                    //fill clients
-                    // Clear existing clients
-
-                    measureClients.innerHTML = '';
-                    addedClients.innerHTML = '';
-
-                    clientsData.forEach(client => {
-                        let foundMatch = false;
-
-                        measureclientsData.forEach(Mclient => {
-                            if (client.Id == Mclient.ClientId && Mclient.MeasureId == item.Id) {
-                                // Found a match, add client to addedClients
-                                addedClients.innerHTML += '<div class="client-div"><p>' + client.ClientName + '</p><input type="hidden" name="AddedClients[]" value="' + client.Id + '"></div>';
-                                foundMatch = true;
-                            }
-                        });
-
-                        if (!foundMatch) {
-                            // Did not find a match, add client to measureClients
-                            measureClients.innerHTML += '<div class="client-div"><p>' + client.ClientName + '</p><input type="hidden" name="MeasureClients[]" value="' + client.Id + '"></div>';
-                        }
-                    });
-
-                    // Add click event listeners to client elements
-                    const clientDivs = document.querySelectorAll('.client-div');
-                    clientDivs.forEach(clientDiv => {
-                        clientDiv.addEventListener('click', () => {
-                            const input = clientDiv.querySelector('input');
-                            if (clientDiv.parentNode === addedClients) {
-                                // Clicked on addedClient, move to measureClient
-                                input.name = 'MeasureClients';
-                                addedClients.removeChild(clientDiv);
-                                measureClients.appendChild(clientDiv);
-                            } else if (clientDiv.parentNode === measureClients) {
-                                // Clicked on measureClient, move to addedClient
-                                input.name = 'AddedClients';
-                                measureClients.removeChild(clientDiv);
-                                addedClients.appendChild(clientDiv);
-                            }
-                        });
-                    });
-                    //end of client filling
-                    //opening Measure
-                    const editMeasureInfo = document.querySelector('#editMeasureInfo');
-                    editMeasureInfo.classList.add('transM');
-                }
-            });
-
-        }
-
-
-
-        function ShowEventMenu(element) {
-            element.stopPropagation();
-
-            const usersData = JSON.parse('@Html.Raw(usersJson)');
-            const eventsData = JSON.parse('@Html.Raw(eventsJson)');
-
-            var clickedDiv = event.target.closest(".event");
-            var hiddenInput = clickedDiv.querySelector("input[type=hidden]");
-            var selectedEventId = hiddenInput.value;
-            eventsData.forEach(item => {
-                if (item.Id == selectedEventId) {
-                    eventId[0].value = item.Id;
-                    eventName[0].value = item.EventName;
-                    showStartDate.value = new Date(item.Begin).toISOString().substring(0, 10);
-                    showEndDate.value = new Date(item.End).toISOString().substring(0, 10);
-
-                    let date = new Date(item.Begin);
-                    let hours = date.getHours().toString().padStart(2, '0');
-                    let minutes = date.getMinutes().toString().padStart(2, '0');
-                    beginDate.value = `${hours}:${minutes}`;
-
-                    date = new Date(item.End);
-                    hours = date.getHours().toString().padStart(2, '0');
-                    minutes = date.getMinutes().toString().padStart(2, '0');
-                    endDate.value = `${hours}:${minutes}`;
-
-                    eventDescription[0].innerText = item.Description;
-
-                    usersData.forEach(user => {
-                        if (user.Id == item.UserId) {
-                            creatorUsername.innerText = user.UserName;
-                        }
-                    });
-                    const firstEvent = item;
-                    const eventDate = new Date(firstEvent.Begin);
-                    const dayNames = ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"];
-                    const monthNames = ["Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень"];
-
-                    const dayName = dayNames[eventDate.getDay()];
-                    const monthName = monthNames[eventDate.getMonth()];
-                    const dateString = `${dayName}, ${monthName} ${eventDate.getDate()}`;
-
-                    // Set the dayEvent element's text content to the formatted date string
-                    dayEvent.textContent = dateString;
-                }
-            });
-            //Open Event
-            if (!rightMenu.classList.contains("trans")) {
-                if (!container.classList.contains("eventShow")) {
-                    container.classList.add("eventShow");
-                } else {
-                    container.classList.remove("eventShow");
-                }
-            }
-
-        }
-
-
-
-
-
-
-
-
-
-        var events = @Html.Raw(eventsJson);
-        var tasks = @Html.Raw(tasksJson);
-        var measures = @Html.Raw(measuresJson);
-        var user=@Html.Raw(user);
-
-
-
-
-        //events.forEach(event=>{
-
-        //    const eventDate=new Date(event.Begin);
-            
-        //    console.log(eventDate);
-
-        //    if(eventDate===new Date()){
-        //        console.log("true");
-        //    }
-        //    else{
-        //        console.log("false");
-        //    }
-        //});
-
-
-
-
-
-        //--------------------------------------------------------------------
-        //When clicking the day on month calendar it goes to the week calendar
-        function handleClick(element) {
-
-
-            //week operations
-            document.getElementById("monthbtn").classList.remove("active");
-            document.getElementById("weekbtn").classList.add("active");
-            WeekButtonClick();
-
-
-
-
-
-
-            //--------------------------------------------------------------------
-
-            // display events, tasks, and measures
-            //let date = new Date(element.id);
-            //date.setMinutes(0);
-            //date.setSeconds(0);
-            //date.setMilliseconds(0);
-
-
-            ////get the year of the clicked element
-            //let year = date.getFullYear();
-            ////get the month of the clicked element
-            //let month = String(date.getMonth() + 1).padStart(2, '0');
-
-
-
-
-
-            //Sasha
-            //--------------------------------------------------------------------
-
-            var weekDayDivs = document.querySelectorAll(".week-day.weekdays");
-
-
-            //for loop blocks of weekDayDivs grid
-            weekDayDivs.forEach(div => {
-            //clean every block
-                div.innerHTML = "";
-
-
-                //Get id every block
-                const id=div.id;
-
-                const timeArr=id.split("-");
-
-                const divYear=timeArr[0];
-                const divMonth = timeArr[1];
-                const divDay=timeArr[2];
-                const divHour=timeArr[3];
-
-                const divDate=new Date(`${divYear}-${divMonth}-${divDay}`);
-                divDate.setHours(divHour);
-
-                
-
-
-                const userEvents=[];
-                
-                events.forEach(event=>{
-                    const eventBegin=new Date(event.Begin);
-                    eventBegin.setMinutes(0,0);
-
-                    if(divDate==eventBegin){
-                        const eventBeginDay = eventBegin.getDate();
-                        const eventBeginHour = eventBegin.getHours();
-
-                        if(divDay==eventBeginDay&&divHour==eventBeginHour){
-
-                            userEvents.push(event);
-
-                            var eventDiv = document.createElement("div");
-                            eventDiv.classList.add("event");
-                            var eventInput = document.createElement("input");
-                            eventInput.type = "hidden";
-                            eventInput.value = event.Id;
-                            var eventP = document.createElement("p");
-                            eventP.innerText = event.EventName;
-                            eventDiv.appendChild(eventInput);
-                            eventDiv.appendChild(eventP);
-                            div.appendChild(eventDiv);
-                        }
-                    }
-
-                    
-
-                    //console.log("EventDay:"+eventBeginDay+"   EventHour:"+eventBeginHour);
-                    //console.log("DivDay:"+divDay+"   DivHour:"+divHour);
-                    //console.log("\n");
-
-                });
-            });
-
-            console.log(userEvents);
-
-
-            //---------------------------------------------------------
-
-
-
-
-
-
-
-
-
-            //---------------------------------------------------------
-
-
-        //    let count = 0;
-        //    for (let hour = 8; hour <= 23; hour++) {
-        //        let weekDayDiv = weekDayDivs[count];
-        //        count++;
-        //        //create a formatted Hour for this element: formattedDateTime
-        //        const formattedHour = String(hour).padStart(2, '0');
-        //        hour = String(hour).padStart(2, '0');
-        //        //for loop to make it go through day of the week
-        //        for (let j = 1; j <= 7; j++) {
-        //            //creating a new date for this element
-        //            const currentDate = new Date(date);
-        //            currentDate.setDate(date.getDate() + j);
-        //            //creating a formatted date for this element
-        //            const day = String(currentDate.getDate()).padStart(2, '0');
-        //            const formattedDate = `${year}-${month}-${day}`;
-        //            const formattedDateTime = `${formattedDate}-${formattedHour}`;
-        //            //for loop of the length on events
-        //            for (let o = 0; o < events.length; o++) {
-        //                //event Object
-        //                const eventObj = events[o];
-
-        //                const beginDate = new Date(eventObj.Begin);
-        //                const eventYear = beginDate.getFullYear();
-        //                const eventMonth = String(beginDate.getMonth() + 1).padStart(2, '0');
-        //                const eventDate = String(beginDate.getDate()).padStart(2, '0');
-        //                const eventHour = String(beginDate.getHours()).padStart(2, '0');
-        //                const formattedEventDate = `${eventYear}-${eventMonth}-${eventDate}-${eventHour}`;
-
-        //                //checking and displaying
-                        
-        //                if (formattedEventDate === formattedDateTime) {
-        //                    //alert(`${formattedEventDate} and ${formattedDateTime}`)
-        //                    var eventDiv = document.createElement("div");
-        //                    eventDiv.classList.add("event");
-        //                    var eventInput = document.createElement("input");
-        //                    eventInput.type = "hidden";
-        //                    eventInput.value = eventObj.Id;
-        //                    var eventP = document.createElement("p");
-        //                    eventP.innerText = eventObj.EventName;
-        //                    eventDiv.appendChild(eventInput);
-        //                    eventDiv.appendChild(eventP);
-        //                    weekDayDiv.appendChild(eventDiv);
-        //                }
-        //            }
-        //        }
-        //    }
-
-
-
-        //end of function "HandleClick()"
-        }
-
-
-
-        //---------------------------------------------------------
-
-
-    </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div id="dayGrid" class="calendar-grid calGrid">
-        <div class="header">
-            <div class="month-name pointer">
-                @DateTime.Now.ToString("MMMM yyyy", new System.Globalization.CultureInfo("uk-UA")).ToUpper()
-            </div>
-            <div class="flex">
-                <div class=" flex-center">
-                    <img class="pointer trans-left" src="img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
-                    <label class="label">День</label>
-                    <img class="pointer trans-right" src="img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
-                </div>
-
-                <div class="flex-center select-month">
-                    <label class="label pointer">Місяць</label>
-                    <img class="arrow pointer" src="img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
-                    <div class="options-month hide">
-                        @{
-                            string[] arr = new string[] { "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
-                            foreach (var item in arr)
-                            {
-                                                                                                            <div class="option-item">item</div>
-                            }
-                        }
-                    </div>
-                </div>
-
-
-                <div class="flex-center select-years">
-                    <label class="label pointer">Рік</label>
-                    <img class="arrow pointer" src="img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
-                    <div class="options-years hide">
-                        @for (int i = 2020; i < 2026; i++)
-                        {
-                            <div class="option-item">@i</div>
-                        }
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="day-flex">
-            <div class="times-grid">
-                <div class="white-text">День</div>
-                @for (int i = 8; i < 24; i++)
-                {
-                    <div class="white-text">@i:00</div>
-                }
-            </div>
-
-            <div class="day-grid">
-                <div class="day-div">
-                    @(DateTime.Now.ToString("dddd", new CultureInfo("uk-UA")).ToString().ToUpper())
-                    @DateTime.Now.ToString("dd")
-                </div>
-                @{
-                    DateTime currentDate1 = DateTime.Now;
-                }
-
-                @for (int i = 8; i < 24; i++)
-                {
-                    bool eventFound = false;
-                    foreach (var item in @ViewBag.Events)
-                    {
-                        DateTime eventDate = item.Begin.Date;
-                        string b = item.Begin.ToString(); // example value: "3/15/2023 12:30:00 PM"
-                        string[] parts = b.Split(' '); // splits the string into an array of strings, using the space character as the separator
-                        string timeString = parts[1]; // retrieves the second element of the array, which should be the time
-                        string hourString = timeString.Substring(0, 2);
-
-                        if (hourString == i.ToString() && eventDate == currentDate1.Date)
-                        {
-                            <center style="color:white;">
-                                <p style="position:absolute;">@item.Description</p>
-                            </center>
-                            eventFound = true;
-                            break;
-                        }
-                    }
-                    if (!eventFound)
-                    {
-                        <div class="time-div"></div>
-                    }
-                }
-            </div>
-
-        </div>
-    </div>
+    
     <script>
         var today = moment().format('DD-MM-YYYY');
         document.getElementById("Date").value = today;
     </script>
     <script>
 
-        //var today = moment().format('DD-MM-YYYY');
         var dateInput = document.getElementById("Date");
         dateInput.value = "@ViewBag?.Date";
         var dateEnd = document.getElementById("DateEnd");
         dateEnd.value = "@ViewBag?.DateEnd";
 
 
-        //function toggleElement(elementId) {
-        //    var element = document.getElementById(elementId);
-        //    if (element.style.display === "none") {
-        //        element.style.display = "block";
-        //    } else {
-        //        element.style.display = "none";
-        //    }
-        //}
-
+        
         function toggleElements(className) {
             var elements = document.getElementsByClassName(className);
             for (var i = 0; i < elements.length; i++) {
@@ -1760,65 +325,9 @@
             editMeasureInfo.classList.remove('transM');
 
         }
-        ////getting all events by class .event
-        //const events = document.querySelectorAll('.event');
-        ////console.log("hello");
-        ////Measure stuff
-        //const measureName = document.querySelector('#MeasureName.task-nameM');
-        //const measureBegin = document.querySelector('#MeasureBegin');
-        //const measureEnd = document.querySelector('#MeasureEnd');
-        //const measureDirImg = document.querySelector('#MeasureDirImg.logo-imgM');
-        //const measureDirName = document.querySelector('#MeasureDirName');
-        //const venue = document.querySelector('#Venue.place-select');
-        //const maxSpaces = document.querySelector('#MaxSpaces');
-        //const measureClients = document.querySelector('#MeasureClients.clients-list');
-        //const addedClients = document.querySelector('.added-clients');
-        ////Task stuff
-        //const rightmenuName = document.getElementById('rightmenuName');
-        //const rightDescription = document.getElementById('rightDescription');
-        //const dateSpanEnd = document.querySelector('.date-placeholder');
-        //const span = document.querySelector('div span:last-child');
-        //const dateSpanStart = document.querySelector('#rightmenuDateStart');
-        //const deadLine = document.querySelector('#deadLine');
-        //const Director = document.querySelector("#Director");
-        //const Responsible = document.querySelector('#Responsible');
-        //const Observers = document.querySelector('#Observers');
-        //const Coperformers = document.querySelector("#Coperformers");
 
-        ////Event Stuff
-        //let eventId = document.getElementsByName("EventId");
-        //let eventName = document.getElementsByName("EventName");
-        //let showStartDate = document.getElementById("Date");
-        //let showEndDate = document.getElementById("DateEnd");
-        //let beginDate = document.getElementById("time1");
-        //let endDate = document.getElementById("time2");
-        //let eventDescription = document.getElementsByName("EventDescription");
-        //let creatorUsername = document.getElementById("creatorUsername");
-        //let dayEvent = document.getElementById("nameEvent");
-
-        document.querySelectorAll('.event').forEach(function (element) {
-            //console.log(element);
-
-
-
-            if (element.classList.contains('yellow')) {
-                //console.log("Yellow");
-
-            }
-            else if (element.classList.contains('red')) {
-                //console.log("Red");
-
-
-
-            }
-            else {
-                //console.log("Normal");
-
-            }
-        });                                                                                                                          //});
+                                                                                                                               //});
     </script>
-
-
 
 
 
@@ -1829,3 +338,11 @@
     <script src="~/js/SashaTimeLine.js" asp-append-version="true"></script>
     <script src="/js/script.js" asp-append-version="true"></script>
     <script src="/js/scriptEventMini.js" asp-append-version="true"></script>
+
+
+    
+<script>
+        //MonthButtonClick();
+        CurrentMonth();
+        
+</script>

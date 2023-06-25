@@ -1,0 +1,288 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var ukrainianCulture = Model.culture;
+    var ViewBag = Model._ViewBag;
+    var currentDate = DateTime.Now;
+    var currentYear = currentDate.Year;
+    var currentMonth = currentDate.Month;
+    var currentDay = currentDate.Day;
+}
+
+
+<div id="monthGrid" class="calendar-grid calGrid activeGrid appearGrid hidden showw">
+    @for (int year = 2022; year <= 2025; year++)
+    {
+        <div class="year-switcher" id="@($"year_{year}")" @(year == 2022 ? "style='display:block'" : "style='display:none'")>
+            @for (int month = 1; month <= 12; month++)
+            {
+                var monthName = @ukrainianCulture.DateTimeFormat.GetMonthName(month);
+
+                <div id="@($"month_{year}_{month}")" class="month-switcher @monthName">
+                    <div class="calendar-header">
+                        <div class="month-name pointer">@monthName @year</div>
+                        <div class="select-month">
+                            <label class="label pointer">Місяць</label>
+                            <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                            <div class="options-month hide">
+                                @for (int m = 1; m <= 12; m++)
+                                {
+                                    //here
+                                    <div id="@($"month_{year}_{m}")" class="option-item option-item-month">
+                                        @ukrainianCulture.DateTimeFormat.GetMonthName(m)
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="select-years">
+                            <label class="label pointer">Рік</label>
+                            <img class="arrow pointer" src="~/img/keyboard-left-arrow-button_icon-icons 5.png" alt="">
+                            <div class="options-years hide">
+                                @for (int y = 2022; y <= 2025; y++)
+                                {
+                                    <div class="option-item" onclick="toggleVisibility('@($"month_{y}_{month}")');">@y</div>
+                                }
+                            </div>
+                        </div>
+                        <input type="hidden" name="yearValue" id="myInput">
+                    </div>
+
+                    <div>
+                        <div class="grid">
+                            @for (int i = 0; i < 7; i++)
+                            {
+                                <div class="week-day">@ViewBag.weekDays[i]</div>
+                            }
+                        </div>
+                        <div class="month-days grid">
+                            @{
+                                DateTimeOffset firstDayOfMonth = new DateTimeOffset(year, month, 1, 0, 0, 0, TimeSpan.Zero);
+                                int daysInMonth = DateTime.DaysInMonth(year, month);
+                                int daysInLastMonth = DateTime.DaysInMonth(year, month == 1 ? 12 : month - 1);
+                                int firstDayOfWeek = (int)firstDayOfMonth.DayOfWeek;
+                                int lastDayOfWeek = (int)new DateTimeOffset(year, month, daysInMonth, 0, 0, 0, TimeSpan.Zero).DayOfWeek;
+                                int rows = (firstDayOfWeek + daysInMonth + (6 - lastDayOfWeek)) / 7;
+                                int day = 2 - firstDayOfWeek;
+                            }
+                            @for (int row = 0; row < rows; row++)
+                            {
+                                @for (int col = 0; col < 7; col++)
+                                {
+                                    if (day >= 1 && day <= daysInMonth)
+                                    {
+                                        DateTime currentDate2 = new DateTime(year, month, day);
+
+                                        <div class="month-day" id="@currentDate2.ToString("yyyy_M_d")" onclick="monthDayHandleClick(this)">
+                                            @day
+                                            <div class="event-date-box">
+                                                @foreach (Event item in ViewBag.Events)
+                                                {
+                                                    if (item.Begin.ToString("yyyy-MM-dd") == currentDate2.ToString("yyyy-MM-dd"))
+                                                    {
+                                                        <div class="event" onclick="ShowEventMenu(event)">
+                                                            <input type="hidden" value="@item.Id">
+                                                            <p>@item.EventName</p>
+                                                        </div>
+                                                    }
+                                                    else if (currentDate2 >= item.Begin && currentDate2 <= item.End)
+                                                    {
+                                                        <div class="event" onclick="ShowEventMenu(event)">
+                                                            <input type="hidden" value="@item.Id">
+                                                            <p>@item.EventName</p>
+                                                        </div>
+                                                    }
+                                                }
+                                                @foreach (MEVIO.Models.Task item in ViewBag.Tasks)
+                                                {
+                                                    if (item.Begin.ToString("yyyy-MM-dd") == currentDate2.ToString("yyyy-MM-dd"))
+                                                    {
+                                                        <div class="event yellow" onclick="ShowTaskMenu(event)">
+                                                            <input type="hidden" value="@item.Id">
+                                                            <p>@item.TaskName</p>
+                                                        </div>
+                                                    }
+                                                    else if (currentDate2 >= item.Begin && currentDate2 <= item.End)
+                                                    {
+                                                        <div class="event yellow" onclick="ShowTaskMenu(event)">
+                                                            <input type="hidden" value="@item.Id">
+                                                            <p>@item.TaskName</p>
+                                                        </div>
+                                                    }
+                                                }
+                                                @foreach (Measure item in ViewBag.Measures)
+                                                {
+                                                    if (item.Begin.ToString("yyyy-MM-dd") == currentDate2.ToString("yyyy-MM-dd"))
+                                                    {
+                                                        <div class="event red" onclick="ShowMeasureMenu(event)">
+                                                            <input type="hidden" value="@item.Id">
+                                                            <p>@item.MeasureName</p>
+                                                        </div>
+                                                    }
+                                                    else if (currentDate2 >= item.Begin && currentDate2 <= item.End)
+                                                    {
+                                                        <div class="event red" onclick="ShowMeasureMenu(event)">
+                                                            <input type="hidden" value="@item.Id">
+                                                            <p>@item.MeasureName</p>
+                                                        </div>
+                                                    }
+                                                }
+                                            </div>
+                                            
+                                        </div>
+                                    }
+                                    else if (day < 1)
+                                    {
+                                        int prevMonthDay = daysInLastMonth + day;
+                                        DateTime prevMonthDate = new DateTime(month == 1 ? year - 1 : year, month == 1 ? 12 : month - 1, prevMonthDay);
+                                        <div class="month-day prev-month" id="@prevMonthDate.ToString("yyyy_M_d")" onclick="monthDayHandleClick(this)">
+                                            @prevMonthDate.Day
+                                        </div>
+                                    }
+                                    else
+                                    {
+
+                                        int nextMonthDay = day - daysInMonth;
+                                        DateTime nextMonthDate = new DateTime(month == 12 ? year + 1 : year, month == 12 ? 1 : month + 1, nextMonthDay);
+                                        <div class="month-day next-month" id="@nextMonthDate.ToString("yyyy_M_d")" onclick="monthDayHandleClick(this)">
+                                            @nextMonthDate.Day
+                                        </div>
+                                    }
+                                    day++;
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+</div>
+
+
+
+
+<script>
+    const monthBtn = document.getElementById("monthbtn");
+    monthBtn.addEventListener("click", CurrentMonth);
+
+    function CurrentMonth() {
+        var currentMonth = @ViewBag.monthNow.Number;
+        var monthSwitchers = document.querySelectorAll('.month-switcher');
+
+        for (var i = 0; i < monthSwitchers.length; i++) {
+            var monthSwitcher = monthSwitchers[i];
+            var monthId = monthSwitcher.id;
+            var monthNumber = parseInt(monthId.split('_')[2]);
+
+            if (monthNumber !== currentMonth) {
+                monthSwitcher.style.display = 'none';
+            }
+            else {
+                monthSwitcher.style.display = 'block';
+            }
+        }
+
+        var yearSwitchers = document.querySelectorAll('.year-switcher');
+        for (var i = 0; i < yearSwitchers.length; i++) {
+            var yearSwitcher = yearSwitchers[i];
+            var year = parseInt(yearSwitcher.id.split('_')[1]);
+
+            if (year === new Date().getFullYear()) {
+                yearSwitcher.style.display = 'block';
+            }
+            else {
+                yearSwitcher.style.display = 'none';
+            }
+        }
+    }
+
+
+
+    function MonthButtonClick() {
+        document.body.style.overflowY = 'hidden';
+        grids.forEach(grid => {
+            if (grid.classList.contains("activeGrid")) {
+                grid.classList.add("shrink");
+                setTimeout(() => {
+                    grid.classList.add("go");
+                }, 100);
+                grid.classList.remove("activeGrid");
+
+                grid.classList.remove("appearGrid");
+                grid.classList.remove("hidden");
+                grid.classList.remove("showw");
+            }
+            setTimeout(() => {
+                grid.classList.remove("go");
+                grid.classList.remove("shrink");
+            }, 500);
+        });
+        monthGrid = document.getElementById("monthGrid");
+        monthGrid.classList.add("activeGrid");
+
+        monthGrid.classList.add("appearGrid");
+        monthGrid.classList.add("hidden");
+
+        setTimeout(() => {
+            // link.hide("style/year.css");
+            $("#yearGrid").hide();
+            $("#weekGrid").hide();
+            $("#dayGrid").hide();
+        }, 300);
+
+        setTimeout(() => {
+            link.href = "/css/month.css";
+            $("#monthGrid").show();
+            setTimeout(() => {
+                monthGrid.classList.add("showw");
+            }, 200);
+        }, 200);
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+
+        document.body.style.overflowY = 'auto';
+    }
+
+    
+</script>
+
+
+<script>
+    function monthDayHandleClick(element){
+        const id = element.id;
+        const [year,month,day] = id.split('_');
+
+        if(year < 2022 || year > 2026){
+            return;
+        }
+
+        DayButtonClick();
+        
+        toggleSwitcherBlocks(year,month);
+
+        $(".day-switcher:visible").hide();
+
+        $(`#day_${id}`).show();
+
+        const selectedDay = document.getElementById("selectedDay");
+        selectedDay.value = `${year}_${month}_${day}`;
+
+    }
+
+</script>
+
+
+<script>
+    $(()=>{
+        const year = @currentYear;
+        const month = @currentMonth;
+        const day = @currentDay;
+
+        $(`#${year}_${month}_${day}`).addClass("current-day");
+    })
+</script>

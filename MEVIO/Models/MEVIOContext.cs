@@ -167,6 +167,7 @@ namespace MEVIO.Models
        
         public MEVIOContext(DbContextOptions<MEVIOContext> options) : base(options)
         {
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
             
         }

@@ -1,0 +1,82 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<style>
+    .new-stuff-button{
+        position:relative;
+    }
+
+    .new-stuff-box{
+        transition:0.2s;
+        position:absolute;
+        top:0;
+        left:110%;
+        border:1px solid black;
+        padding:1rem 0;
+        display:flex;
+        flex-direction:column;
+        z-index:10;
+    }
+
+    .hide{
+        display:none;
+    }
+
+    .active{
+        background: #61AEE5;
+    }
+
+    .new-stuff-item{
+        transition:0.2s;
+        width:100%;
+        padding:1rem 2rem;
+        color: #111624;
+        text-decoration:none;
+        font-weight:bold;
+    }
+
+    .new-stuff-item:hover{
+        color:#61AEE5;
+            background: #111624;
+    }
+</style>
+
+
+<div class="calendar-header">
+    <div class="flex">
+        <div class="calendar pointer">
+            Календар
+        </div>
+        <div class="button header-button round pointer new-stuff-button">
+        Створити
+            <div class="new-stuff-box round hide active">
+                <a class="new-stuff-item" asp-controller="Event">Event</a>
+                <a class="new-stuff-item" asp-controller="Meassure">Meassure</a>
+                <a class="new-stuff-item" asp-controller="MyTaskMarina">Task</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex round calendar-buttons">
+        <div id="daybtn" class="round pointer button calendar-button" onclick="DayButtonClick()">День</div>
+        <div id="weekbtn" class="round pointer button calendar-button" onclick="WeekButtonClick()">Тиждень</div>
+        <div id="monthbtn" class="round pointer button calendar-button active" onclick="MonthButtonClick()">Місяць</div>
+        <div id="yearbtn" class="round pointer button calendar-button" onclick="YearButtonClick()">Рік</div>
+    </div>
+</div>
+
+
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(".new-stuff-button").click(function(){
+            $(this).toggleClass("active");
+            $(".new-stuff-box").toggleClass("hide");
+        })
+    })
+</script>

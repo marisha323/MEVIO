@@ -16,7 +16,6 @@
     }
 /*//////////////////////////////////////*/
 .calendar-header {
-    display: flex;
     justify-content: space-between;
     align-items: center;
     color: #52A7E4;
@@ -134,25 +133,13 @@
     overflow: auto; /* add scrollbar if content overflows */
 }
 
-.event {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: lime;
-    height: 1rem;
-    border-radius: 30px;
-    margin-bottom: 10px; /* add some spacing between events */
+
+
+.current-day{
+    border: 2px solid red;
 }
 
-    .event p {
-        font-size: 15px;
-        margin: 0;
-        text-align: center;
-    }
 
-        .event p:hover {
-            transform: scale(1.05);
-        }
 
 ::-webkit-scrollbar {
     width: 10px;
